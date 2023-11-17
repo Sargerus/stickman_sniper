@@ -49,6 +49,7 @@ namespace YG
             set => _playerName = value;
         }
         public static string playerId { get => _playerId; }
+        public static string Device { get; private set; }
         public static string playerPhoto
         {
             get => _playerPhoto;
@@ -937,6 +938,12 @@ namespace YG
         public void _StickyAdActivity(bool activity) => StickyAdActivity(activity);
         #endregion Sticky Ad
 
+        #region Device
+        public void SetDeviceInfo(string device)
+        {
+            Device = device;
+        }
+        #endregion
 
         // Receiving messages
 

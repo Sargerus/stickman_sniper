@@ -312,6 +312,7 @@
             YaGames.init()
                 .then(ysdk => {
                     console.log('Init Yandex SDK');
+                    console.log(ysdk.deviceInfo);
                     window.ysdk = ysdk;
                     InitPayments();
 
@@ -343,6 +344,19 @@
                         console.error('CRASH canShowFeedback: ', e.message);
                     }
 
+                    let device;
+                    if(ysdk.deviceInfo.isMobile())
+                    {
+                        device = 'mobile';
+                    } else if(ysdk.deviceInfo.isDesktop())
+                    {
+                        device = 'desktop';
+                    } else if(ysdk.deviceInfo.isTablet())
+                    {
+                        device = 'tablet';
+                    }
+                    
+                    myGameInstance.SendMessage('YandexGame', 'SetDeviceInfo', device);
                     FullAdShow(); // First ad true
 
                     if (initGame) {

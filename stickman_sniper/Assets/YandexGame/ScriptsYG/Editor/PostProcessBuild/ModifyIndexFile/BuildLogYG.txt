@@ -1,2 +1,2 @@
-Build path: D:/Unity/Release/PluginYG/PluginYG
-Build number: 18
+Build path: D:/UnityProjects/stickman_sniper/stickman_sniper/stickman_sniper/Builds
+Build number: 26

@@ -7,7 +7,6 @@ using Zenject;
 public class GameEntryPoint : MonoBehaviour
 {
     [SerializeField] private SceneContext _sceneContext;
-    [SerializeField] private TMP_Text _text;
 
     private bool _isInitialize = false;
 
@@ -30,7 +29,5 @@ public class GameEntryPoint : MonoBehaviour
         _isInitialize = true;
 
         _sceneContext.Run();
-        var inputService = _sceneContext.Container.Resolve<IInputService>();
-        _text.SetText(inputService.Device.ToString());
     }
 }

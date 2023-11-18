@@ -20,6 +20,8 @@ public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
 
+    public class Factory : PlaceholderFactory<FirstPersonController> { }
+
     #region Camera Movement Variables
 
     public Camera playerCamera;

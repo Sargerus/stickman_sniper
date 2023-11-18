@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
 using YG;
 using Zenject;
 
@@ -26,6 +27,7 @@ namespace DWTools
     public partial class InputService : IInputService, ITickable, ILateTickable
     {
         private List<IInputHandler> _handlers = new();
+        private readonly InputHandlerContainerSO _inputContainer;
 
         public Device Device { get; }
 
@@ -36,9 +38,12 @@ namespace DWTools
         public bool IsShooting { get; private set; }
         #endregion
 
-        public InputService()
+        public InputService(InputHandlerContainerAggregatorSO inputAggregator)
         {
             Device = DeviceExtensions.StringToDevice(YandexGame.Device);
+            _inputContainer = inputAggregator.InputHandlersContainer.FirstOrDefault(g => g.Device.Equals(Device));
+
+            _inputContainer.InputHandlers.ForEach(g => AddHandler(g.GetHandler()));
         }
 
         public void Tick()

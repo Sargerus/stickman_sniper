@@ -9,5 +9,10 @@ public class BootstrapScriptableObjectInstaller : ScriptableObjectInstaller
     public override void InstallBindings()
     {
         Container.BindInstances(_inputAggregator);
+
+        _inputAggregator.InputHandlersContainer.ForEach(container =>
+        {
+            container.InputHandlers.ForEach(handler => Container.QueueForInject(handler));
+        });
     }
 }

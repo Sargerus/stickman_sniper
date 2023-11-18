@@ -211,18 +211,18 @@ public class FirstPersonController : MonoBehaviour
         #region Camera
 
         // Control camera movement
-        if(cameraCanMove)
+        if(cameraCanMove && _inputService != null)
         {
-            yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
+            yaw = transform.localEulerAngles.y + _inputService.MouseX * mouseSensitivity;
 
             if (!invertCamera)
             {
-                pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
+                pitch -= mouseSensitivity * _inputService.MouseY;
             }
             else
             {
                 // Inverted Y
-                pitch += mouseSensitivity * Input.GetAxis("Mouse Y");
+                pitch += mouseSensitivity * _inputService.MouseY;
             }
 
             // Clamp pitch between lookAngle
@@ -374,10 +374,10 @@ public class FirstPersonController : MonoBehaviour
     {
         #region Movement
 
-        if (playerCanMove)
+        if (playerCanMove && _inputService != null)
         {
             // Calculate how fast we should be moving
-            Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            Vector3 targetVelocity = new Vector3(_inputService.XAxis, 0, _inputService.ZAxis);
 
             // Checks if player is walking and isGrounded
             // Will allow head bob

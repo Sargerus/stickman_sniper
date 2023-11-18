@@ -5,10 +5,15 @@ using Zenject;
 public class FPSControllerInstaller : MonoInstaller
 {
     [SerializeField] private CameraProvider _fpsCamera;
+    [SerializeField] private HandsController _handsController;
 
     public override void InstallBindings()
     {
         Container.BindInstance(_fpsCamera).WithId(CameraProvider.WorldCamera).AsSingle();
         Container.BindInstance(gameObject.GetComponent<FirstPersonController>());
+        Container.BindInterfacesAndSelfTo<WeaponFactory>().AsSingle();
+
+        Container.BindInterfacesTo<WeaponService>().AsSingle();
+        Container.Bind<IHandsController>().FromInstance(_handsController).AsSingle().WhenInjectedInto<IWeaponService>();
     }
 }

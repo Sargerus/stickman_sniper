@@ -9,10 +9,14 @@ namespace DWTools
     public interface IHandsController : IWeapon
     {
         UniTask SwitchWeapon(IWeapon weapon);
+        Transform WeaponContainer { get; }
     }
 
     public class HandsController : MonoBehaviour, IHandsController
     {
+        [SerializeField] private Transform _weaponContainer;
+        public Transform WeaponContainer => _weaponContainer;
+
         private IWeaponAnimationInterface _weaponAnimation;
         private IWeaponAnimationInterface _handsAnimation;
 
@@ -32,7 +36,7 @@ namespace DWTools
         public int MaxBulletsCount => _weapon.MaxBulletsCount;
         public IReadOnlyReactiveProperty<bool> CanShoot => _weapon.CanShoot;
         public IReadOnlyReactiveProperty<bool> IsReloading => _weapon.IsReloading;
-        public IReadOnlyReactiveProperty<bool> IsGrabing => _weapon.IsGrabing;
+        public IReadOnlyReactiveProperty<bool> IsGrabing => _weapon.IsGrabing;        
 
         public void Reload()
         {

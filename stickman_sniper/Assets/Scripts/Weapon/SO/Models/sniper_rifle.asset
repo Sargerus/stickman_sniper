@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13dfa4f9f9365f04e8671d1cf770d14c, type: 3}
+  m_Name: sniper_rifle
+  m_EditorClassIdentifier: 
+  Key: sniper_rifle
+  Value: {fileID: 1499537887891044136, guid: 94b609c7a38b3a44daa83cbbd0e81e30, type: 3}

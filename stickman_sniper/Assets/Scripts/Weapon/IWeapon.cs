@@ -16,6 +16,7 @@ namespace DWTools
 
     public interface IWeapon
     {
+        GameObject gameObject { get; }
         int BulletType { get; }
         IReadOnlyReactiveProperty<int> CurrentBulletsCount { get; }
         int MaxBulletsCount { get; }

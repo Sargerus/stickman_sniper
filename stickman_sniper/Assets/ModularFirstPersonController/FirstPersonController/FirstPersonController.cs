@@ -136,7 +136,17 @@ public class FirstPersonController : MonoBehaviour
     #endregion
 
     #region Injections
-    [Inject] private IInputService _inputService;
+    private IInputService _inputService;
+    private IWeaponService _weaponService;
+
+    [Inject]
+    private void Construct(IInputService inputService, IWeaponService weaponService)
+    {
+        _inputService = inputService;
+        _weaponService = weaponService;
+
+        _weaponService.SwitchToWeapon("sniper_rifle");
+    }
     #endregion
 
     private void Awake()

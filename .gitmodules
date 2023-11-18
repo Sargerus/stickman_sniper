@@ -1,0 +1,3 @@
+[submodule "stickman_sniper/Assets/Scripts/DWTools"]
+	path = stickman_sniper/Assets/Scripts/DWTools
+	url = git@github.com:Sargerus/DWTools.git

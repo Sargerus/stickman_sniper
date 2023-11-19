@@ -14,3 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Key: sniper_rifle
   Value: {fileID: 1499537887891044136, guid: 94b609c7a38b3a44daa83cbbd0e81e30, type: 3}
+  ReloadingTime: 0
+  Damage: 1
+  BulletType: 0
+  MaxBulletsCount: 0
+  MagazineCapacity: 0

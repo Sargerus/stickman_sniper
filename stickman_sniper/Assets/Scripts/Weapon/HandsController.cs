@@ -8,8 +8,9 @@ namespace DWTools
 {
     public interface IHandsController : IWeapon
     {
-        UniTask SwitchWeapon(IWeapon weapon);
+        UniTask SwitchWeapon(IWeapon weapon, IWeaponStateController weaponStateController);
         Transform WeaponContainer { get; }
+        IWeapon CurrentWeapon { get; }
     }
 
     public class HandsController : MonoBehaviour, IHandsController
@@ -31,12 +32,26 @@ namespace DWTools
         private CancellationTokenSource _grabWeaponCancellationToken;
 
         #region Weapon
-        public int BulletType => _weapon.BulletType;
+        public IWeapon CurrentWeapon => this;
+
         public IReadOnlyReactiveProperty<int> CurrentBulletsCount => _weapon.CurrentBulletsCount;
-        public int MaxBulletsCount => _weapon.MaxBulletsCount;
         public IReadOnlyReactiveProperty<bool> CanShoot => _weapon.CanShoot;
         public IReadOnlyReactiveProperty<bool> IsReloading => _weapon.IsReloading;
-        public IReadOnlyReactiveProperty<bool> IsGrabing => _weapon.IsGrabing;        
+        public IReadOnlyReactiveProperty<bool> IsGrabing => _weapon.IsGrabing;
+        public IReadOnlyReactiveProperty<bool> IsShooting => _weapon.IsShooting;
+
+        public string Key => _weapon.Key;
+        public int BulletType => _weapon.BulletType;
+        public float Damage => _weapon.Damage;
+        public float ReloadingTime => _weapon.ReloadingTime;
+        public int MaxBulletsCount => _weapon.MaxBulletsCount;
+        public int MagazineCapacity => _weapon.MagazineCapacity;
+        public int TimeBetweenShots => _weapon.TimeBetweenShots;
+
+        public void Initialize(WeaponModel model)
+        {
+            _weapon.Initialize(model);
+        }
 
         public void Reload()
         {
@@ -63,7 +78,7 @@ namespace DWTools
 
         public void Shoot()
         {
-            if (IsReloading.Value)
+            if (CanShoot.Value)
                 return;
 
             _weaponStateController.SetIsShooting(true);
@@ -76,9 +91,10 @@ namespace DWTools
             await UpdateToken(_shootCancellationToken);
             _shootCancellationToken = new();
 
-            await UniTask.WhenAll(
-                _weaponAnimation != null ? _weaponAnimation.Shoot(_shootCancellationToken.Token) : UniTask.CompletedTask,
-                _handsAnimation != null ? _handsAnimation.Shoot(_shootCancellationToken.Token) : UniTask.CompletedTask);
+            await UniTask.WhenAny(
+                UniTask.WhenAll(_weaponAnimation != null ? _weaponAnimation.Shoot(_shootCancellationToken.Token) : UniTask.CompletedTask,
+                                _handsAnimation != null ? _handsAnimation.Shoot(_shootCancellationToken.Token) : UniTask.CompletedTask),
+                UniTask.Delay(_weapon.TimeBetweenShots));
 
             _weaponStateController.SetIsShooting(false);
         }
@@ -112,7 +128,7 @@ namespace DWTools
         }
         #endregion
 
-        public async UniTask SwitchWeapon(IWeapon weapon)
+        public async UniTask SwitchWeapon(IWeapon weapon, IWeaponStateController weaponStateController)
         {
             if (_weapon == weapon)
                 return;
@@ -121,6 +137,7 @@ namespace DWTools
             _switchWeaponCancellationToken = new();
 
             _weapon = weapon;
+            _weaponStateController = weaponStateController;
             _weaponDisposables?.Clear();
 
             Grab();

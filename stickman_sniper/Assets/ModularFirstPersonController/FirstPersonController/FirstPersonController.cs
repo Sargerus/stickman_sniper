@@ -374,6 +374,13 @@ public class FirstPersonController : MonoBehaviour
 
         #endregion
 
+        #region Shoot
+        if (_inputService.IsShooting)
+        {
+            _weaponService.CurrentWeapon.Shoot();
+        }
+        #endregion
+
         CheckGround();
 
         if(enableHeadBob)

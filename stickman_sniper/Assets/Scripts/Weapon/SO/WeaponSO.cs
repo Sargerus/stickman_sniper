@@ -13,6 +13,7 @@ public class WeaponModel
     public int MaxBulletsCount;
     public int MagazineCapacity;
     public int TimeBetweenShots;
+    public float PushForce;
 }
 
 public abstract class WeaponSO : ScriptableObject

@@ -30,6 +30,8 @@ public class Rifle : BaseWeapon
 
                 _isShooting.Value = false;
             });
+
+            hit.rigidbody.AddForce((hit.point - _fpsCamera.transform.position).normalized * _model.PushForce, ForceMode.Impulse);
         }
     }
 }

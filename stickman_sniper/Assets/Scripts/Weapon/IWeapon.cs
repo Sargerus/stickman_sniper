@@ -6,31 +6,16 @@ using UnityEngine;
 
 namespace DWTools
 {
-    [Serializable]
-    public class WeaponModel
+    public interface IAnimationInterface
     {
-        public string Key;
-        public int BulletType;
-        public float Damage;
-        public float ReloadingTime;
-        public int MaxBulletsCount;
-        public int MagazineCapacity;
-        public int TimeBetweenShots;
-    }
-
-    public interface IWeaponAnimationInterface
-    {
+        RuntimeAnimatorController Animator { get; }
         void SetAnimator(RuntimeAnimatorController animatorController);
-
-        UniTask Shoot(CancellationToken cancellationToken);
-        UniTask Reload(CancellationToken cancellationToken);
-        UniTask Grab(CancellationToken cancellationToken);
     }
 
     public interface IWeapon
     {
-        GameObject gameObject { get; }
         IReadOnlyReactiveProperty<int> CurrentBulletsCount { get; }
+        IReadOnlyReactiveProperty<int> StashedBulletsCount { get; }
 
         string Key { get; }
         int BulletType { get; }
@@ -39,6 +24,7 @@ namespace DWTools
         int MaxBulletsCount { get; }
         int MagazineCapacity { get; }
         int TimeBetweenShots { get; }
+        GameObject View { get; }
 
         IReadOnlyReactiveProperty<bool> CanShoot { get; }
         IReadOnlyReactiveProperty<bool> IsGrabing { get; }
@@ -48,14 +34,7 @@ namespace DWTools
         void Shoot();
         void Reload();
         void Grab();
-        void Initialize(WeaponModel model);
-    }
-
-    public interface IWeaponStateController
-    {
-        void SetIsGrabing(bool isGrabing);
-        void SetIsReloading(bool isReloading);
-        void SetIsShooting(bool isShooting);
+        void Initialize(WeaponModel model, WeaponState weaponState);
     }
 
     public interface IHands

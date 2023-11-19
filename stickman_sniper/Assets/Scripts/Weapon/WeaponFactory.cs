@@ -1,5 +1,4 @@
 using DWTools;
-using UnityEngine;
 using Zenject;
 
 public class WeaponFactory
@@ -13,19 +12,18 @@ public class WeaponFactory
         _diContainer = diContainer;
     }
 
-    public IWeapon CreateRifle(Vector3 position, Quaternion rotation, Transform parent, out IWeaponStateController weaponStateController)
+    public IWeapon CreateRifle()
     {
-        return Create("sniper_rifle", position, rotation, parent, out weaponStateController);
+        return Create("sniper_rifle");
     }
 
-    public IWeapon Create(string key, Vector3 position, Quaternion rotation, Transform parent, out IWeaponStateController weaponStateController)
+    public IWeapon Create(string key)
     {
         var so = _weaponsContainerSO.Get(key);
-        var weapon = GameObject.Instantiate(so.Value.gameObject, position, rotation, parent);
 
-        weaponStateController = weapon.GetComponent<IWeaponStateController>();
-        _diContainer.InjectGameObject(weapon);
+        IWeapon result = so.GetWeapon();
+        _diContainer.Inject(result);
 
-        return weapon.GetComponent<IWeapon>();
+        return result;
     }
 }

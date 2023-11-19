@@ -1,15 +1,22 @@
+using System;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "[WEAPON]Weapon/WeaponSO", fileName ="new Weapon")]
-public class WeaponSO : ScriptableObject
+[Serializable]
+public class WeaponModel
 {
-    public string Key;
-    public BaseWeapon Value;
+    public GameObject View;
 
-    public float ReloadingTime;
-    public float Damage;
+    public string Key;
     public int BulletType;
+    public float Damage;
+    public float ReloadingTime;
     public int MaxBulletsCount;
     public int MagazineCapacity;
     public int TimeBetweenShots;
+}
+
+public abstract class WeaponSO : ScriptableObject
+{
+    public abstract BaseWeapon GetWeapon();
+    public WeaponModel Model;    
 }

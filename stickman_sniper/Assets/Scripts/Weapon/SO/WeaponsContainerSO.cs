@@ -9,6 +9,6 @@ public class WeaponsContainerSO : ScriptableObject
 
     public WeaponSO Get(string key)
     {
-        return Weapons.FirstOrDefault(g => g.Key == key);
+        return Weapons.FirstOrDefault(g => g.Model.Key == key);
     }
 }

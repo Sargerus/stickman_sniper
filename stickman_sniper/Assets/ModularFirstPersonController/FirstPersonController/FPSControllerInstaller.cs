@@ -14,6 +14,6 @@ public class FPSControllerInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<WeaponFactory>().AsSingle();
 
         Container.BindInterfacesTo<WeaponService>().AsSingle();
-        Container.Bind<IHandsController>().FromInstance(_handsController).AsSingle().WhenInjectedInto<IWeaponService>();
+        Container.BindInterfacesTo<HandsController>().FromInstance(_handsController).AsSingle();
     }
 }

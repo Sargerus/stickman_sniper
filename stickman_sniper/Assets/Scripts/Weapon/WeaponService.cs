@@ -1,26 +1,40 @@
 using DWTools;
-using UnityEngine;
+using System;
+using UniRx;
+
+[Serializable]
+public class WeaponState
+{
+    public readonly int CurrentBulletsCount;
+    public readonly int StashedBulletsCount;
+
+    public WeaponState(int currentBulletsCount, int stashedBulletsCount)
+    {
+        CurrentBulletsCount = currentBulletsCount;
+        StashedBulletsCount = stashedBulletsCount;
+    }
+}
 
 public interface IWeaponService
 {
     void SwitchToWeaponSlot(int slot);
     void SwitchToWeapon(string weaponKey);
+
+    IReadOnlyReactiveProperty<IWeapon> CurrentWeapon { get; }
 }
 
-public class WeaponService : IWeaponService
+public sealed class WeaponService : IWeaponService
 {
     private readonly WeaponFactory _weaponFactory;
-    private readonly IHandsController _handsController;
     private readonly WeaponsContainerSO _weaponsContainer;
 
-    private IWeaponStateController _stateController;
+    private ReactiveProperty<IWeapon> _currentWeapon = new();
+    public IReadOnlyReactiveProperty<IWeapon> CurrentWeapon => _currentWeapon;
 
     public WeaponService(WeaponFactory weaponFactory,
-        IHandsController handsController,
         WeaponsContainerSO weaponsContainer)
     {
         _weaponFactory = weaponFactory;
-        _handsController = handsController;
         _weaponsContainer = weaponsContainer;
     }
 
@@ -30,25 +44,15 @@ public class WeaponService : IWeaponService
 
     public void SwitchToWeapon(string weaponKey)
     {
-        var newWeapon = _weaponFactory.Create(weaponKey, _handsController.WeaponContainer.transform.position,
-            Quaternion.identity, _handsController.WeaponContainer.transform, out _stateController);
+        var weapon = _weaponFactory.Create(weaponKey);
+        weapon.Initialize(FindModel(weaponKey), new(10, 0));
 
-        newWeapon.Initialize(FindModel(weaponKey));
-
-        _handsController.SwitchWeapon(newWeapon, _stateController);
+        _currentWeapon.Value = weapon;
     }
 
     private WeaponModel FindModel(string key)
     {
         var weaponSO = _weaponsContainer.Get(key);
-        return new()
-        {
-            Key = weaponSO.Key,
-            BulletType = weaponSO.BulletType,
-            Damage = weaponSO.Damage,
-            MagazineCapacity = weaponSO.MagazineCapacity,
-            MaxBulletsCount = weaponSO.MaxBulletsCount,
-            ReloadingTime = weaponSO.ReloadingTime
-        };
+        return weaponSO.Model;
     }
 }

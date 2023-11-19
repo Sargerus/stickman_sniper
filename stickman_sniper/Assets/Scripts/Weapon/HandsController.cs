@@ -3,27 +3,26 @@ using System;
 using System.Threading;
 using UniRx;
 using UnityEngine;
+using Zenject;
 
 namespace DWTools
 {
-    public interface IHandsController : IWeapon
+    public interface IHandsController
     {
-        UniTask SwitchWeapon(IWeapon weapon, IWeaponStateController weaponStateController);
         Transform WeaponContainer { get; }
-        IWeapon CurrentWeapon { get; }
     }
 
-    public class HandsController : MonoBehaviour, IHandsController
+    public class HandsController : MonoBehaviour, IHandsController, IInitializable
     {
         [SerializeField] private Transform _weaponContainer;
         public Transform WeaponContainer => _weaponContainer;
 
-        private IWeaponAnimationInterface _weaponAnimation;
-        private IWeaponAnimationInterface _handsAnimation;
+        [Inject] private IWeaponService _weaponService;
 
-        private IWeapon _weapon;
-        private IWeaponStateController _weaponStateController;
-        private IHands _hands;
+        private GameObject _currentWeaponView;
+
+        private IAnimationInterface _weaponAnimation;
+        private IAnimationInterface _handsAnimation;
 
         private CompositeDisposable _weaponDisposables = new();
         private CancellationTokenSource _shootCancellationToken;
@@ -31,94 +30,82 @@ namespace DWTools
         private CancellationTokenSource _reloadWeaponCancellationToken;
         private CancellationTokenSource _grabWeaponCancellationToken;
 
-        #region Weapon
-        public IWeapon CurrentWeapon => this;
-
-        public IReadOnlyReactiveProperty<int> CurrentBulletsCount => _weapon.CurrentBulletsCount;
-        public IReadOnlyReactiveProperty<bool> CanShoot => _weapon.CanShoot;
-        public IReadOnlyReactiveProperty<bool> IsReloading => _weapon.IsReloading;
-        public IReadOnlyReactiveProperty<bool> IsGrabing => _weapon.IsGrabing;
-        public IReadOnlyReactiveProperty<bool> IsShooting => _weapon.IsShooting;
-
-        public string Key => _weapon.Key;
-        public int BulletType => _weapon.BulletType;
-        public float Damage => _weapon.Damage;
-        public float ReloadingTime => _weapon.ReloadingTime;
-        public int MaxBulletsCount => _weapon.MaxBulletsCount;
-        public int MagazineCapacity => _weapon.MagazineCapacity;
-        public int TimeBetweenShots => _weapon.TimeBetweenShots;
-
-        public void Initialize(WeaponModel model)
+        public void Initialize()
         {
-            _weapon.Initialize(model);
+            _weaponService.CurrentWeapon.Subscribe(x =>
+            {
+                _currentWeaponView = Instantiate(x.View, Vector3.zero, Quaternion.identity, _weaponContainer);
+                _weaponAnimation = _currentWeaponView.GetComponent<IAnimationInterface>();
+            }).AddTo(this);
         }
 
+        #region Weapon
         public void Reload()
         {
-            if (_weapon.CurrentBulletsCount.Value == _weapon.MaxBulletsCount ||
-                IsReloading.Value)
-                return;
-
-            _weaponStateController.SetIsReloading(true);
-            _weapon.Reload();
-            ReloadInternal().Forget();
+           //if (_weapon.CurrentBulletsCount.Value == _weapon.MaxBulletsCount ||
+           //    IsReloading.Value)
+           //    return;
+           //
+           //_weaponStateController.SetIsReloading(true);
+           //_weapon.Reload();
+           //ReloadInternal().Forget();
         }
 
         private async UniTask ReloadInternal()
         {
-            await UpdateToken(_reloadWeaponCancellationToken);
-            _reloadWeaponCancellationToken = new();
-
-            await UniTask.WhenAll(
-                _weaponAnimation != null ? _weaponAnimation.Reload(_reloadWeaponCancellationToken.Token) : UniTask.CompletedTask,
-                _handsAnimation != null ? _handsAnimation.Reload(_reloadWeaponCancellationToken.Token) : UniTask.CompletedTask);
-
-            _weaponStateController.SetIsReloading(false);
+           //await UpdateToken(_reloadWeaponCancellationToken);
+           //_reloadWeaponCancellationToken = new();
+           //
+           //await UniTask.WhenAll(
+           //    _weaponAnimation != null ? _weaponAnimation.Reload(_reloadWeaponCancellationToken.Token) : UniTask.CompletedTask,
+           //    _handsAnimation != null ? _handsAnimation.Reload(_reloadWeaponCancellationToken.Token) : UniTask.CompletedTask);
+           //
+           //_weaponStateController.SetIsReloading(false);
         }
 
         public void Shoot()
         {
-            if (CanShoot.Value)
-                return;
-
-            _weaponStateController.SetIsShooting(true);
-            _weapon.Shoot();
-            ShootInternal().Forget();
+           //if (CanShoot.Value)
+           //    return;
+           //
+           //_weaponStateController.SetIsShooting(true);
+           //_weapon.Shoot();
+           //ShootInternal().Forget();
         }
 
         private async UniTask ShootInternal()
         {
-            await UpdateToken(_shootCancellationToken);
-            _shootCancellationToken = new();
-
-            await UniTask.WhenAny(
-                UniTask.WhenAll(_weaponAnimation != null ? _weaponAnimation.Shoot(_shootCancellationToken.Token) : UniTask.CompletedTask,
-                                _handsAnimation != null ? _handsAnimation.Shoot(_shootCancellationToken.Token) : UniTask.CompletedTask),
-                UniTask.Delay(_weapon.TimeBetweenShots));
-
-            _weaponStateController.SetIsShooting(false);
+           // await UpdateToken(_shootCancellationToken);
+           // _shootCancellationToken = new();
+           //
+           // await UniTask.WhenAny(
+           //     UniTask.WhenAll(_weaponAnimation != null ? _weaponAnimation.Shoot(_shootCancellationToken.Token) : UniTask.CompletedTask,
+           //                     _handsAnimation != null ? _handsAnimation.Shoot(_shootCancellationToken.Token) : UniTask.CompletedTask),
+           //     UniTask.Delay(_weapon.TimeBetweenShots));
+           //
+           // _weaponStateController.SetIsShooting(false);
         }
 
         public void Grab()
         {
-            if (IsGrabing.Value)
-                return;
-
-            _weaponStateController.SetIsGrabing(true);
-            _weapon.Grab();
-            GrabInternal().Forget();
+            //if (IsGrabing.Value)
+            //    return;
+            //
+            //_weaponStateController.SetIsGrabing(true);
+            //_weapon.Grab();
+            //GrabInternal().Forget();
         }
 
         private async UniTask GrabInternal()
         {
-            await UpdateToken(_grabWeaponCancellationToken);
-            _grabWeaponCancellationToken = new();
-            
-            await UniTask.WhenAll(
-                _weaponAnimation != null ? _weaponAnimation.Grab(_grabWeaponCancellationToken.Token) : UniTask.CompletedTask,
-                _handsAnimation != null ? _handsAnimation.Grab(_grabWeaponCancellationToken.Token) : UniTask.CompletedTask );
-
-            _weaponStateController.SetIsGrabing(false);
+            //await UpdateToken(_grabWeaponCancellationToken);
+            //_grabWeaponCancellationToken = new();
+            //
+            //await UniTask.WhenAll(
+            //    _weaponAnimation != null ? _weaponAnimation.Grab(_grabWeaponCancellationToken.Token) : UniTask.CompletedTask,
+            //    _handsAnimation != null ? _handsAnimation.Grab(_grabWeaponCancellationToken.Token) : UniTask.CompletedTask );
+            //
+            //_weaponStateController.SetIsGrabing(false);
         }
 
         private async UniTask UpdateToken(CancellationTokenSource cts)
@@ -128,24 +115,24 @@ namespace DWTools
         }
         #endregion
 
-        public async UniTask SwitchWeapon(IWeapon weapon, IWeaponStateController weaponStateController)
-        {
-            if (_weapon == weapon)
-                return;
-
-            await UpdateToken(_switchWeaponCancellationToken);
-            _switchWeaponCancellationToken = new();
-
-            _weapon = weapon;
-            _weaponStateController = weaponStateController;
-            _weaponDisposables?.Clear();
-
-            Grab();
-
-            if (_weapon.CurrentBulletsCount.Value == 0)
-            {
-                Reload();
-            }
-        }
+        //public async UniTask SwitchWeapon(IWeapon weapon, IWeaponStateController weaponStateController)
+        //{
+        //    if (_weapon == weapon)
+        //        return;
+        //
+        //    await UpdateToken(_switchWeaponCancellationToken);
+        //    _switchWeaponCancellationToken = new();
+        //
+        //    _weapon = weapon;
+        //    _weaponStateController = weaponStateController;
+        //    _weaponDisposables?.Clear();
+        //
+        //    Grab();
+        //
+        //    if (_weapon.CurrentBulletsCount.Value == 0)
+        //    {
+        //        Reload();
+        //    }
+        //}
     }
 }

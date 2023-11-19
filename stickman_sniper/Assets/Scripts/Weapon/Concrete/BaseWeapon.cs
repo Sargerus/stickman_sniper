@@ -2,12 +2,15 @@ using DWTools;
 using UniRx;
 using UnityEngine;
 
-public abstract class BaseWeapon : MonoBehaviour, IWeapon, IWeaponStateController
+public abstract class BaseWeapon : IWeapon
 {
     protected WeaponModel _model;
 
     protected ReactiveProperty<int> _currentBulletsCount;
     public IReadOnlyReactiveProperty<int> CurrentBulletsCount => _currentBulletsCount;
+
+    protected ReactiveProperty<int> _stashedBulletsCount;
+    public IReadOnlyReactiveProperty<int> StashedBulletsCount => _stashedBulletsCount;
 
     public IReadOnlyReactiveProperty<bool> CanShoot { get; private set; }
 
@@ -27,6 +30,7 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon, IWeaponStateControlle
     public int MaxBulletsCount => _model.MaxBulletsCount;
     public int MagazineCapacity => _model.MagazineCapacity;
     public int TimeBetweenShots => _model.TimeBetweenShots;
+    public GameObject View => _model.View;
 
     public virtual void Grab()
     {
@@ -39,27 +43,19 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon, IWeaponStateControlle
 
     public virtual void Shoot()
     {
-        _currentBulletsCount.Value--;
+
     }
 
-    public void SetIsGrabing(bool isGrabing)
-        => _isGrabing.Value = isGrabing;
-
-    public void SetIsReloading(bool isReloading)
-        => _isReloading.Value = isReloading;
-
-    public void SetIsShooting(bool isShooting)
-        => _isShooting.Value = isShooting;
-
-    public void Initialize(WeaponModel model)
+    public void Initialize(WeaponModel model, WeaponState weaponState)
     {
         _model = model;
 
         _isShooting = new();
         _isReloading = new();
         _isGrabing = new();
-        _currentBulletsCount = new();
+        _currentBulletsCount = new(weaponState.CurrentBulletsCount);
+        _stashedBulletsCount = new(weaponState.StashedBulletsCount);
 
-        CanShoot = Observable.CombineLatest<bool, bool, bool>(_isReloading, _isGrabing, (l, r) => !(l || r)).ToReactiveProperty();
+        CanShoot = Observable.CombineLatest<bool, bool, bool, bool>(_isReloading, _isGrabing, _isShooting, (o1, o2, o3) => !(o1 || o2 || o3)).ToReactiveProperty();
     }
 }

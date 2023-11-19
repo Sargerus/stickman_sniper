@@ -135,6 +135,8 @@ public class FirstPersonController : MonoBehaviour
 
     #endregion
 
+    [SerializeField] private GameObject _hands;
+
     #region Injections
     private IInputService _inputService;
     private IWeaponService _weaponService;
@@ -377,7 +379,7 @@ public class FirstPersonController : MonoBehaviour
         #region Shoot
         if (_inputService.IsShooting)
         {
-            _weaponService.CurrentWeapon.Shoot();
+            _weaponService.CurrentWeapon.Value.Shoot();
         }
         #endregion
 

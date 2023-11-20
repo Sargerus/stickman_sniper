@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     private List<Rigidbody> _rb;
     private Animator _animator;
     private SkinnedMeshRenderer _smr;
+    private IEnemyCounter _enemyCounter;
 
     private void Awake()
     {
@@ -32,5 +33,10 @@ public class Enemy : MonoBehaviour
         }
 
         _smr.material = _deadMaterial;
+
+        _enemyCounter.EnemyKilled();
     }
+
+    public void Link(IEnemyCounter enemyCounter) 
+        => _enemyCounter = enemyCounter;
 }

@@ -12,7 +12,7 @@ public class FPSControllerInstaller : MonoInstaller
     {
         Container.BindInstance(_fpsCamera).WithId(CameraProvider.WorldCamera).AsCached();
         Container.BindInstance(_uiCamera).WithId(CameraProvider.UICamera).AsCached();
-        Container.BindInstance(gameObject.GetComponent<FirstPersonController>());
+        Container.Bind<FirstPersonController>().FromComponentOnRoot().AsSingle();
         Container.BindInterfacesAndSelfTo<WeaponFactory>().AsSingle();
 
         Container.BindInterfacesTo<WeaponService>().AsSingle();

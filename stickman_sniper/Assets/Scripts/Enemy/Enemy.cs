@@ -1,19 +1,36 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class Enemy : MonoBehaviour
 {
-    private Rigidbody _rb;
+    [SerializeField] private Material _deadMaterial;
+
+    private List<Rigidbody> _rb;
+    private Animator _animator;
+    private SkinnedMeshRenderer _smr;
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
+        _rb = GetComponentsInChildren<Rigidbody>().ToList();
+        _animator = GetComponent<Animator>();
+        _smr = GetComponentInChildren<SkinnedMeshRenderer>();
+
+        foreach (var rb in _rb)
+        {
+            rb.isKinematic = true;
+        }
     }
 
-    public void Push(Vector3 direction)
+    public void PrepareForDeath()
     {
-        _rb.AddForce(direction, ForceMode.Impulse);
+        _animator.enabled = false;
+
+        foreach (var rb in _rb)
+        {
+            rb.isKinematic = false;
+        }
+
+        _smr.material = _deadMaterial;
     }
 }

@@ -21,4 +21,4 @@ MonoBehaviour:
     MaxBulletsCount: 30
     MagazineCapacity: 10
     TimeBetweenShots: 1500
-    PushForce: 20
+    PushForce: 300

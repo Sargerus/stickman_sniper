@@ -11,6 +11,7 @@ using UnityEngine.UI;
 using DWTools;
 using Zenject;
 using UniRx;
+using System;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -32,7 +33,7 @@ public class FirstPersonController : MonoBehaviour
     public bool invertCamera = false;
     public bool cameraCanMove = true;
     public float mouseSensitivity = 2f;
-    public float maxLookAngle = 50f;
+    public float maxLookAngle = 90f;
 
     // Crosshair
     public bool lockCursor = true;
@@ -52,6 +53,7 @@ public class FirstPersonController : MonoBehaviour
     public KeyCode zoomKey = KeyCode.Mouse1;
     public float zoomFOV = 30f;
     public float zoomStepTime = 5f;
+    private bool _isInZoom=false;
 
     // Internal Variables
     private bool isZoomed = false;
@@ -252,6 +254,7 @@ public class FirstPersonController : MonoBehaviour
         }
 
         #region Camera Zoom
+            ToggleScope();
 
         if (enableZoom)
         {
@@ -394,6 +397,23 @@ public class FirstPersonController : MonoBehaviour
         {
             HeadBob();
         }
+    }
+
+    private void ToggleScope()
+    {
+        if (_isInZoom == _inputService.IsAiming)
+            return;
+
+        if (!_isInZoom)
+        {
+            playerCamera.fieldOfView = zoomFOV;
+        }
+        else
+        {
+            playerCamera.fieldOfView = fov;
+        }
+
+        _isInZoom = !_isInZoom;
     }
 
     void FixedUpdate()

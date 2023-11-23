@@ -14,7 +14,7 @@ public class BootstrapInstaller : MonoInstaller
 
         //Container.BindFactory<FirstPersonController, FirstPersonController.Factory>().FromSubContainerResolve().ByNewContextPrefab(_fpsPrefab).AsSingle();
 
-        Container.BindInterfacesTo<InputService>().AsSingle().WithArguments(YandexGame.Device);
+        
         //Container.BindInterfacesAndSelfTo<testsuka>().AsSingle().NonLazy();
     }
 }

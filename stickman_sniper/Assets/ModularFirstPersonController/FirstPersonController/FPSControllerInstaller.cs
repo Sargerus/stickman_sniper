@@ -1,5 +1,6 @@
 using DWTools;
 using UnityEngine;
+using YG;
 using Zenject;
 
 public class FPSControllerInstaller : MonoInstaller
@@ -14,7 +15,7 @@ public class FPSControllerInstaller : MonoInstaller
         Container.BindInstance(_uiCamera).WithId(CameraProvider.UICamera).AsCached();
         Container.Bind<FirstPersonController>().FromComponentOnRoot().AsSingle();
         Container.BindInterfacesAndSelfTo<WeaponFactory>().AsSingle();
-
+        Container.BindInterfacesTo<InputService>().AsSingle().WithArguments(YandexGame.Device);
         Container.BindInterfacesTo<WeaponService>().AsSingle();
         Container.BindInterfacesTo<HandsController>().FromInstance(_handsController).AsSingle();
     }

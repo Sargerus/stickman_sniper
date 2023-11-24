@@ -22,6 +22,11 @@ public class LevelLoader : IInitializable, ILevelLoader
 
     public void Initialize()
     {
+        
+    }
+
+    public void StartGame()
+    {
         LoadLevel().Forget();
     }
 }

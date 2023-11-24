@@ -37,6 +37,7 @@ public class FirstPersonController : MonoBehaviour
     public bool invertCamera = false;
     public bool cameraCanMove = true;
     public float mouseSensitivity = 2f;
+    private float workingMouseSensivity;
     public float maxLookAngle = 90f;
 
     // Crosshair
@@ -164,6 +165,7 @@ public class FirstPersonController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        workingMouseSensivity = mouseSensitivity;
 
         //crosshairObject = GetComponentInChildren<Image>();
 
@@ -233,16 +235,16 @@ public class FirstPersonController : MonoBehaviour
         // Control camera movement
         if (cameraCanMove && _inputService != null)
         {
-            yaw = transform.localEulerAngles.y + _inputService.MouseX * mouseSensitivity;
+            yaw = transform.localEulerAngles.y + _inputService.MouseX * workingMouseSensivity;
 
             if (!invertCamera)
             {
-                pitch -= mouseSensitivity * _inputService.MouseY;
+                pitch -= workingMouseSensivity * _inputService.MouseY;
             }
             else
             {
                 // Inverted Y
-                pitch += mouseSensitivity * _inputService.MouseY;
+                pitch += workingMouseSensivity * _inputService.MouseY;
             }
 
             // Clamp pitch between lookAngle
@@ -410,6 +412,7 @@ public class FirstPersonController : MonoBehaviour
             cameraData.cameraStack.Add(sniperCamera);
 
             playerCamera.fieldOfView = zoomFOV;
+            workingMouseSensivity = mouseSensitivity / 2;
         }
         else
         {
@@ -417,6 +420,7 @@ public class FirstPersonController : MonoBehaviour
             cameraData.cameraStack.Remove(sniperCamera);
 
             playerCamera.fieldOfView = fov;
+            workingMouseSensivity = mouseSensitivity;
         }
 
         _isInZoom = !_isInZoom;

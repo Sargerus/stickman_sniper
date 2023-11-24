@@ -8,7 +8,7 @@ public class LevelInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.BindInstance(_envTransform);
+        //Container.BindInstance(_envTransform);
 
         Container.BindFactory<FirstPersonController, FirstPersonController.Factory>().FromSubContainerResolve().ByNewContextPrefab(_fpsPrefab).AsSingle();
         

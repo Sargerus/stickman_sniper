@@ -13,12 +13,11 @@ public class LevelConstructor : IInitializable
     private FirstPersonController _player;
     private Level _currentLevel;
 
-    public LevelConstructor(LevelsContainerSO levelsContainer, ILevelLoader levelLoader, DiContainer diContainer, Transform levelContainer)
+    public LevelConstructor(LevelsContainerSO levelsContainer, ILevelLoader levelLoader, DiContainer diContainer)
     {
         _levelsContainer = levelsContainer;
         _levelLoader = levelLoader;
         _diContainer = diContainer;
-        _levelContainer = levelContainer;
     }
 
     public void Initialize()
@@ -35,16 +34,8 @@ public class LevelConstructor : IInitializable
             GameObject.Destroy(_currentLevel.gameObject);
         }
 
-        if (YandexGame.savesData.levelsPassed == 0)
-        {
-            levelPrefab = _levelsContainer.TutorialLevel;
-        }
-        else
-        {
-            levelPrefab = _levelsContainer.Levels.Random();
-        }
-
-        var levelGO = _diContainer.InstantiatePrefab(levelPrefab, _levelContainer);
+        levelPrefab = _levelsContainer.Levels.CycleWithMod(YandexGame.savesData.levelsPassed);
+        var levelGO = _diContainer.InstantiatePrefab(levelPrefab);
         _currentLevel = levelGO.GetComponent<Level>();
         _currentLevel.AimComplete += AimComplete;
     }

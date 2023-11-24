@@ -1,0 +1,54 @@
+name: 'Build game with sub'
+
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    name: Build my project
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: |
+                        ${{ secrets.SSH_PRIVATE_KEY }}
+                        ${{ secrets.SSH_DWTOOLS_PRIVATE_KEY }}
+      - run: git submodule update --init --recursive --remote
+          
+      # Cache
+      - uses: actions/cache@v3
+        with:
+          path: stickman_sniper/Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
+
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: stickman_sniper
+          sshAgent: ${{ env.SSH_AUTH_SOCK }}
+          targetPlatform: WebGL
+
+      # Output
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Build
+          path: build/WebGL/WebGL.zip
+
+      - uses: appleboy/telegram-action@v0.1.1
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+          document: build/WebGL/WebGL.zip
+            

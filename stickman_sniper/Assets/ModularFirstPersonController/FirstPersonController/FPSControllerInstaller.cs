@@ -1,19 +1,24 @@
 using DWTools;
 using UnityEngine;
+using YG;
 using Zenject;
 
 public class FPSControllerInstaller : MonoInstaller
 {
     [SerializeField] private CameraProvider _fpsCamera;
+    [SerializeField] private CameraProvider _uiCamera;
+    [SerializeField] private CameraProvider _sniperCamera;
     [SerializeField] private HandsController _handsController;
 
     public override void InstallBindings()
     {
-        Container.BindInstance(_fpsCamera).WithId(CameraProvider.WorldCamera).AsSingle();
-        Container.BindInstance(gameObject.GetComponent<FirstPersonController>());
+        Container.BindInstance(_fpsCamera).WithId(CameraProvider.WorldCamera).AsCached();
+        Container.BindInstance(_uiCamera).WithId(CameraProvider.UICamera).AsCached();
+        Container.BindInstance(_sniperCamera).WithId("sniper").AsCached();
+        Container.Bind<FirstPersonController>().FromComponentOnRoot().AsSingle();
         Container.BindInterfacesAndSelfTo<WeaponFactory>().AsSingle();
-
+        Container.BindInterfacesTo<InputService>().AsSingle().WithArguments(YandexGame.Device);
         Container.BindInterfacesTo<WeaponService>().AsSingle();
-        Container.Bind<IHandsController>().FromInstance(_handsController).AsSingle().WhenInjectedInto<IWeaponService>();
+        Container.BindInterfacesTo<HandsController>().FromInstance(_handsController).AsSingle();
     }
 }

@@ -1,5 +1,3 @@
-using DWTools;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,8 +7,8 @@ public class WeaponsContainerSO : ScriptableObject
 {
     public List<WeaponSO> Weapons;
 
-    public IWeapon Get(string key)
+    public WeaponSO Get(string key)
     {
-        return Weapons.FirstOrDefault(g => g.Key == key)?.Value;
+        return Weapons.FirstOrDefault(g => g.Model.Key == key);
     }
 }

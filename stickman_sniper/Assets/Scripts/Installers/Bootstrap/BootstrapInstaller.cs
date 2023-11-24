@@ -1,14 +1,17 @@
 using DWTools;
+using UnityEngine;
 using YG;
 using Zenject;
 
 public class BootstrapInstaller : MonoInstaller
 {
+    [SerializeField] private test_lock test_Lock;
+
     public override void InstallBindings()
     {
-        Container.BindInterfacesAndSelfTo<LevelLoader>().AsSingle().NonLazy();
+        Container.BindInterfacesTo<LevelLoader>().AsSingle().NonLazy();
         Container.BindInitializableExecutionOrder<LevelLoader>(int.MaxValue);
 
-        Container.BindInterfacesTo<InputService>().AsSingle().WithArguments(YandexGame.Device);
+        //test_Lock.Construct(Container.Resolve<LevelLoader>());
     }
 }

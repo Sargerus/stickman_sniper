@@ -1,15 +1,32 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-public class LevelLoader : IInitializable
+public interface ILevelLoader
 {
-    public void SwitchLevel()
+    UniTask LoadLevel();
+}
+
+public class LevelLoader : IInitializable, ILevelLoader
+{
+    public async UniTask LoadLevel()
     {
-        SceneManager.LoadSceneAsync("Level", LoadSceneMode.Additive);
+        if (SceneManager.GetSceneByName("Level").isLoaded)
+        {
+            await SceneManager.UnloadSceneAsync("Level");
+            await UniTask.DelayFrame(5);
+        }
+
+        await SceneManager.LoadSceneAsync("Level", LoadSceneMode.Additive);
     }
 
     public void Initialize()
     {
-        SwitchLevel();
+        
+    }
+
+    public void StartGame()
+    {
+        LoadLevel().Forget();
     }
 }

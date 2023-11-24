@@ -1,24 +1,29 @@
 using DWTools;
-using UnityEngine;
+using Zenject;
 
 public class WeaponFactory
 {
-    private WeaponsContainerSO _weaponsContainerSO;
+    private readonly WeaponsContainerSO _weaponsContainerSO;
+    private readonly DiContainer _diContainer;
 
-    public WeaponFactory(WeaponsContainerSO weaponsContainerSO)
+    public WeaponFactory(WeaponsContainerSO weaponsContainerSO, DiContainer diContainer)
     {
         _weaponsContainerSO = weaponsContainerSO;
+        _diContainer = diContainer;
     }
 
-    public IWeapon CreateRifle(Vector3 position, Quaternion rotation, Transform parent)
+    public IWeapon CreateRifle()
     {
-        return Create("sniper_rifle", position, rotation, parent);
+        return Create("sniper_rifle");
     }
 
-    public IWeapon Create(string key, Vector3 position, Quaternion rotation, Transform parent)
+    public IWeapon Create(string key)
     {
-        var prefab = _weaponsContainerSO.Get(key);
+        var so = _weaponsContainerSO.Get(key);
 
-        return GameObject.Instantiate(prefab.gameObject, position, rotation, parent).GetComponent<IWeapon>();
+        IWeapon result = so.GetWeapon();
+        _diContainer.Inject(result);
+
+        return result;
     }
 }

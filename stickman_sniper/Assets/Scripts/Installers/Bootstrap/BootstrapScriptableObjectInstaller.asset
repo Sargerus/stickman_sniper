@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: BootstrapScriptableObjectInstaller
   m_EditorClassIdentifier: 
   _inputAggregator: {fileID: 11400000, guid: b94628b8d7c68f847a1eb14d0d61a69b, type: 2}
+  _levelsContainer: {fileID: 11400000, guid: a252fe7b6bc945a4bbaba64cbfbdcdbf, type: 2}

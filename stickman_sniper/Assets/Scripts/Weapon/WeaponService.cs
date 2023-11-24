@@ -1,28 +1,41 @@
 using DWTools;
-using UnityEngine;
+using System;
+using UniRx;
+
+[Serializable]
+public class WeaponState
+{
+    public readonly int CurrentBulletsCount;
+    public readonly int StashedBulletsCount;
+
+    public WeaponState(int currentBulletsCount, int stashedBulletsCount)
+    {
+        CurrentBulletsCount = currentBulletsCount;
+        StashedBulletsCount = stashedBulletsCount;
+    }
+}
 
 public interface IWeaponService
 {
     void SwitchToWeaponSlot(int slot);
     void SwitchToWeapon(string weaponKey);
 
-    IWeapon CurrentWeapon { get; }
+    IReadOnlyReactiveProperty<IWeapon> CurrentWeapon { get; }
 }
 
-public class WeaponService : IWeaponService
+public sealed class WeaponService : IWeaponService
 {
     private readonly WeaponFactory _weaponFactory;
-    private readonly IHandsController _handsController;
+    private readonly WeaponsContainerSO _weaponsContainer;
 
-    public IWeapon CurrentWeapon { get; private set; }
+    private ReactiveProperty<IWeapon> _currentWeapon = new();
+    public IReadOnlyReactiveProperty<IWeapon> CurrentWeapon => _currentWeapon;
 
-
-    public WeaponService(WeaponFactory weaponFactory, IHandsController handsController)
+    public WeaponService(WeaponFactory weaponFactory,
+        WeaponsContainerSO weaponsContainer)
     {
         _weaponFactory = weaponFactory;
-        _handsController = handsController;
-
-
+        _weaponsContainer = weaponsContainer;
     }
 
     public void SwitchToWeaponSlot(int slot)
@@ -31,9 +44,15 @@ public class WeaponService : IWeaponService
 
     public void SwitchToWeapon(string weaponKey)
     {
-        CurrentWeapon = _weaponFactory.Create(weaponKey, _handsController.WeaponContainer.transform.position,
-            Quaternion.identity, _handsController.WeaponContainer.transform);
+        var weapon = _weaponFactory.Create(weaponKey);
+        weapon.Initialize(FindModel(weaponKey), new(10, 0));
 
-        _handsController.SwitchWeapon(CurrentWeapon);
+        _currentWeapon.Value = weapon;
+    }
+
+    private WeaponModel FindModel(string key)
+    {
+        var weaponSO = _weaponsContainer.Get(key);
+        return weaponSO.Model;
     }
 }

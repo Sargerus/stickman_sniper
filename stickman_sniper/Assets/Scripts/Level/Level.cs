@@ -1,7 +1,9 @@
 using DW.RandomExtensions;
+using DWTools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -17,7 +19,6 @@ public class Level : MonoBehaviour, IEnemyCounter
     [SerializeField] private int _enemyCountMin;
     [SerializeField] private int _enemyCountMax;
     [SerializeField] private List<Transform> _playerSpawns;
-
     [SerializeField] private List<Enemy> _enemyPrefabs;
 
     private List<Enemy> _enemies = new();
@@ -68,6 +69,9 @@ public class Level : MonoBehaviour, IEnemyCounter
         var playerPlace = _playerSpawns.Random();
         _player = _fpsFactory.Create();
         _player.transform.position = playerPlace.position;
+
+        _player.Freeze(false);
+        Observable.Timer(TimeSpan.FromSeconds(0.8f)).Subscribe(_ => _player.Freeze(true)).AddTo(this);
 
         _enemiesCount = enemies.Count;
     }

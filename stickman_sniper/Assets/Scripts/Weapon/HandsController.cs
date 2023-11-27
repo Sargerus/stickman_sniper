@@ -34,9 +34,9 @@ namespace DWTools
         {
             _weaponService.CurrentWeapon.Subscribe(x =>
             {
-                _currentWeaponView = Instantiate(x.View, Vector3.zero, Quaternion.identity, _weaponContainer);
+                x.View = _currentWeaponView = Instantiate(x.Prefab, Vector3.zero, Quaternion.identity, _weaponContainer);
                 _weaponAnimation = _currentWeaponView.GetComponent<IAnimationInterface>();
-            }).AddTo(this);
+            }).AddTo(_weaponDisposables);
         }
 
         #region Weapon

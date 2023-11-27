@@ -23,6 +23,9 @@ public abstract class BaseWeapon : IWeapon
     protected ReactiveProperty<bool> _isShooting;
     public IReadOnlyReactiveProperty<bool> IsShooting => _isShooting;
 
+    protected ReactiveProperty<bool> _isAiming;
+    public IReadOnlyReactiveProperty<bool> IsAiming => _isAiming;
+
     public string Key => _model.Key;
     public int BulletType => _model.BulletType;
     public float Damage => _model.Damage;
@@ -30,7 +33,8 @@ public abstract class BaseWeapon : IWeapon
     public int MaxBulletsCount => _model.MaxBulletsCount;
     public int MagazineCapacity => _model.MagazineCapacity;
     public int TimeBetweenShots => _model.TimeBetweenShots;
-    public GameObject View => _model.View;
+    public GameObject Prefab => _model.Prefab;
+    public GameObject View { get; set; }
 
     public virtual void Grab()
     {
@@ -46,6 +50,10 @@ public abstract class BaseWeapon : IWeapon
 
     }
 
+    public virtual void Aim()
+    {
+    }
+
     public void Initialize(WeaponModel model, WeaponState weaponState)
     {
         _model = model;
@@ -53,9 +61,15 @@ public abstract class BaseWeapon : IWeapon
         _isShooting = new();
         _isReloading = new();
         _isGrabing = new();
+        _isAiming = new();
         _currentBulletsCount = new(weaponState.CurrentBulletsCount);
         _stashedBulletsCount = new(weaponState.StashedBulletsCount);
 
-        CanShoot = Observable.CombineLatest<bool, bool, bool, bool>(_isReloading, _isGrabing, _isShooting, (o1, o2, o3) => !(o1 || o2 || o3)).ToReactiveProperty();
+        CanShoot = Observable.CombineLatest<int, bool, bool, bool, bool>(_currentBulletsCount, 
+            _isReloading, _isGrabing, _isShooting, (o1, o2, o3, o4) => !(o1 <= 0 || o2 || o3 || o4)).ToReactiveProperty();
+    }
+
+    public virtual void Dispose()
+    {
     }
 }

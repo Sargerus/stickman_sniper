@@ -5,13 +5,13 @@ using Zenject;
 
 public class BootstrapInstaller : MonoInstaller
 {
-    [SerializeField] private test_lock test_Lock;
+    [SerializeField] private AudioManager _audioManager;
 
     public override void InstallBindings()
     {
         Container.BindInterfacesTo<LevelLoader>().AsSingle().NonLazy();
         Container.BindInitializableExecutionOrder<LevelLoader>(int.MaxValue);
 
-        //test_Lock.Construct(Container.Resolve<LevelLoader>());
+        Container.Bind<IAudioManager>().FromInstance(_audioManager).AsSingle();
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SniperRifle
   m_EditorClassIdentifier: 
   Model:
-    View: {fileID: 4516888391499999491, guid: 94b609c7a38b3a44daa83cbbd0e81e30, type: 3}
+    Prefab: {fileID: 4516888391499999491, guid: 94b609c7a38b3a44daa83cbbd0e81e30, type: 3}
     Key: sniper_rifle
     BulletType: 0
     Damage: 1
@@ -22,3 +22,10 @@ MonoBehaviour:
     MagazineCapacity: 10
     TimeBetweenShots: 1500
     PushForce: 300
+    AudioContainer:
+    - Name: Shot
+      AudioClip: {fileID: 8300000, guid: 9abb9bd382603c54692de45e0425e34d, type: 3}
+    - Name: Reload
+      AudioClip: {fileID: 8300000, guid: 276186a87f3e2a748a6607f3c712b953, type: 3}
+    - Name: Aim
+      AudioClip: {fileID: 8300000, guid: 609b44f31d0946741a91413c5d404632, type: 3}

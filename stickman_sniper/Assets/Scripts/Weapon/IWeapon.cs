@@ -1,6 +1,4 @@
-using Cysharp.Threading.Tasks;
 using System;
-using System.Threading;
 using UniRx;
 using UnityEngine;
 
@@ -12,7 +10,7 @@ namespace DWTools
         void SetAnimator(RuntimeAnimatorController animatorController);
     }
 
-    public interface IWeapon
+    public interface IWeapon : IDisposable
     {
         IReadOnlyReactiveProperty<int> CurrentBulletsCount { get; }
         IReadOnlyReactiveProperty<int> StashedBulletsCount { get; }
@@ -24,16 +22,19 @@ namespace DWTools
         int MaxBulletsCount { get; }
         int MagazineCapacity { get; }
         int TimeBetweenShots { get; }
-        GameObject View { get; }
+        GameObject Prefab { get; }
+        GameObject View { get; set; }
 
         IReadOnlyReactiveProperty<bool> CanShoot { get; }
         IReadOnlyReactiveProperty<bool> IsGrabing { get; }
         IReadOnlyReactiveProperty<bool> IsReloading { get; }
         IReadOnlyReactiveProperty<bool> IsShooting { get; }
+        IReadOnlyReactiveProperty<bool> IsAiming { get; }
 
         void Shoot();
         void Reload();
         void Grab();
+        void Aim();
         void Initialize(WeaponModel model, WeaponState weaponState);
     }
 

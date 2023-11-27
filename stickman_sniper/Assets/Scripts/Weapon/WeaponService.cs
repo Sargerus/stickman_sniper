@@ -23,7 +23,7 @@ public interface IWeaponService
     IReadOnlyReactiveProperty<IWeapon> CurrentWeapon { get; }
 }
 
-public sealed class WeaponService : IWeaponService
+public sealed class WeaponService : IWeaponService, IDisposable
 {
     private readonly WeaponFactory _weaponFactory;
     private readonly WeaponsContainerSO _weaponsContainer;
@@ -47,6 +47,7 @@ public sealed class WeaponService : IWeaponService
         var weapon = _weaponFactory.Create(weaponKey);
         weapon.Initialize(FindModel(weaponKey), new(10, 0));
 
+        _currentWeapon.Value?.Dispose();
         _currentWeapon.Value = weapon;
     }
 
@@ -54,5 +55,11 @@ public sealed class WeaponService : IWeaponService
     {
         var weaponSO = _weaponsContainer.Get(key);
         return weaponSO.Model;
+    }
+
+    public void Dispose()
+    {
+        _currentWeapon.Value?.Dispose();
+        _currentWeapon?.Dispose();
     }
 }

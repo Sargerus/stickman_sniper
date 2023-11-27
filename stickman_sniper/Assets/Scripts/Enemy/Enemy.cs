@@ -33,7 +33,6 @@ public class Enemy : MonoBehaviour
         }
 
         _smr.material = _deadMaterial;
-
         _enemyCounter.EnemyKilled();
     }
 

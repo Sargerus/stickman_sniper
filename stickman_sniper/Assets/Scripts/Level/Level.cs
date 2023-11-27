@@ -14,7 +14,6 @@ public interface IEnemyCounter
 
 public class Level : MonoBehaviour, IEnemyCounter
 {
-    [SerializeField] private bool _isEverythingSpawnedAtStart;
     [SerializeField] private List<Transform> _enemiesSpawns;
     [SerializeField] private int _enemyCountMin;
     [SerializeField] private int _enemyCountMax;
@@ -42,28 +41,18 @@ public class Level : MonoBehaviour, IEnemyCounter
 
     public void Start()
     {
-        List<Enemy> enemies = new();
+        int max = Math.Min(_enemiesSpawns.Count, _enemyCountMax);
+        int enemiesCount = UnityEngine.Random.Range(_enemyCountMin, max);
 
-        if (_isEverythingSpawnedAtStart)
+        List<Transform> copyList = new(_enemiesSpawns);
+        for (int i = 0; i < enemiesCount; i++)
         {
-            enemies = GameObject.FindObjectsByType<Enemy>(FindObjectsSortMode.None).ToList();
-            enemies.ForEach(g => g.Link(this));
-        }
-        else
-        {
-            int max = Math.Min(_enemiesSpawns.Count, _enemyCountMax);
-            int enemiesCount = UnityEngine.Random.Range(_enemyCountMin, max);
+            Transform place = copyList.Random();
+            copyList.Remove(place);
 
-            List<Transform> copyList = new(_enemiesSpawns);
-            for (int i = 0; i < enemiesCount; i++)
-            {
-                Transform place = copyList.Random();
-                copyList.Remove(place);
-
-                var enemy = Instantiate(_enemyPrefabs.Random(), place.position, Quaternion.identity, transform);
-                _enemies.Add(enemy);
-                enemy.Link(this);
-            }
+            var enemy = Instantiate(_enemyPrefabs.Random(), place.position, place.rotation, transform);
+            _enemies.Add(enemy);
+            enemy.Link(this);
         }
 
         var playerPlace = _playerSpawns.Random();
@@ -73,6 +62,6 @@ public class Level : MonoBehaviour, IEnemyCounter
         _player.Freeze(false);
         Observable.Timer(TimeSpan.FromSeconds(0.8f)).Subscribe(_ => _player.Freeze(true)).AddTo(this);
 
-        _enemiesCount = enemies.Count;
+        _enemiesCount = _enemies.Count;
     }
 }

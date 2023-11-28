@@ -30,12 +30,14 @@ public class UIManager : MonoBehaviour, IUiManager
 
     public async UniTask ShowWinPopup()
     {
+        StaticCursorLocker.Unlock();
         LockTouches(true);
         await Show(_winUI.GetComponent<CanvasGroup>(), () => { _winUI.Initialize(); LockTouches(false); });
     }
 
     public async UniTask ShowLosePopup()
     {
+        StaticCursorLocker.Unlock();
         LockTouches(true);
         await Show(_loseUI.GetComponent<CanvasGroup>(), () => { _loseUI.Initialize(); LockTouches(false); });
     }

@@ -1,3 +1,4 @@
+using DWTools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,8 +28,7 @@ public class test_lock : MonoBehaviour
 
     public void StartGame()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        StaticCursorLocker.Lock();
         gameObject.SetActive(false);
         _levelLoader.LoadLevel();
     }

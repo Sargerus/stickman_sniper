@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using YG.Utils.LB;
 using YG.Utils.Pay;
+using DWTools;
 #if YG_NEWTONSOFT_FOR_SAVES
 using Newtonsoft.Json;
 #endif

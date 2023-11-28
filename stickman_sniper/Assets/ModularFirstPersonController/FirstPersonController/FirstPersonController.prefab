@@ -1682,6 +1682,7 @@ MonoBehaviour:
   _fpsCamera: {fileID: 8863312049860476148}
   _uiCamera: {fileID: 8630644179174812840}
   _sniperCamera: {fileID: 271271727399582079}
+  _mobileCamera: {fileID: 5022622638612509543}
   _uiManager: {fileID: 3979012258772650814}
   _handsController: {fileID: 9002682125958113579}
   _mobileCanvas: {fileID: 6075031468217007533}
@@ -1838,6 +1839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveJoyStick: {fileID: 8060459444330411706}
+  _cameraJoyStick: {fileID: 102882437375716833}
 --- !u!1 &3800395863567089838
 GameObject:
   m_ObjectHideFlags: 0
@@ -5847,6 +5849,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d9a3394bb6eecd4fbd2bff77bdeb9d4, type: 3}
+--- !u!114 &102882437375716833 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5960159732436328212, guid: 8d9a3394bb6eecd4fbd2bff77bdeb9d4, type: 3}
+  m_PrefabInstance: {fileID: 6042492297207329525}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b844f57e2845864e976be7d2bf197e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2125193397228863569 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5666947355237593764, guid: 8d9a3394bb6eecd4fbd2bff77bdeb9d4, type: 3}

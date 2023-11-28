@@ -8,6 +8,7 @@ public class FPSControllerInstaller : MonoInstaller
     [SerializeField] private CameraProvider _fpsCamera;
     [SerializeField] private CameraProvider _uiCamera;
     [SerializeField] private CameraProvider _sniperCamera;
+    [SerializeField] private CameraProvider _mobileCamera;
     [SerializeField] private UIManager _uiManager;
     [SerializeField] private HandsController _handsController;
     [SerializeField] private MobileCanvas _mobileCanvas;
@@ -17,6 +18,7 @@ public class FPSControllerInstaller : MonoInstaller
         Container.BindInstance(_fpsCamera).WithId(CameraProvider.WorldCamera).AsCached();
         Container.BindInstance(_uiCamera).WithId(CameraProvider.UICamera).AsCached();
         Container.BindInstance(_sniperCamera).WithId("sniper").AsCached();
+        Container.BindInstance(_mobileCamera).WithId("mobile").AsCached();
         Container.Bind<FirstPersonController>().FromComponentOnRoot().AsSingle();
         Container.BindInterfacesAndSelfTo<WeaponFactory>().AsSingle();
         Container.Bind<IMobileInputProvider>().FromInstance(_mobileCanvas).AsSingle();

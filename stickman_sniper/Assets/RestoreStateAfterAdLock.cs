@@ -9,11 +9,13 @@ public class RestoreStateAfterAdLock : MonoBehaviour
     [SerializeField] private GameObject _restoreAfterAd;
 
     private ILevelLoader _levelLoader;
+    private CursorLocker _cursorLocker;
 
     [Inject]
-    public void Construct(ILevelLoader levelLoader)
+    public void Construct(ILevelLoader levelLoader, CursorLocker cursorLocker)
     {
         _levelLoader = levelLoader;
+        _cursorLocker = cursorLocker;
     }
 
     public void ShowRestoreUI()
@@ -26,14 +28,14 @@ public class RestoreStateAfterAdLock : MonoBehaviour
     {
         _camera.gameObject.SetActive(false);
         _restoreAfterAd.SetActive(false);
-        StaticCursorLocker.Lock();
+        _cursorLocker.Lock();
     }
 
     public void StartGame()
     {
         _camera.gameObject.SetActive(false);
         _gameStart.SetActive(false);
-        StaticCursorLocker.Lock();
+        _cursorLocker.Lock();
         _levelLoader.LoadLevel();
     }
 }

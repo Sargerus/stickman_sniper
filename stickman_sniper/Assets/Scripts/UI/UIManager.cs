@@ -23,11 +23,17 @@ public class UIManager : MonoBehaviour, IUiManager
     [SerializeField] private GameObject _restoreAfterAd;
 
     private FirstPersonController _firstPersonController;
+    private CursorLocker _cursorLocker;
+    private CameraProvider _mobileCameraProvider;
 
     [Inject]
-    private void Constaruct(FirstPersonController firstPersonController)
+    private void Constaruct(FirstPersonController firstPersonController, 
+        CursorLocker cursorLocker,
+        [Inject(Id ="mobile")] CameraProvider mobileCameraProvider)
     {
         _firstPersonController = firstPersonController;
+        _cursorLocker = cursorLocker;
+        _mobileCameraProvider = mobileCameraProvider;
     }
 
     private void OnEnable()
@@ -53,28 +59,30 @@ public class UIManager : MonoBehaviour, IUiManager
 
     public async UniTask ShowWinPopup()
     {
-        StaticCursorLocker.Unlock();
+        _cursorLocker.Unlock();
         LockTouches(true);
         await Show(_winUI.GetComponent<CanvasGroup>(), () => { _winUI.Initialize(); LockTouches(false); });
     }
 
     public async UniTask ShowLosePopup()
     {
-        StaticCursorLocker.Unlock();
+        _cursorLocker.Unlock();
         LockTouches(true);
         await Show(_loseUI.GetComponent<CanvasGroup>(), () => { _loseUI.Initialize(); LockTouches(false); });
     }
     
     public void RestoreGame()
     {
+        _mobileCameraProvider.Camera.gameObject.SetActive(true);
         _firstPersonController.Freeze(false);
         _restoreAfterAd.SetActive(false);
-        StaticCursorLocker.Lock();
+        _cursorLocker.Lock();
     }
     public async UniTask ShowRestoreAfterAd()
     {
+        _mobileCameraProvider.Camera.gameObject.SetActive(false);
         _firstPersonController.Freeze(true);
-        StaticCursorLocker.Unlock();
+        _cursorLocker.Unlock();
 
         _restoreAfterAd.SetActive(true);
     }

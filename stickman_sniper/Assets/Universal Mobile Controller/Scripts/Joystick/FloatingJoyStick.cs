@@ -2,14 +2,20 @@
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Zenject;
+using DWTools;
 
-namespace UniversalMobileController {
+namespace UniversalMobileController
+{
     public class FloatingJoyStick : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IDragHandler
     {
+        [Inject(Id = "mobile")]
+        private CameraProvider _mobileCameraProvider;
+
         [SerializeField] private RectTransform joystickBackground;
         [SerializeField] private RectTransform joyStick;
 
-        [Range(0, 10f)] [SerializeField] private float joystickMovementRange = 1f;
+        [Range(0, 10f)][SerializeField] private float joystickMovementRange = 1f;
 
         private Vector2 joyStickInput = Vector2.zero;
 
@@ -34,8 +40,13 @@ namespace UniversalMobileController {
         {
             if (UniversalMobileController_Manager.editMode || joystickState == State.Un_Interactable) { return; }
             SetJoystickColor(pressedColor);
+
+            Vector3 posToConvert = new(eventdata.position.x , eventdata.position.y, GetComponentInParent<Canvas>().planeDistance);
+
             joystickCurrentPosition = eventdata.position;
-            joystickBackground.position = eventdata.position;
+            var pos = _mobileCameraProvider.Camera.ScreenToWorldPoint(posToConvert);
+
+            joystickBackground.position = pos;
             joyStick.anchoredPosition = Vector2.zero;
             OnDrag(eventdata);
             onPressedJoystick.Invoke();

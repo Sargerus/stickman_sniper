@@ -14,6 +14,7 @@ public class BootstrapInstaller : MonoInstaller
         Container.BindInitializableExecutionOrder<LevelLoader>(int.MaxValue);
 
         Container.Bind<TouchLocker>().FromInstance(_touchLocker);
+        Container.Bind<CursorLocker>().AsSingle().WithArguments(YandexGame.Device).NonLazy();
         Container.Bind<IAudioManager>().FromInstance(_audioManager).AsSingle();
     }
 }

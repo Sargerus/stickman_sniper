@@ -32,7 +32,9 @@ public class FirstPersonController : MonoBehaviour
     public Camera playerCamera;
     public Camera sniperCamera;
     public Camera uiCamera;
+    public Camera mobileCamera;
     public UIManager uiManager;
+    public UniversalMobileController.FloatingJoyStick _moveJoystick;
     //public TMP_Text _text;
 
     public float fov = 60f;
@@ -158,6 +160,12 @@ public class FirstPersonController : MonoBehaviour
     {
         _inputService = inputService;
         _weaponService = weaponService;
+
+        if (_inputService.Device == Device.Mobile)
+        {
+            mobileCamera.gameObject.SetActive(true);
+        }
+
         //_text.text += "Input service " + _inputService.Device;
 
         _weaponService.SwitchToWeapon("sniper_rifle");
@@ -413,8 +421,9 @@ public class FirstPersonController : MonoBehaviour
 
     public void ToggleScopeOff()
     {
-        var cameraData = playerCamera.GetUniversalAdditionalCameraData();
-        cameraData.cameraStack.Remove(sniperCamera);
+        sniperCamera.gameObject.SetActive(false);
+        //var cameraData = playerCamera.GetUniversalAdditionalCameraData();
+        //cameraData.cameraStack.Remove(sniperCamera);
 
         playerCamera.fieldOfView = fov;
         workingMouseSensivity = mouseSensitivity;
@@ -425,8 +434,9 @@ public class FirstPersonController : MonoBehaviour
 
     public void ToggleScopeOn()
     {
-        var cameraData = playerCamera.GetUniversalAdditionalCameraData();
-        cameraData.cameraStack.Add(sniperCamera);
+        sniperCamera.gameObject.SetActive(true);
+        //var cameraData = playerCamera.GetUniversalAdditionalCameraData();
+        //cameraData.cameraStack.Add(sniperCamera);
 
         playerCamera.fieldOfView = zoomFOV;
         workingMouseSensivity = mouseSensitivity / 2;
@@ -652,9 +662,10 @@ public class FirstPersonControllerEditor : Editor
         GUILayout.Label("Camera Setup", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
         EditorGUILayout.Space();
 
-        fpc.playerCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Camera", "Camera attached to the controller."), fpc.playerCamera, typeof(Camera), true);
-        fpc.sniperCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Camera", "Sniper cameara"), fpc.sniperCamera, typeof(Camera), true);
-        fpc.uiCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Camera", "UI cameara"), fpc.uiCamera, typeof(Camera), true);
+        fpc.playerCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Player Camera", "Camera attached to the controller."), fpc.playerCamera, typeof(Camera), true);
+        fpc.sniperCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Sniper Camera", "Sniper cameara"), fpc.sniperCamera, typeof(Camera), true);
+        fpc.uiCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("UI Camera", "UI cameara"), fpc.uiCamera, typeof(Camera), true);
+        fpc.mobileCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Mobile Camera", "Mobile Camera"), fpc.mobileCamera, typeof(Camera), true);
         fpc.uiManager = (UIManager)EditorGUILayout.ObjectField(new GUIContent("UI Manager", "UI Manager"), fpc.uiManager, typeof(UIManager), true);
         //fpc._text = (TMP_Text)EditorGUILayout.ObjectField(new GUIContent("text", "text"), fpc._text, typeof(TMP_Text), true);
         fpc.fov = EditorGUILayout.Slider(new GUIContent("Field of View", "The camera’s view angle. Changes the player camera directly."), fpc.fov, fpc.zoomFOV, 179f);

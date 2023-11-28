@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour, IUiManager
 
     [SerializeField] private float _fadingSpeed;
     [SerializeField] private WinUI _winUI;
+    [SerializeField] private LoseUI _loseUI;
 
     private void LockTouches(bool isLock)
     {
@@ -36,7 +37,7 @@ public class UIManager : MonoBehaviour, IUiManager
     public async UniTask ShowLosePopup()
     {
         LockTouches(true);
-        await Show(_winUI.GetComponent<CanvasGroup>(), () => { _winUI.Initialize(); LockTouches(false); });
+        await Show(_loseUI.GetComponent<CanvasGroup>(), () => { _loseUI.Initialize(); LockTouches(false); });
     }
 
     //public void ShowRestartUI()

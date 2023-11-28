@@ -16,15 +16,17 @@ public class WinUI : MonoBehaviour
     private IPlayerProgressObserver _playerProgressObserver;
     private ILevelProgressObserver _levelProgressObserver;
     private IWeaponService _weaponService;
+    private ILevelLoader _levelLoader;
 
     [Inject]
     public void Construct(IPlayerProgressObserver playerProgressObserver,
         ILevelProgressObserver levelProgressObserver,
-        IWeaponService weaponService)
+        IWeaponService weaponService, ILevelLoader levelLoader)
     {
         _playerProgressObserver = playerProgressObserver;
         _levelProgressObserver = levelProgressObserver;
         _weaponService = weaponService;
+        _levelLoader = levelLoader;
     }
 
     public void Initialize()
@@ -66,6 +68,11 @@ public class WinUI : MonoBehaviour
             counter += Time.deltaTime;
             yield return null;
         }
+    }
+
+    public void LoadLevel()
+    {
+        _levelLoader.LoadLevel();
     }
 
     private void OnDestroy()

@@ -10,6 +10,7 @@ public class FPSControllerInstaller : MonoInstaller
     [SerializeField] private CameraProvider _sniperCamera;
     [SerializeField] private UIManager _uiManager;
     [SerializeField] private HandsController _handsController;
+    [SerializeField] private MobileCanvas _mobileCanvas;
 
     public override void InstallBindings()
     {
@@ -18,6 +19,7 @@ public class FPSControllerInstaller : MonoInstaller
         Container.BindInstance(_sniperCamera).WithId("sniper").AsCached();
         Container.Bind<FirstPersonController>().FromComponentOnRoot().AsSingle();
         Container.BindInterfacesAndSelfTo<WeaponFactory>().AsSingle();
+        Container.Bind<IMobileInputProvider>().FromInstance(_mobileCanvas).AsSingle();
         Container.BindInterfacesTo<InputService>().AsSingle().WithArguments(YandexGame.Device);
         Container.BindInterfacesTo<WeaponService>().AsSingle();
         Container.BindInterfacesTo<HandsController>().FromInstance(_handsController).AsSingle();

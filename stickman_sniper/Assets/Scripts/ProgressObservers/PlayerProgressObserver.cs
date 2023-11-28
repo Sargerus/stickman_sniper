@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using UniRx;
 using Zenject;
@@ -36,8 +37,11 @@ public class PlayerProgressObserver : IPlayerProgressObserver, IInitializable, I
 
             _bulletsDisposable?.Dispose();
 
-            _bulletsDisposable = weapon.CurrentBulletsCount.Subscribe(bullets =>
+            _bulletsDisposable = weapon.CurrentBulletsCount.Subscribe(async bullets =>
             {
+                if (bullets == 0)
+                    await UniTask.DelayFrame(10);
+
                 if (bullets == 0 && _levelProgressObserver.KilledEnemies.Value < _levelProgressObserver.TotalEnemies)
                     _lose.Value = true;
             });

@@ -38,8 +38,8 @@ public class Level : MonoBehaviour
         _player = _fpsFactory.Create();
         _player.transform.position = playerPlace.position;
 
-        _player.Freeze(true);
-        Observable.Timer(TimeSpan.FromSeconds(0.8f)).Subscribe(_ => _player.Freeze(false)).AddTo(this);
+        //_player.Freeze(true);
+        //Observable.Timer(TimeSpan.FromSeconds(0.8f)).Subscribe(_ => _player.Freeze(false)).AddTo(this);
 
         _levelProgressObserver.Observe(_enemies);
     }

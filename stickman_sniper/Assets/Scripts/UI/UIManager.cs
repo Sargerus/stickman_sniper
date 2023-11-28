@@ -10,6 +10,7 @@ public interface IUiManager
 {
     UniTask ShowWinPopup();
     UniTask ShowLosePopup();
+    UniTask ShowRestoreAfterAd();
 }
 
 public class UIManager : MonoBehaviour, IUiManager
@@ -19,6 +20,28 @@ public class UIManager : MonoBehaviour, IUiManager
     [SerializeField] private float _fadingSpeed;
     [SerializeField] private WinUI _winUI;
     [SerializeField] private LoseUI _loseUI;
+    [SerializeField] private GameObject _restoreAfterAd;
+
+    private FirstPersonController _firstPersonController;
+
+    [Inject]
+    private void Constaruct(FirstPersonController firstPersonController)
+    {
+        _firstPersonController = firstPersonController;
+    }
+
+    private void OnEnable()
+    {
+        YG.YandexGame.CloseFullAdEvent += asd;
+    }
+
+    private void OnDisable()
+    {
+        YG.YandexGame.CloseFullAdEvent -= asd;
+    }
+
+    private void asd()
+        => ShowRestoreAfterAd();
 
     private void LockTouches(bool isLock)
     {
@@ -40,6 +63,20 @@ public class UIManager : MonoBehaviour, IUiManager
         StaticCursorLocker.Unlock();
         LockTouches(true);
         await Show(_loseUI.GetComponent<CanvasGroup>(), () => { _loseUI.Initialize(); LockTouches(false); });
+    }
+    
+    public void RestoreGame()
+    {
+        _firstPersonController.Freeze(false);
+        _restoreAfterAd.SetActive(false);
+        StaticCursorLocker.Lock();
+    }
+    public async UniTask ShowRestoreAfterAd()
+    {
+        _firstPersonController.Freeze(true);
+        StaticCursorLocker.Unlock();
+
+        _restoreAfterAd.SetActive(true);
     }
 
     //public void ShowRestartUI()

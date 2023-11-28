@@ -11,6 +11,8 @@ public class LevelLoader : IInitializable, ILevelLoader
 {
     public async UniTask LoadLevel()
     {
+        await UniTask.Delay(500);
+
         if (SceneManager.GetSceneByName("Level").isLoaded)
         {
             await SceneManager.UnloadSceneAsync("Level");

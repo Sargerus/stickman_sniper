@@ -8,6 +8,7 @@ public class FPSControllerInstaller : MonoInstaller
     [SerializeField] private CameraProvider _fpsCamera;
     [SerializeField] private CameraProvider _uiCamera;
     [SerializeField] private CameraProvider _sniperCamera;
+    [SerializeField] private UIManager _uiManager;
     [SerializeField] private HandsController _handsController;
 
     public override void InstallBindings()
@@ -20,5 +21,8 @@ public class FPSControllerInstaller : MonoInstaller
         Container.BindInterfacesTo<InputService>().AsSingle().WithArguments(YandexGame.Device);
         Container.BindInterfacesTo<WeaponService>().AsSingle();
         Container.BindInterfacesTo<HandsController>().FromInstance(_handsController).AsSingle();
+        Container.BindInterfacesTo<PlayerProgressObserver>().AsSingle();
+        Container.Bind<IUiManager>().FromInstance(_uiManager).AsSingle();
+        Container.BindInterfacesTo<WinLoseDecider>().AsSingle().NonLazy();
     }
 }

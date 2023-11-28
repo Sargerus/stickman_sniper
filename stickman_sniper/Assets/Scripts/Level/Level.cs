@@ -1,18 +1,11 @@
 using DW.RandomExtensions;
-using DWTools;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UniRx;
 using UnityEngine;
 using Zenject;
 
-public interface IEnemyCounter
-{
-    void EnemyKilled();
-}
-
-public class Level : MonoBehaviour, IEnemyCounter
+public class Level : MonoBehaviour
 {
     [SerializeField] private List<Transform> _enemiesSpawns;
     [SerializeField] private int _enemyCountMin;
@@ -23,21 +16,8 @@ public class Level : MonoBehaviour, IEnemyCounter
     private List<Enemy> _enemies = new();
     private FirstPersonController _player;
 
-    public Action AimComplete;
-
-    private int _enemiesCount;
-
     [Inject] private FirstPersonController.Factory _fpsFactory;
-
-    public void EnemyKilled()
-    {
-        _enemiesCount--;
-
-        if (_enemiesCount <= 0)
-        {
-            AimComplete?.Invoke();
-        }
-    }
+    [Inject] private ILevelProgressObserver _levelProgressObserver;
 
     public void Start()
     {
@@ -52,7 +32,6 @@ public class Level : MonoBehaviour, IEnemyCounter
 
             var enemy = Instantiate(_enemyPrefabs.Random(), place.position, place.rotation, transform);
             _enemies.Add(enemy);
-            enemy.Link(this);
         }
 
         var playerPlace = _playerSpawns.Random();
@@ -62,6 +41,6 @@ public class Level : MonoBehaviour, IEnemyCounter
         _player.Freeze(false);
         Observable.Timer(TimeSpan.FromSeconds(0.8f)).Subscribe(_ => _player.Freeze(true)).AddTo(this);
 
-        _enemiesCount = _enemies.Count;
+        _levelProgressObserver.Observe(_enemies);
     }
 }

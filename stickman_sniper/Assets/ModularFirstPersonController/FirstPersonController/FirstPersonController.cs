@@ -31,6 +31,8 @@ public class FirstPersonController : MonoBehaviour
 
     public Camera playerCamera;
     public Camera sniperCamera;
+    public Camera uiCamera;
+    public UIManager uiManager;
     //public TMP_Text _text;
 
     public float fov = 60f;
@@ -155,7 +157,6 @@ public class FirstPersonController : MonoBehaviour
     {
         _inputService = inputService;
         _weaponService = weaponService;
-
         //_text.text += "Input service " + _inputService.Device;
 
         _weaponService.SwitchToWeapon("sniper_rifle");
@@ -633,6 +634,8 @@ public class FirstPersonControllerEditor : Editor
 
         fpc.playerCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Camera", "Camera attached to the controller."), fpc.playerCamera, typeof(Camera), true);
         fpc.sniperCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Camera", "Sniper cameara"), fpc.sniperCamera, typeof(Camera), true);
+        fpc.uiCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Camera", "UI cameara"), fpc.uiCamera, typeof(Camera), true);
+        fpc.uiManager = (UIManager)EditorGUILayout.ObjectField(new GUIContent("UI Manager", "UI Manager"), fpc.uiManager, typeof(UIManager), true);
         //fpc._text = (TMP_Text)EditorGUILayout.ObjectField(new GUIContent("text", "text"), fpc._text, typeof(TMP_Text), true);
         fpc.fov = EditorGUILayout.Slider(new GUIContent("Field of View", "The camera’s view angle. Changes the player camera directly."), fpc.fov, fpc.zoomFOV, 179f);
         fpc.cameraCanMove = EditorGUILayout.ToggleLeft(new GUIContent("Enable Camera Rotation", "Determines if the camera is allowed to move."), fpc.cameraCanMove);

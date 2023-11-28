@@ -19,7 +19,7 @@ MonoBehaviour:
     Damage: 1
     ReloadingTime: 5000
     MaxBulletsCount: 30
-    MagazineCapacity: 10
+    MagazineCapacity: 5
     TimeBetweenShots: 1500
     PushForce: 300
     AudioContainer:

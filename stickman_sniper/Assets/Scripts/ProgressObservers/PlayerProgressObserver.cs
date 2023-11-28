@@ -1,6 +1,6 @@
 using System;
 using UniRx;
-using Unity.VisualScripting;
+using Zenject;
 
 public interface IPlayerProgressObserver : IProgressObserver
 {

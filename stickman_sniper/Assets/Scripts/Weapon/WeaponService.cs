@@ -46,7 +46,7 @@ public sealed class WeaponService : IWeaponService, IDisposable
     public void SwitchToWeapon(string weaponKey)
     {
         var weapon = _weaponFactory.Create(weaponKey);
-        weapon.Initialize(FindModel(weaponKey), new(10, 0));
+        weapon.Initialize(FindModel(weaponKey), new(5, 0));
 
         _currentWeapon.Value?.Dispose();
         _currentWeapon.Value = weapon;

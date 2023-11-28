@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
-using Unity.VisualScripting;
+using Zenject;
 
 public class WinLoseDecider : IInitializable, IDisposable
 {
@@ -23,15 +23,17 @@ public class WinLoseDecider : IInitializable, IDisposable
 
     public void Initialize()
     {
-        Observable.Merge(_progressObservers.Select(g => g.Win)).Subscribe(_ =>
+        Observable.Merge(_progressObservers.Select(g => g.Win)).Where(h => h == true).Subscribe(_ =>
         {
             _firstPersonController.Freeze(true);
+            _firstPersonController.ToggleScopeOff();
             _uiManager.ShowWinPopup().Forget();
         }).AddTo(_disposables);
 
-        Observable.Merge(_progressObservers.Select(g => g.Lose)).Subscribe(_ =>
+        Observable.Merge(_progressObservers.Select(g => g.Lose)).Where(h => h == true).Subscribe(_ =>
         {
             _firstPersonController.Freeze(true);
+            _firstPersonController.ToggleScopeOff();
             _uiManager.ShowLosePopup().Forget();
         }).AddTo(_disposables);
     }

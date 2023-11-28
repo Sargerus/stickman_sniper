@@ -21,7 +21,7 @@ public class FPSControllerInstaller : MonoInstaller
         Container.BindInterfacesTo<InputService>().AsSingle().WithArguments(YandexGame.Device);
         Container.BindInterfacesTo<WeaponService>().AsSingle();
         Container.BindInterfacesTo<HandsController>().FromInstance(_handsController).AsSingle();
-        Container.BindInterfacesTo<PlayerProgressObserver>().AsSingle();
+        Container.BindInterfacesTo<PlayerProgressObserver>().AsSingle().NonLazy();
         Container.Bind<IUiManager>().FromInstance(_uiManager).AsSingle();
         Container.BindInterfacesTo<WinLoseDecider>().AsSingle().NonLazy();
     }

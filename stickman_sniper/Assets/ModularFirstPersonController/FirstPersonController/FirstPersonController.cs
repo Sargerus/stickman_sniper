@@ -47,6 +47,7 @@ public class FirstPersonController : MonoBehaviour
     public bool crosshair = true;
     public Sprite crosshairImage;
     public Color crosshairColor = Color.white;
+    private bool _isFreeze = false;
 
     // Internal Variables
     private float yaw = 0.0f;
@@ -232,6 +233,9 @@ public class FirstPersonController : MonoBehaviour
 
     private void Update()
     {
+        if (_isFreeze)
+            return;
+
         #region Camera
         // Control camera movement
         if (cameraCanMove && _inputService != null)
@@ -403,7 +407,32 @@ public class FirstPersonController : MonoBehaviour
 
     public void Freeze(bool freeze)
     {
-        _inputService.SetActive(freeze);
+        _isFreeze = freeze;
+        //_inputService.SetActive(!freeze);
+    }
+
+    public void ToggleScopeOff()
+    {
+        var cameraData = playerCamera.GetUniversalAdditionalCameraData();
+        cameraData.cameraStack.Remove(sniperCamera);
+
+        playerCamera.fieldOfView = fov;
+        workingMouseSensivity = mouseSensitivity;
+        _weaponService.CurrentWeapon.Value.Aim();
+
+        _isInZoom = false;
+    }
+
+    public void ToggleScopeOn()
+    {
+        var cameraData = playerCamera.GetUniversalAdditionalCameraData();
+        cameraData.cameraStack.Add(sniperCamera);
+
+        playerCamera.fieldOfView = zoomFOV;
+        workingMouseSensivity = mouseSensitivity / 2;
+        _weaponService.CurrentWeapon.Value.Aim();
+
+        _isInZoom = true;
     }
 
     private void ToggleScope()
@@ -413,28 +442,19 @@ public class FirstPersonController : MonoBehaviour
 
         if (!_isInZoom)
         {
-            var cameraData = playerCamera.GetUniversalAdditionalCameraData();
-            cameraData.cameraStack.Add(sniperCamera);
-
-            playerCamera.fieldOfView = zoomFOV;
-            workingMouseSensivity = mouseSensitivity / 2;
-            _weaponService.CurrentWeapon.Value.Aim();
+            ToggleScopeOn();
         }
         else
         {
-            var cameraData = playerCamera.GetUniversalAdditionalCameraData();
-            cameraData.cameraStack.Remove(sniperCamera);
-
-            playerCamera.fieldOfView = fov;
-            workingMouseSensivity = mouseSensitivity;
-            _weaponService.CurrentWeapon.Value.Aim();
+            ToggleScopeOff();
         }
-
-        _isInZoom = !_isInZoom;
     }
 
     void FixedUpdate()
     {
+        if (_isFreeze)
+            return;
+
         //if (Cursor.lockState != CursorLockMode.Locked)
         //    return;
 

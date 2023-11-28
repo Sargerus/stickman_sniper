@@ -42,15 +42,18 @@ public class LevelProgressObserver : ILevelProgressObserver, IDisposable
 
         TotalEnemies = enemyList.Count;
 
-        IReadOnlyReactiveProperty<bool> mergedObs = Observable.Merge(enemyList.Select(g => g.IsAlive)).ToReactiveProperty();
+        IObservable<bool> mergedObs = Observable.Merge(enemyList.Select(g => g.IsAlive));
 
         foreach (var enemy in enemyList)
         {
             _enemies.Add(enemy.IsAlive);
         }
 
-        mergedObs.Subscribe(_ =>
+        mergedObs.Subscribe(x =>
         {
+            if (x == true)
+                return;
+
             _killedEnemies.Value = _enemies.Count(g => g.Value == false);
         }).AddTo(_disposables);
 

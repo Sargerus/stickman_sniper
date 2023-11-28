@@ -1,9 +1,10 @@
 using Cysharp.Threading.Tasks;
+using DWTools;
 using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using Zenject;
 
 public interface IUiManager
 {
@@ -13,22 +14,29 @@ public interface IUiManager
 
 public class UIManager : MonoBehaviour, IUiManager
 {
-    [SerializeField] private EventSystem _eventSystem;
+    [Inject] private TouchLocker _touchLocker;
+
     [SerializeField] private float _fadingSpeed;
+    [SerializeField] private WinUI _winUI;
 
     private void LockTouches(bool isLock)
     {
-        _eventSystem.gameObject.SetActive(!isLock);
+        if (isLock)
+            _touchLocker.Lock();
+        else
+            _touchLocker.Unlock();
     }
 
     public async UniTask ShowWinPopup()
     {
-        throw new NotImplementedException();
+        LockTouches(true);
+        await Show(_winUI.GetComponent<CanvasGroup>(), () => { _winUI.Initialize(); LockTouches(false); });
     }
 
     public async UniTask ShowLosePopup()
     {
-        throw new NotImplementedException();
+        LockTouches(true);
+        await Show(_winUI.GetComponent<CanvasGroup>(), () => { _winUI.Initialize(); LockTouches(false); });
     }
 
     //public void ShowRestartUI()

@@ -4,6 +4,9 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using Zenject;
 using DWTools;
+using System.Linq;
+using YG;
+using TMPro;
 
 namespace UniversalMobileController
 {
@@ -18,6 +21,7 @@ namespace UniversalMobileController
         [Range(0, 10f)][SerializeField] private float joystickMovementRange = 1f;
 
         private Vector2 joyStickInput = Vector2.zero;
+        private int? uniqueFingerId = null;
 
 
         private Vector2 joystickCurrentPosition = new Vector2(0, 0);
@@ -29,6 +33,15 @@ namespace UniversalMobileController
         public UnityEvent onPressedJoystick;
         public UnityEvent onStartedDraggingJoystick;
         public UnityEvent onStoppedDraggingJoystick;
+        private Device device;
+
+        [SerializeField]
+        private TMP_Text _log;
+
+        private void OnEnable()
+        {
+            device = DeviceExtensions.StringToDevice(YandexGame.Device);
+        }
 
         private void Start()
         {
@@ -36,12 +49,39 @@ namespace UniversalMobileController
             SetJoystickColor(normalColor);
         }
 
+        private void Update()
+        {
+            _log.SetText(device.ToString());
+
+            if (device == Device.Mobile)
+            {
+
+                _log.SetText("1");
+                if (uniqueFingerId is null)
+                    return;
+
+                _log.SetText("2");
+                if (!Input.touches.Any(g => g.fingerId.Equals(uniqueFingerId.Value)))
+                {
+                    OnPointerUp(null);
+                    _log.SetText("3");
+                    uniqueFingerId = null;
+                }
+            }
+        }
+
         public void OnPointerDown(PointerEventData eventdata)
         {
             if (UniversalMobileController_Manager.editMode || joystickState == State.Un_Interactable) { return; }
             SetJoystickColor(pressedColor);
 
-            Vector3 posToConvert = new(eventdata.position.x , eventdata.position.y, GetComponentInParent<Canvas>().planeDistance);
+            _log.SetText(string.Empty);
+            _log.SetText(" OnPointerDown");
+
+            var lastTouch = Input.touches[^1];
+            uniqueFingerId = lastTouch.fingerId;
+
+            Vector3 posToConvert = new(eventdata.position.x, eventdata.position.y, GetComponentInParent<Canvas>().planeDistance);
 
             joystickCurrentPosition = eventdata.position;
             var pos = _mobileCameraProvider.Camera.ScreenToWorldPoint(posToConvert);
@@ -56,13 +96,15 @@ namespace UniversalMobileController
             if (UniversalMobileController_Manager.editMode || joystickState == State.Un_Interactable) { return; }
             SetJoystickColor(normalColor);
 
+            _log.SetText(" OnPointerUp");
+
             joyStickInput = new Vector2(0, 0);
             joyStick.anchoredPosition = new Vector2(0, 0);
             onStoppedDraggingJoystick.Invoke();
         }
         public void OnDrag(PointerEventData eventdata)
         {
-            if (UniversalMobileController_Manager.editMode || joystickState == State.Un_Interactable) { return; }
+            if (UniversalMobileController_Manager.editMode || joystickState == State.Un_Interactable || uniqueFingerId is null) { return; }
 
             onStartedDraggingJoystick.Invoke();
             Vector2 direction = eventdata.position - joystickCurrentPosition;

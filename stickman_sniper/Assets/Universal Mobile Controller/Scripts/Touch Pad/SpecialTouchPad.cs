@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using YG;
+using DWTools;
+using TMPro;
+
 namespace UniversalMobileController
 {
     public class SpecialTouchPad : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
@@ -19,14 +23,35 @@ namespace UniversalMobileController
         public UnityEvent onPressedTouchPad;
         public UnityEvent onStartedDraggingTouchPad;
         public UnityEvent onStoppedDraggingTouchPad;
+        private int? uniqueFingerId = null;
+
+        private Device device;
+
+        [SerializeField]
+        private TMP_Text _log;
+
+        private void OnEnable()
+        {
+            device = DeviceExtensions.StringToDevice(YandexGame.Device);
+        }
 
         void Update()
         {
             if (UniversalMobileController_Manager.editMode|| touchPadState == State.Un_Interactable) { return; }
 
+            _log.SetText(device.ToString());
+
+            if (device == Device.Mobile && uniqueFingerId is null)
+            {
+                _log.SetText("1");
+                OnPointerUp(null);
+                return;
+            }
+
+            _log.SetText("2");
             if (pressingTouchPad)
             {
-
+                _log.SetText("3");
                 if (eventPointerID < Input.touches.Length && eventPointerID >= 0)
                 {
                     distanceBetweenTouch = Input.touches[eventPointerID].position - PointerOld;
@@ -50,10 +75,20 @@ namespace UniversalMobileController
             pressingTouchPad = true;
             eventPointerID = eventData.pointerId;
             PointerOld = eventData.position;
+
+            _log.SetText(string.Empty);
+            _log.SetText(" OnPointerDown");
+
+            if (device == Device.Mobile)
+            {
+                var lastTouch = Input.touches[^1];
+                uniqueFingerId = lastTouch.fingerId;
+            }
         }
         public void OnPointerUp(PointerEventData eventData)
         {
             pressingTouchPad = false;
+            _log.SetText(" OnPointerUp");
         }
         public float GetVerticalValue()
         {

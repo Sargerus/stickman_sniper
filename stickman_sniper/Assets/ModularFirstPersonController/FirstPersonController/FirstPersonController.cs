@@ -161,10 +161,7 @@ public class FirstPersonController : MonoBehaviour
         _inputService = inputService;
         _weaponService = weaponService;
 
-        if (_inputService.Device == Device.Mobile)
-        {
-            mobileCamera.gameObject.SetActive(true);
-        }
+        mobileCamera.gameObject.SetActive(_inputService.Device == Device.Mobile);
 
         //_text.text += "Input service " + _inputService.Device;
 

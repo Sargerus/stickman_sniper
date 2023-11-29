@@ -51,23 +51,16 @@ namespace UniversalMobileController
 
         private void Update()
         {
-            _log.SetText(device.ToString());
-
-            _log.text += "Finger:" + uniqueFingerId.ToString();
-            _log.text += "Device:" + device.ToString();
+            if (uniqueFingerId is null)
+                return;
 
             if (device == Device.Mobile)
             {
-
                 _log.text += "1";
-                if (uniqueFingerId is null)
-                    return;
-
-                _log.text += "2";
                 if (!Input.touches.Any(g => g.fingerId.Equals(uniqueFingerId.Value)))
                 {
                     OnPointerUp(null);
-                    _log.text += "3";
+                    _log.text += "2";
                     uniqueFingerId = null;
                 }
             }
@@ -107,6 +100,7 @@ namespace UniversalMobileController
             joyStickInput = new Vector2(0, 0);
             joyStick.anchoredPosition = new Vector2(0, 0);
             onStoppedDraggingJoystick.Invoke();
+            uniqueFingerId = null;
         }
         public void OnDrag(PointerEventData eventdata)
         {

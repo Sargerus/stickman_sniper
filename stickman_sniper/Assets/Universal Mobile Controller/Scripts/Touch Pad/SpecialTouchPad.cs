@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using YG;
 using DWTools;
 using TMPro;
+using System.Linq;
 
 namespace UniversalMobileController
 {
@@ -37,17 +38,19 @@ namespace UniversalMobileController
 
         void Update()
         {
-            if (UniversalMobileController_Manager.editMode|| touchPadState == State.Un_Interactable) { return; }
+            void EraseInput()
+            {
+                touchPadInput = Vector2.zero;
+            }
 
-            _log.SetText(device.ToString());
+            if (UniversalMobileController_Manager.editMode|| touchPadState == State.Un_Interactable || uniqueFingerId == null) { EraseInput(); return; }
 
-            _log.text += "Finger:" + uniqueFingerId.ToString();
-            _log.text += "Device:" + device.ToString();
-
-            if (device == Device.Mobile && uniqueFingerId is null)
+            if (!Input.touches.Any(g => g.fingerId.Equals(uniqueFingerId.Value)))
             {
                 _log.text += "1";
+                uniqueFingerId = null;
                 OnPointerUp(null);
+                EraseInput();
                 return;
             }
 
@@ -70,6 +73,7 @@ namespace UniversalMobileController
             {
                 distanceBetweenTouch = Vector2.zero;
             }
+
             touchPadInput.x = distanceBetweenTouch.x * Time.deltaTime * senstivityX;
             touchPadInput.y = distanceBetweenTouch.y * Time.deltaTime * senstivityY;
         }
@@ -91,6 +95,7 @@ namespace UniversalMobileController
         public void OnPointerUp(PointerEventData eventData)
         {
             pressingTouchPad = false;
+            uniqueFingerId = null;
             _log.text +=" OnPointerUp";
         }
         public float GetVerticalValue()

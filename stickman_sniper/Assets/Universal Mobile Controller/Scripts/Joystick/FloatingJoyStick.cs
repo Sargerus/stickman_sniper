@@ -53,18 +53,21 @@ namespace UniversalMobileController
         {
             _log.SetText(device.ToString());
 
+            _log.text += "Finger:" + uniqueFingerId.ToString();
+            _log.text += "Device:" + device.ToString();
+
             if (device == Device.Mobile)
             {
 
-                _log.SetText("1");
+                _log.text += "1";
                 if (uniqueFingerId is null)
                     return;
 
-                _log.SetText("2");
+                _log.text += "2";
                 if (!Input.touches.Any(g => g.fingerId.Equals(uniqueFingerId.Value)))
                 {
                     OnPointerUp(null);
-                    _log.SetText("3");
+                    _log.text += "3";
                     uniqueFingerId = null;
                 }
             }
@@ -76,10 +79,13 @@ namespace UniversalMobileController
             SetJoystickColor(pressedColor);
 
             _log.SetText(string.Empty);
-            _log.SetText(" OnPointerDown");
+            _log.text += " OnPointerDown";
 
-            var lastTouch = Input.touches[^1];
-            uniqueFingerId = lastTouch.fingerId;
+            if (device == Device.Mobile)
+            {
+                var lastTouch = Input.touches[^1];
+                uniqueFingerId = lastTouch.fingerId;
+            }
 
             Vector3 posToConvert = new(eventdata.position.x, eventdata.position.y, GetComponentInParent<Canvas>().planeDistance);
 
@@ -96,7 +102,7 @@ namespace UniversalMobileController
             if (UniversalMobileController_Manager.editMode || joystickState == State.Un_Interactable) { return; }
             SetJoystickColor(normalColor);
 
-            _log.SetText(" OnPointerUp");
+            _log.text += " OnPointerUp";
 
             joyStickInput = new Vector2(0, 0);
             joyStick.anchoredPosition = new Vector2(0, 0);

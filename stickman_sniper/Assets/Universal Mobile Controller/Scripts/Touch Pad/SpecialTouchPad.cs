@@ -41,17 +41,20 @@ namespace UniversalMobileController
 
             _log.SetText(device.ToString());
 
+            _log.text += "Finger:" + uniqueFingerId.ToString();
+            _log.text += "Device:" + device.ToString();
+
             if (device == Device.Mobile && uniqueFingerId is null)
             {
-                _log.SetText("1");
+                _log.text += "1";
                 OnPointerUp(null);
                 return;
             }
 
-            _log.SetText("2");
+            _log.text += "2";
             if (pressingTouchPad)
             {
-                _log.SetText("3");
+                _log.text += "3";
                 if (eventPointerID < Input.touches.Length && eventPointerID >= 0)
                 {
                     distanceBetweenTouch = Input.touches[eventPointerID].position - PointerOld;
@@ -77,7 +80,7 @@ namespace UniversalMobileController
             PointerOld = eventData.position;
 
             _log.SetText(string.Empty);
-            _log.SetText(" OnPointerDown");
+            _log.text += " OnPointerDown";
 
             if (device == Device.Mobile)
             {
@@ -88,7 +91,7 @@ namespace UniversalMobileController
         public void OnPointerUp(PointerEventData eventData)
         {
             pressingTouchPad = false;
-            _log.SetText(" OnPointerUp");
+            _log.text +=" OnPointerUp";
         }
         public float GetVerticalValue()
         {

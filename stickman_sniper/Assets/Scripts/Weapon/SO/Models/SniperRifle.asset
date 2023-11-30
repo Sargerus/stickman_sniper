@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SniperRifle
   m_EditorClassIdentifier: 
   Model:
-    Prefab: {fileID: 4516888391499999491, guid: 94b609c7a38b3a44daa83cbbd0e81e30, type: 3}
+    Prefab: {fileID: 5288255734314006697, guid: 51625ba4c3be0a74c8a67bf1d662f6b7, type: 3}
     Key: sniper_rifle
     BulletType: 0
     Damage: 1

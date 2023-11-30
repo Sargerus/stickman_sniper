@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using YG;
 using Zenject;
 
 public interface IUiManager
@@ -27,9 +28,9 @@ public class UIManager : MonoBehaviour, IUiManager
     private CameraProvider _mobileCameraProvider;
 
     [Inject]
-    private void Constaruct(FirstPersonController firstPersonController, 
+    private void Constaruct(FirstPersonController firstPersonController,
         CursorLocker cursorLocker,
-        [Inject(Id ="mobile")] CameraProvider mobileCameraProvider)
+        [Inject(Id = "mobile")] CameraProvider mobileCameraProvider)
     {
         _firstPersonController = firstPersonController;
         _cursorLocker = cursorLocker;
@@ -38,6 +39,11 @@ public class UIManager : MonoBehaviour, IUiManager
 
     private void OnEnable()
     {
+        if (!YandexGame.nowAdsShow)
+        {
+            _cursorLocker.Lock();
+        }
+
         YG.YandexGame.CloseFullAdEvent += asd;
     }
 
@@ -61,6 +67,7 @@ public class UIManager : MonoBehaviour, IUiManager
     {
         _cursorLocker.Unlock();
         LockTouches(true);
+        _winUI.gameObject.SetActive(true);
         await Show(_winUI.GetComponent<CanvasGroup>(), () => { _winUI.Initialize(); LockTouches(false); });
     }
 
@@ -68,12 +75,17 @@ public class UIManager : MonoBehaviour, IUiManager
     {
         _cursorLocker.Unlock();
         LockTouches(true);
+        _loseUI.gameObject.SetActive(true);
         await Show(_loseUI.GetComponent<CanvasGroup>(), () => { _loseUI.Initialize(); LockTouches(false); });
     }
-    
+
     public void RestoreGame()
     {
-        _mobileCameraProvider.Camera.gameObject.SetActive(true);
+        if (YandexGame.Device.ToDevice() == Device.Mobile)
+        {
+            _mobileCameraProvider.Camera.gameObject.SetActive(true);
+        }
+
         _firstPersonController.Freeze(false);
         _restoreAfterAd.SetActive(false);
         _cursorLocker.Lock();

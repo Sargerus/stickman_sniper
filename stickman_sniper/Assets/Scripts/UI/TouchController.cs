@@ -37,7 +37,7 @@ public class TouchController : MonoBehaviour
 
     private void Update()
     {
-        if (!_isInitialized || DeviceExtensions.StringToDevice(YandexGame.Device) != Device.Mobile)
+        if (!_isInitialized || YandexGame.Device.ToDevice() != Device.Mobile)
             return;
 
         if (Input.touches.Length == 0)

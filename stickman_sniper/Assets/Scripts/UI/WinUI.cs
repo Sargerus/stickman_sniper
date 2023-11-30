@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using TMPro;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -12,11 +14,13 @@ public class WinUI : MonoBehaviour
     [SerializeField] private GameObject _star2;
     [SerializeField] private TMP_Text _restartsText;
     [SerializeField] private GameObject _star3;
+    [SerializeField] private Button _nextLevelButton;
 
     private IPlayerProgressObserver _playerProgressObserver;
     private ILevelProgressObserver _levelProgressObserver;
     private IWeaponService _weaponService;
     private ILevelLoader _levelLoader;
+    private IDisposable _clickDisposable;
 
     [Inject]
     public void Construct(IPlayerProgressObserver playerProgressObserver,
@@ -46,6 +50,12 @@ public class WinUI : MonoBehaviour
         {
             StartCoroutine(ShowStar(_star3.GetComponent<Image>(), 0.8f));
         }
+
+        _clickDisposable = _nextLevelButton.OnClickAsObservable().Subscribe(_ =>
+        {
+            _clickDisposable?.Dispose();
+            _levelLoader.LoadLevel();
+        });
     }
 
     private IEnumerator ShowStar(Image image, float delay = 0)
@@ -68,11 +78,6 @@ public class WinUI : MonoBehaviour
             counter += Time.deltaTime;
             yield return null;
         }
-    }
-
-    public void LoadLevel()
-    {
-        _levelLoader.LoadLevel();
     }
 
     private void OnDestroy()

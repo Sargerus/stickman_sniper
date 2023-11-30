@@ -34,7 +34,7 @@ namespace UniversalMobileController
 
         private void OnEnable()
         {
-            device = DeviceExtensions.StringToDevice(YandexGame.Device);
+            device = YandexGame.Device.ToDevice();
         }
 
         void EraseInput()

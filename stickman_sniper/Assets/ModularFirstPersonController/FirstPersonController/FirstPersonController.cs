@@ -33,6 +33,7 @@ public class FirstPersonController : MonoBehaviour
     public Camera sniperCamera;
     public Camera uiCamera;
     public Camera mobileCamera;
+    public Camera weaponCamera;
     public UIManager uiManager;
     public UniversalMobileController.FloatingJoyStick _moveJoystick;
     //public TMP_Text _text;
@@ -419,6 +420,7 @@ public class FirstPersonController : MonoBehaviour
     public void ToggleScopeOff()
     {
         sniperCamera.gameObject.SetActive(false);
+        weaponCamera.gameObject.SetActive(true);
         //var cameraData = playerCamera.GetUniversalAdditionalCameraData();
         //cameraData.cameraStack.Remove(sniperCamera);
 
@@ -432,6 +434,7 @@ public class FirstPersonController : MonoBehaviour
     public void ToggleScopeOn()
     {
         sniperCamera.gameObject.SetActive(true);
+        weaponCamera.gameObject.SetActive(false);
         //var cameraData = playerCamera.GetUniversalAdditionalCameraData();
         //cameraData.cameraStack.Add(sniperCamera);
 
@@ -663,6 +666,7 @@ public class FirstPersonControllerEditor : Editor
         fpc.sniperCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Sniper Camera", "Sniper cameara"), fpc.sniperCamera, typeof(Camera), true);
         fpc.uiCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("UI Camera", "UI cameara"), fpc.uiCamera, typeof(Camera), true);
         fpc.mobileCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Mobile Camera", "Mobile Camera"), fpc.mobileCamera, typeof(Camera), true);
+        fpc.weaponCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Weapon Camera", "Weapon Camera"), fpc.weaponCamera, typeof(Camera), true);
         fpc.uiManager = (UIManager)EditorGUILayout.ObjectField(new GUIContent("UI Manager", "UI Manager"), fpc.uiManager, typeof(UIManager), true);
         //fpc._text = (TMP_Text)EditorGUILayout.ObjectField(new GUIContent("text", "text"), fpc._text, typeof(TMP_Text), true);
         fpc.fov = EditorGUILayout.Slider(new GUIContent("Field of View", "The camera’s view angle. Changes the player camera directly."), fpc.fov, fpc.zoomFOV, 179f);

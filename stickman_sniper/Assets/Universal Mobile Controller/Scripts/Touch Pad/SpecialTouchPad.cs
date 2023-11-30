@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace UniversalMobileController
 {
-    public class SpecialTouchPad : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
+    public class SpecialTouchPad : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IFinger
     {
         private Vector2 distanceBetweenTouch;
         private Vector2 PointerOld;
@@ -25,6 +25,7 @@ namespace UniversalMobileController
         public UnityEvent onStartedDraggingTouchPad;
         public UnityEvent onStoppedDraggingTouchPad;
         private int? uniqueFingerId = null;
+        private bool _wasCalledUp = true;
 
         private Device device;
 
@@ -36,23 +37,14 @@ namespace UniversalMobileController
             device = DeviceExtensions.StringToDevice(YandexGame.Device);
         }
 
+        void EraseInput()
+        {
+            touchPadInput = Vector2.zero;
+        }
+
         void Update()
         {
-            void EraseInput()
-            {
-                touchPadInput = Vector2.zero;
-            }
-
             if (UniversalMobileController_Manager.editMode|| touchPadState == State.Un_Interactable || uniqueFingerId == null) { EraseInput(); return; }
-
-            if (!Input.touches.Any(g => g.fingerId.Equals(uniqueFingerId.Value)))
-            {
-                _log.text += "1";
-                uniqueFingerId = null;
-                OnPointerUp(null);
-                EraseInput();
-                return;
-            }
 
             _log.text += "2";
             if (pressingTouchPad)
@@ -79,24 +71,22 @@ namespace UniversalMobileController
         }
         public void OnPointerDown(PointerEventData eventData)
         {
+            _wasCalledUp = false;
             pressingTouchPad = true;
             eventPointerID = eventData.pointerId;
             PointerOld = eventData.position;
 
             _log.SetText(string.Empty);
             _log.text += " OnPointerDown";
-
-            if (device == Device.Mobile)
-            {
-                var lastTouch = Input.touches[^1];
-                uniqueFingerId = lastTouch.fingerId;
-            }
         }
+
         public void OnPointerUp(PointerEventData eventData)
         {
             pressingTouchPad = false;
             uniqueFingerId = null;
             _log.text +=" OnPointerUp";
+            _wasCalledUp = true;
+            EraseInput();
         }
         public float GetVerticalValue()
         {
@@ -118,6 +108,17 @@ namespace UniversalMobileController
         public State GetState()
         {
             return touchPadState;
+        }
+
+        public void SetFingerId(int? fingerId)
+        {
+            uniqueFingerId = fingerId;
+
+            if (uniqueFingerId == null && _wasCalledUp == false)
+            {
+                OnPointerUp(null);
+                _log.text += "Uniq=null";
+            }
         }
     }
 }

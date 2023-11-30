@@ -10,7 +10,7 @@ using TMPro;
 
 namespace UniversalMobileController
 {
-    public class FloatingJoyStick : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IDragHandler
+    public class FloatingJoyStick : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IDragHandler, IFinger
     {
         [Inject(Id = "mobile")]
         private CameraProvider _mobileCameraProvider;
@@ -21,6 +21,7 @@ namespace UniversalMobileController
         [Range(0, 10f)][SerializeField] private float joystickMovementRange = 1f;
 
         private Vector2 joyStickInput = Vector2.zero;
+        private bool _wasCalledUp = true;
         private int? uniqueFingerId = null;
 
 
@@ -49,36 +50,14 @@ namespace UniversalMobileController
             SetJoystickColor(normalColor);
         }
 
-        private void Update()
-        {
-            if (uniqueFingerId is null)
-                return;
-
-            if (device == Device.Mobile)
-            {
-                _log.text += "1";
-                if (!Input.touches.Any(g => g.fingerId.Equals(uniqueFingerId.Value)))
-                {
-                    OnPointerUp(null);
-                    _log.text += "2";
-                    uniqueFingerId = null;
-                }
-            }
-        }
-
         public void OnPointerDown(PointerEventData eventdata)
         {
             if (UniversalMobileController_Manager.editMode || joystickState == State.Un_Interactable) { return; }
+            _wasCalledUp = false;
             SetJoystickColor(pressedColor);
 
             _log.SetText(string.Empty);
             _log.text += " OnPointerDown";
-
-            if (device == Device.Mobile)
-            {
-                var lastTouch = Input.touches[^1];
-                uniqueFingerId = lastTouch.fingerId;
-            }
 
             Vector3 posToConvert = new(eventdata.position.x, eventdata.position.y, GetComponentInParent<Canvas>().planeDistance);
 
@@ -100,7 +79,7 @@ namespace UniversalMobileController
             joyStickInput = new Vector2(0, 0);
             joyStick.anchoredPosition = new Vector2(0, 0);
             onStoppedDraggingJoystick.Invoke();
-            uniqueFingerId = null;
+            _wasCalledUp = true;
         }
         public void OnDrag(PointerEventData eventdata)
         {
@@ -147,6 +126,17 @@ namespace UniversalMobileController
         public State GetState()
         {
             return joystickState;
+        }
+
+        public void SetFingerId(int? fingerId)
+        {
+            uniqueFingerId = fingerId;
+
+            if (uniqueFingerId == null && _wasCalledUp == false)
+            {
+                OnPointerUp(null);
+                _log.text += "Uniq=null";
+            }
         }
     }
     public enum State

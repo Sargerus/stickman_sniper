@@ -1,10 +1,33 @@
 using DWTools;
 using UnityEngine;
+using UnityEngine.UI;
+using UniRx;
+using System.Collections.Generic;
+using UniRx.Triggers;
+using System.Linq;
 
 public class MobileCanvas : MonoBehaviour, IMobileInputProvider
 {
     [SerializeField] private UniversalMobileController.FloatingJoyStick _moveJoyStick;
     [SerializeField] private UniversalMobileController.SpecialTouchPad _cameraJoyStick;
+    [SerializeField] private List<Button> _fireButton;
+
+    private bool _isAiming = false;
+    private bool _isFiring = false;
+    private CompositeDisposable _fireDisposables = new();
+
+    private void Start()
+    {
+        Observable.Merge(_fireButton.Select(g => g.OnPointerDownAsObservable())).Subscribe(_ =>
+        {
+            _isFiring = true;
+        }).AddTo(_fireDisposables);
+
+        Observable.Merge(_fireButton.Select(g => g.OnPointerUpAsObservable())).Subscribe(_ =>
+        {
+            _isFiring = false;
+        }).AddTo(_fireDisposables);
+    }
 
     public float GetMouseX()
         => _cameraJoyStick.GetHorizontalValue();
@@ -18,5 +41,17 @@ public class MobileCanvas : MonoBehaviour, IMobileInputProvider
     public float GetMoveY()
         => _moveJoyStick.GetVerticalValue();
 
+    public bool IsAiming()
+        => _isAiming;
 
+    public void SetIsAiming()
+        => _isAiming = !_isAiming;
+
+    public bool IsShooting()
+        => _isFiring;
+
+    private void OnDestroy()
+    {
+        _fireDisposables.Dispose();
+    }
 }

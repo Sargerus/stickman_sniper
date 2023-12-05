@@ -50,7 +50,7 @@ public abstract class BaseWeapon : IWeapon
 
     }
 
-    public virtual void Aim()
+    public virtual void SetAim(bool aim)
     {
     }
 

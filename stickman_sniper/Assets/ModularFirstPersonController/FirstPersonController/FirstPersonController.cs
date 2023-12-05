@@ -173,7 +173,7 @@ public class FirstPersonController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        workingMouseSensivity = mouseSensitivity;
+        workingMouseSensivity = _inputService.MouseSensitivity;
 
         //crosshairObject = GetComponentInChildren<Image>();
 
@@ -426,7 +426,7 @@ public class FirstPersonController : MonoBehaviour
 
         playerCamera.fieldOfView = fov;
         workingMouseSensivity = mouseSensitivity;
-        _weaponService.CurrentWeapon.Value.Aim();
+        //_weaponService.CurrentWeapon.Value.SetAim();
 
         _isInZoom = false;
     }
@@ -440,24 +440,25 @@ public class FirstPersonController : MonoBehaviour
 
         playerCamera.fieldOfView = zoomFOV;
         workingMouseSensivity = mouseSensitivity / 2;
-        _weaponService.CurrentWeapon.Value.Aim();
+        //_weaponService.CurrentWeapon.Value.SetAim();
 
         _isInZoom = true;
     }
 
     private void ToggleScope()
     {
-        if (_isInZoom == _inputService.IsAiming)
-            return;
-
-        if (!_isInZoom)
-        {
-            ToggleScopeOn();
-        }
-        else
-        {
-            ToggleScopeOff();
-        }
+        _weaponService.CurrentWeapon.Value.SetAim(_inputService.IsAiming);
+        //if (_isInZoom == _inputService.IsAiming)
+        //    return;
+        //
+        //if (!_isInZoom)
+        //{
+        //    ToggleScopeOn();
+        //}
+        //else
+        //{
+        //    ToggleScopeOff();
+        //}
     }
 
     void FixedUpdate()

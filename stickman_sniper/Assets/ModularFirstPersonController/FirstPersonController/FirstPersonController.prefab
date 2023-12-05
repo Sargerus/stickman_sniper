@@ -2077,6 +2077,7 @@ MonoBehaviour:
   _uiCamera: {fileID: 8630644179174812840}
   _sniperCamera: {fileID: 271271727399582079}
   _mobileCamera: {fileID: 5022622638612509543}
+  _weaponCamera: {fileID: 674331622036246589}
   _uiManager: {fileID: 3979012258772650814}
   _handsController: {fileID: 9002682125958113579}
   _mobileCanvas: {fileID: 6075031468217007533}

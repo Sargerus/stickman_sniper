@@ -22,6 +22,8 @@ MonoBehaviour:
     MagazineCapacity: 5
     TimeBetweenShots: 1500
     PushForce: 300
+    FOVOnAim: 30
+    SensitivityOnAim: 1
     AudioContainer:
     - Name: Shot
       AudioClip: {fileID: 8300000, guid: 9abb9bd382603c54692de45e0425e34d, type: 3}

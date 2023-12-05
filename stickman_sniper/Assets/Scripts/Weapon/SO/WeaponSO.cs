@@ -23,6 +23,8 @@ public class WeaponModel
     public int MagazineCapacity;
     public int TimeBetweenShots;
     public float PushForce;
+    public float FOVOnAim;
+    public float SensitivityOnAim;
 
     public List<AudioContainer> AudioContainer;
 }

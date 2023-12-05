@@ -8,18 +8,34 @@ public class Rifle : BaseWeapon
 {
     [Inject(Id = CameraProvider.WorldCamera)]
     private CameraProvider _fpsCamera;
+    [Inject(Id = "sniper")]
+    private CameraProvider _sniperCamera;
+    [Inject(Id = "weapon")]
+    private CameraProvider _weaponCamera;
 
-    [Inject]
-    private IAudioManager _audioManager;
+    [Inject] private IAudioManager _audioManager;
+    [Inject] private IInputService _inputService;
 
     private CompositeDisposable _disposables = new();
     private CompositeDisposable _soundsDisposables = new();
+
+    private float _rememberFov;
+    private float _rememberSensitivity;
+    private bool _lockAim = false;
+    private IDisposable _aimLock;
 
     public override void Shoot()
     {
         if (!CanShoot.Value)
             return;
 
+        //animation
+        SetAim(false);
+        LockAim();
+        var animator = View.GetComponent<Animator>();
+        animator.SetTrigger("Shot");
+
+        //timer
         _isShooting.Value = true;
         _currentBulletsCount.Value--;
         Observable.Timer(TimeSpan.FromMilliseconds(TimeBetweenShots)).Subscribe(_ =>
@@ -28,6 +44,7 @@ public class Rifle : BaseWeapon
                 return;
 
             _isShooting.Value = false;
+            UnlockAim();
         }).AddTo(_disposables);
 
         //sound
@@ -48,11 +65,12 @@ public class Rifle : BaseWeapon
             Disposable.CreateWithState(sourceReload, (s) => s.Stop()).AddTo(_soundsDisposables);
         }).AddTo(_disposables);
 
+        //raycast
         var layerMask = 1 << LayerMask.NameToLayer("Target");
         Ray ray = _fpsCamera.Camera.ViewportPointToRay(new(0.5f, 0.5f, 0));
 
         if (Physics.Raycast(ray, out var hit, 100f, layerMask))
-        {   
+        {
             var enemy = hit.transform.GetComponentInParent<Enemy>();
             if (enemy == null)
                 return;
@@ -64,14 +82,50 @@ public class Rifle : BaseWeapon
         }
     }
 
-    public override void Aim()
+    private void LockAim()
     {
-        _isAiming.Value = !_isAiming.Value;
+        _lockAim = true;
+        _aimLock = _inputService.Lock(Keys.Aiming);
+    }
+    private void UnlockAim()
+    {
+        _lockAim = false;
+        _aimLock?.Dispose();
+    }
 
+    public override void SetAim(bool aim)
+    {
+        if (aim == _isAiming.Value || _lockAim)
+            return;
+
+        _isAiming.Value = aim;
+
+        //sound
         var aimSource = _audioManager.GetSource();
         aimSource.gameObject.SetActive(true);
         aimSource.Play(_model.GetAudioClip(AudioConstants.Aim));
         Disposable.CreateWithState(aimSource, (s) => s.Stop()).AddTo(_soundsDisposables);
+
+        //animation
+        if (_isAiming.Value)
+        {
+            _sniperCamera.gameObject.SetActive(true);
+            _weaponCamera.gameObject.SetActive(false);
+
+            _rememberFov = _fpsCamera.Camera.fieldOfView;
+            _rememberSensitivity = _inputService.MouseSensitivity;
+
+            _fpsCamera.Camera.fieldOfView = _model.FOVOnAim;
+            _inputService.MouseSensitivity = _model.SensitivityOnAim;
+        }
+        else
+        {
+            _sniperCamera.gameObject.SetActive(false);
+            _weaponCamera.gameObject.SetActive(true);
+
+            _fpsCamera.Camera.fieldOfView = _rememberFov;
+            _inputService.MouseSensitivity = _rememberSensitivity;
+        }
     }
 
     public override void Dispose()

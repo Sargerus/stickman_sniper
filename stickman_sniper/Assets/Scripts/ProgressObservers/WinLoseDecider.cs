@@ -30,7 +30,7 @@ public class WinLoseDecider : IInitializable, IDisposable
         {
             HideMobile();
             _firstPersonController.Freeze(true);
-            _firstPersonController.ToggleScopeOff();
+            //_firstPersonController.ToggleScopeOff();
             _uiManager.ShowWinPopup().Forget();
         }).AddTo(_disposables);
 
@@ -38,7 +38,7 @@ public class WinLoseDecider : IInitializable, IDisposable
         {
             HideMobile();
             _firstPersonController.Freeze(true);
-            _firstPersonController.ToggleScopeOff();
+            //_firstPersonController.ToggleScopeOff();
             _uiManager.ShowLosePopup().Forget();
         }).AddTo(_disposables);
     }

@@ -34,7 +34,7 @@ namespace DWTools
         void Shoot();
         void Reload();
         void Grab();
-        void Aim();
+        void SetAim(bool aim);
         void Initialize(WeaponModel model, WeaponState weaponState);
     }
 

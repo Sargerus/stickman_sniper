@@ -54,7 +54,7 @@ public abstract class BaseWeapon : IWeapon
     {
     }
 
-    public void Initialize(WeaponModel model, WeaponState weaponState)
+    public virtual void Initialize(WeaponModel model, WeaponState weaponState)
     {
         _model = model;
 

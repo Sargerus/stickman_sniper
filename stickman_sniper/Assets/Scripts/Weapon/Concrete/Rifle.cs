@@ -24,6 +24,8 @@ public class Rifle : BaseWeapon
     private bool _lockAim = false;
     private IDisposable _aimLock;
 
+    private ViewReferencesProvider _viewReferencesProvider;
+
     public override void Shoot()
     {
         if (!CanShoot.Value)
@@ -34,6 +36,15 @@ public class Rifle : BaseWeapon
         LockAim();
         var animator = View.GetComponent<Animator>();
         animator.SetTrigger("Shot");
+        
+        //bullet
+        if (_viewReferencesProvider == null)
+        {
+            _viewReferencesProvider = View.GetComponent<ViewReferencesProvider>();
+        }
+        var bullet = _viewReferencesProvider.BulletPool.Get();
+        bullet.Item.gameObject.SetActive(true);
+        bullet.Item.Push();
 
         //timer
         _isShooting.Value = true;

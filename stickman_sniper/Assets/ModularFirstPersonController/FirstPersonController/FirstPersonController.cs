@@ -173,7 +173,6 @@ public class FirstPersonController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        workingMouseSensivity = _inputService.MouseSensitivity;
 
         //crosshairObject = GetComponentInChildren<Image>();
 
@@ -246,6 +245,8 @@ public class FirstPersonController : MonoBehaviour
         // Control camera movement
         if (cameraCanMove && _inputService != null)
         {
+            workingMouseSensivity = _inputService.MouseSensitivity;
+
             yaw = transform.localEulerAngles.y + _inputService.MouseX * workingMouseSensivity;
 
             if (!invertCamera)

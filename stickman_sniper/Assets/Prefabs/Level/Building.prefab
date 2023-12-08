@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7359382441067539284}
   - component: {fileID: 3274281238662194759}
   - component: {fileID: 8106666830582903653}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Plane (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8291581843918117034}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Building
   m_TagString: Untagged
   m_Icon: {fileID: 0}

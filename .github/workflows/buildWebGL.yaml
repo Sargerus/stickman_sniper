@@ -52,6 +52,7 @@ jobs:
         with:
           name: Build
           path: build/WebGL/WebGL.zip
+          retention-days: 1
 
       - uses: appleboy/telegram-action@v0.1.1
         with:

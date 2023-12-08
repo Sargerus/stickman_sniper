@@ -534,7 +534,7 @@ namespace YG
 
         public void _FullscreenShow()
         {
-            if (!nowAdsShow && timerShowAd >= infoYG.fullscreenAdInterval)
+            if (!nowAdsShow)//&& timerShowAd >= infoYG.fullscreenAdInterval)
             {
                 timerShowAd = 0;
 #if !UNITY_EDITOR
@@ -1019,7 +1019,7 @@ namespace YG
                 RewardVideoAd.Invoke();
                 RewardVideoEvent?.Invoke(lastRewardAdID);
             }
-            else if(rewardAdResult == RewardAdResult.Error)
+            else if (rewardAdResult == RewardAdResult.Error)
             {
                 ErrorVideo();
             }

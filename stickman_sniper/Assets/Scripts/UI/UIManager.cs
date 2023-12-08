@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using DWTools;
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using YG;
@@ -22,13 +23,15 @@ public class UIManager : MonoBehaviour, IUiManager
     [SerializeField] private WinUI _winUI;
     [SerializeField] private LoseUI _loseUI;
     [SerializeField] private GameObject _restoreAfterAd;
+    [SerializeField] private GameObject _levelLabel;
+    [SerializeField] private TMP_Text _levelText;
 
     private FirstPersonController _firstPersonController;
     private CursorLocker _cursorLocker;
     private CameraProvider _mobileCameraProvider;
 
     [Inject]
-    private void Constaruct(FirstPersonController firstPersonController,
+    private void Construct(FirstPersonController firstPersonController,
         CursorLocker cursorLocker,
         [Inject(Id = "mobile")] CameraProvider mobileCameraProvider)
     {
@@ -45,6 +48,7 @@ public class UIManager : MonoBehaviour, IUiManager
         }
 
         YG.YandexGame.CloseFullAdEvent += asd;
+        _levelText.SetText($" {YandexGame.savesData.levelsPassed + 1}");
     }
 
     private void OnDisable()
@@ -65,6 +69,7 @@ public class UIManager : MonoBehaviour, IUiManager
 
     public async UniTask ShowWinPopup()
     {
+        _levelLabel.gameObject.SetActive(false);
         _cursorLocker.Unlock();
         LockTouches(true);
         _winUI.gameObject.SetActive(true);
@@ -73,6 +78,8 @@ public class UIManager : MonoBehaviour, IUiManager
 
     public async UniTask ShowLosePopup()
     {
+        YandexGame.FullscreenShow();
+        _levelLabel.gameObject.SetActive(false);
         _cursorLocker.Unlock();
         LockTouches(true);
         _loseUI.gameObject.SetActive(true);
@@ -81,6 +88,12 @@ public class UIManager : MonoBehaviour, IUiManager
 
     public void RestoreGame()
     {
+        if (!_levelLabel.gameObject.activeSelf)
+        {
+            _restoreAfterAd.SetActive(false);
+            return;
+        }
+
         if (YandexGame.Device.ToDevice() == Device.Mobile)
         {
             _mobileCameraProvider.Camera.gameObject.SetActive(true);
@@ -98,38 +111,6 @@ public class UIManager : MonoBehaviour, IUiManager
 
         _restoreAfterAd.SetActive(true);
     }
-
-    //public void ShowRestartUI()
-    //{
-    //    LockTouches(true);
-    //
-    //    _restartUI.SetScore(_scoreService.Score, 1000f);
-    //    StartCoroutine(Show(_restartUI.GetComponent<CanvasGroup>(), () => LockTouches(false)));
-    //}
-    //
-    //public void ShowTutorialUI(HappyFarmer.LevelValues _levelValues)
-    //{
-    //    LockTouches(true);
-    //
-    //    _tutorialUI.SetSize(_levelValues);
-    //    StartCoroutine(Show(_tutorialUI.GetComponent<CanvasGroup>()));
-    //    LockTouches(false);
-    //}
-    //
-    //public void ShowScoreUI()
-    //{
-    //    StartCoroutine(Show(_scoreUI.GetComponent<CanvasGroup>()));
-    //}
-    //
-    //public void HideScoreUI()
-    //{
-    //    StartCoroutine(Hide(_scoreUI.GetComponent<CanvasGroup>()));
-    //}
-    //
-    //public void HideTutorialUI()
-    //{
-    //    StartCoroutine(Hide(_tutorialUI.GetComponent<CanvasGroup>()));
-    //}
 
     private IEnumerator Hide(CanvasGroup cg, Action action = null)
     {

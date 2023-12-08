@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using YG;
 using Zenject;
@@ -5,6 +6,7 @@ using Zenject;
 public class GameEntryPoint : MonoBehaviour
 {
     [SerializeField] private SceneContext _sceneContext;
+    [SerializeField] private TMP_Text _completedLevels;
 
     private bool _isInitialize = false;
 
@@ -25,6 +27,7 @@ public class GameEntryPoint : MonoBehaviour
             return;
 
         _isInitialize = true;
+        _completedLevels.SetText($" {YandexGame.savesData.levelsPassed + 1}/47");
 
         _sceneContext.Run();
     }

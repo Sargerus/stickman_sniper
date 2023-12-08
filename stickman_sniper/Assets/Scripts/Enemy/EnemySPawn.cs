@@ -14,6 +14,6 @@ public class EnemySPawn : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(transform.position, 1);
+        Gizmos.DrawSphere(transform.position, 0.4f);
     }
 }

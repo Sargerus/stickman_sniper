@@ -37,6 +37,7 @@ public class Level : MonoBehaviour
         var playerPlace = _playerSpawns.Random();
         _player = _fpsFactory.Create();
         _player.transform.position = playerPlace.position;
+        _player.transform.rotation = playerPlace.rotation;
 
         //_player.Freeze(true);
         //Observable.Timer(TimeSpan.FromSeconds(0.8f)).Subscribe(_ => _player.Freeze(false)).AddTo(this);

@@ -1,20 +1,29 @@
-using System;
+using DWTools;
 using UnityEngine;
+using YG;
 
 public class WeaponSway : MonoBehaviour
 {
-
     [Header("Sway Settings")]
     [SerializeField] private float speed;
     [SerializeField] private float sensitivityMultiplier;
 
+    private bool _isInitialized = false;
     private Quaternion refRotation;
 
     private float xRotation;
     private float yRotation;
 
+    private void Start()
+    {
+        _isInitialized = YandexGame.Device.ToDevice() != Device.Mobile;
+    }
+
     private void Update()
     {
+        if (!_isInitialized)
+            return;
+
         // get mouse input
         float mouseX = Input.GetAxisRaw("Mouse X") * sensitivityMultiplier;
         float mouseY = Input.GetAxisRaw("Mouse Y") * sensitivityMultiplier;

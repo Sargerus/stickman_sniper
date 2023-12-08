@@ -3908,10 +3908,10 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras:
-  - {fileID: 7656809677479706153}
   - {fileID: 6315473769054823234}
-  - {fileID: 455260159096323137}
+  - {fileID: 7656809677479706153}
   - {fileID: 8908795368731076355}
+  - {fileID: 455260159096323137}
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
@@ -5273,7 +5273,7 @@ GameObject:
   - component: {fileID: 8908795368731076355}
   - component: {fileID: 6196991749169637429}
   - component: {fileID: 5022622638612509543}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: MobileCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5367,7 +5367,7 @@ MonoBehaviour:
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
-  m_ClearDepth: 1
+  m_ClearDepth: 0
   m_AllowXRRendering: 1
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
@@ -7495,6 +7495,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 6.9
       objectReference: {fileID: 0}
+    - target: {fileID: 6384996739452513239, guid: 021560dcdc0e341449fc19170500ccce, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6384996739670205485, guid: 021560dcdc0e341449fc19170500ccce, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7594,6 +7598,10 @@ PrefabInstance:
     - target: {fileID: 6384996739670205906, guid: 021560dcdc0e341449fc19170500ccce, type: 3}
       propertyPath: m_Name
       value: Aim Button Background
+      objectReference: {fileID: 0}
+    - target: {fileID: 6384996739670205906, guid: 021560dcdc0e341449fc19170500ccce, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6384996739670205905, guid: 021560dcdc0e341449fc19170500ccce, type: 3}

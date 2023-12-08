@@ -25,19 +25,23 @@ public class UIManager : MonoBehaviour, IUiManager
     [SerializeField] private GameObject _restoreAfterAd;
     [SerializeField] private GameObject _levelLabel;
     [SerializeField] private TMP_Text _levelText;
+    [SerializeField] private TMP_Text _weaponCameraState;
 
     private FirstPersonController _firstPersonController;
     private CursorLocker _cursorLocker;
     private CameraProvider _mobileCameraProvider;
+    private CameraProvider _weaponCameraProvider;
 
     [Inject]
     private void Construct(FirstPersonController firstPersonController,
         CursorLocker cursorLocker,
-        [Inject(Id = "mobile")] CameraProvider mobileCameraProvider)
+        [Inject(Id = "mobile")] CameraProvider mobileCameraProvider,
+        [Inject(Id = "weapon")] CameraProvider weaponCameraProvider)
     {
         _firstPersonController = firstPersonController;
         _cursorLocker = cursorLocker;
         _mobileCameraProvider = mobileCameraProvider;
+        _weaponCameraProvider = weaponCameraProvider;
     }
 
     private void OnEnable()
@@ -135,5 +139,14 @@ public class UIManager : MonoBehaviour, IUiManager
         }
 
         action?.Invoke();
+    }
+
+    private void Update()
+    {
+        if (_weaponCameraProvider != null)
+        {
+
+            _weaponCameraState.SetText(_weaponCameraProvider.Camera.gameObject.activeSelf.ToString());
+        }
     }
 }

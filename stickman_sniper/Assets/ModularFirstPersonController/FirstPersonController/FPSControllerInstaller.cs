@@ -20,6 +20,7 @@ public class FPSControllerInstaller : MonoInstaller
         Container.BindInstance(_uiCamera).WithId(CameraProvider.UICamera).AsCached();
         Container.BindInstance(_sniperCamera).WithId("sniper").AsCached();
         Container.BindInstance(_mobileCamera).WithId("mobile").AsCached();
+        _weaponCamera.Camera.depth = 10;
         Container.BindInstance(_weaponCamera).WithId("weapon").AsCached();
         Container.Bind<FirstPersonController>().FromComponentOnRoot().AsSingle();
         Container.BindInterfacesAndSelfTo<WeaponFactory>().AsSingle();

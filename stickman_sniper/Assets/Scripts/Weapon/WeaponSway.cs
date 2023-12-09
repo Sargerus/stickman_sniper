@@ -1,6 +1,7 @@
 using DWTools;
 using UnityEngine;
 using YG;
+using Zenject;
 
 public class WeaponSway : MonoBehaviour
 {
@@ -8,14 +9,19 @@ public class WeaponSway : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float sensitivityMultiplier;
 
+    private IInputService _inputService;
+
     private bool _isInitialized = false;
     private Quaternion refRotation;
 
     private float xRotation;
     private float yRotation;
 
-    private void Start()
+    [Inject]
+    private void Construct(IInputService inputService)
     {
+        _inputService = inputService;
+
         _isInitialized = YandexGame.Device.ToDevice() != Device.Mobile;
     }
 
@@ -25,8 +31,8 @@ public class WeaponSway : MonoBehaviour
             return;
 
         // get mouse input
-        float mouseX = Input.GetAxisRaw("Mouse X") * sensitivityMultiplier;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * sensitivityMultiplier;
+        float mouseX = /*Input.GetAxisRaw("Mouse X")*/ _inputService.MouseX * sensitivityMultiplier;
+        float mouseY = /*Input.GetAxisRaw("Mouse Y")*/ _inputService.MouseY * sensitivityMultiplier;
 
         Quaternion rotationX = Quaternion.AngleAxis(-mouseY, Vector3.right);
         Quaternion rotationY = Quaternion.AngleAxis(mouseX, Vector3.up);

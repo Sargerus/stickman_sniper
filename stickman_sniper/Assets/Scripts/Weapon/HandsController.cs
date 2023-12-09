@@ -18,6 +18,7 @@ namespace DWTools
         public Transform WeaponContainer => _weaponContainer;
 
         [Inject] private IWeaponService _weaponService;
+        [Inject] private DiContainer _diContainer;
 
         private GameObject _currentWeaponView;
 
@@ -35,6 +36,7 @@ namespace DWTools
             _weaponService.CurrentWeapon.Subscribe(x =>
             {
                 x.View = _currentWeaponView = Instantiate(x.Prefab, _weaponContainer);
+                _diContainer.InjectGameObject(x.View);
                 _weaponAnimation = _currentWeaponView.GetComponent<IAnimationInterface>();
             }).AddTo(_weaponDisposables);
         }

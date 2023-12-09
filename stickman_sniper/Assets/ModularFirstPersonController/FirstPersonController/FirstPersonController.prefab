@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 7656809677479706153}
   - component: {fileID: 3509269665362652184}
   - component: {fileID: 674331622036246589}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: 'WeaponCamera '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 361356262029294053}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -359,7 +359,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4024936514369649154}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: WeaponContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -990,7 +990,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5854951940056098609}
   - component: {fileID: 9002682125958113579}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Hands
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3533,7 +3533,7 @@ MonoBehaviour:
   sniperCamera: {fileID: 6315473769054823234}
   uiCamera: {fileID: 455260159096323137}
   mobileCamera: {fileID: 8908795368731076355}
-  weaponCamera: {fileID: 7656809677479706153}
+  weaponCamera: {fileID: 4459864851310106426}
   uiManager: {fileID: 3979012258772650814}
   _moveJoystick: {fileID: 0}
   fov: 60

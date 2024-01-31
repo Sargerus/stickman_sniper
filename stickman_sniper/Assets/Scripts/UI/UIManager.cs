@@ -25,7 +25,6 @@ public class UIManager : MonoBehaviour, IUiManager
     [SerializeField] private GameObject _restoreAfterAd;
     [SerializeField] private GameObject _levelLabel;
     [SerializeField] private TMP_Text _levelText;
-    [SerializeField] private TMP_Text _weaponCameraState;
 
     private FirstPersonController _firstPersonController;
     private CursorLocker _cursorLocker;
@@ -139,14 +138,5 @@ public class UIManager : MonoBehaviour, IUiManager
         }
 
         action?.Invoke();
-    }
-
-    private void Update()
-    {
-        if (_weaponCameraProvider != null)
-        {
-
-            _weaponCameraState.SetText(_weaponCameraProvider.Camera.gameObject.activeSelf.ToString());
-        }
     }
 }

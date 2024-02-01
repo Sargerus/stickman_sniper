@@ -30,15 +30,18 @@ public class UIManager : MonoBehaviour, IUiManager
     private CursorLocker _cursorLocker;
     private CameraProvider _mobileCameraProvider;
     private CameraProvider _weaponCameraProvider;
+    private ILevelProgressObserver _levelProgressObserver;
 
     [Inject]
     private void Construct(FirstPersonController firstPersonController,
         CursorLocker cursorLocker,
+        ILevelProgressObserver levelProgressObserver,
         [Inject(Id = "mobile")] CameraProvider mobileCameraProvider,
         [Inject(Id = "weapon")] CameraProvider weaponCameraProvider)
     {
         _firstPersonController = firstPersonController;
         _cursorLocker = cursorLocker;
+        _levelProgressObserver = levelProgressObserver;
         _mobileCameraProvider = mobileCameraProvider;
         _weaponCameraProvider = weaponCameraProvider;
     }
@@ -91,7 +94,7 @@ public class UIManager : MonoBehaviour, IUiManager
 
     public void RestoreGame()
     {
-        if (!_levelLabel.gameObject.activeSelf)
+        if (_levelProgressObserver.Lose.Value == true)
         {
             _restoreAfterAd.SetActive(false);
             return;

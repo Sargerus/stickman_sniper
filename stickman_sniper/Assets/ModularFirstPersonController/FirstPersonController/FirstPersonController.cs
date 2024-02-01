@@ -14,6 +14,7 @@ using UniRx;
 using System;
 using UnityEngine.Rendering.Universal;
 using TMPro;
+using YG;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -404,12 +405,33 @@ public class FirstPersonController : MonoBehaviour
         }
         #endregion
 
+        #region WeaponSway
+        Sway(_weaponService.CurrentWeapon.Value);
+        #endregion
+
         CheckGround();
 
         if (enableHeadBob)
         {
             HeadBob();
         }
+    }
+
+    private void Sway(IWeapon weapon)
+    {
+        if (YandexGame.Device.ToDevice() != Device.Desktop)
+            return;
+
+        SwaySettings ss = weapon.SwaySettings;
+        float mouseX = _inputService.MouseX * ss.SensitivityMultiplier;
+        float mouseY = _inputService.MouseY * ss.SensitivityMultiplier;
+
+        Quaternion rotationX = Quaternion.AngleAxis(-mouseY, Vector3.right);
+        Quaternion rotationY = Quaternion.AngleAxis(mouseX, Vector3.up);
+
+        Quaternion targetRotation = rotationX * rotationY;
+
+        weapon.View.transform.localRotation = Quaternion.Slerp(weapon.View.transform.localRotation, targetRotation, ss.Speed * Time.deltaTime);
     }
 
     public void Freeze(bool freeze)

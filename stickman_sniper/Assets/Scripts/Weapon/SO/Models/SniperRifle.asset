@@ -24,6 +24,9 @@ MonoBehaviour:
     PushForce: 300
     FOVOnAim: 10
     SensitivityOnAim: 0.5
+    SwaySettings:
+      Speed: 4
+      SensitivityMultiplier: 2
     AudioContainer:
     - Name: Shot
       AudioClip: {fileID: 8300000, guid: 9abb9bd382603c54692de45e0425e34d, type: 3}

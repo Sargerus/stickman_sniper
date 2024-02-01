@@ -33,6 +33,7 @@ public abstract class BaseWeapon : IWeapon
     public int MaxBulletsCount => _model.MaxBulletsCount;
     public int MagazineCapacity => _model.MagazineCapacity;
     public int TimeBetweenShots => _model.TimeBetweenShots;
+    public SwaySettings SwaySettings => _model.SwaySettings;
     public GameObject Prefab => _model.Prefab;
     public GameObject View { get; set; }
 

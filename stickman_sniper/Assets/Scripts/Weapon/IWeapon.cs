@@ -10,6 +10,13 @@ namespace DWTools
         void SetAnimator(RuntimeAnimatorController animatorController);
     }
 
+    [Serializable]
+    public class SwaySettings
+    {
+        public float Speed;
+        public float SensitivityMultiplier;
+    }
+
     public interface IWeapon : IDisposable
     {
         IReadOnlyReactiveProperty<int> CurrentBulletsCount { get; }
@@ -24,6 +31,7 @@ namespace DWTools
         int TimeBetweenShots { get; }
         GameObject Prefab { get; }
         GameObject View { get; set; }
+        SwaySettings SwaySettings { get; }
 
         IReadOnlyReactiveProperty<bool> CanShoot { get; }
         IReadOnlyReactiveProperty<bool> IsGrabing { get; }

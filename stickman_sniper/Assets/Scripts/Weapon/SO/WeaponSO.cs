@@ -1,3 +1,4 @@
+using DWTools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,7 @@ public class WeaponModel
     public float FOVOnAim;
     public float SensitivityOnAim;
 
+    public SwaySettings SwaySettings;
     public List<AudioContainer> AudioContainer;
 }
 

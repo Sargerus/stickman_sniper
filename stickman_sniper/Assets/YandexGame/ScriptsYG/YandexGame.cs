@@ -14,6 +14,14 @@ using Newtonsoft.Json;
 
 namespace YG
 {
+    public class AdInfo
+    {
+        public DateTime TimeShown;
+        public DateTime TimeClosed;
+        public bool Succes;
+        public string Message;
+    }
+
     [HelpURL("https://ash-message-bf4.notion.site/PluginYG-d457b23eee604b7aa6076116aab647ed")]
     public class YandexGame : MonoBehaviour
     {
@@ -25,8 +33,8 @@ namespace YG
         public UnityEvent RejectedAuthorization;
         [Space(30)]
         public UnityEvent OpenFullscreenAd;
-        public UnityEvent CloseFullscreenAd;
-        public UnityEvent ErrorFullscreenAd;
+        public UnityEvent<string> CloseFullscreenAd;
+        public UnityEvent<string> ErrorFullscreenAd;
         [Space(30)]
         public UnityEvent OpenVideoAd;
         public UnityEvent CloseVideoAd;
@@ -957,12 +965,12 @@ namespace YG
             nowFullAd = true;
         }
 
-        public static Action CloseFullAdEvent;
+        public static Action<string> CloseFullAdEvent;
         public void CloseFullAd(string wasShown)
         {
             nowFullAd = false;
-            CloseFullscreenAd.Invoke();
-            CloseFullAdEvent?.Invoke();
+            CloseFullscreenAd.Invoke(wasShown);
+            CloseFullAdEvent?.Invoke(wasShown);
 #if !UNITY_EDITOR
             if (wasShown == "true")
             {
@@ -986,11 +994,11 @@ namespace YG
             timerShowAd = infoYG.fullscreenAdInterval;
         }
 
-        public static Action ErrorFullAdEvent;
-        public void ErrorFullAd()
+        public static Action<string> ErrorFullAdEvent;
+        public void ErrorFullAd(string message)
         {
-            ErrorFullscreenAd.Invoke();
-            ErrorFullAdEvent?.Invoke();
+            ErrorFullscreenAd.Invoke(message);
+            ErrorFullAdEvent?.Invoke(message);
         }
         #endregion Fullscren Ad
 

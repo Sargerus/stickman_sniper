@@ -109,7 +109,7 @@ namespace YG
         }
 
         private void OpenFullscreenAd() => Pause(true);
-        private void CloseFullscreenAd() => Pause(false);
+        private void CloseFullscreenAd(string wasShown) => Pause(false);
         private void OpenRewardedAd() => Pause(true);
         private void CloseRewardedAd() => Pause(false);
 

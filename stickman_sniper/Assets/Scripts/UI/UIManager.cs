@@ -14,7 +14,6 @@ public interface IUiManager
 {
     UniTask ShowWinPopup();
     UniTask ShowLosePopup();
-    UniTask ShowRestoreAfterAd();
 }
 
 public class UIManager : MonoBehaviour, IUiManager
@@ -58,17 +57,16 @@ public class UIManager : MonoBehaviour, IUiManager
             _cursorLocker.Lock();
         }
 
-        YG.YandexGame.CloseFullAdEvent += asd;
+        YandexGame.CloseFullAdEvent += CloseFullAdEvent;
+        YandexGame.ErrorFullAdEvent += ErrorFullAdEvent;
         _levelText.SetText($" {YandexGame.savesData.levelsPassed + 1}");
     }
 
     private void OnDisable()
     {
-        YG.YandexGame.CloseFullAdEvent -= asd;
+        YandexGame.CloseFullAdEvent -= CloseFullAdEvent;
+        YandexGame.ErrorFullAdEvent -= ErrorFullAdEvent;
     }
-
-    private void asd()
-        => ShowRestoreAfterAd();
 
     private void LockTouches(bool isLock)
     {
@@ -114,17 +112,6 @@ public class UIManager : MonoBehaviour, IUiManager
         _restoreAfterAd.SetActive(false);
         _cursorLocker.Lock();
     }
-    public async UniTask ShowRestoreAfterAd()
-    {
-        _mobileCameraProvider.Camera.gameObject.SetActive(false);
-        _firstPersonController.Freeze(true);
-        _cursorLocker.Unlock();
-
-        if (_progressObservers.Any(g => g.Lose.Value == true))
-            return;
-
-        _restoreAfterAd.SetActive(true);
-    }
 
     private IEnumerator Hide(CanvasGroup cg, Action action = null)
     {
@@ -149,5 +136,26 @@ public class UIManager : MonoBehaviour, IUiManager
         }
 
         action?.Invoke();
+    }
+
+    //---=Yandex Ad=---
+    public void CloseFullAdEvent(string wasShown)
+    {
+        if (!wasShown.Equals("true"))
+            return;
+
+        _mobileCameraProvider.Camera.gameObject.SetActive(false);
+        _firstPersonController.Freeze(true);
+        _cursorLocker.Unlock();
+
+        if (wasShown.Equals("true") && _progressObservers.Any(g => g.Lose.Value == true))
+            return;
+
+        _restoreAfterAd.SetActive(true);
+    }
+
+    public void ErrorFullAdEvent(string error)
+    {
+        //nothing
     }
 }

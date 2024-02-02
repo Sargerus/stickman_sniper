@@ -27,15 +27,8 @@ namespace UniversalMobileController
         private int? uniqueFingerId = null;
         private bool _wasCalledUp = true;
 
-        private Device device;
-
         [SerializeField]
         private TMP_Text _log;
-
-        private void OnEnable()
-        {
-            device = YandexGame.Device.ToDevice();
-        }
 
         void EraseInput()
         {

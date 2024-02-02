@@ -19,6 +19,7 @@ public class TouchController : MonoBehaviour
     [SerializeField] private SpecialTouchPad _right;
 
     private CameraProvider _mobileCameraProvider;
+    private IInputService _inputService;
 
     private int? _leftFinger;
     private int? _rightFinger;
@@ -29,15 +30,17 @@ public class TouchController : MonoBehaviour
     private int _previousFrameTouchesCount;
 
     [Inject]
-    private void Construct([Inject(Id = "mobile")] CameraProvider mobileCameraProvider)
+    private void Construct([Inject(Id = "mobile")] CameraProvider mobileCameraProvider,
+        IInputService inputService)
     {
         _mobileCameraProvider = mobileCameraProvider;
+        _inputService = inputService;
         _isInitialized = true;
     }
 
     private void Update()
     {
-        if (!_isInitialized || YandexGame.Device.ToDevice() != Device.Mobile)
+        if (!_isInitialized || _inputService.Device != Device.Mobile)
             return;
 
         if (Input.touches.Length == 0)

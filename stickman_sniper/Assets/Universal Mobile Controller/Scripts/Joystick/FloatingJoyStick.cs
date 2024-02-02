@@ -34,15 +34,9 @@ namespace UniversalMobileController
         public UnityEvent onPressedJoystick;
         public UnityEvent onStartedDraggingJoystick;
         public UnityEvent onStoppedDraggingJoystick;
-        private Device device;
 
         [SerializeField]
         private TMP_Text _log;
-
-        private void OnEnable()
-        {
-            device = YandexGame.Device.ToDevice();
-        }
 
         private void Start()
         {

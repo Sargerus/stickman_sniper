@@ -2,6 +2,8 @@ using Cysharp.Threading.Tasks;
 using DWTools;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -31,17 +33,20 @@ public class UIManager : MonoBehaviour, IUiManager
     private CameraProvider _mobileCameraProvider;
     private CameraProvider _weaponCameraProvider;
     private ILevelProgressObserver _levelProgressObserver;
+    private List<IProgressObserver> _progressObservers;
 
     [Inject]
     private void Construct(FirstPersonController firstPersonController,
         CursorLocker cursorLocker,
         ILevelProgressObserver levelProgressObserver,
+        List<IProgressObserver> progressObservers,
         [Inject(Id = "mobile")] CameraProvider mobileCameraProvider,
         [Inject(Id = "weapon")] CameraProvider weaponCameraProvider)
     {
         _firstPersonController = firstPersonController;
         _cursorLocker = cursorLocker;
         _levelProgressObserver = levelProgressObserver;
+        _progressObservers = progressObservers;
         _mobileCameraProvider = mobileCameraProvider;
         _weaponCameraProvider = weaponCameraProvider;
     }
@@ -114,6 +119,9 @@ public class UIManager : MonoBehaviour, IUiManager
         _mobileCameraProvider.Camera.gameObject.SetActive(false);
         _firstPersonController.Freeze(true);
         _cursorLocker.Unlock();
+
+        if (_progressObservers.Any(g => g.Lose.Value == true))
+            return;
 
         _restoreAfterAd.SetActive(true);
     }

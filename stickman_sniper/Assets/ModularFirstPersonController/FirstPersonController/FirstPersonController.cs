@@ -419,7 +419,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void Sway(IWeapon weapon)
     {
-        if (YandexGame.Device.ToDevice() != Device.Desktop)
+        if (_inputService.Device != Device.Desktop)
             return;
 
         SwaySettings ss = weapon.SwaySettings;

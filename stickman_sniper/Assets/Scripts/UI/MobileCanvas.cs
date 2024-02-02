@@ -15,11 +15,13 @@ public class MobileCanvas : MonoBehaviour, IMobileInputProvider
     private bool _isAiming = false;
     private bool _isFiring = false;
     private CompositeDisposable _fireDisposables = new();
+    private int? _cachedShootTouch = null;
 
     private void Start()
     {
-        Observable.Merge(_fireButton.Select(g => g.OnPointerDownAsObservable())).Subscribe(_ =>
+        Observable.Merge(_fireButton.Select(g => g.OnPointerDownAsObservable())).Subscribe(data =>
         {
+            _cachedShootTouch = data.pointerId;
             _isFiring = true;
         }).AddTo(_fireDisposables);
 
@@ -27,6 +29,16 @@ public class MobileCanvas : MonoBehaviour, IMobileInputProvider
         {
             _isFiring = false;
         }).AddTo(_fireDisposables);
+    }
+
+    private void Update()
+    {
+        if (_cachedShootTouch == null || Input.touchCount == 0
+            || !Input.touches.Any(g => g.fingerId == _cachedShootTouch))
+        {
+            _isFiring = false;
+            return;
+        }
     }
 
     public float GetMouseX()

@@ -228,7 +228,7 @@ namespace YG
             PaintRBTInternal(rbt);
         }
 
-        void ActivateRTB()
+        void ActivateRTB(string msg = "")
         {
             if (NoAds()) ActivityRTB(true);
         }

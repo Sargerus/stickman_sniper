@@ -60,7 +60,7 @@ namespace YG
         {
             YandexGame.GetDataEvent += ActivateRTB;
             YandexGame.OpenFullAdEvent += DeactivateRTB;
-            YandexGame.CloseFullAdEvent += ActivateRTB;
+            YandexGame.CloseFullAdEvent += ActivateRTBString;
             YandexGame.OpenVideoEvent += DeactivateRTB;
             YandexGame.CloseVideoEvent += ActivateRTB;
 
@@ -78,7 +78,7 @@ namespace YG
         {
             YandexGame.GetDataEvent -= ActivateRTB;
             YandexGame.OpenFullAdEvent -= DeactivateRTB;
-            YandexGame.CloseFullAdEvent -= ActivateRTB;
+            YandexGame.CloseFullAdEvent -= ActivateRTBString;
             YandexGame.OpenVideoEvent -= DeactivateRTB;
             YandexGame.CloseVideoEvent -= ActivateRTB;
 
@@ -228,7 +228,9 @@ namespace YG
             PaintRBTInternal(rbt);
         }
 
-        void ActivateRTB(string msg = "")
+        void ActivateRTBString(string msg = "") => ActivateRTB();
+
+        void ActivateRTB()
         {
             if (NoAds()) ActivityRTB(true);
         }

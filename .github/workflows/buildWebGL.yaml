@@ -46,6 +46,7 @@ jobs:
           projectPath: stickman_sniper
           sshAgent: ${{ env.SSH_AUTH_SOCK }}
           targetPlatform: WebGL
+          allowDirtyBuild: true
 
       # Output
       - uses: actions/upload-artifact@v3

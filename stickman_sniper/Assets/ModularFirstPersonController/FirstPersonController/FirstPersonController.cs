@@ -156,12 +156,14 @@ public class FirstPersonController : MonoBehaviour
     #region Injections
     private IInputService _inputService;
     private IWeaponService _weaponService;
+    private CursorLocker _cursorLocker;
 
     [Inject]
-    private void Construct(IInputService inputService, IWeaponService weaponService)
+    private void Construct(IInputService inputService, IWeaponService weaponService, CursorLocker cursorLocker)
     {
         _inputService = inputService;
         _weaponService = weaponService;
+        _cursorLocker = cursorLocker;
 
         mobileCamera.gameObject.SetActive(_inputService.Device == Device.Mobile);
 
@@ -241,6 +243,11 @@ public class FirstPersonController : MonoBehaviour
     {
         if (_isFreeze)
             return;
+
+        if (Input.anyKeyDown || Input.GetMouseButtonDown(0))
+        {
+            _cursorLocker.Lock();
+        }
 
         #region Camera
         // Control camera movement

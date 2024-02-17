@@ -1,7 +1,6 @@
-using DW.RandomExtensions;
+using DWTools.Extensions;
 using System;
 using System.Collections.Generic;
-using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -38,9 +37,6 @@ public class Level : MonoBehaviour
         _player = _fpsFactory.Create();
         _player.transform.position = playerPlace.position;
         _player.transform.rotation = playerPlace.rotation;
-
-        //_player.Freeze(true);
-        //Observable.Timer(TimeSpan.FromSeconds(0.8f)).Subscribe(_ => _player.Freeze(false)).AddTo(this);
 
         _levelProgressObserver.Observe(_enemies);
     }

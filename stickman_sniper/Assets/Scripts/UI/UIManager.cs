@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using YG;
 using Zenject;
 
@@ -78,6 +77,11 @@ public class UIManager : MonoBehaviour, IUiManager
 
     public async UniTask ShowWinPopup()
     {
+        if (YandexGame.EnvironmentData.reviewCanShow)
+        {
+            YandexGame.ReviewShow(true);
+        }
+
         _levelLabel.gameObject.SetActive(false);
         _cursorLocker.Unlock();
         LockTouches(true);

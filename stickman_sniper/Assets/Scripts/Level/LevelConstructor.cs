@@ -1,4 +1,4 @@
-using DW.RandomExtensions;
+using DWTools.Extensions;
 using UnityEngine;
 using YG;
 using Zenject;
@@ -33,12 +33,4 @@ public class LevelConstructor : IInitializable
         levelPrefab = _levelsContainer.Levels.CycleWithMod(YandexGame.savesData.levelsPassed);
         var levelGO = _diContainer.InstantiatePrefab(levelPrefab);
     }
-
-    //private void AimComplete()
-    //{
-    //    YandexGame.savesData.levelsPassed++;
-    //    YandexGame.SaveProgress();
-    //
-    //    _levelLoader.LoadLevel();
-    //}
 }

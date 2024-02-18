@@ -244,10 +244,10 @@ public class FirstPersonController : MonoBehaviour
         if (_isFreeze)
             return;
 
-        if (Input.anyKeyDown || Input.GetMouseButtonDown(0))
-        {
-            _cursorLocker.Lock();
-        }
+       //if (Input.anyKeyDown || Input.GetMouseButtonDown(0))
+       //{
+       //    _cursorLocker.Lock();
+       //}
 
         #region Camera
         // Control camera movement

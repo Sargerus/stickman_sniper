@@ -32,12 +32,14 @@ public class UIManager : MonoBehaviour, IUiManager
     private CameraProvider _weaponCameraProvider;
     private ILevelProgressObserver _levelProgressObserver;
     private List<IProgressObserver> _progressObservers;
+    private IInputService _inputService;
 
     [Inject]
     private void Construct(FirstPersonController firstPersonController,
         CursorLocker cursorLocker,
         ILevelProgressObserver levelProgressObserver,
         List<IProgressObserver> progressObservers,
+        IInputService inputService,
         [Inject(Id = "mobile")] CameraProvider mobileCameraProvider,
         [Inject(Id = "weapon")] CameraProvider weaponCameraProvider)
     {
@@ -45,6 +47,7 @@ public class UIManager : MonoBehaviour, IUiManager
         _cursorLocker = cursorLocker;
         _levelProgressObserver = levelProgressObserver;
         _progressObservers = progressObservers;
+        _inputService = inputService;
         _mobileCameraProvider = mobileCameraProvider;
         _weaponCameraProvider = weaponCameraProvider;
     }
@@ -115,6 +118,7 @@ public class UIManager : MonoBehaviour, IUiManager
         _firstPersonController.Freeze(false);
         _restoreAfterAd.SetActive(false);
         _cursorLocker.Lock();
+        _inputService.SetActive(true);
     }
 
     private IEnumerator Hide(CanvasGroup cg, Action action = null)
@@ -151,6 +155,7 @@ public class UIManager : MonoBehaviour, IUiManager
         _mobileCameraProvider.Camera.gameObject.SetActive(false);
         _firstPersonController.Freeze(true);
         _cursorLocker.Unlock();
+        _inputService.SetActive(false);
 
         if (wasShown.Equals("true") && _progressObservers.Any(g => g.Lose.Value == true))
             return;

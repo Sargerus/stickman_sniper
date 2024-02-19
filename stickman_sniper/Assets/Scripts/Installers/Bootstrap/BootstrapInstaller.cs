@@ -1,4 +1,6 @@
+using Counters;
 using DWTools;
+using System;
 using UnityEngine;
 using YG;
 using Zenject;
@@ -16,5 +18,12 @@ public class BootstrapInstaller : MonoInstaller
         Container.Bind<TouchLocker>().FromInstance(_touchLocker);
         Container.Bind<CursorLocker>().AsSingle().WithArguments(YandexGame.Device).NonLazy();
         Container.Bind<IAudioManager>().FromInstance(_audioManager).AsSingle();
+
+        InstallAnalytics();
+    }
+
+    private void InstallAnalytics()
+    {
+        Container.BindInterfacesAndSelfTo<SessionCounter>().AsSingle().NonLazy();
     }
 }

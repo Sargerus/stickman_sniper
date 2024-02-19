@@ -73,7 +73,7 @@ public class Rifle : BaseWeapon
             sourceReload.gameObject.transform.position = View.transform.position;
             sourceReload.gameObject.SetActive(true);
             sourceReload.Play(_model.GetAudioClip(AudioConstants.Reload));
-            Disposable.CreateWithState(sourceReload, (s) => s.Stop()).AddTo(_soundsDisposables);
+            Disposable.CreateWithState(sourceReload, (s) => s?.Stop()).AddTo(_soundsDisposables);
         }).AddTo(_disposables);
 
         //raycast

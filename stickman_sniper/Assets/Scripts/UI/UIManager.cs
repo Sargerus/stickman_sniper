@@ -1,3 +1,4 @@
+using Counters;
 using Cysharp.Threading.Tasks;
 using DWTools;
 using System;
@@ -33,6 +34,7 @@ public class UIManager : MonoBehaviour, IUiManager
     private ILevelProgressObserver _levelProgressObserver;
     private List<IProgressObserver> _progressObservers;
     private IInputService _inputService;
+    private SessionCounter _sessionCounter;
 
     [Inject]
     private void Construct(FirstPersonController firstPersonController,
@@ -40,6 +42,7 @@ public class UIManager : MonoBehaviour, IUiManager
         ILevelProgressObserver levelProgressObserver,
         List<IProgressObserver> progressObservers,
         IInputService inputService,
+        SessionCounter sessionCounter,
         [Inject(Id = "mobile")] CameraProvider mobileCameraProvider,
         [Inject(Id = "weapon")] CameraProvider weaponCameraProvider)
     {
@@ -48,6 +51,7 @@ public class UIManager : MonoBehaviour, IUiManager
         _levelProgressObserver = levelProgressObserver;
         _progressObservers = progressObservers;
         _inputService = inputService;
+        _sessionCounter = sessionCounter;
         _mobileCameraProvider = mobileCameraProvider;
         _weaponCameraProvider = weaponCameraProvider;
     }
@@ -87,7 +91,9 @@ public class UIManager : MonoBehaviour, IUiManager
 
     public async UniTask ShowWinPopup()
     {
-        if (YandexGame.EnvironmentData.reviewCanShow)
+        _sessionCounter.LevelsPassed++;
+
+        if (_sessionCounter.LevelsPassed >=3 && YandexGame.EnvironmentData.reviewCanShow)
         {
             YandexGame.ReviewShow(true);
         }

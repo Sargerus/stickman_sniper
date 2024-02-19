@@ -549,7 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a0bd8393e7f9144b2ff85c8e0c0676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioManager: {fileID: 0}
+  _audioManager: {fileID: 1870464310}
   _touchLocker: {fileID: 1739018717}
 --- !u!1 &255235115
 GameObject:
@@ -1735,3 +1735,14 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838011469}
   m_CullTransparentMesh: 1
+--- !u!114 &1870464310 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5531512662929766589, guid: ce533427e935d124696c9b65457e85ac, type: 3}
+  m_PrefabInstance: {fileID: 1171534656}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae62e011042bdeb47b2105cae8df06d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

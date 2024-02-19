@@ -58,14 +58,21 @@ public class UIManager : MonoBehaviour, IUiManager
         {
             _cursorLocker.Lock();
         }
+        else
+        {
+            OpenFullAdEvent();
+        }
 
+        YandexGame.OpenFullAdEvent += OpenFullAdEvent;
         YandexGame.CloseFullAdEvent += CloseFullAdEvent;
         YandexGame.ErrorFullAdEvent += ErrorFullAdEvent;
+
         _levelText.SetText($" {YandexGame.savesData.levelsPassed + 1}");
     }
 
     private void OnDisable()
     {
+        YandexGame.OpenFullAdEvent -= OpenFullAdEvent;
         YandexGame.CloseFullAdEvent -= CloseFullAdEvent;
         YandexGame.ErrorFullAdEvent -= ErrorFullAdEvent;
     }
@@ -147,6 +154,14 @@ public class UIManager : MonoBehaviour, IUiManager
     }
 
     //---=Yandex Ad=---
+    public void OpenFullAdEvent()
+    {
+        _firstPersonController.Freeze(true);
+        _restoreAfterAd.SetActive(true);
+        _cursorLocker.Unlock();
+        _inputService.SetActive(false);
+    }
+
     public void CloseFullAdEvent(string wasShown)
     {
         if (!wasShown.Equals("true"))

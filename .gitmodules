@@ -1,3 +1,6 @@
 [submodule "stickman_sniper/Assets/Scripts/DWTools"]
 	path = stickman_sniper/Assets/Scripts/DWTools
 	url = git@github.com:Sargerus/DWTools.git
+[submodule "stickman_sniper/Assets/Scripts/DWFeatures/Slowmotion"]
+	path = stickman_sniper/Assets/Scripts/DWFeatures/Slowmotion
+	url = git@github.com:Sargerus/DWFeature_Slowmotion.git

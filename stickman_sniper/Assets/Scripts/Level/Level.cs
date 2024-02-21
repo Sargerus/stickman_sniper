@@ -17,6 +17,7 @@ public class Level : MonoBehaviour
 
     [Inject] private FirstPersonController.Factory _fpsFactory;
     [Inject] private ILevelProgressObserver _levelProgressObserver;
+    [Inject] private DiContainer _container;
 
     public void Start()
     {
@@ -29,7 +30,7 @@ public class Level : MonoBehaviour
             Transform place = copyList.Random();
             copyList.Remove(place);
 
-            var enemy = Instantiate(_enemyPrefabs.Random(), place.position, place.rotation, transform);
+            var enemy = _container.InstantiatePrefabForComponent<Enemy>(_enemyPrefabs.Random(), place.position, place.rotation, transform);
             _enemies.Add(enemy);
         }
 

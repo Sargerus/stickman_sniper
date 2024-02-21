@@ -1,5 +1,6 @@
 using Counters;
 using DWTools;
+using DWTools.Slowmotion;
 using System;
 using UnityEngine;
 using YG;
@@ -19,7 +20,13 @@ public class BootstrapInstaller : MonoInstaller
         Container.Bind<CursorLocker>().AsSingle().WithArguments(YandexGame.Device).NonLazy();
         Container.Bind<IAudioManager>().FromInstance(_audioManager).AsSingle();
 
+        InstallFeatures();
         InstallAnalytics();
+    }
+
+    private void InstallFeatures()
+    {
+        Container.BindInterfacesTo<SlowmotionFeature>().AsSingle().NonLazy();
     }
 
     private void InstallAnalytics()

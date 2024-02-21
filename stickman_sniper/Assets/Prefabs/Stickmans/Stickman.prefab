@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 776883070312361016}
   - component: {fileID: 6640601484063307330}
   - component: {fileID: 536434886355014346}
+  - component: {fileID: 3401077630661297949}
   m_Layer: 6
   m_Name: Stickman
   m_TagString: Untagged
@@ -100,6 +101,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deadMaterial: {fileID: 2100000, guid: 69e461b96eaa96245a537675c15151a3, type: 2}
+--- !u!114 &3401077630661297949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109172321315190402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e253515d64429d94c8534eee99bb9bf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 6640601484063307330}
 --- !u!1 &278752737343883120
 GameObject:
   m_ObjectHideFlags: 0

@@ -131,7 +131,7 @@ public class UIManager : MonoBehaviour, IUiManager
         _firstPersonController.Freeze(false);
         _restoreAfterAd.SetActive(false);
         _cursorLocker.Lock();
-        _inputService.SetActive(true);
+        _inputService.EnableInput();
     }
 
     private IEnumerator Hide(CanvasGroup cg, Action action = null)
@@ -165,7 +165,7 @@ public class UIManager : MonoBehaviour, IUiManager
         _firstPersonController.Freeze(true);
         _restoreAfterAd.SetActive(true);
         _cursorLocker.Unlock();
-        _inputService.SetActive(false);
+        _inputService.DisableInput(true);
     }
 
     public void CloseFullAdEvent(string wasShown)
@@ -176,7 +176,7 @@ public class UIManager : MonoBehaviour, IUiManager
         _mobileCameraProvider.Camera.gameObject.SetActive(false);
         _firstPersonController.Freeze(true);
         _cursorLocker.Unlock();
-        _inputService.SetActive(false);
+        _inputService.DisableInput(true);
 
         if (wasShown.Equals("true") && _progressObservers.Any(g => g.Lose.Value == true))
             return;

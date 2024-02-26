@@ -1,4 +1,5 @@
 using DWTools;
+using DWTools.Slowmotion;
 using UnityEngine;
 using YG;
 using Zenject;
@@ -10,6 +11,7 @@ public class FPSControllerInstaller : MonoInstaller
     [SerializeField] private CameraProvider _sniperCamera;
     [SerializeField] private CameraProvider _mobileCamera;
     [SerializeField] private CameraProvider _weaponCamera;
+    [SerializeField] private CameraProvider _slowmotionCamera;
     [SerializeField] private UIManager _uiManager;
     [SerializeField] private HandsController _handsController;
     [SerializeField] private MobileCanvas _mobileCanvas;
@@ -22,6 +24,7 @@ public class FPSControllerInstaller : MonoInstaller
         Container.BindInstance(_mobileCamera).WithId("mobile").AsCached();
         //_weaponCamera.Camera.depth = 10;
         Container.BindInstance(_weaponCamera).WithId("weapon").AsCached();
+        Container.BindInstance(_slowmotionCamera).WithId("slowmotion").AsCached();
         Container.Bind<FirstPersonController>().FromComponentOnRoot().AsSingle();
         Container.BindInterfacesAndSelfTo<WeaponFactory>().AsSingle();
         Container.Bind<IMobileInputProvider>().FromInstance(_mobileCanvas).AsSingle();
@@ -31,5 +34,6 @@ public class FPSControllerInstaller : MonoInstaller
         Container.BindInterfacesTo<PlayerProgressObserver>().AsSingle().NonLazy();
         Container.Bind<IUiManager>().FromInstance(_uiManager).AsSingle();
         Container.BindInterfacesTo<WinLoseDecider>().AsSingle().NonLazy();
+        Container.BindInterfacesTo<BulletSlowmotionService>().AsSingle();
     }
 }

@@ -1,4 +1,5 @@
 using DWTools;
+using DWTools.Slowmotion;
 using System;
 using UniRx;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class Rifle : BaseWeapon
 
     [Inject] private IAudioManager _audioManager;
     [Inject] private IInputService _inputService;
+    [Inject] private IBulletSlowmotionService _bulletSlowmotionService;
 
     private CompositeDisposable _disposables = new();
     private CompositeDisposable _soundsDisposables = new();
@@ -26,7 +28,7 @@ public class Rifle : BaseWeapon
 
     private ViewReferencesProvider _viewReferencesProvider;
 
-    public override void Shoot()
+    public override async void Shoot()
     {
         if (!CanShoot.Value)
             return;
@@ -36,7 +38,7 @@ public class Rifle : BaseWeapon
         LockAim();
         var animator = View.GetComponent<Animator>();
         animator.SetTrigger("Shot");
-        
+
         //bullet
         if (_viewReferencesProvider == null)
         {
@@ -45,18 +47,6 @@ public class Rifle : BaseWeapon
         var bullet = _viewReferencesProvider.BulletPool.Get();
         bullet.Item.gameObject.SetActive(true);
         bullet.Item.Push();
-
-        //timer
-        _isShooting.Value = true;
-        _currentBulletsCount.Value--;
-        Observable.Timer(TimeSpan.FromMilliseconds(TimeBetweenShots)).Subscribe(_ =>
-        {
-            if (_isShooting == null)
-                return;
-
-            _isShooting.Value = false;
-            UnlockAim();
-        }).AddTo(_disposables);
 
         //sound
         _soundsDisposables.Clear();
@@ -76,6 +66,18 @@ public class Rifle : BaseWeapon
             Disposable.CreateWithState(sourceReload, (s) => s?.Stop()).AddTo(_soundsDisposables);
         }).AddTo(_disposables);
 
+        //timer
+        _isShooting.Value = true;
+        _currentBulletsCount.Value--;
+        Observable.Timer(TimeSpan.FromMilliseconds(TimeBetweenShots)).Subscribe(_ =>
+        {
+            if (_isShooting == null)
+                return;
+
+            _isShooting.Value = false;
+            UnlockAim();
+        }).AddTo(_disposables);
+
         //raycast
         var layerMask = 1 << LayerMask.NameToLayer("Target");
         Ray ray = _fpsCamera.Camera.ViewportPointToRay(new(0.5f, 0.5f, 0));
@@ -83,20 +85,28 @@ public class Rifle : BaseWeapon
         if (Physics.Raycast(ray, out var hit, 100f, layerMask))
         {
             var enemy = hit.transform.GetComponentInParent<Enemy>();
-            if (enemy == null)
-                return;
+            if (enemy != null)
+            {
+                var bulletSlowmotion = GameObject.Instantiate(_model.SlowmotionPrefab);
+                var bulletProducer = bulletSlowmotion.GetComponent<IBulletProducer>();
+                var task = _bulletSlowmotionService.SendBulletInSlowmotionAsync(View.transform.position, hit.point, bulletProducer);
+                await task;
 
-            enemy.PrepareForDeath();
-            Vector3 direction = (hit.point - _fpsCamera.transform.position).normalized;
-            direction.y = 0.5f;
-            hit.rigidbody.AddForce(direction * _model.PushForce, ForceMode.Impulse);
+                bulletSlowmotion.gameObject.SetActive(false);
+                GameObject.Destroy(bulletSlowmotion, 0.1f);
+
+                enemy.PrepareForDeath();
+                Vector3 direction = (hit.point - _fpsCamera.transform.position).normalized;
+                direction.y = 0.5f;
+                hit.rigidbody.AddForce(direction * _model.PushForce, ForceMode.Impulse);
+            }
         }
     }
 
     private void LockAim()
     {
         _lockAim = true;
-        _aimLock = _inputService.Lock(Keys.Aiming);
+        _aimLock = _inputService.DisableKey(Keys.Aiming);
     }
     private void UnlockAim()
     {

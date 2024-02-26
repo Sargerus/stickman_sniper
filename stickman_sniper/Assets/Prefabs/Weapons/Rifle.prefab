@@ -116,6 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animator: {fileID: 5638050952898702629}
   BulletPool: {fileID: 2116547089231051092}
+  SlowmotionBulletPool: {fileID: 0}
 --- !u!1001 &999488532487594705
 PrefabInstance:
   m_ObjectHideFlags: 0

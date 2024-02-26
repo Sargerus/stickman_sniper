@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Model:
     Prefab: {fileID: 5288255734314006697, guid: 51625ba4c3be0a74c8a67bf1d662f6b7, type: 3}
+    SlowmotionPrefab: {fileID: 1332870974233114119, guid: edd715f8c23ccff44ae40057fe1f4fbc, type: 3}
     Key: sniper_rifle
     BulletType: 0
     Damage: 1

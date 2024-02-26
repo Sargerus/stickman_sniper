@@ -15,6 +15,7 @@ public class AudioContainer
 public class WeaponModel
 {
     public GameObject Prefab;
+    public GameObject SlowmotionPrefab;
 
     public string Key;
     public int BulletType;

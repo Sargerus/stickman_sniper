@@ -20,6 +20,7 @@ public class LevelLoader : IInitializable, ILevelLoader
         }
 
         await SceneManager.LoadSceneAsync("Level", LoadSceneMode.Additive);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Level"));
     }
 
     public void Initialize()

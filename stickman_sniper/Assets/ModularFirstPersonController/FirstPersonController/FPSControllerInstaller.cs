@@ -1,5 +1,5 @@
 using DWTools;
-using DWTools.Slowmotion;
+using stickman_sniper.Producer;
 using UnityEngine;
 using YG;
 using Zenject;
@@ -34,6 +34,7 @@ public class FPSControllerInstaller : MonoInstaller
         Container.BindInterfacesTo<PlayerProgressObserver>().AsSingle().NonLazy();
         Container.Bind<IUiManager>().FromInstance(_uiManager).AsSingle();
         Container.BindInterfacesTo<WinLoseDecider>().AsSingle().NonLazy();
-        Container.BindInterfacesTo<BulletSlowmotionService>().AsSingle();
+        Container.BindInterfacesTo<BulletFlyProducer>().AsSingle();
+        Container.BindInterfacesTo<EnemyDeadProducer>().AsSingle();
     }
 }

@@ -22,6 +22,8 @@ public class BootstrapInstaller : MonoInstaller
 
         InstallFeatures();
         InstallAnalytics();
+
+        UnityEngine.Random.InitState(System.DateTime.Now.Millisecond);
     }
 
     private void InstallFeatures()

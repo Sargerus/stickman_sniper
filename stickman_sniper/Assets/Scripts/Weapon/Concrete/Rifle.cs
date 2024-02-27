@@ -1,5 +1,6 @@
 using DWTools;
 using DWTools.Slowmotion;
+using stickman_sniper.Producer;
 using System;
 using UniRx;
 using UnityEngine;
@@ -16,7 +17,8 @@ public class Rifle : BaseWeapon
 
     [Inject] private IAudioManager _audioManager;
     [Inject] private IInputService _inputService;
-    [Inject] private IBulletSlowmotionService _bulletSlowmotionService;
+    [Inject] private IBulletFlyProducer _bulletSlowmotionService;
+    [Inject] private IEnemyDeadProducer _enemyDeadProducer;
 
     private CompositeDisposable _disposables = new();
     private CompositeDisposable _soundsDisposables = new();
@@ -88,9 +90,8 @@ public class Rifle : BaseWeapon
             if (enemy != null)
             {
                 var bulletSlowmotion = GameObject.Instantiate(_model.SlowmotionPrefab);
-                var bulletProducer = bulletSlowmotion.GetComponent<IBulletProducer>();
-                var task = _bulletSlowmotionService.SendBulletInSlowmotionAsync(View.transform.position, hit.point, bulletProducer);
-                await task;
+                var bulletDirector = bulletSlowmotion.GetComponent<ICinemachineDirector>();
+                await _bulletSlowmotionService.SendBulletInSlowmotionAsync(View.transform.position, hit.point, bulletDirector);
 
                 bulletSlowmotion.gameObject.SetActive(false);
                 GameObject.Destroy(bulletSlowmotion, 0.1f);
@@ -99,6 +100,8 @@ public class Rifle : BaseWeapon
                 Vector3 direction = (hit.point - _fpsCamera.transform.position).normalized;
                 direction.y = 0.5f;
                 hit.rigidbody.AddForce(direction * _model.PushForce, ForceMode.Impulse);
+
+                await _enemyDeadProducer.ShowEnemyDeath(enemy);
             }
         }
     }

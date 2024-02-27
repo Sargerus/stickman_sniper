@@ -1,12 +1,16 @@
+using Cinemachine;
+using DWTools.Extensions;
 using DWTools.Slowmotion;
+using stickman_sniper.Producer;
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
 using UnityEngine;
 
-public class Enemy : SlowmotionRoot
+public class Enemy : SlowmotionRoot, ICinemachineDirector
 {
     [SerializeField] private Material _deadMaterial;
+    [SerializeField] private List<CinemachineVirtualCamera> _deadCams;
 
     private List<Rigidbody> _rb;
     private SlowmotionAnimator _animator;
@@ -14,6 +18,10 @@ public class Enemy : SlowmotionRoot
 
     private ReactiveProperty<bool> _isAlive = new(true);
     public IReadOnlyReactiveProperty<bool> IsAlive => _isAlive;
+
+    [field: SerializeField] public int Duration { get; private set; }
+
+    private Dictionary<string, object> _cinemaData = new();
 
     private void Awake()
     {
@@ -25,6 +33,8 @@ public class Enemy : SlowmotionRoot
         {
             rb.isKinematic = true;
         }
+
+        _deadCams.ForEach(g => g.gameObject.SetActive(false));
     }
 
     public void PrepareForDeath()
@@ -39,5 +49,33 @@ public class Enemy : SlowmotionRoot
 
         _smr.material = _deadMaterial;
         _isAlive.Value = false;
+    }
+
+    public CinemachineVirtualCamera GetRandomCamera() => _deadCams.Random();
+
+    public void TurnOffAllCameras()
+    {
+        _deadCams.ForEach(g => g.gameObject.SetActive(false));
+    }
+
+    public void SetValue(string key, object value)
+    {
+        _cinemaData[key] = value;
+    }
+
+    public bool TryGetValue(string key, out object value)
+    {
+        _cinemaData.TryGetValue(key, out value);
+        return value != null;
+    }
+
+    public void SetProgress(float progress)
+    {
+        //
+    }
+
+    public void Clear()
+    {
+        _cinemaData?.Clear();
     }
 }

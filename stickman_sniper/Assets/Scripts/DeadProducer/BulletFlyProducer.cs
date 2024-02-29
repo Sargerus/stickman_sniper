@@ -8,7 +8,7 @@ using Zenject;
 
 namespace stickman_sniper.Producer
 {
-    public interface IBulletFlyProducer
+    internal interface IBulletFlyProducer
     {
         UniTask SendBulletInSlowmotionAsync(Vector3 startPosition, Vector3 endPosition, ICinemachineDirector bulletDirector);
     }

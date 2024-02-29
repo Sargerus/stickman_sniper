@@ -6,7 +6,7 @@ using Zenject;
 
 namespace stickman_sniper.Producer
 {
-    public interface IEnemyDeadProducer
+    internal interface IEnemyDeadProducer
     {
         UniTask ShowEnemyDeath(ICinemachineDirector enemyDirector);
     }

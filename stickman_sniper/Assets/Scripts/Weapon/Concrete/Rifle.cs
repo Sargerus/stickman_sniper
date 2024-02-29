@@ -17,8 +17,8 @@ public class Rifle : BaseWeapon
 
     [Inject] private IAudioManager _audioManager;
     [Inject] private IInputService _inputService;
-    [Inject] private IBulletFlyProducer _bulletSlowmotionService;
-    [Inject] private IEnemyDeadProducer _enemyDeadProducer;
+    [Inject] private ICoreProducer _coreProducer;
+    [Inject] private ILevelProgressObserver _levelProgressObserver;
 
     private CompositeDisposable _disposables = new();
     private CompositeDisposable _soundsDisposables = new();
@@ -89,19 +89,23 @@ public class Rifle : BaseWeapon
             var enemy = hit.transform.GetComponentInParent<Enemy>();
             if (enemy != null)
             {
-                var bulletSlowmotion = GameObject.Instantiate(_model.SlowmotionPrefab);
-                var bulletDirector = bulletSlowmotion.GetComponent<ICinemachineDirector>();
-                await _bulletSlowmotionService.SendBulletInSlowmotionAsync(View.transform.position, hit.point, bulletDirector);
-
-                bulletSlowmotion.gameObject.SetActive(false);
-                GameObject.Destroy(bulletSlowmotion, 0.1f);
-
-                enemy.PrepareForDeath();
                 Vector3 direction = (hit.point - _fpsCamera.transform.position).normalized;
                 direction.y = 0.5f;
-                hit.rigidbody.AddForce(direction * _model.PushForce, ForceMode.Impulse);
 
-                await _enemyDeadProducer.ShowEnemyDeath(enemy);
+                if (_levelProgressObserver.TotalEnemies - _levelProgressObserver.KilledEnemies.Value == 1)
+                {
+                    await _coreProducer.KillEnemyWeaponSlowmotion(enemy, hit.point,
+                        () =>
+                        {
+                            enemy.PrepareForDeath();
+                            hit.rigidbody.AddForce(direction * _model.PushForce, ForceMode.Impulse);
+                        });
+                }
+                else
+                {
+                    enemy.PrepareForDeath();
+                    hit.rigidbody.AddForce(direction * _model.PushForce, ForceMode.Impulse);
+                }
             }
         }
     }

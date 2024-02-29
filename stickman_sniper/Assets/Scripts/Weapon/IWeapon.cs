@@ -30,6 +30,7 @@ namespace DWTools
         int MagazineCapacity { get; }
         int TimeBetweenShots { get; }
         GameObject Prefab { get; }
+        GameObject SlowmotionBulletPrefab { get; }
         GameObject View { get; set; }
         SwaySettings SwaySettings { get; }
 

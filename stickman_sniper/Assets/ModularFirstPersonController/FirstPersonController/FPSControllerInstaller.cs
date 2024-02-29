@@ -36,5 +36,6 @@ public class FPSControllerInstaller : MonoInstaller
         Container.BindInterfacesTo<WinLoseDecider>().AsSingle().NonLazy();
         Container.BindInterfacesTo<BulletFlyProducer>().AsSingle();
         Container.BindInterfacesTo<EnemyDeadProducer>().AsSingle();
+        Container.BindInterfacesTo<CoreProducer>().AsSingle();
     }
 }

@@ -35,7 +35,9 @@ public abstract class BaseWeapon : IWeapon
     public int TimeBetweenShots => _model.TimeBetweenShots;
     public SwaySettings SwaySettings => _model.SwaySettings;
     public GameObject Prefab => _model.Prefab;
+    public GameObject SlowmotionBulletPrefab => _model.SlowmotionPrefab;
     public GameObject View { get; set; }
+
 
     public virtual void Grab()
     {

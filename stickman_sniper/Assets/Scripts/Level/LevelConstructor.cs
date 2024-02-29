@@ -31,6 +31,12 @@ public class LevelConstructor : IInitializable
         }
 
         levelPrefab = _levelsContainer.Levels.CycleWithMod(YandexGame.savesData.levelsPassed);
+
+        if (_levelsContainer.TestLevel != null)
+        {
+            levelPrefab = _levelsContainer.TestLevel;
+        }
+
         var levelGO = _diContainer.InstantiatePrefab(levelPrefab);
     }
 }

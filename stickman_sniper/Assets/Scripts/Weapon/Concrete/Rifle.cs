@@ -1,6 +1,7 @@
 using DWTools;
 using DWTools.Slowmotion;
 using stickman_sniper.Producer;
+using stickman_sniper.Weapon.Explosives;
 using System;
 using UniRx;
 using UnityEngine;
@@ -106,6 +107,16 @@ public class Rifle : BaseWeapon
                     enemy.PrepareForDeath();
                     hit.rigidbody.AddForce(direction * _model.PushForce, ForceMode.Impulse);
                 }
+
+                return;
+            }
+
+            var explosive = hit.transform.GetComponentInParent<IExplosive>();
+            if (explosive != null)
+            {
+                explosive.Explode();
+
+                return;
             }
         }
     }

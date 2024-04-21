@@ -1,3 +1,4 @@
+using DWTools.Customization;
 using UnityEngine;
 using Zenject;
 
@@ -5,11 +6,12 @@ using Zenject;
 public class FPSControllerScriptableObjectInstaller : ScriptableObjectInstaller
 {
     [SerializeField] private WeaponsContainerSO _weaponContainer;
-    [SerializeField] public InputHandlerContainerAggregatorSO _inputAggregator;
+    [SerializeField] private InputHandlerContainerAggregatorSO _inputAggregator;
+    [SerializeField] private CustomiationDataContainerSO customiationDataContainerSO;
 
     public override void InstallBindings()
     {
-        Container.BindInstances(_weaponContainer, _inputAggregator);
+        Container.BindInstances(_weaponContainer, _inputAggregator, customiationDataContainerSO);
 
         _inputAggregator.InputHandlersContainer.ForEach(container =>
         {

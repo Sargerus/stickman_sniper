@@ -1,4 +1,7 @@
+using Cysharp.Threading.Tasks;
+using DWTools.Customization;
 using System;
+using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
@@ -44,7 +47,8 @@ namespace DWTools
         void Reload();
         void Grab();
         void SetAim(bool aim);
-        void Initialize(WeaponModel model, WeaponState weaponState);
+        void Initialize(WeaponModel model, WeaponState weaponState, ICustomizationDataProvider customizationContainer);
+        UniTask Customize(CustomizableEntityProvider customizeItems);
     }
 
     public interface IHands

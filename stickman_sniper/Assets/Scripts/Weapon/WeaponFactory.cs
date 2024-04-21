@@ -1,4 +1,5 @@
 using DWTools;
+using DWTools.Customization;
 using Zenject;
 
 public class WeaponFactory

@@ -1,10 +1,16 @@
+using Cysharp.Threading.Tasks;
 using DWTools;
+using DWTools.Customization;
+using System.Collections.Generic;
+using System.Linq;
 using UniRx;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public abstract class BaseWeapon : IWeapon
 {
     protected WeaponModel _model;
+    protected ICustomizationDataProvider _customizationData;
 
     protected ReactiveProperty<int> _currentBulletsCount;
     public IReadOnlyReactiveProperty<int> CurrentBulletsCount => _currentBulletsCount;
@@ -57,9 +63,10 @@ public abstract class BaseWeapon : IWeapon
     {
     }
 
-    public virtual void Initialize(WeaponModel model, WeaponState weaponState)
+    public virtual void Initialize(WeaponModel model, WeaponState weaponState, ICustomizationDataProvider customizationData)
     {
         _model = model;
+        _customizationData = customizationData;
 
         _isShooting = new();
         _isReloading = new();
@@ -70,6 +77,11 @@ public abstract class BaseWeapon : IWeapon
 
         CanShoot = Observable.CombineLatest<int, bool, bool, bool, bool>(_currentBulletsCount, 
             _isReloading, _isGrabing, _isShooting, (o1, o2, o3, o4) => !(o1 <= 0 || o2 || o3 || o4)).ToReactiveProperty();
+    }
+
+    public async UniTask Customize(CustomizableEntityProvider itemsProvider)
+    {
+        await _customizationData.Customize(itemsProvider);
     }
 
     public virtual void Dispose()

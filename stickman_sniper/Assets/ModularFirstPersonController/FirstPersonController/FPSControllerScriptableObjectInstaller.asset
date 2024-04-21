@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponContainer: {fileID: 11400000, guid: 53fed536bbc82b144b203cdbcdecfd5b, type: 2}
   _inputAggregator: {fileID: 11400000, guid: b94628b8d7c68f847a1eb14d0d61a69b, type: 2}
+  customiationDataContainerSO: {fileID: 11400000, guid: ec42681bc7003f24b884741c22e0dba2, type: 2}

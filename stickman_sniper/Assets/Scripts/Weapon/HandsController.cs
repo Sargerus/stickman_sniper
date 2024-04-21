@@ -1,5 +1,7 @@
 using Cysharp.Threading.Tasks;
+using DWTools.Customization;
 using System;
+using System.Linq;
 using System.Threading;
 using UniRx;
 using UnityEngine;
@@ -33,9 +35,15 @@ namespace DWTools
 
         public void Initialize()
         {
-            _weaponService.CurrentWeapon.Subscribe(x =>
+            _weaponService.CurrentWeapon.Subscribe(async x =>
             {
                 x.View = _currentWeaponView = Instantiate(x.Prefab, _weaponContainer);
+
+                //customize
+                _currentWeaponView.gameObject.SetActive(false);
+                await x.Customize(x.View.GetComponentInChildren<CustomizableEntityProvider>());
+                _currentWeaponView.gameObject.SetActive(true);
+
                 _diContainer.InjectGameObject(x.View);
                 _weaponAnimation = _currentWeaponView.GetComponent<IAnimationInterface>();
             }).AddTo(_weaponDisposables);

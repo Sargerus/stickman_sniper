@@ -1,5 +1,5 @@
 {
-  "idSave": 16,
+  "idSave": 18,
   "isFirstSession": false,
   "language": "ru",
   "promptDone": false,
@@ -10,5 +10,5 @@
     true,
     false
   ],
-  "levelsPassed": 6
+  "levelsPassed": 8
 }

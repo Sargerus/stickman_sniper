@@ -1,5 +1,7 @@
 using DWTools;
+using DWTools.Customization;
 using System;
+using System.Linq;
 using UniRx;
 using Unity.VisualScripting;
 
@@ -28,15 +30,18 @@ public sealed class WeaponService : IWeaponService, IDisposable
 {
     private readonly WeaponFactory _weaponFactory;
     private readonly WeaponsContainerSO _weaponsContainer;
+    private readonly CustomiationDataContainerSO _customizationContainer;
 
     private ReactiveProperty<IWeapon> _currentWeapon = new();
     public IReadOnlyReactiveProperty<IWeapon> CurrentWeapon => _currentWeapon;
 
     public WeaponService(WeaponFactory weaponFactory,
-        WeaponsContainerSO weaponsContainer)
+        WeaponsContainerSO weaponsContainer,
+        CustomiationDataContainerSO customizationContainer)
     {
         _weaponFactory = weaponFactory;
         _weaponsContainer = weaponsContainer;
+        _customizationContainer = customizationContainer;
     }
 
     public void SwitchToWeaponSlot(int slot)
@@ -46,7 +51,8 @@ public sealed class WeaponService : IWeaponService, IDisposable
     public void SwitchToWeapon(string weaponKey)
     {
         var weapon = _weaponFactory.Create(weaponKey);
-        weapon.Initialize(FindModel(weaponKey), new(5, 0));
+        weapon.Initialize(FindModel(weaponKey), new(5, 0), 
+            _customizationContainer.CustomizationData.FirstOrDefault(g => g.CustomizableKey.Equals(weaponKey)));
 
         _currentWeapon.Value?.Dispose();
         _currentWeapon.Value = weapon;

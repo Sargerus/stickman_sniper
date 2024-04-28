@@ -350,6 +350,7 @@ namespace InfimaGames.LowPolyShooterPack
             OnTryRun(default);
             OnTryFire(default);
             OnTryPlayReload(default);
+            OnTryJump(default);
 
             //Match Aim.
             aiming = holdingButtonAim && CanAim();
@@ -1019,7 +1020,8 @@ namespace InfimaGames.LowPolyShooterPack
                 return false;
 
             //Block.
-            if (reloading || aiming)
+            //if (reloading || aiming)
+            if (aiming)
                 return false;
 
             //While trying to fire, we don't want to run. We do this just in case we do fire.
@@ -1142,6 +1144,8 @@ namespace InfimaGames.LowPolyShooterPack
 
             if (_inputService.IsReloading)
             {
+                _inputService.Reset(Keys.Aiming);
+                holdingButtonAim = _inputService.IsAiming;
                 PlayReloadAnimation();
             }
 
@@ -1299,6 +1303,11 @@ namespace InfimaGames.LowPolyShooterPack
             if (!cursorLocked)
                 return;
 
+            Debug.Log(_inputService.IsRunning);
+
+            if (!CanRun())
+                _inputService.Reset(Keys.Running);
+
             holdingButtonRun = _inputService.IsRunning;
 
             //Switch.
@@ -1334,15 +1343,20 @@ namespace InfimaGames.LowPolyShooterPack
             if (!cursorLocked)
                 return;
 
-            //Switch.
-            switch (context.phase)
+            if (_inputService.IsJumping)
             {
-                //Performed.
-                case InputActionPhase.Performed:
-                    //Jump.
-                    movementBehaviour.Jump();
-                    break;
+                movementBehaviour.Jump();
             }
+
+            //Switch.
+            //switch (context.phase)
+            //{
+            //    //Performed.
+            //    case InputActionPhase.Performed:
+            //        //Jump.
+            //        movementBehaviour.Jump();
+            //        break;
+            //}
         }
         /// <summary>
         /// Next Inventory Weapon.

@@ -3639,7 +3639,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 35aa15aa460d5704383e356a55b0b147, type: 3}
   - {fileID: 8300000, guid: 66e20a1df4a8a004e9e3eec624d38c28, type: 3}
   - {fileID: 8300000, guid: 058ad0f0e88b6054990c6e98008ae4ea, type: 3}
-  holdToRun: 0
+  holdToRun: 1
   holdToAim: 1
 --- !u!114 &1045855042783491295
 MonoBehaviour:

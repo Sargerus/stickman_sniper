@@ -1,7 +1,9 @@
 //Copyright 2022, Infima Games. All Rights Reserved.
 
+using DWTools;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Zenject;
 
 namespace InfimaGames.LowPolyShooterPack
 {
@@ -10,6 +12,16 @@ namespace InfimaGames.LowPolyShooterPack
     /// </summary>
     public class CrouchingInput : MonoBehaviour
     {
+        #region Zenject
+        private IInputService _inputService;
+
+        [Inject]
+        private void Construct(IInputService inputService)
+        {
+            _inputService = inputService;
+        }
+        #endregion
+
         #region FIELDS SERIALIZED
 
         [Title(label: "References")]
@@ -17,7 +29,7 @@ namespace InfimaGames.LowPolyShooterPack
         [Tooltip("The character's CharacterBehaviour component.")]
         [SerializeField, NotNull]
         private CharacterBehaviour characterBehaviour;
-        
+
         [Tooltip("The character's MovementBehaviour component.")]
         [SerializeField, NotNull]
         private MovementBehaviour movementBehaviour;
@@ -27,7 +39,7 @@ namespace InfimaGames.LowPolyShooterPack
         [Tooltip("If true, the crouch button has to be held to keep crouching.")]
         [SerializeField]
         private bool holdToCrouch;
-        
+
         #endregion
 
         #region FIELDS
@@ -36,6 +48,7 @@ namespace InfimaGames.LowPolyShooterPack
         /// holding. If true, the player is holding the crouching button.
         /// </summary>
         private bool holding;
+        private bool _lastFrameHolding;
 
         #endregion
 
@@ -46,14 +59,16 @@ namespace InfimaGames.LowPolyShooterPack
         /// </summary>
         private void Update()
         {
+            Crouch(default);
+
             //Change the crouching state based on whether we're holding if we need to.
             //We only do this for hold-crouch, otherwise we don't even bother with this.
-            if(holdToCrouch)
+            if (holdToCrouch)
                 movementBehaviour.TryCrouch(holding);
         }
 
         #endregion
-        
+
         #region INPUT
 
         /// <summary>
@@ -72,29 +87,39 @@ namespace InfimaGames.LowPolyShooterPack
                 //Return.
                 return;
             }
-            
+
             //Block while the cursor is unlocked.
             if (!characterBehaviour.IsCursorLocked())
                 return;
 
-            //Switch.
-            switch (context.phase)
+            holding = _inputService.IsCrouching;
+
+            if (holding != _lastFrameHolding)
             {
-                //Started.
-                case InputActionPhase.Started:
-                    holding = true;
-                    break;
-                //Performed.
-                case InputActionPhase.Performed:
-                    //TryToggleCrouch.
-                    if(!holdToCrouch)
-                        movementBehaviour.TryToggleCrouch();
-                    break;
-                //Canceled.
-                case InputActionPhase.Canceled:
-                    holding = false;
-                    break;
+                if (!holdToCrouch)
+                    movementBehaviour.TryToggleCrouch();
             }
+
+            _lastFrameHolding = holding;
+
+            //Switch.
+            //switch (context.phase)
+            //{
+            //    //Started.
+            //    case InputActionPhase.Started:
+            //        holding = true;
+            //        break;
+            //    //Performed.
+            //    case InputActionPhase.Performed:
+            //        //TryToggleCrouch.
+            //        if(!holdToCrouch)
+            //            movementBehaviour.TryToggleCrouch();
+            //        break;
+            //    //Canceled.
+            //    case InputActionPhase.Canceled:
+            //        holding = false;
+            //        break;
+            //}
         }
 
         #endregion

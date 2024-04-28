@@ -349,6 +349,7 @@ namespace InfimaGames.LowPolyShooterPack
             OnTryAiming(default);
             OnTryRun(default);
             OnTryFire(default);
+            OnTryPlayReload(default);
 
             //Match Aim.
             aiming = holdingButtonAim && CanAim();
@@ -1139,15 +1140,20 @@ namespace InfimaGames.LowPolyShooterPack
             if (!CanPlayAnimationReload())
                 return;
 
-            //Switch.
-            switch (context)
+            if (_inputService.IsReloading)
             {
-                //Performed.
-                case { phase: InputActionPhase.Performed }:
-                    //Play Animation.
-                    PlayReloadAnimation();
-                    break;
+                PlayReloadAnimation();
             }
+
+            //Switch.
+            //switch (context)
+            //{
+            //    //Performed.
+            //    case { phase: InputActionPhase.Performed }:
+            //        //Play Animation.
+            //        PlayReloadAnimation();
+            //        break;
+            //}
         }
 
         /// <summary>

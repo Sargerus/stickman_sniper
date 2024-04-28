@@ -1067,9 +1067,13 @@ namespace InfimaGames.LowPolyShooterPack
                     else if (Time.time - lastShotTime > 60.0f / equippedWeapon.GetRateOfFire())
                         Fire();
                 }
-                else
-                    FireEmpty();
+                else FireEmpty();
             }
+
+           //if (!equippedWeapon.HasAmmunition() && !_inputService.IsShooting)
+           //{
+           //    ForceReload();
+           //}
 
             //not shooting
             if (!_inputService.IsShooting)
@@ -1144,9 +1148,7 @@ namespace InfimaGames.LowPolyShooterPack
 
             if (_inputService.IsReloading)
             {
-                _inputService.Reset(Keys.Aiming);
-                holdingButtonAim = _inputService.IsAiming;
-                PlayReloadAnimation();
+                ForceReload();
             }
 
             //Switch.
@@ -1158,6 +1160,13 @@ namespace InfimaGames.LowPolyShooterPack
             //        PlayReloadAnimation();
             //        break;
             //}
+        }
+
+        private void ForceReload()
+        {
+            _inputService.Reset(Keys.Aiming);
+            holdingButtonAim = _inputService.IsAiming;
+            PlayReloadAnimation();
         }
 
         /// <summary>

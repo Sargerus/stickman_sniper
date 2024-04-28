@@ -10559,6 +10559,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 6306305043144894503, guid: 9482e0a2ae6a92742bbe72e00f29f763,
+        type: 3}
+      propertyPath: automaticReloadOnEmpty
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6313751023667887553, guid: 9482e0a2ae6a92742bbe72e00f29f763,
         type: 3}
       propertyPath: m_Layer

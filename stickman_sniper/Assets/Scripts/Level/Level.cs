@@ -1,4 +1,5 @@
 using DWTools.Extensions;
+using InfimaGames.LowPolyShooterPack;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,10 +14,10 @@ public class Level : MonoBehaviour
     [SerializeField] private List<Enemy> _enemyPrefabs;
 
     private List<Enemy> _enemies = new();
-    private FirstPersonController _player;
+    private Character _player;
 
-    [Inject] private FirstPersonController.Factory _fpsFactory;
-    [Inject] private ILevelProgressObserver _levelProgressObserver;
+    [Inject] private Character.Factory _characterFactory;
+    //[Inject] private ILevelProgressObserver _levelProgressObserver;
     [Inject] private DiContainer _container;
 
     public void Start()
@@ -35,10 +36,10 @@ public class Level : MonoBehaviour
         }
 
         var playerPlace = _playerSpawns.Random();
-        _player = _fpsFactory.Create();
+        _player = _characterFactory.Create();
         _player.transform.position = playerPlace.position;
         _player.transform.rotation = playerPlace.rotation;
 
-        _levelProgressObserver.Observe(_enemies);
+        //_levelProgressObserver.Observe(_enemies);
     }
 }

@@ -1,13 +1,14 @@
+using InfimaGames.LowPolyShooterPack;
 using UnityEngine;
 using Zenject;
 
 public class LevelInstaller : MonoInstaller
 {
-    [SerializeField] private FirstPersonController _fpsPrefab;
+    [SerializeField] private Character _characterPrefab;
 
     public override void InstallBindings()
     {
-        Container.BindFactory<FirstPersonController, FirstPersonController.Factory>().FromSubContainerResolve().ByNewContextPrefab(_fpsPrefab).AsSingle();
+        Container.BindFactory<Character, Character.Factory>().FromSubContainerResolve().ByNewContextPrefab(_characterPrefab).AsSingle();
         Container.BindInterfacesTo<LevelProgressObserver>().AsSingle();
         
         Container.BindInterfacesTo<LevelConstructor>().AsSingle().NonLazy();

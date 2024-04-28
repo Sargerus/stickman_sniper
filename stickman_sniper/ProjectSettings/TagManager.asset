@@ -4,7 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - log
+  - Wall
+  - Metal
+  - Blood
+  - Dirt
+  - Concrete
+  - ExplosiveBarrel
+  - Target
+  - GasTank
+  - Metal (Static)
+  - Wood (Static)
+  - Dirt (Static)
+  - Wood
   layers:
   - Default
   - TransparentFX
@@ -12,17 +23,17 @@ TagManager:
   - 
   - Water
   - UI
-  - Target
-  - Environment
-  - Sniper
-  - Mobile
-  - Weapon
-  - MovementController
   - 
   - 
-  - 
-  - 
-  - 
+  - Wall
+  - First Person View
+  - Character
+  - Post Processing
+  - Post Processing Weapon
+  - Post Processing Scope
+  - Invisible Wall
+  - Projectile
+  - Interactable
   - 
   - 
   - 

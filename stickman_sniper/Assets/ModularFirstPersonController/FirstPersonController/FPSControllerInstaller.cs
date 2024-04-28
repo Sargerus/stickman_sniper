@@ -1,4 +1,5 @@
 using DWTools;
+using InfimaGames.LowPolyShooterPack;
 using stickman_sniper.Producer;
 using UnityEngine;
 using YG;
@@ -20,22 +21,24 @@ public class FPSControllerInstaller : MonoInstaller
     {
         Container.BindInstance(_fpsCamera).WithId(CameraProvider.WorldCamera).AsCached();
         Container.BindInstance(_uiCamera).WithId(CameraProvider.UICamera).AsCached();
-        Container.BindInstance(_sniperCamera).WithId("sniper").AsCached();
+       //Container.BindInstance(_sniperCamera).WithId("sniper").AsCached();
         Container.BindInstance(_mobileCamera).WithId("mobile").AsCached();
         //_weaponCamera.Camera.depth = 10;
-        Container.BindInstance(_weaponCamera).WithId("weapon").AsCached();
+        //Container.BindInstance(_weaponCamera).WithId("weapon").AsCached();
         Container.BindInstance(_slowmotionCamera).WithId("slowmotion").AsCached();
-        Container.Bind<FirstPersonController>().FromComponentOnRoot().AsSingle();
+        Container.Bind<Character>().FromComponentOnRoot().AsSingle();
         Container.BindInterfacesAndSelfTo<WeaponFactory>().AsSingle();
         Container.Bind<IMobileInputProvider>().FromInstance(_mobileCanvas).AsSingle();
         Container.BindInterfacesTo<InputService>().AsSingle().WithArguments(YandexGame.Device);
         Container.BindInterfacesTo<WeaponService>().AsSingle();
-        Container.BindInterfacesTo<HandsController>().FromInstance(_handsController).AsSingle();
+        //Container.BindInterfacesTo<HandsController>().FromInstance(_handsController).AsSingle();
         Container.BindInterfacesTo<PlayerProgressObserver>().AsSingle().NonLazy();
-        Container.Bind<IUiManager>().FromInstance(_uiManager).AsSingle();
-        Container.BindInterfacesTo<WinLoseDecider>().AsSingle().NonLazy();
+        //Container.Bind<IUiManager>().FromInstance(_uiManager).AsSingle();
+  //UNCOMMENT//Container.BindInterfacesTo<WinLoseDecider>().AsSingle().NonLazy();
         Container.BindInterfacesTo<BulletFlyProducer>().AsSingle();
         Container.BindInterfacesTo<EnemyDeadProducer>().AsSingle();
         Container.BindInterfacesTo<CoreProducer>().AsSingle();
+
+        //infima
     }
 }

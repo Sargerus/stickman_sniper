@@ -143,6 +143,8 @@ namespace InfimaGames.LowPolyShooterPack
         [SerializeField]
         private bool holdToAim = true;
 
+        private bool _fireLastFrame;
+
         #endregion
 
         #region FIELDS
@@ -346,6 +348,7 @@ namespace InfimaGames.LowPolyShooterPack
             OnLook(default);
             OnTryAiming(default);
             OnTryRun(default);
+            OnTryFire(default);
 
             //Match Aim.
             aiming = holdingButtonAim && CanAim();
@@ -1043,54 +1046,85 @@ namespace InfimaGames.LowPolyShooterPack
             if (!cursorLocked)
                 return;
 
-            //Switch.
-            switch (context)
+            //shooting
+            if (!_fireLastFrame && _inputService.IsShooting)
             {
-                //Started.
-                case { phase: InputActionPhase.Started }:
-                    //Hold.
-                    holdingButtonFire = true;
-
-                    //Restart the shots.
-                    shotsFired = 0;
-                    break;
-                //Performed.
-                case { phase: InputActionPhase.Performed }:
-                    //Ignore if we're not allowed to actually fire.
-                    if (!CanPlayAnimationFire())
-                        break;
-
-                    //Check.
-                    if (equippedWeapon.HasAmmunition())
-                    {
-                        //Check.
-                        if (equippedWeapon.IsAutomatic())
-                        {
-                            //Reset fired shots, so recoil/spread does not just stay at max when we've run out
-                            //of ammo already!
-                            shotsFired = 0;
-
-                            //Break.
-                            break;
-                        }
-
-                        //Has fire rate passed.
-                        if (Time.time - lastShotTime > 60.0f / equippedWeapon.GetRateOfFire())
-                            Fire();
-                    }
-                    //Fire Empty.
-                    else
-                        FireEmpty();
-                    break;
-                //Canceled.
-                case { phase: InputActionPhase.Canceled }:
-                    //Stop Hold.
-                    holdingButtonFire = false;
-
-                    //Reset shotsFired.
-                    shotsFired = 0;
-                    break;
+                holdingButtonFire = true;
+                shotsFired = 0;
             }
+
+            if (_inputService.IsShooting && !CanPlayAnimationFire())
+            {
+                if (equippedWeapon.HasAmmunition())
+                {
+                    if (equippedWeapon.IsAutomatic())
+                    {
+                        shotsFired = 0;
+                    }
+                    else if (Time.time - lastShotTime > 60.0f / equippedWeapon.GetRateOfFire())
+                        Fire();
+                }
+                else
+                    FireEmpty();
+            }
+
+            //not shooting
+            if (!_inputService.IsShooting)
+            {
+                holdingButtonFire = false;
+                shotsFired = 0;
+            }
+
+            _fireLastFrame = _inputService.IsShooting;
+
+            //Switch.
+            //switch (context)
+            //{
+            //    //Started.
+            //    case { phase: InputActionPhase.Started }:
+            //        //Hold.
+            //        holdingButtonFire = true;
+            //
+            //        //Restart the shots.
+            //        shotsFired = 0;
+            //        break;
+            //    //Performed.
+            //    case { phase: InputActionPhase.Performed }:
+            //        //Ignore if we're not allowed to actually fire.
+            //        if (!CanPlayAnimationFire())
+            //            break;
+            //
+            //        //Check.
+            //        if (equippedWeapon.HasAmmunition())
+            //        {
+            //            //Check.
+            //            if (equippedWeapon.IsAutomatic())
+            //            {
+            //                //Reset fired shots, so recoil/spread does not just stay at max when we've run out
+            //                //of ammo already!
+            //                shotsFired = 0;
+            //
+            //                //Break.
+            //                break;
+            //            }
+            //
+            //            //Has fire rate passed.
+            //            if (Time.time - lastShotTime > 60.0f / equippedWeapon.GetRateOfFire())
+            //                Fire();
+            //        }
+            //        //Fire Empty.
+            //        else
+            //            FireEmpty();
+            //        break;
+            //    //Canceled.
+            //    case { phase: InputActionPhase.Canceled }:
+            //        //Stop Hold.
+            //        holdingButtonFire = false;
+            //
+            //        //Reset shotsFired.
+            //        shotsFired = 0;
+            //        break;
+            //}
         }
         /// <summary>
         /// Reload.

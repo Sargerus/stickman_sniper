@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5959316894497367166}
   - component: {fileID: 6177711074656718557}
   - component: {fileID: 2317985379619800986}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: FuelBarrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,62 +67,76 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5959316894497367166}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4,
+        type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4,
+        type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4,
+        type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4,
+        type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4,
+        type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4,
+        type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: e2dc058780e712b4794f44e8ca1c57a4, type: 3}
+    - target: {fileID: 919132149155446097, guid: e2dc058780e712b4794f44e8ca1c57a4,
+        type: 3}
       propertyPath: m_Name
       value: Fuel_Barrel
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: e2dc058780e712b4794f44e8ca1c57a4, type: 3}
+    - target: {fileID: 919132149155446097, guid: e2dc058780e712b4794f44e8ca1c57a4,
+        type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2dc058780e712b4794f44e8ca1c57a4, type: 3}
 --- !u!4 &7045730067264284912 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4, type: 3}
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e2dc058780e712b4794f44e8ca1c57a4,
+    type: 3}
   m_PrefabInstance: {fileID: 7371776141606965019}
   m_PrefabAsset: {fileID: 0}

@@ -668,7 +668,7 @@ namespace InfimaGames.LowPolyShooterPack
             yield return new WaitForSeconds(equippedWeapon.GetAutomaticallyReloadOnEmptyDelay());
 
             //Play Reload Animation.
-            PlayReloadAnimation();
+            ForceReload();
         }
 
         /// <summary>
@@ -1070,11 +1070,6 @@ namespace InfimaGames.LowPolyShooterPack
                 else FireEmpty();
             }
 
-           //if (!equippedWeapon.HasAmmunition() && !_inputService.IsShooting)
-           //{
-           //    ForceReload();
-           //}
-
             //not shooting
             if (!_inputService.IsShooting)
             {
@@ -1311,8 +1306,6 @@ namespace InfimaGames.LowPolyShooterPack
             //Block while the cursor is unlocked.
             if (!cursorLocked)
                 return;
-
-            Debug.Log(_inputService.IsRunning);
 
             if (!CanRun())
                 _inputService.Reset(Keys.Running);

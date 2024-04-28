@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LayerMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 64
   Radius: 5
-  Force: 300
+  Force: 700
   UpwardModifier: 2

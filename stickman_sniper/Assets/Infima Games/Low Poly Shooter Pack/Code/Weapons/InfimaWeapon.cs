@@ -7,7 +7,7 @@ namespace InfimaGames.LowPolyShooterPack
     /// <summary>
     /// Weapon. This class handles most of the things that weapons need.
     /// </summary>
-    public class Weapon : WeaponBehaviour
+    public class InfimaWeapon : WeaponBehaviour
     {
         #region FIELDS SERIALIZED
         
@@ -15,127 +15,127 @@ namespace InfimaGames.LowPolyShooterPack
         
         [Tooltip("Weapon Name. Currently not used for anything, but in the future, we will use this for pickups!")]
         [SerializeField] 
-        private string weaponName;
+        protected string weaponName;
 
         [Tooltip("How much the character's movement speed is multiplied by when wielding this weapon.")]
         [SerializeField]
-        private float multiplierMovementSpeed = 1.0f;
+        protected float multiplierMovementSpeed = 1.0f;
         
         [Title(label: "Firing")]
 
         [Tooltip("Is this weapon automatic? If yes, then holding down the firing button will continuously fire.")]
-        [SerializeField] 
-        private bool automatic;
+        [SerializeField]
+        protected bool automatic;
         
         [Tooltip("Is this weapon bolt-action? If yes, then a bolt-action animation will play after every shot.")]
         [SerializeField]
-        private bool boltAction;
+        protected bool boltAction;
 
         [Tooltip("Amount of shots fired at once. Helpful for things like shotguns, where there are multiple projectiles fired at once.")]
         [SerializeField]
-        private int shotCount = 1;
+        protected int shotCount = 1;
         
         [Tooltip("How far the weapon can fire from the center of the screen.")]
         [SerializeField]
-        private float spread = 0.25f;
+        protected Vector2 spread;
         
         [Tooltip("How fast the projectiles are.")]
         [SerializeField]
-        private float projectileImpulse = 400.0f;
+        protected float projectileImpulse = 400.0f;
 
         [Tooltip("Amount of shots this weapon can shoot in a minute. It determines how fast the weapon shoots.")]
-        [SerializeField] 
-        private int roundsPerMinutes = 200;
+        [SerializeField]
+        protected int roundsPerMinutes = 200;
 
         [Title(label: "Reloading")]
         
         [Tooltip("Determines if this weapon reloads in cycles, meaning that it inserts one bullet at a time, or not.")]
         [SerializeField]
-        private bool cycledReload;
+        protected bool cycledReload;
         
         [Tooltip("Determines if the player can reload this weapon when it is full of ammunition.")]
         [SerializeField]
-        private bool canReloadWhenFull = true;
+        protected bool canReloadWhenFull = true;
 
         [Tooltip("Should this weapon be reloaded automatically after firing its last shot?")]
         [SerializeField]
-        private bool automaticReloadOnEmpty;
+        protected bool automaticReloadOnEmpty;
 
         [Tooltip("Time after the last shot at which a reload will automatically start.")]
         [SerializeField]
-        private float automaticReloadOnEmptyDelay = 0.25f;
+        protected float automaticReloadOnEmptyDelay = 0.25f;
 
         [Title(label: "Animation")]
 
         [Tooltip("Transform that represents the weapon's ejection port, meaning the part of the weapon that casings shoot from.")]
         [SerializeField]
-        private Transform socketEjection;
+        protected Transform socketEjection;
 
         [Tooltip("Settings this to false will stop the weapon from being reloaded while the character is aiming it.")]
         [SerializeField]
-        private bool canReloadAimed = true;
+        protected bool canReloadAimed = true;
 
         [Title(label: "Resources")]
 
         [Tooltip("Casing Prefab.")]
         [SerializeField]
-        private GameObject prefabCasing;
+        protected GameObject prefabCasing;
         
         [Tooltip("Projectile Prefab. This is the prefab spawned when the weapon shoots.")]
         [SerializeField]
-        private GameObject prefabProjectile;
+        protected GameObject prefabProjectile;
         
         [Tooltip("The AnimatorController a player character needs to use while wielding this weapon.")]
-        [SerializeField] 
-        public RuntimeAnimatorController controller;
+        [SerializeField]
+        protected RuntimeAnimatorController controller;
 
         [Tooltip("Weapon Body Texture.")]
         [SerializeField]
-        private Sprite spriteBody;
+        protected Sprite spriteBody;
         
         [Title(label: "Audio Clips Holster")]
 
         [Tooltip("Holster Audio Clip.")]
         [SerializeField]
-        private AudioClip audioClipHolster;
+        protected AudioClip audioClipHolster;
 
         [Tooltip("Unholster Audio Clip.")]
         [SerializeField]
-        private AudioClip audioClipUnholster;
+        protected AudioClip audioClipUnholster;
         
         [Title(label: "Audio Clips Reloads")]
 
         [Tooltip("Reload Audio Clip.")]
         [SerializeField]
-        private AudioClip audioClipReload;
+        protected AudioClip audioClipReload;
         
         [Tooltip("Reload Empty Audio Clip.")]
         [SerializeField]
-        private AudioClip audioClipReloadEmpty;
+        protected AudioClip audioClipReloadEmpty;
         
         [Title(label: "Audio Clips Reloads Cycled")]
         
         [Tooltip("Reload Open Audio Clip.")]
         [SerializeField]
-        private AudioClip audioClipReloadOpen;
+        protected AudioClip audioClipReloadOpen;
         
         [Tooltip("Reload Insert Audio Clip.")]
         [SerializeField]
-        private AudioClip audioClipReloadInsert;
+        protected AudioClip audioClipReloadInsert;
         
         [Tooltip("Reload Close Audio Clip.")]
         [SerializeField]
-        private AudioClip audioClipReloadClose;
+        protected AudioClip audioClipReloadClose;
         
         [Title(label: "Audio Clips Other")]
 
         [Tooltip("AudioClip played when this weapon is fired without any ammunition.")]
         [SerializeField]
-        private AudioClip audioClipFireEmpty;
+        protected AudioClip audioClipFireEmpty;
         
         [Tooltip("")]
         [SerializeField]
-        private AudioClip audioClipBoltAction;
+        protected AudioClip audioClipBoltAction;
 
         #endregion
 
@@ -144,57 +144,57 @@ namespace InfimaGames.LowPolyShooterPack
         /// <summary>
         /// Weapon Animator.
         /// </summary>
-        private Animator animator;
+        protected Animator animator;
         /// <summary>
         /// Attachment Manager.
         /// </summary>
-        private WeaponAttachmentManagerBehaviour attachmentManager;
+        protected WeaponAttachmentManagerBehaviour attachmentManager;
 
         /// <summary>
         /// Amount of ammunition left.
         /// </summary>
-        private int ammunitionCurrent;
+        protected int ammunitionCurrent;
 
         #region Attachment Behaviours
-        
+
         /// <summary>
         /// Equipped scope Reference.
         /// </summary>
-        private ScopeBehaviour scopeBehaviour;
-        
+        protected ScopeBehaviour scopeBehaviour;
+
         /// <summary>
         /// Equipped Magazine Reference.
         /// </summary>
-        private MagazineBehaviour magazineBehaviour;
+        protected MagazineBehaviour magazineBehaviour;
         /// <summary>
         /// Equipped Muzzle Reference.
         /// </summary>
-        private MuzzleBehaviour muzzleBehaviour;
+        protected MuzzleBehaviour muzzleBehaviour;
 
         /// <summary>
         /// Equipped Laser Reference.
         /// </summary>
-        private LaserBehaviour laserBehaviour;
+        protected LaserBehaviour laserBehaviour;
         /// <summary>
         /// Equipped Grip Reference.
         /// </summary>
-        private GripBehaviour gripBehaviour;
+        protected GripBehaviour gripBehaviour;
 
         #endregion
 
         /// <summary>
         /// The GameModeService used in this game!
         /// </summary>
-        private IGameModeService gameModeService;
+        protected IGameModeService gameModeService;
         /// <summary>
         /// The main player character behaviour component.
         /// </summary>
-        private CharacterBehaviour characterBehaviour;
+        protected CharacterBehaviour characterBehaviour;
 
         /// <summary>
         /// The player character's camera.
         /// </summary>
-        private Transform playerCamera;
+        protected Transform playerCamera;
         
         #endregion
 

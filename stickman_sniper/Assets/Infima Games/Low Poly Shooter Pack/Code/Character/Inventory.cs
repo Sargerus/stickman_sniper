@@ -1,5 +1,7 @@
 ﻿//Copyright 2022, Infima Games. All Rights Reserved.
 
+using Zenject;
+
 namespace InfimaGames.LowPolyShooterPack
 {
     public class Inventory : InventoryBehaviour
@@ -24,14 +26,18 @@ namespace InfimaGames.LowPolyShooterPack
         
         #region METHODS
         
-        public override void Init(int equippedAtStart = 0)
+        public override void Init(int equippedAtStart = 0, DiContainer diContainer = null)
         {
             //Cache all weapons. Beware that weapons need to be parented to the object this component is on!
             weapons = GetComponentsInChildren<WeaponBehaviour>(true);
             
             //Disable all weapons. This makes it easier for us to only activate the one we need.
             foreach (WeaponBehaviour weapon in weapons)
+            {
                 weapon.gameObject.SetActive(false);
+                if(diContainer is not null)
+                    diContainer.InjectGameObject(weapon.gameObject);
+            }
 
             //Equip.
             Equip(equippedAtStart);

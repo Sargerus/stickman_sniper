@@ -9,6 +9,7 @@ using Vector3 = UnityEngine.Vector3;
 using Zenject;
 using DWTools;
 using Unity.VisualScripting;
+using Cysharp.Threading.Tasks;
 
 namespace InfimaGames.LowPolyShooterPack
 {
@@ -20,11 +21,13 @@ namespace InfimaGames.LowPolyShooterPack
     public sealed class Character : CharacterBehaviour
     {
         private IInputService _inputService;
+        private DiContainer _diContainer;
 
         [Inject]
-        private void Construct(IInputService inputService)
+        private void Construct(IInputService inputService, DiContainer diContainer)
         {
             _inputService = inputService;
+            _diContainer = diContainer;
         }
 
         public class Factory : PlaceholderFactory<Character> { }
@@ -314,7 +317,7 @@ namespace InfimaGames.LowPolyShooterPack
             movementBehaviour = GetComponent<MovementBehaviour>();
 
             //Initialize Inventory.
-            inventory.Init(weaponIndexEquippedAtStart);
+            inventory.Init(weaponIndexEquippedAtStart, _diContainer);
 
             //Refresh!
             RefreshWeaponSetup();
@@ -342,7 +345,7 @@ namespace InfimaGames.LowPolyShooterPack
         /// <summary>
         /// Update.
         /// </summary>
-        protected override void Update()
+        protected override async void Update()
         {
             OnMove(default);
             OnLook(default);
@@ -378,7 +381,7 @@ namespace InfimaGames.LowPolyShooterPack
                 {
                     //Has fire rate passed.
                     if (Time.time - lastShotTime > 60.0f / equippedWeapon.GetRateOfFire())
-                        Fire();
+                        await Fire();
                 }
                 else
                 {
@@ -613,7 +616,7 @@ namespace InfimaGames.LowPolyShooterPack
         /// <summary>
         /// Fires the character's weapon.
         /// </summary>
-        private void Fire()
+        private async UniTask Fire()
         {
             //Increase shots fired. We use this value to increase the spread, and also to apply recoil, so
             //it is very important that we keep it up to date.
@@ -622,7 +625,7 @@ namespace InfimaGames.LowPolyShooterPack
             //Save the shot time, so we can calculate the fire rate correctly.
             lastShotTime = Time.time;
             //Fire the weapon! Make sure that we also pass the scope's spread multiplier if we're aiming.
-            equippedWeapon.Fire(aiming ? equippedWeaponScope.GetMultiplierSpread() : 1.0f);
+            await equippedWeapon.Fire(aiming ? equippedWeaponScope.GetMultiplierSpread() : 1.0f);
 
             //Play firing animation.
             const string stateName = "Fire";

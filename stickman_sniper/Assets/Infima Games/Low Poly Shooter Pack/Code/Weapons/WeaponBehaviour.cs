@@ -1,5 +1,6 @@
 ﻿//Copyright 2022, Infima Games. All Rights Reserved.
 
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace InfimaGames.LowPolyShooterPack
@@ -173,7 +174,7 @@ namespace InfimaGames.LowPolyShooterPack
         /// Fires the weapon.
         /// </summary>
         /// <param name="spreadMultiplier">Value to multiply the weapon's spread by. Very helpful to account for aimed spread multipliers.</param>
-        public abstract void Fire(float spreadMultiplier = 1.0f);
+        public abstract UniTask Fire(float spreadMultiplier = 1.0f);
         /// <summary>
         /// Reloads the weapon.
         /// </summary>

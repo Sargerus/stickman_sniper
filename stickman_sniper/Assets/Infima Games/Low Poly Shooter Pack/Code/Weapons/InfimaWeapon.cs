@@ -1,5 +1,6 @@
 ﻿//Copyright 2022, Infima Games. All Rights Reserved.
 
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace InfimaGames.LowPolyShooterPack
@@ -415,7 +416,7 @@ namespace InfimaGames.LowPolyShooterPack
         /// <summary>
         /// Fire.
         /// </summary>
-        public override void Fire(float spreadMultiplier = 1.0f)
+        public override async UniTask Fire(float spreadMultiplier = 1.0f)
         {
             //We need a muzzle in order to fire this weapon!
             if (muzzleBehaviour == null)

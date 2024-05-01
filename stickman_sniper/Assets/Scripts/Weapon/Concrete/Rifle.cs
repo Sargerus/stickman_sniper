@@ -85,40 +85,40 @@ public class Rifle : BaseWeapon
         var layerMask = 1 << LayerMask.NameToLayer("Target");
         Ray ray = _fpsCamera.Camera.ViewportPointToRay(new(0.5f, 0.5f, 0));
 
-        if (Physics.Raycast(ray, out var hit, 100f, layerMask))
-        {
-            var enemy = hit.transform.GetComponentInParent<Enemy>();
-            if (enemy != null)
-            {
-                Vector3 direction = (hit.point - _fpsCamera.transform.position).normalized;
-                direction.y = 0.5f;
-
-                if (_levelProgressObserver.TotalEnemies - _levelProgressObserver.KilledEnemies.Value == 1)
-                {
-                    await _coreProducer.KillEnemyWeaponSlowmotion(enemy, hit.point,
-                        () =>
-                        {
-                            enemy.PrepareForDeath();
-                            hit.rigidbody.AddForce(direction * _model.PushForce, ForceMode.Impulse);
-                        });
-                }
-                else
-                {
-                    enemy.PrepareForDeath();
-                    hit.rigidbody.AddForce(direction * _model.PushForce, ForceMode.Impulse);
-                }
-
-                return;
-            }
-
-            var explosive = hit.transform.GetComponentInParent<IExplosive>();
-            if (explosive != null)
-            {
-                explosive.Explode();
-
-                return;
-            }
-        }
+       //if (Physics.Raycast(ray, out var hit, 100f, layerMask))
+       //{
+       //    var enemy = hit.transform.GetComponentInParent<Enemy>();
+       //    if (enemy != null)
+       //    {
+       //        Vector3 direction = (hit.point - _fpsCamera.transform.position).normalized;
+       //        direction.y = 0.5f;
+       //
+       //        if (_levelProgressObserver.TotalEnemies - _levelProgressObserver.KilledEnemies.Value == 1)
+       //        {
+       //            await _coreProducer.KillEnemyWeaponSlowmotion(enemy, hit.point,
+       //                () =>
+       //                {
+       //                    enemy.PrepareForDeath();
+       //                    hit.rigidbody.AddForce(direction * _model.PushForce, ForceMode.Impulse);
+       //                });
+       //        }
+       //        else
+       //        {
+       //            enemy.PrepareForDeath();
+       //            hit.rigidbody.AddForce(direction * _model.PushForce, ForceMode.Impulse);
+       //        }
+       //
+       //        return;
+       //    }
+       //
+       //    var explosive = hit.transform.GetComponentInParent<IExplosive>();
+       //    if (explosive != null)
+       //    {
+       //        explosive.Explode();
+       //
+       //        return;
+       //    }
+       //}
     }
 
     private void LockAim()

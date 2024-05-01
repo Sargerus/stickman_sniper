@@ -1,7 +1,9 @@
 using Cinemachine;
 using DWTools.Extensions;
+using DWTools.RPG;
 using DWTools.Slowmotion;
 using stickman_sniper.Producer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
@@ -11,6 +13,7 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
 {
     [SerializeField] private Material _deadMaterial;
     [SerializeField] private List<CinemachineVirtualCamera> _deadCams;
+    [SerializeField] private Character _character;
 
     private List<Rigidbody> _rb;
     private SlowmotionAnimator _animator;
@@ -28,6 +31,7 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
         _rb = GetComponentsInChildren<Rigidbody>().ToList();
         _animator = GetComponent<SlowmotionAnimator>();
         _smr = GetComponentInChildren<SkinnedMeshRenderer>();
+        _character.CalculateStats();
 
         foreach (var rb in _rb)
         {
@@ -72,6 +76,16 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
     public void SetProgress(float progress)
     {
         //
+    }
+
+    public void Damage(float damage)
+    {
+        _character.Damage(damage);
+    }
+
+    public bool TryGetStat(CharacterStat characterStat, out StatEntity stat)
+    {
+        return _character.TryGetStat(characterStat, out stat);
     }
 
     public void Clear()

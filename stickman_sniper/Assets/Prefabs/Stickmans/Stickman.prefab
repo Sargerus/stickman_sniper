@@ -111,6 +111,11 @@ MonoBehaviour:
   - {fileID: 1871544359863347650}
   - {fileID: 6941744606719809347}
   - {fileID: 8750237298671897050}
+  _character:
+    _baseStats:
+      Stats:
+      - Stat: 10
+        Value: 15
   <Duration>k__BackingField: 5000
 --- !u!114 &3401077630661297949
 MonoBehaviour:

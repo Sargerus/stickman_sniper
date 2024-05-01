@@ -1,8 +1,11 @@
 //Copyright 2022, Infima Games. All Rights Reserved.
 
+using Cysharp.Threading.Tasks;
+using stickman_sniper.Producer;
 using stickman_sniper.Weapon.Explosives;
 using System;
 using UnityEngine;
+using Zenject;
 
 namespace InfimaGames.LowPolyShooterPack
 {
@@ -12,8 +15,19 @@ namespace InfimaGames.LowPolyShooterPack
     public class InfimaAutomaticWeapon : InfimaWeapon
     {
         [SerializeField] private LayerMask layerMask;
+        [SerializeField] private GameObject _slowmotionBullet;
+        [SerializeField] private Transform _bulletStartPosition;
+        [SerializeField] private float damage;
 
-        public override void Fire(float spreadMultiplier = 1)
+        private ICoreProducer _coreProducer;
+
+        [Inject]
+        private void Construct(ICoreProducer coreProducer)
+        {
+            _coreProducer = coreProducer;
+        }
+
+        public override async UniTask Fire(float spreadMultiplier = 1)
         {
             //We need a muzzle in order to fire this weapon!
             if (muzzleBehaviour == null)
@@ -58,26 +72,48 @@ namespace InfimaGames.LowPolyShooterPack
                 if (Physics.RaycastNonAlloc(ray, result, 100f, layerMask) > 0)
                 {
                     var hit = result[0];
+
                     var enemy = hit.transform.GetComponentInParent<Enemy>();
                     if (enemy != null)
                     {
+                        enemy.Damage(damage);
+
+                        if (!enemy.TryGetStat(DWTools.RPG.CharacterStat.Health, out var stat))
+                        {
+                            return;
+                        }
+
+                        if (stat.Value > 0)
+                        {
+                            return;
+                        }
+
                         Vector3 direction = (hit.point - playerCamera.position).normalized;
                         direction.y = 0.5f;
 
                         //if (_levelProgressObserver.TotalEnemies - _levelProgressObserver.KilledEnemies.Value == 1)
                         //{
-                        //    await _coreProducer.KillEnemyWeaponSlowmotion(enemy, hit.point,
-                        //        () =>
-                        //        {
-                        //            enemy.PrepareForDeath();
-                        //            hit.rigidbody.AddForce(direction * _model.PushForce, ForceMode.Impulse);
-                        //        });
+
+                        if (enemy.IsAlive.Value)
+                            await _coreProducer.KillEnemyWeaponSlowmotion(
+                                enemy,
+                                _bulletStartPosition.position,
+                                hit.point,
+                                _slowmotionBullet,
+                                () =>
+                                {
+                                    enemy.PrepareForDeath();
+                                    hit.rigidbody.AddForce(direction * projectileImpulse, ForceMode.Impulse);
+                                });
+                        else
+                        {
+                            hit.rigidbody.AddForce(direction * projectileImpulse, ForceMode.Impulse);
+                        }
                         //}
                         //else
                         //{
-                        enemy.PrepareForDeath();
-                        hit.rigidbody.AddForce(direction * projectileImpulse, ForceMode.Impulse);
-                        //}
+                        //enemy.PrepareForDeath();
+                        //hit.rigidbody.AddForce(direction * projectileImpulse, ForceMode.Impulse);
 
                         return;
                     }

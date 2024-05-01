@@ -14686,6 +14686,12 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!4 &6731798298085117273 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8174372834435749287, guid: 9482e0a2ae6a92742bbe72e00f29f763,
+    type: 3}
+  m_PrefabInstance: {fileID: 3178716884444125438}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6731798298085478761 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8174372834435582359, guid: 9482e0a2ae6a92742bbe72e00f29f763,
@@ -14710,7 +14716,7 @@ MonoBehaviour:
   boltAction: 0
   shotCount: 1
   spread: {x: 0.04, y: 0.06}
-  projectileImpulse: 100
+  projectileImpulse: 500
   roundsPerMinutes: 610
   cycledReload: 0
   canReloadWhenFull: 1
@@ -14737,6 +14743,10 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 8
+  _slowmotionBullet: {fileID: 1332870974233114119, guid: edd715f8c23ccff44ae40057fe1f4fbc,
+    type: 3}
+  _bulletStartPosition: {fileID: 6731798298085117273}
+  damage: 2
 --- !u!1 &6736105883830863795 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8171331508296769357, guid: 9482e0a2ae6a92742bbe72e00f29f763,

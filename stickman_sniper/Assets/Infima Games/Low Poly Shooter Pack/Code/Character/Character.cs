@@ -21,12 +21,16 @@ namespace InfimaGames.LowPolyShooterPack
     public sealed class Character : CharacterBehaviour
     {
         private IInputService _inputService;
+        private IProgressBarAimDotProvider _progressBarAimDotProvider;
         private DiContainer _diContainer;
 
         [Inject]
-        private void Construct(IInputService inputService, DiContainer diContainer)
+        private void Construct(IInputService inputService, 
+            IProgressBarAimDotProvider progressBarAimDotProvider,
+            DiContainer diContainer)
         {
             _inputService = inputService;
+            _progressBarAimDotProvider = progressBarAimDotProvider;
             _diContainer = diContainer;
         }
 
@@ -412,6 +416,9 @@ namespace InfimaGames.LowPolyShooterPack
 
             //Save Aiming Value.
             wasAiming = aiming;
+
+            //for enemy hp bars
+            _progressBarAimDotProvider.Point = cameraWorld.transform.position;
         }
 
         #endregion

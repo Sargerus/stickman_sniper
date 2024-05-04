@@ -277,7 +277,7 @@ MonoBehaviour:
   _playerSpawns:
   - {fileID: 6336979422504647029}
   _enemyPrefabs:
-  - {fileID: 536434886355014346, guid: fb6310c48c49eb842b28c883f6c8cb2b, type: 3}
+  - {fileID: 6730840368580610037, guid: 459334c53c67f5346b6404462844d07b, type: 3}
 --- !u!1 &2454892289988608247
 GameObject:
   m_ObjectHideFlags: 0

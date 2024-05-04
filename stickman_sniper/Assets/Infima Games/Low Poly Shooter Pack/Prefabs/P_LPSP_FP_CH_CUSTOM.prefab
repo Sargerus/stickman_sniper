@@ -14716,7 +14716,7 @@ MonoBehaviour:
   boltAction: 0
   shotCount: 1
   spread: {x: 0.04, y: 0.06}
-  projectileImpulse: 500
+  projectileImpulse: 100
   roundsPerMinutes: 610
   cycledReload: 0
   canReloadWhenFull: 1

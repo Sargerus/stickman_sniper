@@ -2,6 +2,7 @@ using Cinemachine;
 using DWTools.Extensions;
 using DWTools.RPG;
 using DWTools.Slowmotion;
+using Sirenix.OdinInspector;
 using stickman_sniper.Producer;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ using UnityEngine;
 public class Enemy : SlowmotionRoot, ICinemachineDirector
 {
     [SerializeField] private Material _deadMaterial;
-    [SerializeField] private List<CinemachineVirtualCamera> _deadCams;
+    [BoxGroup("Cinemachine"), SerializeField] private List<CinemachineVirtualCamera> _deadCams;
+    [field: SerializeField, BoxGroup("Cinemachine")] public int Duration { get; private set; }
     [SerializeField] private Character _character;
 
     private List<Rigidbody> _rb;
@@ -21,8 +23,6 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
 
     private ReactiveProperty<bool> _isAlive = new(true);
     public IReadOnlyReactiveProperty<bool> IsAlive => _isAlive;
-
-    [field: SerializeField] public int Duration { get; private set; }
 
     private Dictionary<string, object> _cinemaData = new();
 
@@ -43,8 +43,8 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
 
     public void PrepareForDeath()
     {
-        _animator.enabled = false;
-        _animator.AllowToUpdate = false;
+       //_animator.enabled = false;
+       //_animator.AllowToUpdate = false;
 
         foreach (var rb in _rb)
         {

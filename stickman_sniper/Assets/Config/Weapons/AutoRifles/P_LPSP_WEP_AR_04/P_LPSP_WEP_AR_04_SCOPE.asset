@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e7a4d0f549565f4086dc421a1d8414e, type: 3}
+  m_Name: P_LPSP_WEP_AR_04_SCOPE
+  m_EditorClassIdentifier: 
+  <CustomizableKey>k__BackingField: 
+  _customizeItems:
+  - PointKey: scope
+    CustomizationAction: {fileID: 11400000, guid: 0c2cd6f6825b7f044826cf24966a41ec,
+      type: 2}
+    AssetsGUID:
+    - m_AssetGUID: 608b505d9e0fca141a46b8ac70f96ddc
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    - m_AssetGUID: a2962c3563c7ee246be224e9304464bd
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    - m_AssetGUID: f3d402d9c5423004a8e08fb187c46276
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    - m_AssetGUID: 29f69acff7685bc43a0c3a86db1dbe85
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    - m_AssetGUID: 2cadd769aff535a4fb4d7bf045dc579d
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    - m_AssetGUID: bdf11905568039047a943adbe62f5e53
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    - m_AssetGUID: 95e9b96c3ea7be948b7b8c162831d0ee
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    - m_AssetGUID: ec5fdd40e62797947a90a79df17d15f5
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0

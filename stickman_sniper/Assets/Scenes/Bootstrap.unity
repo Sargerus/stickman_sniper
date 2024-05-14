@@ -1899,6 +1899,32 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1322644336832625935, guid: 779bd7ac687ebae4a9eeb5c06b6eaecc,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322644336832625935, guid: 779bd7ac687ebae4a9eeb5c06b6eaecc,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322644336832625935, guid: 779bd7ac687ebae4a9eeb5c06b6eaecc,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322644336832625935, guid: 779bd7ac687ebae4a9eeb5c06b6eaecc,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939163849971251563, guid: 779bd7ac687ebae4a9eeb5c06b6eaecc,
+        type: 3}
+      propertyPath: _availableWindows.Array.data[0].Prefab
+      value: 
+      objectReference: {fileID: 4748115858861787501, guid: adf14ffd524c3fa47b21354c7cd597bb,
+        type: 3}
     - target: {fileID: 2492882139355972962, guid: 779bd7ac687ebae4a9eeb5c06b6eaecc,
         type: 3}
       propertyPath: m_Pivot.x

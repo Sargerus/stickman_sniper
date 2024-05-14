@@ -8,7 +8,7 @@ namespace DWTools.Customization
 {
     public class ChangeMainTextureCustomizationLogic : ICustomizationAction
     {
-        public async UniTask Action(CustomizableEntityItem item, List<string> assetsGUID)
+        public async UniTask Action(CustomizableEntityItem item, List<AssetReference> assetsGUID)
         {
             AsyncOperationHandle<Texture2D> handler = default;
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace DWTools.Customization
 {
@@ -18,7 +19,7 @@ namespace DWTools.Customization
     {
         public string PointKey;
         public BaseCustomizationActionSO CustomizationAction;
-        public List<string> AssetsGUID;
+        public List<AssetReference> AssetsGUID;
     }
 
     [Serializable]

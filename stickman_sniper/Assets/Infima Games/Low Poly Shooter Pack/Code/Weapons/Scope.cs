@@ -62,6 +62,10 @@ namespace InfimaGames.LowPolyShooterPack
         [Tooltip("Material to block the scope while not aiming through it.")]
         [SerializeField]
         private Material materialHidden;
+
+        [Tooltip("Item key(inventory etc.)")]
+        [SerializeField]
+        private string Key;
         
         #endregion
 

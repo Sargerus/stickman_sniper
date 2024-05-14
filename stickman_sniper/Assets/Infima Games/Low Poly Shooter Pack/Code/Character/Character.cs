@@ -25,7 +25,7 @@ namespace InfimaGames.LowPolyShooterPack
         private DiContainer _diContainer;
 
         [Inject]
-        private void Construct(IInputService inputService, 
+        private void Construct(IInputService inputService,
             IProgressBarAimDotProvider progressBarAimDotProvider,
             DiContainer diContainer)
         {
@@ -355,7 +355,7 @@ namespace InfimaGames.LowPolyShooterPack
             OnLook(default);
             OnTryAiming(default);
             OnTryRun(default);
-            OnTryFire(default);
+
             OnTryPlayReload(default);
             OnTryJump(default);
 
@@ -377,23 +377,7 @@ namespace InfimaGames.LowPolyShooterPack
                     break;
             }
 
-            //Holding the firing button.
-            if (holdingButtonFire)
-            {
-                //Check.
-                if (CanPlayAnimationFire() && equippedWeapon.HasAmmunition() && equippedWeapon.IsAutomatic())
-                {
-                    //Has fire rate passed.
-                    if (Time.time - lastShotTime > 60.0f / equippedWeapon.GetRateOfFire())
-                        await Fire();
-                }
-                else
-                {
-                    //Reset fired shots, so recoil/spread does not just stay at max when we've run out
-                    //of ammo already!
-                    shotsFired = 0;
-                }
-            }
+            await OnTryFire(default);
 
             //Update Animator.
             UpdateAnimator();
@@ -555,7 +539,8 @@ namespace InfimaGames.LowPolyShooterPack
             if (characterAnimator.GetBool(boolNameReloading))
             {
                 //If we only have one more bullet to reload, then we can change the boolean already.
-                if (equippedWeapon.GetAmmunitionTotal() - equippedWeapon.GetAmmunitionCurrent() < 1)
+                if (equippedWeapon.GetAmmunitionTotal() - equippedWeapon.GetAmmunitionCurrent() < 1
+                    || (equippedWeapon.HasCycledReload() && (_inputService.IsShooting || _inputService.IsAiming)))
                 {
                     //Update the character animator.
                     characterAnimator.SetBool(boolNameReloading, false);
@@ -1053,7 +1038,7 @@ namespace InfimaGames.LowPolyShooterPack
         /// <summary>
         /// Fire.
         /// </summary>
-        public void OnTryFire(InputAction.CallbackContext context)
+        public async UniTask OnTryFire(InputAction.CallbackContext context)
         {
             //Block while the cursor is unlocked.
             if (!cursorLocked)
@@ -1066,19 +1051,37 @@ namespace InfimaGames.LowPolyShooterPack
                 shotsFired = 0;
             }
 
-            if (_inputService.IsShooting && !CanPlayAnimationFire())
+            //Holding the firing button.
+            if (holdingButtonFire)
             {
-                if (equippedWeapon.HasAmmunition())
+                //Check.
+                if (CanPlayAnimationFire() && equippedWeapon.HasAmmunition())// && equippedWeapon.IsAutomatic())
                 {
-                    if (equippedWeapon.IsAutomatic())
-                    {
-                        shotsFired = 0;
-                    }
-                    else if (Time.time - lastShotTime > 60.0f / equippedWeapon.GetRateOfFire())
-                        Fire();
+                    //Has fire rate passed.
+                    if (Time.time - lastShotTime > 60.0f / equippedWeapon.GetRateOfFire())
+                        await Fire();
                 }
-                else FireEmpty();
+                else
+                {
+                    //Reset fired shots, so recoil/spread does not just stay at max when we've run out
+                    //of ammo already!
+                    shotsFired = 0;
+                }
             }
+
+            //if (_inputService.IsShooting && !CanPlayAnimationFire())
+            //{
+            //    if (equippedWeapon.HasAmmunition())
+            //    {
+            //        if (equippedWeapon.IsAutomatic())
+            //        {
+            //            shotsFired = 0;
+            //        }
+            //        else if (Time.time - lastShotTime > 60.0f / equippedWeapon.GetRateOfFire())
+            //            Fire();
+            //    }
+            //    else FireEmpty();
+            //}
 
             //not shooting
             if (!_inputService.IsShooting)

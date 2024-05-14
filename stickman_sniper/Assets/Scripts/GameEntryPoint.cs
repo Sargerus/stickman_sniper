@@ -33,7 +33,8 @@ public class GameEntryPoint : MonoBehaviour
         _completedLevels.SetText($" {YandexGame.savesData.levelsPassed + 1}/47");
 
         _sceneContext.Run();
-        OpenCustomizeWindow().Forget();
+
+        //OpenCustomizeWindow().Forget();
     }
 
     private async UniTaskVoid OpenCustomizeWindow()

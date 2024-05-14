@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace DWTools.Customization
 {
@@ -10,7 +11,7 @@ namespace DWTools.Customization
     {
         private ChangeMainTextureCustomizationLogic _cache;
 
-        public override async UniTask DoAction(CustomizableEntityItem item, List<string> assetsGUID)
+        public override async UniTask DoAction(CustomizableEntityItem item, List<AssetReference> assetsGUID)
         {
             _cache ??= new();
 

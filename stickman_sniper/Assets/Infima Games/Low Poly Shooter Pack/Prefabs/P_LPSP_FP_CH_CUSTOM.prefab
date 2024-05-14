@@ -3611,7 +3611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lowerWeapon: {fileID: 5327211246073312028}
-  weaponIndexEquippedAtStart: 0
+  weaponIndexEquippedAtStart: 15
   inventory: {fileID: 1040798971861817077}
   grenadesUnlimited: 0
   grenadeTotal: 10
@@ -5092,7 +5092,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9155126996065919032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7604,6 +7604,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 1924472260361746235, guid: 9482e0a2ae6a92742bbe72e00f29f763,
+        type: 3}
+      propertyPath: scopeIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924472260361746235, guid: 9482e0a2ae6a92742bbe72e00f29f763,
+        type: 3}
+      propertyPath: scopeIndexRandom
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1951769868315097705, guid: 9482e0a2ae6a92742bbe72e00f29f763,
         type: 3}
       propertyPath: m_Layer
@@ -7988,6 +7998,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480563158121336329, guid: 9482e0a2ae6a92742bbe72e00f29f763,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2485127304103897978, guid: 9482e0a2ae6a92742bbe72e00f29f763,
         type: 3}
@@ -12477,6 +12492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6306305043144894503, guid: 9482e0a2ae6a92742bbe72e00f29f763, type: 3}
+    - {fileID: 2113768312870607030, guid: 9482e0a2ae6a92742bbe72e00f29f763, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9482e0a2ae6a92742bbe72e00f29f763, type: 3}
 --- !u!1 &134551118922494310 stripped
 GameObject:
@@ -12808,6 +12824,74 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1 &1250357009736341818 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4415563077489328580, guid: 9482e0a2ae6a92742bbe72e00f29f763,
+    type: 3}
+  m_PrefabInstance: {fileID: 3178716884444125438}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4077041213173954740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250357009736341818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4571c44de7b6041bdeec182d9a1a29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: Sniper 01
+  multiplierMovementSpeed: 1
+  automatic: 0
+  boltAction: 1
+  shotCount: 1
+  spread: {x: 0, y: 0}
+  projectileImpulse: 400
+  roundsPerMinutes: 125
+  cycledReload: 1
+  canReloadWhenFull: 0
+  automaticReloadOnEmpty: 1
+  automaticReloadOnEmptyDelay: 0.25
+  socketEjection: {fileID: 1250357009736697106}
+  canReloadAimed: 0
+  prefabCasing: {fileID: 1492315059354262, guid: c638dfae3f3edf843b2614dae230a771,
+    type: 3}
+  prefabProjectile: {fileID: 1086664671600574, guid: 5953171a59c27394e9ad5cbb564affa8,
+    type: 3}
+  controller: {fileID: 22100000, guid: 0ef5ab816395d5c408eae1d1195c410c, type: 2}
+  spriteBody: {fileID: 21300000, guid: 14fbfa1e6f824a6438189267b87f44b8, type: 3}
+  audioClipHolster: {fileID: 8300000, guid: 8c4ede782a70c6e4b9e515d40d6e6e69, type: 3}
+  audioClipUnholster: {fileID: 8300000, guid: 4aaa78b2722c0344cb0363a3980adf64, type: 3}
+  audioClipReload: {fileID: 0}
+  audioClipReloadEmpty: {fileID: 0}
+  audioClipReloadOpen: {fileID: 8300000, guid: 9437d90133cd4ff41b81629b342d38c9, type: 3}
+  audioClipReloadInsert: {fileID: 8300000, guid: e3eb6cfb7093ac147bcb384e2a4fc0db,
+    type: 3}
+  audioClipReloadClose: {fileID: 8300000, guid: 728f3240a486d8646ad6c8cb1a9cd878,
+    type: 3}
+  audioClipFireEmpty: {fileID: 8300000, guid: 0c187ee2790c74c4e9985aa1ee1a12d5, type: 3}
+  audioClipBoltAction: {fileID: 8300000, guid: 9437d90133cd4ff41b81629b342d38c9, type: 3}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  _slowmotionBullet: {fileID: 1332870974233114119, guid: edd715f8c23ccff44ae40057fe1f4fbc,
+    type: 3}
+  _bulletStartPosition: {fileID: 1250357009736697098}
+  damage: 15
+--- !u!4 &1250357009736697098 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4415563077489171956, guid: 9482e0a2ae6a92742bbe72e00f29f763,
+    type: 3}
+  m_PrefabInstance: {fileID: 3178716884444125438}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1250357009736697106 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4415563077489171948, guid: 9482e0a2ae6a92742bbe72e00f29f763,
+    type: 3}
+  m_PrefabInstance: {fileID: 3178716884444125438}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1280949298138630680 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4457379129045734118, guid: 9482e0a2ae6a92742bbe72e00f29f763,

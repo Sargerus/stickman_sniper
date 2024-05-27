@@ -299,38 +299,21 @@ namespace InfimaGames.LowPolyShooterPack
         /// </summary>
         private int shotsFired;
 
+        private bool _isInitialized;
         #endregion
 
         #region UNITY
 
-        /// <summary>
-        /// Awake.
-        /// </summary>
-        protected override void Awake()
+        public override async UniTask Initialize()
         {
-            #region Lock Cursor
-
             //Always make sure that our cursor is locked when the game starts!
             cursorLocked = true;
             //Update the cursor's state.
             UpdateCursorState();
 
-            #endregion
-
             //Cache the movement behaviour.
             movementBehaviour = GetComponent<MovementBehaviour>();
 
-            //Initialize Inventory.
-            inventory.Init(weaponIndexEquippedAtStart, _diContainer);
-
-            //Refresh!
-            RefreshWeaponSetup();
-        }
-        /// <summary>
-        /// Start.
-        /// </summary>
-        protected override void Start()
-        {
             //Max out the grenades.
             grenadeCount = grenadeTotal;
 
@@ -344,6 +327,18 @@ namespace InfimaGames.LowPolyShooterPack
             layerActions = characterAnimator.GetLayerIndex("Layer Actions");
             //Cache a reference to the overlay layer's index.
             layerOverlay = characterAnimator.GetLayerIndex("Layer Overlay");
+
+            await InitializeInventory();
+
+            _isInitialized = true;
+        }
+
+        private async UniTask InitializeInventory()
+        {
+            //Initialize Inventory.
+            await inventory.Init(weaponIndexEquippedAtStart, _diContainer);
+            //Refresh!
+            RefreshWeaponSetup();
         }
 
         /// <summary>
@@ -351,6 +346,9 @@ namespace InfimaGames.LowPolyShooterPack
         /// </summary>
         protected override async void Update()
         {
+            if (!_isInitialized)
+                return;
+
             OnMove(default);
             OnLook(default);
             OnTryAiming(default);

@@ -20,7 +20,7 @@ public class Level : MonoBehaviour
     //[Inject] private ILevelProgressObserver _levelProgressObserver;
     [Inject] private DiContainer _container;
 
-    public void Start()
+    public async void Start()
     {
         int max = Math.Min(_enemiesSpawns.Count, _enemyCountMax);
         int enemiesCount = UnityEngine.Random.Range(_enemyCountMin, max);
@@ -39,7 +39,7 @@ public class Level : MonoBehaviour
         _player = _characterFactory.Create();
         _player.transform.position = playerPlace.position;
         _player.transform.rotation = playerPlace.rotation;
-
+        await _player.Initialize();
         //_levelProgressObserver.Observe(_enemies);
     }
 }

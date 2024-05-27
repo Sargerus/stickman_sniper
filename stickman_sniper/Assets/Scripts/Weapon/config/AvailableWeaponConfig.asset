@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: AvailableWeaponConfig
   m_EditorClassIdentifier: 
   AvailableWeapons:
-  - Assault Rifle 01
+  - Sniper 01

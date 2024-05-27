@@ -1,5 +1,6 @@
 ﻿//Copyright 2022, Infima Games. All Rights Reserved.
 
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -42,7 +43,7 @@ namespace InfimaGames.LowPolyShooterPack
         /// PlayerCharacter component to run this with the index it wants to equip!
         /// </summary>
         /// <param name="equippedAtStart">Inventory index of the weapon we want to equip when the game starts.</param>
-        public abstract void Init(int equippedAtStart = 0, DiContainer diContainer = null);
+        public abstract UniTask Init(int equippedAtStart = 0, DiContainer diContainer = null);
         
         /// <summary>
         /// Equips a Weapon.

@@ -61,7 +61,10 @@ namespace InfimaGames.LowPolyShooterPack
         /// Returns the equipped grip.
         /// </summary>
         public abstract GripBehaviour GetEquippedGrip();
-        
+
         #endregion
+
+        public virtual void Initialize() { }
+        public virtual void SetIndexes(CustomizationIndexes indexes) { }
     }
 }

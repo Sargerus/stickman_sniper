@@ -20,6 +20,8 @@ public class BootstrapInstaller : MonoInstaller
         Container.Bind<CursorLocker>().AsSingle().WithArguments(YandexGame.Device).NonLazy();
         Container.Bind<IAudioManager>().FromInstance(_audioManager).AsSingle();
 
+        Container.BindInterfacesTo<GameStartWeaponInventoryService>().AsSingle().WithArguments<string, string>("Sniper 01", null);
+
         InstallFeatures();
         InstallAnalytics();
 

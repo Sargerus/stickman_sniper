@@ -1,5 +1,6 @@
 ﻿//Copyright 2022, Infima Games. All Rights Reserved.
 
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace InfimaGames.LowPolyShooterPack
@@ -136,7 +137,9 @@ namespace InfimaGames.LowPolyShooterPack
         /// </summary>
         /// <returns></returns>
         public abstract bool IsHoldingButtonFire();
-        
+
+        public abstract UniTask Initialize();
+
         #endregion
 
         #region ANIMATION

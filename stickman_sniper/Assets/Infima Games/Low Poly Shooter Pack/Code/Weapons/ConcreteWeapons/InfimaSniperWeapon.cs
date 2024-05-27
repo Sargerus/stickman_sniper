@@ -11,8 +11,8 @@ using Zenject;
 public class InfimaSniperWeapon : InfimaWeapon
 {
     [SerializeField] private LayerMask layerMask;
-    [SerializeField] private GameObject _slowmotionBullet;
-    [SerializeField] private Transform _bulletStartPosition;
+    [SerializeField] private GameObject slowmotionBullet;
+    [SerializeField] private Transform bulletStartPosition;
     [SerializeField] private float damage;
 
     private ICoreProducer _coreProducer;
@@ -21,6 +21,15 @@ public class InfimaSniperWeapon : InfimaWeapon
     private void Construct(ICoreProducer coreProducer)
     {
         _coreProducer = coreProducer;
+    }
+
+    public override void SetCustomization(WeaponCharacteristicsScriptable wcs)
+    {
+        base.SetCustomization(wcs);
+
+        layerMask = wcs.layerMask;
+        slowmotionBullet = wcs.slowmotionBullet;
+        damage = wcs.damage;
     }
 
     public override async UniTask Fire(float spreadMultiplier = 1)
@@ -93,9 +102,9 @@ public class InfimaSniperWeapon : InfimaWeapon
                     if (enemy.IsAlive.Value)
                         await _coreProducer.KillEnemyWeaponSlowmotion(
                             enemy,
-                            _bulletStartPosition.position,
+                            bulletStartPosition.position,
                             hit.point,
-                            _slowmotionBullet,
+                            slowmotionBullet,
                             () =>
                             {
                                 enemy.PrepareForDeath();

@@ -34,7 +34,7 @@ public class GameEntryPoint : MonoBehaviour
 
         _sceneContext.Run();
 
-        OpenCustomizeWindow().Forget();
+        //OpenCustomizeWindow().Forget();
     }
 
     private async UniTaskVoid OpenCustomizeWindow()

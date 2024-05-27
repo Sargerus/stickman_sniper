@@ -22,5 +22,7 @@ public class WeaponConfig
 {
     public string Name;
     public AssetReference Prefab;
-    public List<CustomizeItem> CustomizationData;
+    public WeaponCharacteristicsScriptable DefaultCustomizationData;
+    public WeaponCharacteristicsScriptable CurrentCustomizationData;
+    //public List<CustomizeItem> CustomizationData;
 }

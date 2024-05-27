@@ -481,10 +481,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5836565387966040056}
   - component: {fileID: 5836565387975108638}
-  - component: {fileID: 8137163820050006698}
   - component: {fileID: 8578661464601570599}
   - component: {fileID: 3803130821125631615}
   - component: {fileID: -5523819610558693646}
+  - component: {fileID: -3332447406111949124}
   m_Layer: 0
   m_Name: P_LPSP_WEP_Sniper_01
   m_TagString: Untagged
@@ -529,49 +529,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &8137163820050006698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5836565387965750232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7170d51de97d79e4fb11d3321667acb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponName: Sniper 01
-  multiplierMovementSpeed: 1
-  automatic: 0
-  boltAction: 1
-  shotCount: 1
-  spread: {x: 0, y: 0}
-  projectileImpulse: 400
-  roundsPerMinutes: 125
-  cycledReload: 1
-  canReloadWhenFull: 1
-  automaticReloadOnEmpty: 0
-  automaticReloadOnEmptyDelay: 0.25
-  socketEjection: {fileID: 868494328774025956}
-  canReloadAimed: 0
-  prefabCasing: {fileID: 1492315059354262, guid: c638dfae3f3edf843b2614dae230a771,
-    type: 3}
-  prefabProjectile: {fileID: 1086664671600574, guid: 5953171a59c27394e9ad5cbb564affa8,
-    type: 3}
-  controller: {fileID: 22100000, guid: 0ef5ab816395d5c408eae1d1195c410c, type: 2}
-  spriteBody: {fileID: 21300000, guid: 14fbfa1e6f824a6438189267b87f44b8, type: 3}
-  audioClipHolster: {fileID: 8300000, guid: 8c4ede782a70c6e4b9e515d40d6e6e69, type: 3}
-  audioClipUnholster: {fileID: 8300000, guid: 4aaa78b2722c0344cb0363a3980adf64, type: 3}
-  audioClipReload: {fileID: 0}
-  audioClipReloadEmpty: {fileID: 0}
-  audioClipReloadOpen: {fileID: 8300000, guid: 9437d90133cd4ff41b81629b342d38c9, type: 3}
-  audioClipReloadInsert: {fileID: 8300000, guid: e3eb6cfb7093ac147bcb384e2a4fc0db,
-    type: 3}
-  audioClipReloadClose: {fileID: 8300000, guid: 728f3240a486d8646ad6c8cb1a9cd878,
-    type: 3}
-  audioClipFireEmpty: {fileID: 8300000, guid: 0c187ee2790c74c4e9985aa1ee1a12d5, type: 3}
-  audioClipBoltAction: {fileID: 8300000, guid: 9437d90133cd4ff41b81629b342d38c9, type: 3}
 --- !u!114 &8578661464601570599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -605,12 +562,12 @@ MonoBehaviour:
   - {fileID: 5612039869369298553}
   - {fileID: 1890915095654418357}
   - {fileID: 2765314408033047548}
-  laserIndex: 1
+  laserIndex: -1
   laserIndexRandom: 0
   laserArray:
   - {fileID: 5429510121837831147}
   - {fileID: 7866281710349134793}
-  gripIndex: 1
+  gripIndex: -1
   gripIndexRandom: 0
   gripArray:
   - {fileID: 877957729795129230}
@@ -649,6 +606,51 @@ MonoBehaviour:
   leaningData: {fileID: 11400000, guid: 834b78a9d42ef8540b6b55fe2e0b8252, type: 2}
   cameraRecoilData: {fileID: 11400000, guid: 521db61b565c4104ea2dd050978ee1b3, type: 2}
   weaponRecoilData: {fileID: 11400000, guid: a601749a2dfb56d4cbfb464384fe6778, type: 2}
+--- !u!114 &-3332447406111949124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5836565387965750232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4571c44de7b6041bdeec182d9a1a29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: Sniper 01
+  multiplierMovementSpeed: 1
+  automatic: 0
+  boltAction: 0
+  shotCount: 1
+  spread: {x: 0, y: 0}
+  projectileImpulse: 400
+  roundsPerMinutes: 200
+  cycledReload: 0
+  canReloadWhenFull: 1
+  automaticReloadOnEmpty: 0
+  automaticReloadOnEmptyDelay: 0.25
+  socketEjection: {fileID: 0}
+  canReloadAimed: 1
+  prefabCasing: {fileID: 0}
+  prefabProjectile: {fileID: 0}
+  controller: {fileID: 0}
+  spriteBody: {fileID: 0}
+  audioClipHolster: {fileID: 0}
+  audioClipUnholster: {fileID: 0}
+  audioClipReload: {fileID: 0}
+  audioClipReloadEmpty: {fileID: 0}
+  audioClipReloadOpen: {fileID: 0}
+  audioClipReloadInsert: {fileID: 0}
+  audioClipReloadClose: {fileID: 0}
+  audioClipFireEmpty: {fileID: 0}
+  audioClipBoltAction: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  slowmotionBullet: {fileID: 0}
+  bulletStartPosition: {fileID: 3798321690618626611}
+  damage: 0
 --- !u!1 &5836565387965750234
 GameObject:
   m_ObjectHideFlags: 0

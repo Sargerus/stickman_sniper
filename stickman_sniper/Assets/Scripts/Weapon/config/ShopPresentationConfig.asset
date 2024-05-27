@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ShopPresentationConfig
   m_EditorClassIdentifier: 
   ShopPresentationItems:
-  - TagName: auto_rifles
+  - TagName: sniper
     TabName: Sniper Rifles
   ShopProductVisual:
-  - ProductKey: Assault Rifle 01
+  - ProductKey: Sniper 01
     ProductName: Sniper Rifle MX-01
     ProductImage:
       m_AssetGUID: 

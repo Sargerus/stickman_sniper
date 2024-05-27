@@ -1,6 +1,9 @@
 ﻿//Copyright 2022, Infima Games. All Rights Reserved.
 
 using Zenject;
+using System.Linq;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace InfimaGames.LowPolyShooterPack
 {
@@ -26,8 +29,20 @@ namespace InfimaGames.LowPolyShooterPack
         
         #region METHODS
         
-        public override void Init(int equippedAtStart = 0, DiContainer diContainer = null)
+        public override async UniTask Init(int equippedAtStart = 0, DiContainer diContainer = null)
         {
+            var weaponAtStart = diContainer.Resolve<IGameStartWeaponInventoryService>();
+            var allWeaponsConfig = diContainer.Resolve<GameWeaponConfig>();
+
+            var mainWeaponConfig = allWeaponsConfig.WeaponsConfig.SelectMany(g => g.Weapons).FirstOrDefault(h => h.Name.Equals(weaponAtStart.MainWeapon));
+            if(mainWeaponConfig != null) 
+            {
+                var result = await mainWeaponConfig.Prefab.InstantiateAsync(transform);
+                var infimaWeapon = result.GetComponent<InfimaWeapon>();
+                infimaWeapon.SetCustomization(mainWeaponConfig.CurrentCustomizationData);
+                infimaWeapon.Initialize();
+            }            
+
             //Cache all weapons. Beware that weapons need to be parented to the object this component is on!
             weapons = GetComponentsInChildren<WeaponBehaviour>(true);
             
@@ -39,8 +54,9 @@ namespace InfimaGames.LowPolyShooterPack
                     diContainer.InjectGameObject(weapon.gameObject);
             }
 
+            int equipIndex = Mathf.Clamp(equippedAtStart, 0, weapons.Length - 1);
             //Equip.
-            Equip(equippedAtStart);
+            Equip(equipIndex);
         }
 
         public override WeaponBehaviour Equip(int index)

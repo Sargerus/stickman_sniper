@@ -11,23 +11,23 @@ namespace InfimaGames.LowPolyShooterPack
     public class InfimaWeapon : WeaponBehaviour
     {
         #region FIELDS SERIALIZED
-        
+
         [Title(label: "Settings")]
-        
+
         [Tooltip("Weapon Name. Currently not used for anything, but in the future, we will use this for pickups!")]
-        [SerializeField] 
+        [SerializeField]
         protected string weaponName;
 
         [Tooltip("How much the character's movement speed is multiplied by when wielding this weapon.")]
         [SerializeField]
         protected float multiplierMovementSpeed = 1.0f;
-        
+
         [Title(label: "Firing")]
 
         [Tooltip("Is this weapon automatic? If yes, then holding down the firing button will continuously fire.")]
         [SerializeField]
         protected bool automatic;
-        
+
         [Tooltip("Is this weapon bolt-action? If yes, then a bolt-action animation will play after every shot.")]
         [SerializeField]
         protected bool boltAction;
@@ -35,11 +35,11 @@ namespace InfimaGames.LowPolyShooterPack
         [Tooltip("Amount of shots fired at once. Helpful for things like shotguns, where there are multiple projectiles fired at once.")]
         [SerializeField]
         protected int shotCount = 1;
-        
+
         [Tooltip("How far the weapon can fire from the center of the screen.")]
         [SerializeField]
         protected Vector2 spread;
-        
+
         [Tooltip("How fast the projectiles are.")]
         [SerializeField]
         protected float projectileImpulse = 400.0f;
@@ -49,11 +49,11 @@ namespace InfimaGames.LowPolyShooterPack
         protected int roundsPerMinutes = 200;
 
         [Title(label: "Reloading")]
-        
+
         [Tooltip("Determines if this weapon reloads in cycles, meaning that it inserts one bullet at a time, or not.")]
         [SerializeField]
         protected bool cycledReload;
-        
+
         [Tooltip("Determines if the player can reload this weapon when it is full of ammunition.")]
         [SerializeField]
         protected bool canReloadWhenFull = true;
@@ -81,11 +81,11 @@ namespace InfimaGames.LowPolyShooterPack
         [Tooltip("Casing Prefab.")]
         [SerializeField]
         protected GameObject prefabCasing;
-        
+
         [Tooltip("Projectile Prefab. This is the prefab spawned when the weapon shoots.")]
         [SerializeField]
         protected GameObject prefabProjectile;
-        
+
         [Tooltip("The AnimatorController a player character needs to use while wielding this weapon.")]
         [SerializeField]
         protected RuntimeAnimatorController controller;
@@ -93,7 +93,7 @@ namespace InfimaGames.LowPolyShooterPack
         [Tooltip("Weapon Body Texture.")]
         [SerializeField]
         protected Sprite spriteBody;
-        
+
         [Title(label: "Audio Clips Holster")]
 
         [Tooltip("Holster Audio Clip.")]
@@ -103,37 +103,37 @@ namespace InfimaGames.LowPolyShooterPack
         [Tooltip("Unholster Audio Clip.")]
         [SerializeField]
         protected AudioClip audioClipUnholster;
-        
+
         [Title(label: "Audio Clips Reloads")]
 
         [Tooltip("Reload Audio Clip.")]
         [SerializeField]
         protected AudioClip audioClipReload;
-        
+
         [Tooltip("Reload Empty Audio Clip.")]
         [SerializeField]
         protected AudioClip audioClipReloadEmpty;
-        
+
         [Title(label: "Audio Clips Reloads Cycled")]
-        
+
         [Tooltip("Reload Open Audio Clip.")]
         [SerializeField]
         protected AudioClip audioClipReloadOpen;
-        
+
         [Tooltip("Reload Insert Audio Clip.")]
         [SerializeField]
         protected AudioClip audioClipReloadInsert;
-        
+
         [Tooltip("Reload Close Audio Clip.")]
         [SerializeField]
         protected AudioClip audioClipReloadClose;
-        
+
         [Title(label: "Audio Clips Other")]
 
         [Tooltip("AudioClip played when this weapon is fired without any ammunition.")]
         [SerializeField]
         protected AudioClip audioClipFireEmpty;
-        
+
         [Tooltip("")]
         [SerializeField]
         protected AudioClip audioClipBoltAction;
@@ -196,11 +196,11 @@ namespace InfimaGames.LowPolyShooterPack
         /// The player character's camera.
         /// </summary>
         protected Transform playerCamera;
-        
+
         #endregion
 
         #region UNITY
-        
+
         protected override void Awake()
         {
             //Get Animator.
@@ -215,30 +215,60 @@ namespace InfimaGames.LowPolyShooterPack
             //Cache the world camera. We use this in line traces.
             playerCamera = characterBehaviour.GetCameraWorld().transform;
         }
-        protected override void Start()
-        {
-            #region Cache Attachment References
 
+        #endregion
+
+        public void Initialize()
+        {
             //Get Scope.
             scopeBehaviour = attachmentManager.GetEquippedScope();
-            
             //Get Magazine.
             magazineBehaviour = attachmentManager.GetEquippedMagazine();
             //Get Muzzle.
             muzzleBehaviour = attachmentManager.GetEquippedMuzzle();
-
             //Get Laser.
             laserBehaviour = attachmentManager.GetEquippedLaser();
             //Get Grip.
             gripBehaviour = attachmentManager.GetEquippedGrip();
-
-            #endregion
-
             //Max Out Ammo.
             ammunitionCurrent = magazineBehaviour.GetAmmunitionTotal();
         }
 
-        #endregion
+#if UNITY_EDITOR
+
+        [Sirenix.OdinInspector.Button]
+        private void FullfillScriptable(WeaponCharacteristicsScriptable wcs)
+        {
+            wcs.weaponName = weaponName;
+            wcs.multiplierMovementSpeed = multiplierMovementSpeed;
+            wcs.automatic = automatic;
+            wcs.boltAction = boltAction;
+            wcs.shotCount = shotCount;
+            wcs.spread = spread;
+            wcs.projectileImpulse = projectileImpulse;
+            wcs.roundsPerMinutes = roundsPerMinutes;
+            wcs.cycledReload = cycledReload;
+            wcs.canReloadWhenFull = canReloadWhenFull;
+            wcs.automaticReloadOnEmpty = automaticReloadOnEmpty;
+            wcs.automaticReloadOnEmptyDelay = automaticReloadOnEmptyDelay;
+            wcs.socketEjection = socketEjection;
+            wcs.canReloadAimed = canReloadAimed;
+            wcs.prefabCasing = prefabCasing;
+            wcs.prefabProjectile = prefabProjectile;
+            wcs.controller = controller;
+            wcs.spriteBody = spriteBody;
+            wcs.audioClipHolster = audioClipHolster;
+            wcs.audioClipUnholster = audioClipUnholster;
+            wcs.audioClipReload = audioClipReload;
+            wcs.audioClipReloadEmpty = audioClipReloadEmpty;
+            wcs.audioClipReloadOpen = audioClipReloadOpen;
+            wcs.audioClipReloadInsert = audioClipReloadInsert;
+            wcs.audioClipReloadClose = audioClipReloadClose;
+            wcs.audioClipFireEmpty = audioClipFireEmpty;
+            wcs.audioClipBoltAction = audioClipBoltAction;
+        }
+
+#endif
 
         #region GETTERS
 
@@ -248,12 +278,12 @@ namespace InfimaGames.LowPolyShooterPack
         public override float GetFieldOfViewMultiplierAim()
         {
             //Make sure we don't have any issues even with a broken setup!
-            if (scopeBehaviour != null) 
+            if (scopeBehaviour != null)
                 return scopeBehaviour.GetFieldOfViewMultiplierAim();
-            
+
             //Error.
             Debug.LogError("Weapon has no scope equipped!");
-  
+
             //Return.
             return 1.0f;
         }
@@ -263,16 +293,16 @@ namespace InfimaGames.LowPolyShooterPack
         public override float GetFieldOfViewMultiplierAimWeapon()
         {
             //Make sure we don't have any issues even with a broken setup!
-            if (scopeBehaviour != null) 
+            if (scopeBehaviour != null)
                 return scopeBehaviour.GetFieldOfViewMultiplierAimWeapon();
-            
+
             //Error.
             Debug.LogError("Weapon has no scope equipped!");
-  
+
             //Return.
             return 1.0f;
         }
-        
+
         /// <summary>
         /// GetAnimator.
         /// </summary>
@@ -308,7 +338,7 @@ namespace InfimaGames.LowPolyShooterPack
         /// GetAudioClipReloadEmpty.
         /// </summary>
         public override AudioClip GetAudioClipReloadEmpty() => audioClipReloadEmpty;
-        
+
         /// <summary>
         /// GetAudioClipReloadOpen.
         /// </summary>
@@ -330,7 +360,7 @@ namespace InfimaGames.LowPolyShooterPack
         /// GetAudioClipBoltAction.
         /// </summary>
         public override AudioClip GetAudioClipBoltAction() => audioClipBoltAction;
-        
+
         /// <summary>
         /// GetAudioClipFire.
         /// </summary>
@@ -375,7 +405,7 @@ namespace InfimaGames.LowPolyShooterPack
         /// GetRateOfFire.
         /// </summary>
         public override float GetRateOfFire() => roundsPerMinutes;
-        
+
         /// <summary>
         /// IsFull.
         /// </summary>
@@ -406,10 +436,10 @@ namespace InfimaGames.LowPolyShooterPack
             //Set Reloading Bool. This helps cycled reloads know when they need to stop cycling.
             const string boolName = "Reloading";
             animator.SetBool(boolName, true);
-            
+
             //Try Play Reload Sound.
             ServiceLocator.Current.Get<IAudioManagerService>().PlayOneShot(HasAmmunition() ? audioClipReload : audioClipReloadEmpty, new AudioSettings(1.0f, 0.0f, false));
-            
+
             //Play Reload Animation.
             animator.Play(cycledReload ? "Reload Open" : (HasAmmunition() ? "Reload" : "Reload Empty"), 0, 0.0f);
         }
@@ -421,7 +451,7 @@ namespace InfimaGames.LowPolyShooterPack
             //We need a muzzle in order to fire this weapon!
             if (muzzleBehaviour == null)
                 return;
-            
+
             //Make sure that we have a camera cached, otherwise we don't really have the ability to perform traces.
             if (playerCamera == null)
                 return;
@@ -435,7 +465,7 @@ namespace InfimaGames.LowPolyShooterPack
             //Set the slide back if we just ran out of ammunition.
             if (ammunitionCurrent == 0)
                 SetSlideBack(1);
-            
+
             //Play all muzzle effects.
             muzzleBehaviour.Effect();
 
@@ -462,7 +492,7 @@ namespace InfimaGames.LowPolyShooterPack
         public override void FillAmmunition(int amount)
         {
             //Update the value by a certain amount.
-            ammunitionCurrent = amount != 0 ? Mathf.Clamp(ammunitionCurrent + amount, 
+            ammunitionCurrent = amount != 0 ? Mathf.Clamp(ammunitionCurrent + amount,
                 0, GetAmmunitionTotal()) : magazineBehaviour.GetAmmunitionTotal();
         }
         /// <summary>
@@ -481,8 +511,42 @@ namespace InfimaGames.LowPolyShooterPack
         public override void EjectCasing()
         {
             //Spawn casing prefab at spawn point.
-            if(prefabCasing != null && socketEjection != null)
+            if (prefabCasing != null && socketEjection != null)
                 Instantiate(prefabCasing, socketEjection.position, socketEjection.rotation);
+        }
+
+        public virtual void SetCustomization(WeaponCharacteristicsScriptable wcs)
+        {
+            weaponName = wcs.weaponName;
+            multiplierMovementSpeed = wcs.multiplierMovementSpeed;
+            automatic = wcs.automatic;
+            boltAction = wcs.boltAction;
+            shotCount = wcs.shotCount;
+            spread = wcs.spread;
+            projectileImpulse = wcs.projectileImpulse;
+            roundsPerMinutes = wcs.roundsPerMinutes;
+            cycledReload = wcs.cycledReload;
+            canReloadWhenFull = wcs.canReloadWhenFull;
+            automaticReloadOnEmpty = wcs.automaticReloadOnEmpty;
+            automaticReloadOnEmptyDelay = wcs.automaticReloadOnEmptyDelay;
+            socketEjection = wcs.socketEjection;
+            canReloadAimed = wcs.canReloadAimed;
+            prefabCasing = wcs.prefabCasing;
+            prefabProjectile = wcs.prefabProjectile;
+            controller = wcs.controller;
+            spriteBody = wcs.spriteBody;
+            audioClipHolster = wcs.audioClipHolster;
+            audioClipUnholster = wcs.audioClipUnholster;
+            audioClipReload = wcs.audioClipReload;
+            audioClipReloadEmpty = wcs.audioClipReloadEmpty;
+            audioClipReloadOpen = wcs.audioClipReloadOpen;
+            audioClipReloadInsert = wcs.audioClipReloadInsert;
+            audioClipReloadClose = wcs.audioClipReloadClose;
+            audioClipFireEmpty = wcs.audioClipFireEmpty;
+            audioClipBoltAction = wcs.audioClipBoltAction;
+
+            attachmentManager.SetIndexes(wcs.CustomizationIndexes);
+            attachmentManager.Initialize();
         }
 
         #endregion

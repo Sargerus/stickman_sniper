@@ -34,7 +34,7 @@ namespace InfimaGames.LowPolyShooterPack
             var weaponAtStart = diContainer.Resolve<IGameStartWeaponInventoryService>();
             var allWeaponsConfig = diContainer.Resolve<GameWeaponConfig>();
 
-            var mainWeaponConfig = allWeaponsConfig.WeaponsConfig.SelectMany(g => g.Weapons).FirstOrDefault(h => h.Name.Equals(weaponAtStart.MainWeapon));
+            var mainWeaponConfig = allWeaponsConfig.GetConfig(weaponAtStart.MainWeapon);
             if(mainWeaponConfig != null) 
             {
                 var result = await mainWeaponConfig.Prefab.InstantiateAsync(transform);

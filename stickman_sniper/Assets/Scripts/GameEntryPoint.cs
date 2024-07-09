@@ -1,5 +1,3 @@
-using Cysharp.Threading.Tasks;
-using DWTools.Windows;
 using TMPro;
 using UnityEngine;
 using YG;
@@ -7,7 +5,7 @@ using Zenject;
 
 public class GameEntryPoint : MonoBehaviour
 {
-    [SerializeField] private SceneContext _sceneContext;
+    [SerializeField] private SceneAddressablesContainer _container;
     [SerializeField] private Camera uiCamera;
     [SerializeField] private TMP_Text _completedLevels;
 
@@ -30,21 +28,20 @@ public class GameEntryPoint : MonoBehaviour
             return;
 
         _isInitialize = true;
-        _completedLevels.SetText($" {YandexGame.savesData.levelsPassed + 1}/47");
 
-        _sceneContext.Run();
-
-        //OpenCustomizeWindow().Forget();
+        LoadingManager loadingManager = new(_container);
+        loadingManager.StartGameMachine();
+        //_completedLevels.SetText($" {YandexGame.savesData.levelsPassed + 1}/47");
     }
 
-    private async UniTaskVoid OpenCustomizeWindow()
-    {
-        await UniTask.WaitUntil(() => _sceneContext.HasResolved);
-
-        var uiManager = _sceneContext.Container.Resolve<IUIManager>();
-        uiManager.SetCamera(uiCamera);
-        var handler = await uiManager.CreateWindow("customization_screen", new("customization_screen"));
-        await handler.Show(false);
-        await UniTask.WaitUntil(() => handler.CurrentState.Value == Window.LifecycleState.Hidden);
-    }
+    //private async UniTaskVoid OpenCustomizeWindow()
+    //{
+    //    await UniTask.WaitUntil(() => _sceneContext.HasResolved);
+    //
+    //    var uiManager = _sceneContext.Container.Resolve<IUIManager>();
+    //    uiManager.SetCamera(uiCamera);
+    //    var handler = await uiManager.CreateWindow("customization_screen", new("customization_screen"));
+    //    await handler.Show(false);
+    //    await UniTask.WaitUntil(() => handler.CurrentState.Value == Window.LifecycleState.Hidden);
+    //}
 }

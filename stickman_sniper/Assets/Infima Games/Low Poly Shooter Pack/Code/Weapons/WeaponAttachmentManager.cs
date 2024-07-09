@@ -4,10 +4,19 @@ using UnityEngine;
 
 namespace InfimaGames.LowPolyShooterPack
 {
+    public interface IAttachmentManager
+    {
+        void SetScopeIndex(int index);
+        void SetMuzzleIndex(int index);
+        void SetLaserIndex(int index);
+        void SetGripIndex(int index);
+        void SetMagazineIndex(int index);
+    }
+
     /// <summary>
     /// Weapon Attachment Manager. Handles equipping and storing a Weapon's Attachments.
     /// </summary>
-    public class WeaponAttachmentManager : WeaponAttachmentManagerBehaviour
+    public class WeaponAttachmentManager : WeaponAttachmentManagerBehaviour, IAttachmentManager
     {
         #region FIELDS SERIALIZED
 
@@ -193,42 +202,60 @@ namespace InfimaGames.LowPolyShooterPack
 
         public override void Initialize()
         {
-            //Randomize. This allows us to spice things up a little!
+            //select scope   
             if (scopeIndexRandom)
                 scopeIndex = Random.Range(scopeIndexFirst, scopeArray.Length);
-            //Select Scope!
+            SetScopeIndex(scopeIndex);
+            
+            if (muzzleIndexRandom)
+                muzzleIndex = Random.Range(0, muzzleArray.Length);
+            //Select Muzzle!
+            SetMuzzleIndex(muzzleIndex);
+                        
+            if (laserIndexRandom)
+                laserIndex = Random.Range(0, laserArray.Length);
+            //Select Laser!
+            SetLaserIndex(laserIndex);
+                        
+            if (gripIndexRandom)
+                gripIndex = Random.Range(0, gripArray.Length);
+            //Select Grip!
+            SetGripIndex(gripIndex);
+            
+            if (magazineIndexRandom)
+                magazineIndex = Random.Range(0, magazineArray.Length);
+            //Select Magazine!
+            SetMagazineIndex(magazineIndex);
+        }
+
+        public void SetScopeIndex(int index)
+        {
             scopeBehaviour = scopeArray.SelectAndSetActive(scopeIndex);
             //Check if we have no scope. This could happen if we have an incorrect index.
             if (scopeBehaviour == null)
             {
-                //Select Default Scope.
                 scopeBehaviour = scopeDefaultBehaviour;
-                //Set Active.
                 scopeBehaviour.gameObject.SetActive(scopeDefaultShow);
             }
+        }
 
-            //Randomize. This allows us to spice things up a little!
-            if (muzzleIndexRandom)
-                muzzleIndex = Random.Range(0, muzzleArray.Length);
-            //Select Muzzle!
+        public void SetMuzzleIndex(int index)
+        {
             muzzleBehaviour = muzzleArray.SelectAndSetActive(muzzleIndex);
+        }
 
-            //Randomize. This allows us to spice things up a little!
-            if (laserIndexRandom)
-                laserIndex = Random.Range(0, laserArray.Length);
-            //Select Laser!
+        public void SetLaserIndex(int index)
+        {
             laserBehaviour = laserArray.SelectAndSetActive(laserIndex);
+        }
 
-            //Randomize. This allows us to spice things up a little!
-            if (gripIndexRandom)
-                gripIndex = Random.Range(0, gripArray.Length);
-            //Select Grip!
+        public void SetGripIndex(int index)
+        {
             gripBehaviour = gripArray.SelectAndSetActive(gripIndex);
+        }
 
-            //Randomize. This allows us to spice things up a little!
-            if (magazineIndexRandom)
-                magazineIndex = Random.Range(0, magazineArray.Length);
-            //Select Magazine!
+        public void SetMagazineIndex(int index)
+        {
             magazineBehaviour = magazineArray.SelectAndSetActive(magazineIndex);
         }
     }

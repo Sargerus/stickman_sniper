@@ -52,7 +52,7 @@ MonoBehaviour:
   damage: 60
   CustomizationIndexes:
     scopeDefaultShow: 1
-    scopeIndex: -1
+    scopeIndex: 2
     muzzleIndex: 0
     laserIndex: -1
     gripIndex: -1

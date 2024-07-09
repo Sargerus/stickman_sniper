@@ -18,17 +18,17 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
     public CustomizationScreenShopCell Item => this;
     public IPool<CustomizationScreenShopCell> Pool { get; set; }
 
-    public CustomizationScreenShopCell SetBackground(GameObject image)
+    public CustomizationScreenShopCell SetBackground(GameObject image, bool worldPositionStays)
     {
         _bgImage = image;
-        image.transform.SetParent(bgImageParent);
+        image.transform.SetParent(bgImageParent, worldPositionStays);
         return this;
     }
 
-    public CustomizationScreenShopCell SetItemImage(GameObject image)
+    public CustomizationScreenShopCell SetItemImage(GameObject image, bool worldPositionStays)
     {
         _itemImage = image;
-        image.transform.SetParent(itemImageParent);
+        image.transform.SetParent(itemImageParent, worldPositionStays);
         return this;
     }
 

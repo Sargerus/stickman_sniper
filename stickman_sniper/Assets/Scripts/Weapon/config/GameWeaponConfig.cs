@@ -1,6 +1,7 @@
 using DWTools.Customization;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -8,6 +9,11 @@ using UnityEngine.AddressableAssets;
 public class GameWeaponConfig : ScriptableObject
 {
     public List<WeaponContainer> WeaponsConfig;
+
+    public WeaponConfig GetConfig(string key)
+    {
+        return WeaponsConfig.SelectMany(g => g.Weapons).FirstOrDefault(h => h.Name.Equals(key));
+    }
 }
 
 [Serializable]

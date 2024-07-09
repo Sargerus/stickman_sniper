@@ -1,60 +1,74 @@
-using System.Collections;
-using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+using InfimaGames.LowPolyShooterPack;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 public class PodiumController : MonoBehaviour
 {
-    [SerializeField] private Transform tr;
+    private Vector3 _defaultRotation = new(-45, 90, 0);
+
+    [SerializeField] private Transform _container;
     [SerializeField] private Camera _camera;
     [SerializeField] private float _force;
     [SerializeField] private float _zoomForce;
 
-    private Transform _target;
+    private ShopProductVisual _weaponVisuals;
+    private GameObject _prefabInstance;
     private Vector3 _prevPos;
     private Vector3 _currentPos;
 
-    private void Awake()
+    public IAttachmentManager AttachmentManager { get; private set; }
+
+    public void Initialize(ShopProductVisual weaponVisuals, CustomizationIndexes customizationIndexes)
     {
-        SetTarget(tr);
-        SetCamera(_camera);
+        Clear();
+        _weaponVisuals = weaponVisuals;
+        InitializeAsync(customizationIndexes).Forget();
     }
 
-    public void SetTarget(Transform target)
+    private async UniTask InitializeAsync(CustomizationIndexes customizationIndexes)
     {
-        _target = target;
+        _prefabInstance = (GameObject)(await _weaponVisuals.Product3DModel.InstantiateAsync(Vector3.zero, Quaternion.Euler(_defaultRotation), _container));
+
+        var attachmentManager = _prefabInstance.GetComponent<WeaponAttachmentManager>();
+        attachmentManager.SetIndexes(customizationIndexes);
+        attachmentManager.Initialize();
+        AttachmentManager = attachmentManager;
     }
 
-    public void SetCamera(Camera cam)
+    public void ApplyInput(Vector2 mousePosition, float zoom)
     {
-        _camera = cam;
+        _currentPos = mousePosition;
+        ApplyRotation();
+        //Input.GetAxis("Mouse ScrollWheel")
+        ApplyZoom(zoom);
+        CacheInputData();
     }
 
-    public void ApplyRotation(Vector3 euler)
+    private void ApplyZoom(float zoom)
     {
-        _target.Rotate(euler * _force, Space.World);
+        _camera.fieldOfView = Mathf.Clamp(_camera.fieldOfView - zoom * _zoomForce, 25, 60);
     }
 
-    private void Update()
+    private void ApplyRotation()
     {
-        if (Input.GetMouseButton(0))
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                _prevPos = Input.mousePosition;
-            }
+        Vector3 delta = new(_currentPos.y - _prevPos.y, _prevPos.x - _currentPos.x);
+        _prefabInstance.transform.Rotate(delta * _force, Space.World);
+    }
 
-            _currentPos = Input.mousePosition;
-            Vector3 delta = new(_currentPos.y - _prevPos.y, _prevPos.x - _currentPos.x);
-            ApplyRotation(delta);
-        }
-
-        _camera.fieldOfView = Mathf.Clamp(_camera.fieldOfView - Input.GetAxis("Mouse ScrollWheel") * _zoomForce, 25, 60);
-    }    
-
-    private void LateUpdate()
+    private void CacheInputData()
     {
         Vector3 buf = _prevPos;
         _prevPos = _currentPos;
         _currentPos = buf;
+    }
+
+    private void Clear()
+    {
+        _weaponVisuals = null;
+        _prevPos = Vector3.zero;
+        _currentPos = Vector3.zero;
+        AttachmentManager = null;
+        Addressables.ReleaseInstance(_prefabInstance);
     }
 }

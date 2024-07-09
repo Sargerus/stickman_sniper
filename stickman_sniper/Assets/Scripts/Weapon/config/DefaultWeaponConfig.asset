@@ -17,11 +17,11 @@ MonoBehaviour:
     Weapons:
     - Name: Sniper 01
       Prefab:
-        m_AssetGUID: 0c7b5310a5a2b0145979bba1cd3e2315
+        m_AssetGUID: da9bc0ab555471642b2fb6ad0964200b
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
-      DefaultCustomizationData: {fileID: 11400000, guid: f4e6886a3d5d2ff41b44ba4aab685b41,
+      DefaultCustomizationData: {fileID: 11400000, guid: b37fa7a2727d36749b768101a3044e79,
         type: 2}
       CurrentCustomizationData: {fileID: 11400000, guid: a390e9ac0319d3c47a74b5043b9306aa,
         type: 2}

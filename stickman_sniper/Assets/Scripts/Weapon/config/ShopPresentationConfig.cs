@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -8,6 +9,11 @@ public class ShopPresentationConfig : ScriptableObject
 {
     public List<ShopPresentationItem> ShopPresentationItems;
     public List<ShopProductVisual> ShopProductVisual;
+
+    public ShopProductVisual GetConfig(string key)
+    {
+        return ShopProductVisual.FirstOrDefault(g => g.ProductKey.Equals(key));
+    }
 }
 
 [Serializable]
@@ -24,4 +30,5 @@ public class ShopProductVisual
     public string ProductName;
     public AssetReference ProductImage;
     public AssetReference ProductBackground;
+    public AssetReference Product3DModel;
 }

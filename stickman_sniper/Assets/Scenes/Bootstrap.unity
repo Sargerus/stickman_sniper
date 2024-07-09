@@ -827,6 +827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 1607636140}
+  _uiCamera: {fileID: 197390097}
 --- !u!4 &441242760
 Transform:
   m_ObjectHideFlags: 0
@@ -854,7 +855,7 @@ GameObject:
   - component: {fileID: 782628376}
   m_Layer: 0
   m_Name: SceneContext
-  m_TagString: Untagged
+  m_TagString: SceneContext
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1203,7 +1204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1466171076
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1739,7 +1740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8ff2158f8f8d6b41a4dfd273971e153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneContext: {fileID: 782628376}
+  _container: {fileID: 11400000, guid: a32773669e7478244ad58fe63de0dcb9, type: 2}
   uiCamera: {fileID: 197390097}
   _completedLevels: {fileID: 1682318746}
 --- !u!1 &1838011469

@@ -480,13 +480,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5836565387966040056}
-  - component: {fileID: 5836565387975108638}
   - component: {fileID: 8578661464601570599}
-  - component: {fileID: 3803130821125631615}
-  - component: {fileID: -5523819610558693646}
-  - component: {fileID: -3332447406111949124}
   m_Layer: 0
-  m_Name: P_LPSP_WEP_Sniper_01
+  m_Name: Shop_model_P_LPSP_WEP_Sniper_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -509,26 +505,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &5836565387975108638
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5836565387965750232}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 2c83c9b52aa9ed148998e69b5f33e88b, type: 3}
-  m_Controller: {fileID: 22100000, guid: 9f77adae69df149489713349d0178101, type: 2}
-  m_CullingMode: 2
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &8578661464601570599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,80 +553,6 @@ MonoBehaviour:
   magazineIndexRandom: 0
   magazineArray:
   - {fileID: 7413262085214997486}
---- !u!114 &3803130821125631615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5836565387965750232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe4c405f36d24a5db61be27959609b55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-5523819610558693646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5836565387965750232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3af6dec5da9605b47aecd69b9858325c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemOffsets: {fileID: 11400000, guid: 6367c2604451714479cbdcf59cf7e324, type: 2}
-  lowerData: {fileID: 11400000, guid: b5f2a744698c29743a5383df556e27ce, type: 2}
-  leaningData: {fileID: 11400000, guid: 834b78a9d42ef8540b6b55fe2e0b8252, type: 2}
-  cameraRecoilData: {fileID: 11400000, guid: 521db61b565c4104ea2dd050978ee1b3, type: 2}
-  weaponRecoilData: {fileID: 11400000, guid: a601749a2dfb56d4cbfb464384fe6778, type: 2}
---- !u!114 &-3332447406111949124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5836565387965750232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4571c44de7b6041bdeec182d9a1a29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponName: Sniper 01
-  multiplierMovementSpeed: 1
-  automatic: 0
-  boltAction: 0
-  shotCount: 1
-  spread: {x: 0, y: 0}
-  projectileImpulse: 400
-  roundsPerMinutes: 200
-  cycledReload: 0
-  canReloadWhenFull: 1
-  automaticReloadOnEmpty: 0
-  automaticReloadOnEmptyDelay: 0.25
-  socketEjection: {fileID: 0}
-  canReloadAimed: 1
-  prefabCasing: {fileID: 0}
-  prefabProjectile: {fileID: 0}
-  controller: {fileID: 0}
-  spriteBody: {fileID: 0}
-  audioClipHolster: {fileID: 0}
-  audioClipUnholster: {fileID: 0}
-  audioClipReload: {fileID: 0}
-  audioClipReloadEmpty: {fileID: 0}
-  audioClipReloadOpen: {fileID: 0}
-  audioClipReloadInsert: {fileID: 0}
-  audioClipReloadClose: {fileID: 0}
-  audioClipFireEmpty: {fileID: 0}
-  audioClipBoltAction: {fileID: 0}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  slowmotionBullet: {fileID: 0}
-  bulletStartPosition: {fileID: 3798321690618626611}
-  damage: 0
 --- !u!1 &5836565387965750234
 GameObject:
   m_ObjectHideFlags: 0

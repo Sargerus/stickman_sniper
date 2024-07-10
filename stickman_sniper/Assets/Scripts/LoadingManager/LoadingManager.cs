@@ -42,22 +42,32 @@ public class LoadingManager : IDisposable
 
         IState bootstrapState = new BootstrapSceneState(this);
         IState mainMenuState = new MainMenuSceneState(_sceneAddressablesContainer.Get(MainMenu));
-        //IState gameState = new SceneState(_sceneAddressablesContainer.Get(GameScene));
+        IState gameState = new GameSceneState(_sceneAddressablesContainer.Get(GameScene));
 
         List<IConnection> connections = new() { new BootstrapMainMenuConnection(bootstrapState, mainMenuState) };
         _gameStateMachine.AddState(bootstrapState, connections);
 
         connections.Clear();
-        //connections.AddRange(new List<IConnection>() { new MainMenuGameConnection(mainMenuState, gameState) });
+        connections.AddRange(new List<IConnection>() { new MainMenuGameConnection(mainMenuState, gameState) });
 
         _gameStateMachine.AddState(mainMenuState, connections);
 
-        //connections.Clear();
-        //connections.AddRange(new List<IConnection>() { new GameMainMenuConnection(gameState, mainMenuState) });
-        //
-        //_gameStateMachine.AddState(gameState, connections);
+        connections.Clear();
+        connections.AddRange(new List<IConnection>() { new GameMainMenuConnection(gameState, mainMenuState) });
+        
+        _gameStateMachine.AddState(gameState, connections);
 
         _gameStateMachine.Start(bootstrapState);
+    }
+
+    public void LoadGameState()
+    {
+        _gameStateMachine.StateMachineBlackboard.Blackboard.SetValue<bool>(BlackboardConstants.MainMenuReadyBool, true);
+    }
+
+    public void LoadMainMenuState()
+    {
+        _gameStateMachine.StateMachineBlackboard.Blackboard.SetValue<bool>(BlackboardConstants.GameOverBool, true);
     }
 
     public void Dispose()

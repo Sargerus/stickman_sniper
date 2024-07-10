@@ -14,8 +14,6 @@ public class PodiumController : MonoBehaviour
 
     private ShopProductVisual _weaponVisuals;
     private GameObject _prefabInstance;
-    private Vector3 _prevPos;
-    private Vector3 _currentPos;
 
     public IAttachmentManager AttachmentManager { get; private set; }
 
@@ -52,8 +50,6 @@ public class PodiumController : MonoBehaviour
     public void Clear()
     {
         _weaponVisuals = null;
-        _prevPos = Vector3.zero;
-        _currentPos = Vector3.zero;
         AttachmentManager = null;
         Addressables.ReleaseInstance(_prefabInstance);
     }

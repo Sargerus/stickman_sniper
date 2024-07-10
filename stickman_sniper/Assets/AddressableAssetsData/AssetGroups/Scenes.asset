@@ -21,6 +21,10 @@ MonoBehaviour:
     m_Address: Assets/Scenes/ShopScene.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 119a9806dd925154aafcbe8477c1b7cd
+    m_Address: Assets/Scenes/Level.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3ab1704d1ccd64346a4142c5eee15a6c, type: 2}
   m_SchemaSet:

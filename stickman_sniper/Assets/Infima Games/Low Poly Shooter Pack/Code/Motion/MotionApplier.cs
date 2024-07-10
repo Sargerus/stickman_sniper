@@ -23,7 +23,8 @@ namespace InfimaGames.LowPolyShooterPack
         [Tooltip("Determines the way this component applies the values for all subscribed Motion components.")]
         [SerializeField]
         private ApplyMode applyMode;
-        
+
+        [SerializeField] private InventoryBehaviour inventoryBehaviour;
         #endregion
         
         #region FIELDS
@@ -55,6 +56,9 @@ namespace InfimaGames.LowPolyShooterPack
         /// </summary>
         private void LateUpdate()
         {
+            if (inventoryBehaviour.GetEquipped() == null)
+                return;
+
             //Final Location.
             Vector3 finalLocation = default;
             //Final Euler Angles.

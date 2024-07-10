@@ -236,7 +236,7 @@ namespace InfimaGames.LowPolyShooterPack
 
         public void SetScopeIndex(int index)
         {
-            scopeBehaviour = scopeArray.SelectAndSetActive(scopeIndex);
+            scopeBehaviour = scopeArray.SelectAndSetActive(index);
             //Check if we have no scope. This could happen if we have an incorrect index.
             if (scopeBehaviour == null)
             {
@@ -247,22 +247,22 @@ namespace InfimaGames.LowPolyShooterPack
 
         public void SetMuzzleIndex(int index)
         {
-            muzzleBehaviour = muzzleArray.SelectAndSetActive(muzzleIndex);
+            muzzleBehaviour = muzzleArray.SelectAndSetActive(index);
         }
 
         public void SetLaserIndex(int index)
         {
-            laserBehaviour = laserArray.SelectAndSetActive(laserIndex);
+            laserBehaviour = laserArray.SelectAndSetActive(index);
         }
 
         public void SetGripIndex(int index)
         {
-            gripBehaviour = gripArray.SelectAndSetActive(gripIndex);
+            gripBehaviour = gripArray.SelectAndSetActive(index);
         }
 
         public void SetMagazineIndex(int index)
         {
-            magazineBehaviour = magazineArray.SelectAndSetActive(magazineIndex);
+            magazineBehaviour = magazineArray.SelectAndSetActive(index);
         }
 
         public Dictionary<int, string> GetScopes() => ZipArray(scopeArray);

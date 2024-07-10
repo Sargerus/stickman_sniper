@@ -5,13 +5,19 @@ using Sirenix.OdinInspector;
 using System.Threading;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 public class CustomizationScreen : BaseWindow
 {
     [SerializeField, BoxGroup("Levels of ui")] private CustomizationScreenAllWeapons weaponsGrid;
     [SerializeField, BoxGroup("Levels of ui")] private CustomizationScreenCertainWeapon certainWeapon;
-    
+
+    [SerializeField] private Button playButton;
+
+    private ILoadingManagerHolder _loadingManagerHolder;
+
+
     private Subject<string> _cellClickHandler = new();
     private Subject<string> _backClickHandler = new();
     private Tabs _currentTab = Tabs.None;
@@ -29,8 +35,11 @@ public class CustomizationScreen : BaseWindow
         AvailableWeaponConfig availableWeaponConfig,
         CustomiationDataContainerSO customiationDataContainerSO,
         ShopPresentationConfig shopPresentationConfig,
-        WeaponCharacteristicsContainer weaponCharacteristicsContainer)
+        WeaponCharacteristicsContainer weaponCharacteristicsContainer,
+        ILoadingManagerHolder loadingManagerHolder)
     {
+        _loadingManagerHolder = loadingManagerHolder;
+
         weaponsGrid.ResolveDependencies(availableWeaponConfig, customiationDataContainerSO, shopPresentationConfig);
         certainWeapon.ResolveDependencies(shopPresentationConfig, weaponCharacteristicsContainer);
 
@@ -88,11 +97,19 @@ public class CustomizationScreen : BaseWindow
             }
         }).AddTo(_disposables);
 
+        playButton.OnClickAsObservable().Subscribe(async _ =>
+        {
+            await Hide(false);
+            _loadingManagerHolder.LoadingManager.LoadGameState();
+            Close(false).Forget();
+        }).AddTo(_disposables);
+
         await base.AfterShow(token);
     }
 
     protected override async UniTask BeforeHide(CancellationToken token)
     {
+        _disposables.Clear();
         await base.BeforeHide(token);
     }
 }

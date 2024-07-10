@@ -63,6 +63,9 @@ namespace InfimaGames.LowPolyShooterPack
         /// </summary>
         private void Update()
         {
+            if (inventoryBehaviour.GetEquipped() == null)
+                return;
+
             //Check References.
             if (characterAnimator == null || characterBehaviour == null || inventoryBehaviour == null)
             {

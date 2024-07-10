@@ -1562,6 +1562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   applyMode: 0
+  inventoryBehaviour: {fileID: 1040798971861817077}
 --- !u!114 &5847276486146239950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3175,6 +3176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   applyMode: 1
+  inventoryBehaviour: {fileID: 1040798971861817077}
 --- !u!114 &2920169686899986366
 MonoBehaviour:
   m_ObjectHideFlags: 0

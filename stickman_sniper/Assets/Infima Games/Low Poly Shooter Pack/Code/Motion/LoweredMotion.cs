@@ -57,6 +57,9 @@ namespace InfimaGames.LowPolyShooterPack
         /// </summary>
         public override void Tick()
         {
+            if (inventoryBehaviour.GetEquipped() == null)
+                return;
+
             //Check References.
             if (lowerWeapon == null || characterBehaviour == null || inventoryBehaviour == null)
             {

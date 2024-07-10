@@ -27,6 +27,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
     private WeaponCharacteristicsContainer _weaponCharacteristicsContainer;
     private IObserver<string> _backClickHandler;
     private string _key;
+    private Subject<string> _cellClickHandler = new();
 
     private ShopProductVisual _productVisuals;
     private List<CustomizationScreenShopCell> _cells = new();
@@ -72,14 +73,14 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
             case AttachmentsTab.Scope: content = podiumController.AttachmentManager.GetScopes(); break;
         }
 
-        foreach (var contentItem in content)
+        for(int i =0; i < content.Count; i++) 
         {
             CustomizationScreenShopCell cell = Instantiate(cellPrefab, container);
             _cells.Add(cell);
 
-            var weaponInventoryVisuals = _shopProductConfig.ShopProductVisual.FirstOrDefault(g => g.Hash.Equals(contentItem.Value));
+            var weaponInventoryVisuals = _shopProductConfig.ShopProductVisual.FirstOrDefault(g => g.Hash.Equals(content[i]));
             cell.Item.SetText(weaponInventoryVisuals.ProductName)
-                //.SetOnClickHandler(weapon, _cellClickHandler)
+                .SetOnClickHandler(i.ToString(), _cellClickHandler)
                 .ContinueWith(async g =>
                 {
                     if (weaponInventoryVisuals.ProductBackground.RuntimeKeyIsValid())
@@ -97,6 +98,17 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
         }
 
         _currentTab = tab;
+
+        _cellClickHandler.Subscribe(indexString =>
+        {
+            if (!int.TryParse(indexString, out int index))
+                return;
+
+            switch (_currentTab) 
+            {
+                case AttachmentsTab.Scope: podiumController.AttachmentManager.SetScopeIndex(index); return;
+            }            
+        }).AddTo(_disposables);
     }
 
     private void ClearCells()

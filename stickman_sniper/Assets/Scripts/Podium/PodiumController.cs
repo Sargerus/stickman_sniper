@@ -19,16 +19,18 @@ public class PodiumController : MonoBehaviour
 
     public IAttachmentManager AttachmentManager { get; private set; }
 
-    public void Initialize(ShopProductVisual weaponVisuals, CustomizationIndexes customizationIndexes)
+    public async UniTask Initialize(ShopProductVisual weaponVisuals, CustomizationIndexes customizationIndexes)
     {
         Clear();
         _weaponVisuals = weaponVisuals;
-        InitializeAsync(customizationIndexes).Forget();
+        await InitializeAsync(customizationIndexes);
     }
 
     private async UniTask InitializeAsync(CustomizationIndexes customizationIndexes)
     {
-        _prefabInstance = (GameObject)(await _weaponVisuals.Product3DModel.InstantiateAsync(Vector3.zero, Quaternion.Euler(_defaultRotation), _container));
+        _prefabInstance = (GameObject)(await _weaponVisuals.Product3DModel.InstantiateAsync(_container));
+       // _prefabInstance.transform.position = Vector3.zero;
+        _prefabInstance.transform.rotation = Quaternion.Euler(_defaultRotation);
 
         var attachmentManager = _prefabInstance.GetComponent<WeaponAttachmentManager>();
         attachmentManager.SetIndexes(customizationIndexes);
@@ -36,34 +38,18 @@ public class PodiumController : MonoBehaviour
         AttachmentManager = attachmentManager;
     }
 
-    public void ApplyInput(Vector2 mousePosition, float zoom)
+    public void ApplyInput(Vector2 delta)
     {
-        _currentPos = mousePosition;
-        ApplyRotation();
-        //Input.GetAxis("Mouse ScrollWheel")
-        ApplyZoom(zoom);
-        CacheInputData();
+        Vector2 rot = new(0, delta.x);
+        _prefabInstance.transform.Rotate(rot * _force, Space.World);
     }
 
-    private void ApplyZoom(float zoom)
+    public void ApplyZoom(float zoom)
     {
         _camera.fieldOfView = Mathf.Clamp(_camera.fieldOfView - zoom * _zoomForce, 25, 60);
     }
 
-    private void ApplyRotation()
-    {
-        Vector3 delta = new(_currentPos.y - _prevPos.y, _prevPos.x - _currentPos.x);
-        _prefabInstance.transform.Rotate(delta * _force, Space.World);
-    }
-
-    private void CacheInputData()
-    {
-        Vector3 buf = _prevPos;
-        _prevPos = _currentPos;
-        _currentPos = buf;
-    }
-
-    private void Clear()
+    public void Clear()
     {
         _weaponVisuals = null;
         _prevPos = Vector3.zero;

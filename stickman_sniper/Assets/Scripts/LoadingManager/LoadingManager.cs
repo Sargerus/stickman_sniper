@@ -22,7 +22,6 @@ public class LoadingManager : IDisposable
     public const string GameScene = "GameScene";
 
     private readonly SceneAddressablesContainer _sceneAddressablesContainer;
-    private readonly ITickable _tickable;
 
     private StateMachine _gameStateMachine;
     private IDisposable _updateDisposable;

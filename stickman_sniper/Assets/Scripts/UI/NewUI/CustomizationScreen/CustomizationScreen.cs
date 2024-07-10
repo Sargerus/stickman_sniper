@@ -14,7 +14,7 @@ public class CustomizationScreen : BaseWindow
     
     private Subject<string> _cellClickHandler = new();
     private Subject<string> _backClickHandler = new();
-    private string _currentSelectedTab;
+    private Tabs _currentTab = Tabs.None;
     private CompositeDisposable _disposables = new();
 
     enum Tabs
@@ -26,13 +26,13 @@ public class CustomizationScreen : BaseWindow
 
     [Inject]
     private void Construct(
-        //GameWeaponConfig gameWeaponConfig,
         AvailableWeaponConfig availableWeaponConfig,
         CustomiationDataContainerSO customiationDataContainerSO,
-        ShopPresentationConfig shopPresentationConfig)
+        ShopPresentationConfig shopPresentationConfig,
+        WeaponCharacteristicsContainer weaponCharacteristicsContainer)
     {
         weaponsGrid.ResolveDependencies(availableWeaponConfig, customiationDataContainerSO, shopPresentationConfig);
-        certainWeapon.ResolveDependencies(shopPresentationConfig);
+        certainWeapon.ResolveDependencies(shopPresentationConfig, weaponCharacteristicsContainer);
 
         SwitchTabAsync(null, Tabs.AllWeapons).Forget();
     }
@@ -69,6 +69,8 @@ public class CustomizationScreen : BaseWindow
                     break;
                 }
         }
+
+        _currentTab = tab;
     }
 
     protected override async UniTask AfterShow(CancellationToken token)
@@ -76,6 +78,14 @@ public class CustomizationScreen : BaseWindow
         _cellClickHandler.Subscribe(async g =>
         {
             await SwitchTabAsync(g, Tabs.CertainWeapon);
+        }).AddTo(_disposables);
+
+        _backClickHandler.Subscribe(_ =>
+        {
+            switch (_currentTab)
+            {
+                case Tabs.CertainWeapon: SwitchTabAsync(_, Tabs.AllWeapons); return;
+            }
         }).AddTo(_disposables);
 
         await base.AfterShow(token);

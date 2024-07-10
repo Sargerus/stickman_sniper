@@ -33,13 +33,24 @@ namespace InfimaGames.LowPolyShooterPack
         {
             var weaponAtStart = diContainer.Resolve<IGameStartWeaponInventoryService>();
             var allWeaponsConfig = diContainer.Resolve<GameWeaponConfig>();
+            var characteristicsContainer = diContainer.Resolve<WeaponCharacteristicsContainer>();
 
             var mainWeaponConfig = allWeaponsConfig.GetConfig(weaponAtStart.MainWeapon);
             if(mainWeaponConfig != null) 
             {
                 var result = await mainWeaponConfig.Prefab.InstantiateAsync(transform);
                 var infimaWeapon = result.GetComponent<InfimaWeapon>();
-                infimaWeapon.SetCustomization(mainWeaponConfig.CurrentCustomizationData);
+
+                if (characteristicsContainer != null)
+                {
+                    var mainWeaponCharacteristicsConfig = characteristicsContainer.Config.FirstOrDefault(g => g.WeaponKey.Equals(weaponAtStart.MainWeapon));
+                    if (mainWeaponCharacteristicsConfig != null)
+                    {
+                        infimaWeapon.SetCustomization(mainWeaponCharacteristicsConfig.CurrentCustomizationData);
+                    }
+                }
+
+                //infimaWeapon.SetCustomization(mainWeaponConfig.CurrentCustomizationData);
                 infimaWeapon.Initialize();
             }            
 

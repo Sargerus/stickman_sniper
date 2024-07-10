@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: WeaponAttachments
+  m_EditorClassIdentifier: 
+  m_GroupName: WeaponAttachments
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 446bab266f536014c85cb8cf8001ae87
+  m_SerializeEntries:
+  - m_GUID: edb3e6f3cb3e39d4d82e883b8efa2d34
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/Specific/P_LPSP_WEP_ATT_Bipod_01.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7038049384741b74c82d78a046954a46
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/Specific/P_LPSP_WEP_ATT_Bipod_02.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: df97592f1c318634e874c1298f212682
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/Specific/P_LPSP_WEP_ATT_Grip_01.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b8575028f4533b64b8ffada2b0d7b181
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/Specific/P_LPSP_WEP_ATT_Laser_Flash.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9cd79930b39d3b74bad7b19421a5ddf6
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/Specific/P_LPSP_WEP_ATT_Laser_Sight.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 16810aaa7341c99469aecedc37b98ef5
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/Specific/P_LPSP_WEP_ATT_Muzzle.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 608b505d9e0fca141a46b8ac70f96ddc
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/Specific/P_LPSP_WEP_ATT_Scope_01.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a2962c3563c7ee246be224e9304464bd
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/Specific/P_LPSP_WEP_ATT_Scope_02.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f3d402d9c5423004a8e08fb187c46276
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/Specific/P_LPSP_WEP_ATT_Scope_03.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 29f69acff7685bc43a0c3a86db1dbe85
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/Specific/P_LPSP_WEP_ATT_Scope_04.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2cadd769aff535a4fb4d7bf045dc579d
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/Specific/P_LPSP_WEP_ATT_Scope_05.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bdf11905568039047a943adbe62f5e53
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/Specific/P_LPSP_WEP_ATT_Scope_06.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 95e9b96c3ea7be948b7b8c162831d0ee
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/Specific/P_LPSP_WEP_ATT_Scope_07.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ec5fdd40e62797947a90a79df17d15f5
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/Specific/P_LPSP_WEP_ATT_Scope_08.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 209489031a3ced84dbe74e379aae2c76
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/Specific/P_LPSP_WEP_ATT_Silencer_01.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 36b623c00545cdb49a842dc448ffc5b8
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/Specific/P_LPSP_WEP_ATT_Silencer_02.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 232d12e5a30c1684ca33398f69a2f100
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/Specific/P_LPSP_WEP_ATT_Silencer_03.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 32e37db670c44c249b0a036c3e638aa2
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/Specific/P_LPSP_WEP_Magazine.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7a743bcd0df24704ebbb7b5f8c3b15c0
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/P_LPSP_WEP_ATT_Grips.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: afa31145111d8f64e8ffb5ca3a8e739b
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/P_LPSP_WEP_ATT_Lasers.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 613eeb9dc59c9934392391ae63fffa9d
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/P_LPSP_WEP_ATT_Muzzles.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c472be678311843468e98214f36dec77
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/P_LPSP_WEP_ATT_Scopes.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6094ab3ba8b3cd54387ba4a7068ec08a
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Weapons/Attachments/Specific/RT_Scope_Zoomed.renderTexture
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3ab1704d1ccd64346a4142c5eee15a6c, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 37776acd78d83ad49837f26ffbbcaf41, type: 2}
+    - {fileID: 11400000, guid: ed9cf837485305644a618bba7ddbdd04, type: 2}

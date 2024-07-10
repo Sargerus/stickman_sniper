@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inputAggregator: {fileID: 11400000, guid: b94628b8d7c68f847a1eb14d0d61a69b, type: 2}
   _levelsContainer: {fileID: 11400000, guid: a252fe7b6bc945a4bbaba64cbfbdcdbf, type: 2}
-  _scenesContainer: {fileID: 11400000, guid: a32773669e7478244ad58fe63de0dcb9, type: 2}
+  _weaponCharacteristicsContainer: {fileID: 11400000, guid: c8c11b2098866f749844a63a14876fb9,
+    type: 2}

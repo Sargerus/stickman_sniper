@@ -15,9 +15,12 @@ MonoBehaviour:
   ShopPresentationItems:
   - TagName: sniper
     TabName: Sniper Rifles
+    Weapons:
+    - Sniper 01
   ShopProductVisual:
   - ProductKey: Sniper 01
     ProductName: Sniper Rifle MX-01
+    Hash: -368270586
     ProductImage:
       m_AssetGUID: 3afca42c37c94054ca159e687822fefd
       m_SubObjectName: 
@@ -30,6 +33,150 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     Product3DModel:
       m_AssetGUID: 0c7b5310a5a2b0145979bba1cd3e2315
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - ProductKey: Sniper 01_scope_1
+    ProductName: 1
+    Hash: 504452041
+    ProductImage:
+      m_AssetGUID: 44f185f6d5445f94f869fa1d66cc95fb
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 54f3c0def95721c4cade98c5bdadcc42
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 608b505d9e0fca141a46b8ac70f96ddc
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - ProductKey: Sniper 01_scope_2
+    ProductName: 2
+    Hash: -1149852207
+    ProductImage:
+      m_AssetGUID: 44f185f6d5445f94f869fa1d66cc95fb
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 54f3c0def95721c4cade98c5bdadcc42
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: a2962c3563c7ee246be224e9304464bd
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - ProductKey: Sniper 01_scope_3
+    ProductName: 3
+    Hash: -1313552294
+    ProductImage:
+      m_AssetGUID: 44f185f6d5445f94f869fa1d66cc95fb
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 54f3c0def95721c4cade98c5bdadcc42
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: f3d402d9c5423004a8e08fb187c46276
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - ProductKey: Sniper 01_scope_4
+    ProductName: 4
+    Hash: 632185177
+    ProductImage:
+      m_AssetGUID: 44f185f6d5445f94f869fa1d66cc95fb
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 54f3c0def95721c4cade98c5bdadcc42
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 29f69acff7685bc43a0c3a86db1dbe85
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - ProductKey: Sniper 01_scope_5
+    ProductName: 5
+    Hash: 2122329595
+    ProductImage:
+      m_AssetGUID: 44f185f6d5445f94f869fa1d66cc95fb
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 54f3c0def95721c4cade98c5bdadcc42
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 2cadd769aff535a4fb4d7bf045dc579d
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - ProductKey: Sniper 01_scope_6
+    ProductName: 6
+    Hash: 1295361385
+    ProductImage:
+      m_AssetGUID: 44f185f6d5445f94f869fa1d66cc95fb
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 54f3c0def95721c4cade98c5bdadcc42
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: bdf11905568039047a943adbe62f5e53
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - ProductKey: Sniper 01_scope_7
+    ProductName: 7
+    Hash: 880147643
+    ProductImage:
+      m_AssetGUID: 44f185f6d5445f94f869fa1d66cc95fb
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 54f3c0def95721c4cade98c5bdadcc42
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 95e9b96c3ea7be948b7b8c162831d0ee
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - ProductKey: Sniper 01_scope_8
+    ProductName: 8
+    Hash: 1232666277
+    ProductImage:
+      m_AssetGUID: 44f185f6d5445f94f869fa1d66cc95fb
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 54f3c0def95721c4cade98c5bdadcc42
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: ec5fdd40e62797947a90a79df17d15f5
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0

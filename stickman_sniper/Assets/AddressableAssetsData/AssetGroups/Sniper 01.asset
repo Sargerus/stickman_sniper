@@ -45,6 +45,15 @@ MonoBehaviour:
     m_Address: Assets/Scripts/CustomizationSystem/WeaponCharacteristicsSO/Rifles/P_LPSP_WEP_Sniper_01_Characteristics_Default.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 54f3c0def95721c4cade98c5bdadcc42
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/scopes/Shop_bg_P_LPSP_WEP_Sniper_01_scope_1
+      1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 44f185f6d5445f94f869fa1d66cc95fb
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3ab1704d1ccd64346a4142c5eee15a6c, type: 2}
   m_SchemaSet:

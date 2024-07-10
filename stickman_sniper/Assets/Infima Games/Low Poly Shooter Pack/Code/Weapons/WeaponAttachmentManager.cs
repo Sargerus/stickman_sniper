@@ -1,5 +1,6 @@
 ﻿//Copyright 2022, Infima Games. All Rights Reserved.
 
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace InfimaGames.LowPolyShooterPack
@@ -11,6 +12,8 @@ namespace InfimaGames.LowPolyShooterPack
         void SetLaserIndex(int index);
         void SetGripIndex(int index);
         void SetMagazineIndex(int index);
+
+        Dictionary<int, string> GetScopes();
     }
 
     /// <summary>
@@ -192,6 +195,9 @@ namespace InfimaGames.LowPolyShooterPack
 
         public override void SetIndexes(CustomizationIndexes indexes)
         {
+            if (indexes == null)
+                return;
+
             scopeDefaultShow = indexes.scopeDefaultShow;
             scopeIndex = indexes.scopeIndex;
             muzzleIndex = indexes.muzzleIndex;
@@ -206,22 +212,22 @@ namespace InfimaGames.LowPolyShooterPack
             if (scopeIndexRandom)
                 scopeIndex = Random.Range(scopeIndexFirst, scopeArray.Length);
             SetScopeIndex(scopeIndex);
-            
+
             if (muzzleIndexRandom)
                 muzzleIndex = Random.Range(0, muzzleArray.Length);
             //Select Muzzle!
             SetMuzzleIndex(muzzleIndex);
-                        
+
             if (laserIndexRandom)
                 laserIndex = Random.Range(0, laserArray.Length);
             //Select Laser!
             SetLaserIndex(laserIndex);
-                        
+
             if (gripIndexRandom)
                 gripIndex = Random.Range(0, gripArray.Length);
             //Select Grip!
             SetGripIndex(gripIndex);
-            
+
             if (magazineIndexRandom)
                 magazineIndex = Random.Range(0, magazineArray.Length);
             //Select Magazine!
@@ -257,6 +263,23 @@ namespace InfimaGames.LowPolyShooterPack
         public void SetMagazineIndex(int index)
         {
             magazineBehaviour = magazineArray.SelectAndSetActive(magazineIndex);
+        }
+
+        public Dictionary<int, string> GetScopes() => ZipArray(scopeArray);
+
+        private Dictionary<int, string> ZipArray(MonoBehaviour[] array)
+        {
+            Dictionary<int, string> result = new();
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (!scopeArray[i].TryGetComponent<ItemHashProvider>(out var hashProvider))
+                    continue;
+
+                result.Add(i, hashProvider.Hash);
+            }
+
+            return result;
         }
     }
 }

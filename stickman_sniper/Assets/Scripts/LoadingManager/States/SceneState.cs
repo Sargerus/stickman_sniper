@@ -11,7 +11,7 @@ public abstract class SceneState : IState
 {
     protected SceneContext _sceneContext;
     private AssetReference _scene;
-    private AsyncOperationHandle<SceneInstance> _asyncOperationHandle;
+    protected AsyncOperationHandle<SceneInstance> _asyncOperationHandle;
 
     public SceneState(AssetReference scene)
     {

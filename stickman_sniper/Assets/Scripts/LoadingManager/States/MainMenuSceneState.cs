@@ -1,6 +1,8 @@
 using Cysharp.Threading.Tasks;
 using DWTools.Windows;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using Zenject;
 
 public sealed class MainMenuSceneState : SceneState
@@ -19,10 +21,28 @@ public sealed class MainMenuSceneState : SceneState
 
         _sceneContext.Container.Inject(this);
 
-        await UniTask.WaitUntil(() => _uiManager != null);
+        await AwaitUImanagerInitialized();
 
         _handler = await _uiManager.CreateWindow("customization_screen", null, _sceneContext.Container);
         await _handler.Show(false);
+    }
+
+    private async UniTask AwaitUImanagerInitialized()
+    {
+        await UniTask.WaitUntil(() => _uiManager != null);
+
+        var cameras = GameObject.FindObjectsOfType<UICameraProvider>();
+        UICameraProvider uiCamera = null;
+        foreach (var c in cameras)
+        {
+            if (c.gameObject.scene.name.Equals(_asyncOperationHandle.Result.Scene.name))
+            {
+                uiCamera = c;
+                break;
+            }
+        }
+
+        _uiManager.SetCamera(uiCamera.Camera);
     }
 
     public override async UniTask OnExitState()

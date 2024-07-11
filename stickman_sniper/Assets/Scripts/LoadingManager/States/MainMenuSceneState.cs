@@ -30,7 +30,7 @@ public sealed class MainMenuSceneState : SceneState
     private async UniTask AwaitUImanagerInitialized()
     {
         await UniTask.WaitUntil(() => _uiManager != null);
-
+        
         var cameras = GameObject.FindObjectsOfType<UICameraProvider>();
         UICameraProvider uiCamera = null;
         foreach (var c in cameras)
@@ -41,7 +41,7 @@ public sealed class MainMenuSceneState : SceneState
                 break;
             }
         }
-
+        
         _uiManager.SetCamera(uiCamera.Camera);
     }
 

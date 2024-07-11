@@ -100,6 +100,9 @@ public class InfimaSniperWeapon : InfimaWeapon
                     //{
 
                     if (enemy.IsAlive.Value)
+                    {
+                        enemy.ActivateHpCanvas(false);
+
                         await _coreProducer.KillEnemyWeaponSlowmotion(
                             enemy,
                             bulletStartPosition.position,
@@ -110,6 +113,7 @@ public class InfimaSniperWeapon : InfimaWeapon
                                 enemy.PrepareForDeath();
                                 hit.rigidbody.AddForce(direction * projectileImpulse, ForceMode.Impulse);
                             });
+                    }
                     else
                     {
                         hit.rigidbody.AddForce(direction * projectileImpulse, ForceMode.Impulse);

@@ -58,6 +58,11 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
         }
     }
 
+    public void ActivateHpCanvas(bool isActive)
+    {
+        enemyHPCanvas.SetActiveCanvas(isActive);
+    }
+
     public void PrepareForDeath()
     {
         //_animator.enabled = false;
@@ -68,7 +73,7 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
             rb.isKinematic = false;
         }
 
-        enemyHPCanvas.SetActiveCanvas(false);
+        ActivateHpCanvas(false);
         _smr.material = _deadMaterial;
         _isAlive.Value = false;
     }

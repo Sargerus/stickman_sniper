@@ -22,10 +22,12 @@ public abstract class SceneState : IState
 
     public virtual async UniTask OnEnterState()
     {
-        _asyncOperationHandle = _scene.LoadSceneAsync(LoadSceneMode.Additive, true);
+        _asyncOperationHandle = _scene.LoadSceneAsync(LoadSceneMode.Additive, true);//true doesn't really work
         await _asyncOperationHandle.ToUniTask();
 
-        await UniTask.DelayFrame(2); // wait additive scene to become active
+        await UniTask.DelayFrame(1); // wait additive scene to become active
+        SceneManager.SetActiveScene(_asyncOperationHandle.Result.Scene);
+        await UniTask.DelayFrame(1); // wait additive scene to become active
 
         var gameObjects = GameObject.FindGameObjectsWithTag(LoadingManager.SceneContextTag);
         GameObject sceneContextGameObject = null;

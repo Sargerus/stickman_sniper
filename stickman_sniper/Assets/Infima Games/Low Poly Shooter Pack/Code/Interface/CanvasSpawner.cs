@@ -1,5 +1,6 @@
 ﻿//Copyright 2022, Infima Games. All Rights Reserved.
 
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace InfimaGames.LowPolyShooterPack.Interface
@@ -28,12 +29,17 @@ namespace InfimaGames.LowPolyShooterPack.Interface
         /// <summary>
         /// Awake.
         /// </summary>
-        private void Awake()
+        //private void Awake()
+        //{
+        //    //Spawn Interface.
+        //    //Instantiate(canvasPrefab);
+        //    //Spawn Quality Settings Menu. no one need this actually
+        //    //Instantiate(qualitySettingsPrefab);
+        //}
+
+        public async UniTask Initialize()
         {
-            //Spawn Interface.
             Instantiate(canvasPrefab);
-            //Spawn Quality Settings Menu.
-            Instantiate(qualitySettingsPrefab);
         }
 
         #endregion

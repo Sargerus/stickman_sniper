@@ -10,6 +10,7 @@ namespace stickman_sniper.Producer
         [SerializeField] private List<CinemachinePathBase> _path;
         [SerializeField] private CinemachineDollyCart _cart;
         [SerializeField] private CinemachineVirtualCamera _camera;
+        [SerializeField] private Transform bullet;
 
         [field: SerializeField]
         public int Duration { get; private set; }

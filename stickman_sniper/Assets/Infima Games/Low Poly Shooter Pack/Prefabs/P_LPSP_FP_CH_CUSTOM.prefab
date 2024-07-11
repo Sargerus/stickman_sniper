@@ -929,6 +929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c6d9c2ce9c8be498872fd6b5a75cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Camera: {fileID: 0}
   Tag: playersUICamera
 --- !u!1 &1435988582287379936
 GameObject:
@@ -3701,6 +3702,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 058ad0f0e88b6054990c6e98008ae4ea, type: 3}
   holdToRun: 1
   holdToAim: 1
+  canvasSpawner: {fileID: 1045855042783491295}
 --- !u!114 &1045855042783491295
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -47,13 +47,13 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 8
-  slowmotionBullet: {fileID: 1332870974233114119, guid: edd715f8c23ccff44ae40057fe1f4fbc,
+  slowmotionBullet: {fileID: 1332870974233114119, guid: 5bbe91feacec05344810e6c6294b61b7,
     type: 3}
   damage: 60
   CustomizationIndexes:
     scopeDefaultShow: 1
-    scopeIndex: 2
-    muzzleIndex: 0
-    laserIndex: -1
-    gripIndex: -1
+    scopeIndex: 7
+    muzzleIndex: 1
+    laserIndex: 0
+    gripIndex: 0
     magazineIndex: 0

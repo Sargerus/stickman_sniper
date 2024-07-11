@@ -11,6 +11,8 @@ using DWTools;
 using Unity.VisualScripting;
 using Cysharp.Threading.Tasks;
 using UniRx;
+using InfimaGames.LowPolyShooterPack.Interface;
+using DWTools.Windows;
 
 namespace InfimaGames.LowPolyShooterPack
 {
@@ -25,19 +27,23 @@ namespace InfimaGames.LowPolyShooterPack
         private IProgressBarAimDotProvider _progressBarAimDotProvider;
         private DiContainer _diContainer;
         private CursorLocker _cursorLocker;
+        private IUIManager _uiManager;
 
+        private IWindowHandler _playersOverlayHandler;
         private CompositeDisposable _disposables = new();
 
         [Inject]
         private void Construct(IInputService inputService,
             IProgressBarAimDotProvider progressBarAimDotProvider,
             DiContainer diContainer,
-            CursorLocker cursorLocker)
+            CursorLocker cursorLocker,
+            IUIManager uiManager)
         {
             _inputService = inputService;
             _progressBarAimDotProvider = progressBarAimDotProvider;
             _diContainer = diContainer;
             _cursorLocker = cursorLocker;
+            _uiManager = uiManager;
         }
 
         public class Factory : PlaceholderFactory<Character> { }
@@ -155,6 +161,8 @@ namespace InfimaGames.LowPolyShooterPack
         [Tooltip("If true, the aiming input has to be held to be active.")]
         [SerializeField]
         private bool holdToAim = true;
+
+        [SerializeField] private CanvasSpawner canvasSpawner;
 
         private bool _fireLastFrame;
 
@@ -341,6 +349,9 @@ namespace InfimaGames.LowPolyShooterPack
             layerOverlay = characterAnimator.GetLayerIndex("Layer Overlay");
 
             await InitializeInventory();
+            await canvasSpawner.Initialize();
+            _playersOverlayHandler = await _uiManager.CreateWindow("players_overlay", null, _diContainer);
+            await _playersOverlayHandler.Show(true);
 
             _isInitialized = true;
         }
@@ -799,6 +810,7 @@ namespace InfimaGames.LowPolyShooterPack
 
         private void OnDestroy()
         {
+            _playersOverlayHandler.Close(true);
             _disposables.Dispose();
         }
         #region ACTION CHECKS

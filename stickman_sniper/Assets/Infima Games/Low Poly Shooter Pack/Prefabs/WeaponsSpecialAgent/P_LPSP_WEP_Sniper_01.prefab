@@ -652,7 +652,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 8
-  slowmotionBullet: {fileID: 1332870974233114119, guid: edd715f8c23ccff44ae40057fe1f4fbc,
+  slowmotionBullet: {fileID: 1332870974233114119, guid: 5bbe91feacec05344810e6c6294b61b7,
     type: 3}
   bulletStartPosition: {fileID: 5836565387966040040}
   damage: 10

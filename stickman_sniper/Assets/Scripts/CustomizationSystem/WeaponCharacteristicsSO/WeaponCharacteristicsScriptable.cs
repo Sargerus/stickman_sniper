@@ -114,6 +114,16 @@ public class WeaponCharacteristicsScriptable : ScriptableObject
 [Serializable]
 public class CustomizationIndexes
 {
+    public enum AttachmentsTab
+    {
+        None = 0,
+        Scope = 1,
+        Muzzle = 2,
+        Laser = 3,
+        Grip = 4,
+        Magazine = 5
+    }
+
     [Title(label: "Scope")]
 
     [Tooltip("Determines if the ironsights should be shown on the weapon model.")]
@@ -141,4 +151,25 @@ public class CustomizationIndexes
 
     [Tooltip("Selected Magazine Index.")]
     public int magazineIndex = -1;
+
+    public int GetIndex(AttachmentsTab tab) => tab switch
+    {
+        AttachmentsTab.Scope => scopeIndex,
+        AttachmentsTab.Muzzle => muzzleIndex,
+        AttachmentsTab.Laser => laserIndex,
+        AttachmentsTab.Grip => gripIndex,
+        AttachmentsTab.Magazine => magazineIndex
+    };
+
+    internal void SetIndex(AttachmentsTab currentTab, int value)
+    {
+        switch (currentTab)
+        {
+            case AttachmentsTab.Scope: scopeIndex = value; break;
+            case AttachmentsTab.Muzzle: muzzleIndex = value; break;
+            case AttachmentsTab.Laser: laserIndex = value; break;
+            case AttachmentsTab.Grip: gripIndex = value; break;
+            case AttachmentsTab.Magazine: magazineIndex = value; break;
+        }
+    }
 }

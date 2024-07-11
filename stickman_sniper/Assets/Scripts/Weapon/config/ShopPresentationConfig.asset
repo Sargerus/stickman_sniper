@@ -180,3 +180,75 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
+  - ProductKey: Sniper 01_muzzle_1
+    ProductName: 1
+    Hash: -753201110
+    ProductImage:
+      m_AssetGUID: 98d6f71bbf836dd499079abfb97272f3
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 98d6f71bbf836dd499079abfb97272f3
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 16810aaa7341c99469aecedc37b98ef5
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - ProductKey: Sniper 01_muzzle_2
+    ProductName: 2
+    Hash: 903384978
+    ProductImage:
+      m_AssetGUID: 98d6f71bbf836dd499079abfb97272f3
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 98d6f71bbf836dd499079abfb97272f3
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 209489031a3ced84dbe74e379aae2c76
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - ProductKey: Sniper 01_muzzle_3
+    ProductName: 3
+    Hash: 547171636
+    ProductImage:
+      m_AssetGUID: 98d6f71bbf836dd499079abfb97272f3
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 98d6f71bbf836dd499079abfb97272f3
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 36b623c00545cdb49a842dc448ffc5b8
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - ProductKey: Sniper 01_muzzle_4
+    ProductName: 4
+    Hash: 56858736
+    ProductImage:
+      m_AssetGUID: 98d6f71bbf836dd499079abfb97272f3
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 98d6f71bbf836dd499079abfb97272f3
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 232d12e5a30c1684ca33398f69a2f100
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0

@@ -54,6 +54,14 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_1.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 98d6f71bbf836dd499079abfb97272f3
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Muzzles/Shop_bg_P_LPSP_WEP_Sniper_01_muzzle_1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c16f12e0bbff6bb4a8d900dbb4a71bbe
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Muzzles/Shop_icon_P_LPSP_WEP_Sniper_01_muzzle_1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3ab1704d1ccd64346a4142c5eee15a6c, type: 2}
   m_SchemaSet:

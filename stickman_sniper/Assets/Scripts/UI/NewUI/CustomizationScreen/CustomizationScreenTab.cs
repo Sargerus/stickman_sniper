@@ -10,9 +10,11 @@ public class CustomizationScreenTab : MonoBehaviour
 
     private CompositeDisposable _disposables = new();
 
-    public CustomizationScreenTab SetTabName(string name) 
+    public CustomizationScreenTab SetTabName(string name)
     {
-        tabName.SetText(name);
+        if (tabName != null)
+            tabName.SetText(name);
+
         return this;
     }
 

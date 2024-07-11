@@ -15,7 +15,9 @@ namespace InfimaGames.LowPolyShooterPack
         
         [Tooltip("Total Ammunition.")]
         [SerializeField]
-        private int ammunitionTotal = 10;
+        private int ammunitionTotal = 10; // magazine size
+        [SerializeField]
+        private int ammunitionCapacity = 10; //spare
 
         [Title(label: "Interface")]
 
@@ -30,7 +32,10 @@ namespace InfimaGames.LowPolyShooterPack
         /// <summary>
         /// Ammunition Total.
         /// </summary>
-        public override int GetAmmunitionTotal() => ammunitionTotal;
+        public override int GetMagazineSize() => ammunitionTotal;
+
+        public override int GetMagazineSpareCapcity() => ammunitionCapacity;
+
         /// <summary>
         /// Sprite.
         /// </summary>

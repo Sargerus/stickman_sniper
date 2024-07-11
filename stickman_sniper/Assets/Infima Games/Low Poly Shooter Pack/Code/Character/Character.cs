@@ -561,7 +561,8 @@ namespace InfimaGames.LowPolyShooterPack
             {
                 //If we only have one more bullet to reload, then we can change the boolean already.
                 if (equippedWeapon.GetAmmunitionTotal() - equippedWeapon.GetAmmunitionCurrent() < 1
-                    || (equippedWeapon.HasCycledReload() && (_inputService.IsShooting || _inputService.IsAiming)))
+                    || (equippedWeapon.HasCycledReload() && (_inputService.IsShooting || _inputService.IsAiming))
+                    || equippedWeapon.GetAmmunitionSpareLeft() == 1)
                 {
                     //Update the character animator.
                     characterAnimator.SetBool(boolNameReloading, false);
@@ -867,6 +868,9 @@ namespace InfimaGames.LowPolyShooterPack
 
             //Block Full Reloading if needed.
             if (!equippedWeapon.CanReloadWhenFull() && equippedWeapon.IsFull())
+                return false;
+
+            if (!equippedWeapon.CanReloadEnoughSpareBullets())
                 return false;
 
             //Return.

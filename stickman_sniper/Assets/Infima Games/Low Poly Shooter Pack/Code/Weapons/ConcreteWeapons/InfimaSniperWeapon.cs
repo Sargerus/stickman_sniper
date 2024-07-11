@@ -46,7 +46,7 @@ public class InfimaSniperWeapon : InfimaWeapon
         const string stateName = "Fire";
         animator.Play(stateName, 0, 0.0f);
         //Reduce ammunition! We just shot, so we need to get rid of one!
-        ammunitionCurrent = Mathf.Clamp(ammunitionCurrent - 1, 0, magazineBehaviour.GetAmmunitionTotal());
+        ammunitionCurrent = Mathf.Clamp(ammunitionCurrent - 1, 0, magazineBehaviour.GetMagazineSize());
 
         //Set the slide back if we just ran out of ammunition.
         if (ammunitionCurrent == 0)

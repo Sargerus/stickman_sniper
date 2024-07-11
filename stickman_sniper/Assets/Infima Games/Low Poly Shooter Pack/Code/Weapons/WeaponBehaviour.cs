@@ -92,6 +92,7 @@ namespace InfimaGames.LowPolyShooterPack
         /// Returns Current Ammunition. 
         /// </summary>
         public abstract int GetAmmunitionCurrent();
+        public abstract int GetAmmunitionSpareLeft();
         /// <summary>
         /// Returns Total Ammunition.
         /// </summary>
@@ -143,6 +144,8 @@ namespace InfimaGames.LowPolyShooterPack
         /// Can this weapon be reloaded when it is full?
         /// </summary>
         public abstract bool CanReloadWhenFull();
+
+        public abstract bool CanReloadEnoughSpareBullets();
         /// <summary>
         /// Returns the weapon's rate of fire.
         /// </summary>

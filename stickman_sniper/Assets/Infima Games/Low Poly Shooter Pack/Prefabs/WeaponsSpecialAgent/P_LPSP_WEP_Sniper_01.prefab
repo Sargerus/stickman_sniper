@@ -965,6 +965,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammunitionTotal: 7
+  ammunitionCapacity: 1
   sprite: {fileID: 0}
 --- !u!4 &2657098032119006043 stripped
 Transform:

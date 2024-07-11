@@ -5,8 +5,6 @@ using UnityEngine.AddressableAssets;
 
 public class PodiumController : MonoBehaviour
 {
-    private Vector3 _defaultRotation = new(-45, 90, 0);
-
     [SerializeField] private Transform _container;
     [SerializeField] private Camera _camera;
     [SerializeField] private float _force;
@@ -14,6 +12,7 @@ public class PodiumController : MonoBehaviour
 
     private ShopProductVisual _weaponVisuals;
     private GameObject _prefabInstance;
+    private Transform _target;
 
     public IAttachmentManager AttachmentManager { get; private set; }
 
@@ -28,9 +27,9 @@ public class PodiumController : MonoBehaviour
     {
         _prefabInstance = (GameObject)(await _weaponVisuals.Product3DModel.InstantiateAsync(_container));
        // _prefabInstance.transform.position = Vector3.zero;
-        _prefabInstance.transform.rotation = Quaternion.Euler(_defaultRotation);
 
-        var attachmentManager = _prefabInstance.GetComponent<WeaponAttachmentManager>();
+        var attachmentManager = _prefabInstance.GetComponentInChildren<WeaponAttachmentManager>();
+        _target = _prefabInstance.transform.GetChild(0);
         attachmentManager.SetIndexes(customizationIndexes);
         attachmentManager.Initialize();
         AttachmentManager = attachmentManager;
@@ -39,7 +38,7 @@ public class PodiumController : MonoBehaviour
     public void ApplyInput(Vector2 delta)
     {
         Vector2 rot = new(0, delta.x);
-        _prefabInstance.transform.Rotate(rot * _force, Space.World);
+        _target.Rotate(rot * _force, Space.World);
     }
 
     public void ApplyZoom(float zoom)

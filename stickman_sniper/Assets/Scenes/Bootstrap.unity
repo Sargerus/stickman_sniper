@@ -435,7 +435,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 1607636140}
-  _uiCamera: {fileID: 0}
 --- !u!4 &441242760
 Transform:
   m_ObjectHideFlags: 0

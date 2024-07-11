@@ -158,7 +158,8 @@ public class CustomizationIndexes
         AttachmentsTab.Muzzle => muzzleIndex,
         AttachmentsTab.Laser => laserIndex,
         AttachmentsTab.Grip => gripIndex,
-        AttachmentsTab.Magazine => magazineIndex
+        AttachmentsTab.Magazine => magazineIndex,
+        _ => -1
     };
 
     internal void SetIndex(AttachmentsTab currentTab, int value)

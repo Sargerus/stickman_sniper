@@ -17,10 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 668349086abb2fd46af469db7e4fbdf6
   m_SerializeEntries:
-  - m_GUID: 0c7b5310a5a2b0145979bba1cd3e2315
-    m_Address: Assets/Prefabs/UI/CustomizationScreen/P_LPSP_WEP_Sniper_01.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: f9ac3888051e50245acfad08631485da
     m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/P_LPSP_WEP_Sniper_01_bg.jpg
     m_ReadOnly: 0
@@ -84,6 +80,14 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 9465df12d3e31f0438cdb027b8dceba7
     m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Magazines/Shop_icon_P_LPSP_WEP_Sniper_01_magazine_1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3f094606aa34bc54e820a436ae2a363e
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Meshes/Weapons/Snipers/SM_Sniper_01_Magazine_Default.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 25569ffc3e369364bb39e365d934353e
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Shop_model_P_LPSP_WEP_Sniper_1.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

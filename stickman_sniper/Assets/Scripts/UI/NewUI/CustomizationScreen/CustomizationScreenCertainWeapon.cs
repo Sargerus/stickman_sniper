@@ -102,6 +102,9 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
         if (tab == _currentTab)
             return;
 
+        if (_currentTab != AttachmentsTab.None)
+            SetPodiumAttachmentIndex(_currentTab, _customizationIndexes.GetIndex(_currentTab));
+
         ClearCells();
         Dictionary<int, string> content = new(); //<index, hash>
 
@@ -109,6 +112,9 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
         {
             case AttachmentsTab.Scope: content = podiumController.AttachmentManager.GetScopes(); break;
             case AttachmentsTab.Muzzle: content = podiumController.AttachmentManager.GetMuzzles(); break;
+            case AttachmentsTab.Laser: content = podiumController.AttachmentManager.GetLasers(); break;
+            case AttachmentsTab.Grip: content = podiumController.AttachmentManager.GetGrips(); break;
+            case AttachmentsTab.Magazine: content = podiumController.AttachmentManager.GetMagazines(); break;
         }
 
         for (int i = 0; i < content.Count; i++)
@@ -144,13 +150,20 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
                 return;
 
             _currentIndexSelectedReactive.Value = index;
-
-            switch (_currentTab)
-            {
-                case AttachmentsTab.Scope: podiumController.AttachmentManager.SetScopeIndex(index); return;
-                case AttachmentsTab.Muzzle: podiumController.AttachmentManager.SetMuzzleIndex(index); return;
-            }
+            SetPodiumAttachmentIndex(_currentTab, index);
         }).AddTo(_disposables);
+    }
+
+    private void SetPodiumAttachmentIndex(AttachmentsTab tab, int index)
+    {
+        switch (tab)
+        {
+            case AttachmentsTab.Scope: podiumController.AttachmentManager.SetScopeIndex(index); return;
+            case AttachmentsTab.Muzzle: podiumController.AttachmentManager.SetMuzzleIndex(index); return;
+            case AttachmentsTab.Laser: podiumController.AttachmentManager.SetLaserIndex(index); return;
+            case AttachmentsTab.Grip: podiumController.AttachmentManager.SetGripIndex(index); return;
+            case AttachmentsTab.Magazine: podiumController.AttachmentManager.SetMagazineIndex(index); return;
+        }
     }
 
     private void ClearCells()

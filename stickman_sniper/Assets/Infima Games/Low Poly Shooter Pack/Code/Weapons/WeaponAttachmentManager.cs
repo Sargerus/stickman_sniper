@@ -15,6 +15,9 @@ namespace InfimaGames.LowPolyShooterPack
 
         Dictionary<int, string> GetScopes();
         Dictionary<int, string> GetMuzzles();
+        Dictionary<int, string> GetLasers();
+        Dictionary<int, string> GetGrips();
+        Dictionary<int, string> GetMagazines();
     }
 
     /// <summary>
@@ -268,6 +271,9 @@ namespace InfimaGames.LowPolyShooterPack
 
         public Dictionary<int, string> GetScopes() => ZipArray(scopeArray);
         public Dictionary<int, string> GetMuzzles() => ZipArray(muzzleArray);
+        public Dictionary<int, string> GetLasers() => ZipArray(laserArray);
+        public Dictionary<int, string> GetGrips() => ZipArray(gripArray);
+        public Dictionary<int, string> GetMagazines() => ZipArray(magazineArray);
 
         private Dictionary<int, string> ZipArray(MonoBehaviour[] array)
         {

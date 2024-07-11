@@ -252,3 +252,111 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
+  - ProductKey: Sniper 01_laser_1
+    ProductName: 1
+    Hash: 687763307
+    ProductImage:
+      m_AssetGUID: b84f66d151bfc4843b8ffce85e4f129b
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: bf91218056342e04a948b98434b5fe44
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 9cd79930b39d3b74bad7b19421a5ddf6
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - ProductKey: Sniper 01_laser_2
+    ProductName: 2
+    Hash: -513347761
+    ProductImage:
+      m_AssetGUID: b84f66d151bfc4843b8ffce85e4f129b
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: bf91218056342e04a948b98434b5fe44
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: b8575028f4533b64b8ffada2b0d7b181
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - ProductKey: Sniper 01_grip_1
+    ProductName: 1
+    Hash: 1250661548
+    ProductImage:
+      m_AssetGUID: f1b08957279083841b1178f83aa42632
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 0553f86ad01a78144a430b1d2b83e33c
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: df97592f1c318634e874c1298f212682
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - ProductKey: Sniper 01_grip_2
+    ProductName: 2
+    Hash: 370434964
+    ProductImage:
+      m_AssetGUID: f1b08957279083841b1178f83aa42632
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 0553f86ad01a78144a430b1d2b83e33c
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: edb3e6f3cb3e39d4d82e883b8efa2d34
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - ProductKey: Sniper 01_grip_3
+    ProductName: 3
+    Hash: 737545828
+    ProductImage:
+      m_AssetGUID: f1b08957279083841b1178f83aa42632
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 0553f86ad01a78144a430b1d2b83e33c
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 7038049384741b74c82d78a046954a46
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - ProductKey: Sniper 01_magazine_1
+    ProductName: 1
+    Hash: -1329021927
+    ProductImage:
+      m_AssetGUID: 9465df12d3e31f0438cdb027b8dceba7
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 422f8f132da23a9419e671dbe4b6a0e4
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 3f094606aa34bc54e820a436ae2a363e
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0

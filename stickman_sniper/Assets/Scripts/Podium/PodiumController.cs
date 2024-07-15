@@ -26,7 +26,7 @@ public class PodiumController : MonoBehaviour
     private async UniTask InitializeAsync(CustomizationIndexes customizationIndexes)
     {
         _prefabInstance = (GameObject)(await _weaponVisuals.Product3DModel.InstantiateAsync(_container));
-       // _prefabInstance.transform.position = Vector3.zero;
+        // _prefabInstance.transform.position = Vector3.zero;
 
         var attachmentManager = _prefabInstance.GetComponentInChildren<WeaponAttachmentManager>();
         _target = _prefabInstance.transform.GetChild(0);
@@ -50,6 +50,8 @@ public class PodiumController : MonoBehaviour
     {
         _weaponVisuals = null;
         AttachmentManager = null;
-        Addressables.ReleaseInstance(_prefabInstance);
+
+        if (_prefabInstance != null)
+            Addressables.ReleaseInstance(_prefabInstance);
     }
 }

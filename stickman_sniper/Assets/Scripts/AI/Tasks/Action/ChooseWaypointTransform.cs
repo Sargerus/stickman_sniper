@@ -22,7 +22,9 @@ public class ChooseWaypointTransform : Action
 
     public override TaskStatus OnUpdate()
     {
-        Next();
+        if (CurrentWaypoint.Value == null)
+            Next();
+
         return TaskStatus.Success;
     }
 

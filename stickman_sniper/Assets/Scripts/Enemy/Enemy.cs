@@ -6,36 +6,33 @@ using DWTools.RPG;
 using DWTools.Slowmotion;
 using Sirenix.OdinInspector;
 using stickman_sniper.Producer;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
 using UnityEngine;
+using Zenject;
 
 public class Enemy : SlowmotionRoot, ICinemachineDirector
 {
     [SerializeField] private Material _deadMaterial;
     [BoxGroup("Cinemachine"), SerializeField] private List<CinemachineVirtualCamera> _deadCams;
     [field: SerializeField, BoxGroup("Cinemachine")] public int Duration { get; private set; }
-
     [BoxGroup("Canvas"), SerializeField] private EnemyHPCanvas enemyHPCanvas;
-
+    [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
     [SerializeField] private BehaviorTree _behaviorTree;
+    [SerializeField] private SlowmotionAnimator _slowMotionAnimator;
     [SerializeField] private CharacterComponent _character;
 
+    private InjectBehaviorManagerTasks _injectBehaviorManagerTasks;
     private List<Rigidbody> _rb;
-    private SlowmotionAnimator _animator;
-    private SkinnedMeshRenderer _smr;
-
     private ReactiveProperty<bool> _isAlive = new(true);
     public IReadOnlyReactiveProperty<bool> IsAlive => _isAlive;
-
     private Dictionary<string, object> _cinemaData = new();
 
     private void Awake()
     {
         _rb = GetComponentsInChildren<Rigidbody>().ToList();
-        _animator = GetComponent<SlowmotionAnimator>();
-        _smr = GetComponentInChildren<SkinnedMeshRenderer>();
         _character.Character.CalculateStats();
 
         foreach (var rb in _rb)
@@ -59,17 +56,6 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
         }
     }
 
-    //private void Start()
-    //{
-    //    InitializeBehaviorTree().Forget();
-    //}
-    //
-    //private async UniTaskVoid InitializeBehaviorTree()
-    //{
-    //    await UniTask.DelayFrame(300);
-    //    _behaviorTree.EnableBehavior();
-    //}
-
     public void ActivateHpCanvas(bool isActive)
     {
         enemyHPCanvas.SetActiveCanvas(isActive);
@@ -77,8 +63,8 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
 
     public void PrepareForDeath()
     {
-        //_animator.enabled = false;
-        //_animator.AllowToUpdate = false;
+        _behaviorTree.DisableBehavior();
+        _slowMotionAnimator.AllowToUpdate = false;
 
         foreach (var rb in _rb)
         {
@@ -86,7 +72,7 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
         }
 
         ActivateHpCanvas(false);
-        _smr.material = _deadMaterial;
+        skinnedMeshRenderer.material = _deadMaterial;
         _isAlive.Value = false;
     }
 

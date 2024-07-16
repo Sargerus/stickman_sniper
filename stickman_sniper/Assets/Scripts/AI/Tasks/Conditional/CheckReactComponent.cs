@@ -35,6 +35,8 @@ public class CheckReactComponent : Conditional
                 Ray ray = new(_raycastPointsProvider.RaycastOrigin.position,
                     (raycastPointsProvider.RaycastTarget.position - _raycastPointsProvider.RaycastOrigin.position).normalized);
 
+                Debug.DrawRay(_raycastPointsProvider.RaycastOrigin.position, 5 * (raycastPointsProvider.RaycastTarget.position - _raycastPointsProvider.RaycastOrigin.position).normalized);
+
                 if (Physics.Raycast(ray, out RaycastHit info, Radius.Value, VisibleItemsLayerMask.Value, QueryTriggerInteraction.Ignore))
                 {
                     if (info.colliderInstanceID.Equals(_colliders[0].GetInstanceID()))

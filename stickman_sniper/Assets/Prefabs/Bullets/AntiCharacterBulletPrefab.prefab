@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 9182040633132859657}
   - component: {fileID: 139271642526851620}
   - component: {fileID: 3335548956422928108}
+  - component: {fileID: 1041499466996161145}
   m_Layer: 3
   m_Name: AntiCharacterBulletPrefab
   m_TagString: Untagged
@@ -199,6 +200,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.028626917, y: 0.029232388, z: 0.19445066}
   m_Center: {x: -0.001163022, y: 0.0009439811, z: 0.033993453}
+--- !u!54 &1041499466996161145
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4080775814487477107}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &8412788604021381548
 PrefabInstance:
   m_ObjectHideFlags: 0

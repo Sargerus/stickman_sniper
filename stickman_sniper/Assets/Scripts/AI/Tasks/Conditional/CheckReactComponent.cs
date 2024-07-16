@@ -7,8 +7,10 @@ public class CheckReactComponent : Conditional
 {
     public SharedFloat Radius;
     public SharedLayerMask LayerMask;
+    public SharedLayerMask VisibleItemsLayerMask;
     public SharedNavMeshAgent NavMeshAgent;
     public SharedVector3 LastCharacterSeenPosition;
+    public SharedVector3 LastCharacterShootPosition;
 
     private Collider[] _colliders = new Collider[1];
     private RaycastPointsProvider _raycastPointsProvider;
@@ -33,14 +35,19 @@ public class CheckReactComponent : Conditional
                 Ray ray = new(_raycastPointsProvider.RaycastOrigin.position,
                     (raycastPointsProvider.RaycastTarget.position - _raycastPointsProvider.RaycastOrigin.position).normalized);
 
-                if (Physics.Raycast(ray, out RaycastHit info, Radius.Value))
+                if (Physics.Raycast(ray, out RaycastHit info, Radius.Value, VisibleItemsLayerMask.Value, QueryTriggerInteraction.Ignore))
                 {
                     if (info.colliderInstanceID.Equals(_colliders[0].GetInstanceID()))
                     {
                         Debug.DrawLine(_raycastPointsProvider.RaycastOrigin.position, raycastPointsProvider.RaycastTarget.position);
-                        if (_colliders[0].TryGetComponent<AbstractRaycastPositionProvider>(out var raycastPositionProvider))
+                        if (_colliders[0].TryGetComponent<TransformRaycastPositionProvider>(out var raycastPositionProvider))
                         {
                             LastCharacterSeenPosition.Value = raycastPositionProvider.GetPosition();
+                        }
+
+                        if (_colliders[0].TryGetComponent<TransformShootPositionProvider>(out var shootPositionProvider))
+                        {
+                            LastCharacterShootPosition.Value = shootPositionProvider.GetPosition();
                         }
 
                         result = TaskStatus.Success;

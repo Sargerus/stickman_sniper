@@ -1,15 +1,15 @@
+using BehaviorDesigner.Runtime;
 using Cinemachine;
+using Cysharp.Threading.Tasks;
 using DWTools.Extensions;
 using DWTools.RPG;
 using DWTools.Slowmotion;
 using Sirenix.OdinInspector;
 using stickman_sniper.Producer;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
 using UnityEngine;
-using Zenject;
 
 public class Enemy : SlowmotionRoot, ICinemachineDirector
 {
@@ -19,7 +19,8 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
 
     [BoxGroup("Canvas"), SerializeField] private EnemyHPCanvas enemyHPCanvas;
 
-    [SerializeField] private Character _character;
+    [SerializeField] private BehaviorTree _behaviorTree;
+    [SerializeField] private CharacterComponent _character;
 
     private List<Rigidbody> _rb;
     private SlowmotionAnimator _animator;
@@ -35,7 +36,7 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
         _rb = GetComponentsInChildren<Rigidbody>().ToList();
         _animator = GetComponent<SlowmotionAnimator>();
         _smr = GetComponentInChildren<SkinnedMeshRenderer>();
-        _character.CalculateStats();
+        _character.Character.CalculateStats();
 
         foreach (var rb in _rb)
         {
@@ -44,11 +45,11 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
 
         _deadCams.ForEach(g => g.gameObject.SetActive(false));
 
-        if (_character.TryGetReactiveStat(CharacterStat.Health, out var property) &&
-            _character.TryGetBaseStat(CharacterStat.Health, out var baseStat))
+        if (_character.Character.TryGetReactiveStat(CharacterStat.Health, out var property) &&
+            _character.Character.TryGetBaseStat(CharacterStat.Health, out var baseStat))
         {
             float plusStatValue = 0;
-            if (_character.TryGetPlusStat(CharacterStat.Health, out var plusStat))
+            if (_character.Character.TryGetPlusStat(CharacterStat.Health, out var plusStat))
                 plusStatValue = plusStat.Value;
 
             property.SubscribeWithState2(baseStat, plusStat, (val, baseStat, plusStat) =>
@@ -57,6 +58,17 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
             }).AddTo(this);
         }
     }
+
+    //private void Start()
+    //{
+    //    InitializeBehaviorTree().Forget();
+    //}
+    //
+    //private async UniTaskVoid InitializeBehaviorTree()
+    //{
+    //    await UniTask.DelayFrame(300);
+    //    _behaviorTree.EnableBehavior();
+    //}
 
     public void ActivateHpCanvas(bool isActive)
     {
@@ -103,12 +115,12 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
 
     public void Damage(float damage)
     {
-        _character.Damage(damage);
+        _character.Character.Damage(damage);
     }
 
     public bool TryGetStat(CharacterStat characterStat, out StatEntity stat)
     {
-        return _character.TryCurrentGetStat(characterStat, out stat);
+        return _character.Character.TryCurrentGetStat(characterStat, out stat);
     }
 
     public void Clear()

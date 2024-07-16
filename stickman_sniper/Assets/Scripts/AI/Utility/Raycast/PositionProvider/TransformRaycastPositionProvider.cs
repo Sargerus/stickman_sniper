@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TransformRaycastPositionProvider : AbstractRaycastPositionProvider
+public class TransformRaycastPositionProvider : AbstractPositionProvider
 {
     [SerializeField]
     private Transform target;

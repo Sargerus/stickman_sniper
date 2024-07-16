@@ -913,11 +913,7 @@ MonoBehaviour:
   - {fileID: 0}
   <Duration>k__BackingField: 5000
   enemyHPCanvas: {fileID: 0}
-  _character:
-    _baseStats:
-      Stats:
-      - Stat: 10
-        Value: 15
+  _character: {fileID: 0}
 --- !u!4 &718690940
 Transform:
   m_ObjectHideFlags: 0
@@ -1184,7 +1180,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949792161}
-  m_LocalRotation: {x: 0.044537958, y: 0.3239443, z: -0.015269084, w: 0.9449039}
+  m_LocalRotation: {x: 0.044537954, y: 0.3239443, z: -0.01526908, w: 0.9449039}
   m_LocalPosition: {x: -0.030170798, y: 1.3750012, z: 1.677061}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2087,8 +2083,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stickman_good
       objectReference: {fileID: 0}
+    - target: {fileID: 6730840368580610037, guid: 459334c53c67f5346b6404462844d07b,
+        type: 3}
+      propertyPath: _character
+      value: 
+      objectReference: {fileID: 502983300217381203}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 459334c53c67f5346b6404462844d07b, type: 3}
+--- !u!1 &502983300217381202 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6600773666189992893, guid: 459334c53c67f5346b6404462844d07b,
+    type: 3}
+  m_PrefabInstance: {fileID: 502983300217381201}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &502983300217381203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502983300217381202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c85494d6c973e4cb999812cc6c39cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Character:
+    _baseStats:
+      Stats:
+      - Stat: 10
+        Value: 15
 --- !u!1001 &8157810717165403394
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2159,12 +2183,12 @@ PrefabInstance:
     - target: {fileID: 7746459440606554644, guid: edd715f8c23ccff44ae40057fe1f4fbc,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.044537958
+      value: 0.044537954
       objectReference: {fileID: 0}
     - target: {fileID: 7746459440606554644, guid: edd715f8c23ccff44ae40057fe1f4fbc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.015269084
+      value: -0.01526908
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edd715f8c23ccff44ae40057fe1f4fbc, type: 3}

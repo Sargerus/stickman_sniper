@@ -3,7 +3,7 @@ using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
 [TaskCategory("Utility")]
-public class CheckDistance : Conditional
+public class CheckDistanceTransform : Conditional
 {
     public SharedNavMeshAgent Agent;
     public SharedTransform TargetTransform;
@@ -12,7 +12,6 @@ public class CheckDistance : Conditional
     public override TaskStatus OnUpdate()
     {
         TaskStatus result = TaskStatus.Running;
-
         if (Vector3.Distance(Agent.Value.transform.position, TargetTransform.Value.position) <= Distance)
         {
             result = TaskStatus.Success;

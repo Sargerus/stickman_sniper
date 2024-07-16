@@ -200,14 +200,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 98390309}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 29.08, z: -0.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &98390313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +241,113 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1 &305399441
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 305399442}
+  m_Layer: 10
+  m_Name: transformNearNavMesh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &305399442
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305399441}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 341754573}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &341754572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 341754573}
+  - component: {fileID: 341754576}
+  - component: {fileID: 341754575}
+  - component: {fileID: 341754574}
+  m_Layer: 10
+  m_Name: SerachLogic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &341754573
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341754572}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 305399442}
+  m_Father: {fileID: 1656665680}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &341754574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341754572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66b8a09ea46e0aa4eb707c4f529235eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 305399442}
+--- !u!114 &341754575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341754572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8daf2d0937ecdb44b2e6f5d41263175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RaycastOrigin: {fileID: 1656665680}
+  RaycastTarget: {fileID: 1656665680}
+--- !u!136 &341754576
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341754572}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &565710855
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,9 +612,11 @@ MonoBehaviour:
       parentIndex: 
       startIndex: 
       variableStartIndex: 
-      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(315,73)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-7.020294,112.863647)"},"ID":1,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-340,110)"},"ID":2,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"CheckReactComponent","NodeData":{"Offset":"(-256.0454,136)"},"ID":3,"Name":"Check
-        React Component","Instant":true,"SharedFloatRadius":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"SearchRadius","IsShared":true,"SinglemValue":15},"SharedLayerMaskLayerMask":{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"SearchLayerMask","IsShared":true,"LayerMaskmValue":1024},"SharedNavMeshAgentNavMeshAgent":{"Type":"SharedNavMeshAgent","Name":"NavMeshAgent","IsShared":true,"NavMeshAgentmValue":0}},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityNavMeshAgent.ResetPath","NodeData":{"Offset":"(-47.5,136)"},"ID":4,"Name":"Reset
-        Path","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null}},{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(126.81813,140)"},"ID":5,"Name":"Attack","Instant":true,"ExternalBehavior[]externalBehaviors":[1],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]},{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(168.979736,146.863647)"},"ID":6,"Name":"Patrol","Instant":true,"ExternalBehavior[]externalBehaviors":[2],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"CurrentPatrolWaypoint","IsShared":true},{"Type":"SharedNavMeshAgent","Name":"NavAgent","IsShared":true,"NavMeshAgentmValue":3},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"WaypointsContainer","IsShared":true,"TransformmValue":4}]}'
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(315,73)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0.204081535,99.3617)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-180,117.959152)"},"ID":2,"Name":"Selector","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-80,100)"},"ID":3,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"CheckReactComponent","NodeData":{"Offset":"(-268.5,105)"},"ID":4,"Name":"Check
+        React Component","Instant":true,"SharedFloatRadius":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"SearchRadius","IsShared":true,"SinglemValue":15},"SharedLayerMaskLayerMask":{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"CharacterLayerMask","IsShared":true,"LayerMaskmValue":1024},"SharedNavMeshAgentNavMeshAgent":{"Type":"SharedNavMeshAgent","Name":"NavAgent","IsShared":true,"NavMeshAgentmValue":0},"SharedVector3LastCharacterSeenPosition":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterSeenPosition","IsShared":true,"Vector3mValue":"(0,0,0)"}},{"Type":"SetBool","NodeData":{"Offset":"(-120,110)"},"ID":5,"Name":"Set
+        Bool","Instant":true,"SharedBoolVariableToSet":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"CharacterWasSeen","IsShared":true,"BooleanmValue":false},"BooleanValue":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityNavMeshAgent.ResetPath","NodeData":{"Offset":"(0,105.652161)"},"ID":6,"Name":"Reset
+        Path","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null}},{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(109.76741,105.348633)"},"ID":7,"Name":"Attack","Instant":true,"ExternalBehavior[]externalBehaviors":[1],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]},{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnSuccess","NodeData":{"Offset":"(147.5,213)"},"ID":8,"Name":"Return
+        Success","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(2.94177818,86.70715)"},"ID":9,"Name":"Pursuit","Instant":true,"ExternalBehavior[]externalBehaviors":[2],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(170,110)"},"ID":10,"Name":"Patrol","Instant":true,"ExternalBehavior[]externalBehaviors":[3],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"CurrentPatrolWaypoint","IsShared":true},{"Type":"SharedNavMeshAgent","Name":"NavAgent","IsShared":true,"NavMeshAgentmValue":4},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"WaypointsContainer","IsShared":true,"TransformmValue":5},{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"CharacterLayerMask","IsShared":true,"LayerMaskmValue":1024},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"SearchRadius","IsShared":true,"SinglemValue":15},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"CharacterWasSeen","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterSeenPosition","IsShared":true,"Vector3mValue":"(0,0,0)"}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
@@ -516,6 +625,7 @@ MonoBehaviour:
         unityObjects:
         - {fileID: 771318278}
         - {fileID: 11400000, guid: 3d667e886729bed48b06432a740af090, type: 2}
+        - {fileID: 11400000, guid: f6fa6020df255264eb69eef8ee553564, type: 2}
         - {fileID: 11400000, guid: e5f1b601621091743aa5f000035e8c7e, type: 2}
         - {fileID: 771318278}
         - {fileID: 565710856}
@@ -524,6 +634,19 @@ MonoBehaviour:
       Version: 1.7.9
   gizmoViewMode: 2
   showBehaviorDesignerGizmo: 1
+--- !u!114 &1029918282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029918274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 064c424c9c8cc5948aeccf0f682e808b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VariableName: SearchRadius
 --- !u!1 &1359432100
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,8 +703,6 @@ GameObject:
   - component: {fileID: 1656665680}
   - component: {fileID: 1656665679}
   - component: {fileID: 1656665678}
-  - component: {fileID: 1656665677}
-  - component: {fileID: 1656665676}
   m_Layer: 10
   m_Name: player
   m_TagString: Untagged
@@ -589,34 +710,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1656665676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1656665675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8daf2d0937ecdb44b2e6f5d41263175, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RaycastOrigin: {fileID: 1656665680}
-  RaycastTarget: {fileID: 1656665680}
---- !u!136 &1656665677
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1656665675}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1656665678
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -675,10 +768,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656665675}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.34, y: 1, z: -7.65}
+  m_LocalPosition: {x: 7.07, y: 1, z: 9.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 341754573}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -884,6 +978,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1589075673, guid: 6b5d591dbb72ac04a80d42bbb710cb7a, type: 3}
+      propertyPath: m_Speed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8592876449704432112, guid: 6b5d591dbb72ac04a80d42bbb710cb7a,
         type: 3}
       propertyPath: m_RootOrder
@@ -892,7 +990,7 @@ PrefabInstance:
     - target: {fileID: 8592876449704432112, guid: 6b5d591dbb72ac04a80d42bbb710cb7a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.962001
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8592876449704432112, guid: 6b5d591dbb72ac04a80d42bbb710cb7a,
         type: 3}
@@ -902,7 +1000,7 @@ PrefabInstance:
     - target: {fileID: 8592876449704432112, guid: 6b5d591dbb72ac04a80d42bbb710cb7a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.414255
+      value: -6.68
       objectReference: {fileID: 0}
     - target: {fileID: 8592876449704432112, guid: 6b5d591dbb72ac04a80d42bbb710cb7a,
         type: 3}

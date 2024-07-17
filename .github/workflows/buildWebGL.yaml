@@ -6,6 +6,11 @@ jobs:
     name: Build my project
     runs-on: ubuntu-latest
     steps:
+
+      #Clean Up
+    - name: Clean Repo from previous builds
+      uses: AutoModality/action-clean@v1
+
       # Notify build start
       - name: notify-build-start
         uses: appleboy/telegram-action@v0.1.1

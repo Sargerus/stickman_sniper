@@ -1,5 +1,7 @@
 using Cysharp.Threading.Tasks;
 using DWTools;
+using DWTools.Windows;
+using InfimaGames.LowPolyShooterPack;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,39 +10,61 @@ using Zenject;
 
 public class WinLoseDecider : IInitializable, IDisposable
 {
-    private readonly IUiManager _uiManager;
+    private readonly DWTools.Windows.IUIManager _uiManager;
     private readonly List<IProgressObserver> _progressObservers;
-    private readonly FirstPersonController _firstPersonController;
     private readonly CameraProvider _cameraProvider;
+    private readonly IInputService _inputService;
+    private readonly DiContainer _diContainer;
+    private readonly Character _character;
 
     private CompositeDisposable _disposables = new();
 
-    public WinLoseDecider(IUiManager uiManager, List<IProgressObserver> progressObservers,
-        FirstPersonController firstPersonController, [Inject(Id ="mobile")] CameraProvider cameraProvider)
+    public WinLoseDecider(DWTools.Windows.IUIManager uiManager, 
+        List<IProgressObserver> progressObservers,
+        [Inject(Id ="mobile")] CameraProvider cameraProvider,
+        IInputService inputService, DiContainer diContainer,
+        Character character)
     {
         _uiManager = uiManager;
         _progressObservers = progressObservers;
-        _firstPersonController = firstPersonController;
         _cameraProvider = cameraProvider;
+        _inputService = inputService;
+        _diContainer = diContainer;
+        _character = character;
     }
 
     public void Initialize()
     {
-        Observable.Merge(_progressObservers.Select(g => g.Win)).Where(h => h == true).Subscribe(_ =>
+        Observable.Merge(_progressObservers.SelectMany(g => new List<IReadOnlyReactiveProperty<bool>>() { g.Win, g.Lose }))
+            .ToReactiveProperty().SkipLatestValueOnSubscribe().Subscribe(async _ =>
         {
             HideMobile();
-            _firstPersonController.Freeze(true);
+            _character.freeze = true;
+            _inputService.DisableInput();
+            var handler = await _uiManager.CreateWindow("game_over_ui", null, _diContainer);
+            await handler.Show(false);
+            //_firstPersonController.Freeze(true);
             //_firstPersonController.ToggleScopeOff();
-            _uiManager.ShowWinPopup().Forget();
+            //_uiManager.ShowWinPopup().Forget();
         }).AddTo(_disposables);
 
-        Observable.Merge(_progressObservers.Select(g => g.Lose)).Where(h => h == true).Subscribe(_ =>
-        {
-            HideMobile();
-            _firstPersonController.Freeze(true);
-            //_firstPersonController.ToggleScopeOff();
-            _uiManager.ShowLosePopup().Forget();
-        }).AddTo(_disposables);
+        //Observable.Merge(_progressObservers.Select(g => g.Win)).Where(h => h == true).Subscribe(_ =>
+        //{
+        //    HideMobile();
+        //    _inputService.DisableInput();
+        //    //_firstPersonController.Freeze(true);
+        //    //_firstPersonController.ToggleScopeOff();
+        //    //_uiManager.ShowWinPopup().Forget();
+        //}).AddTo(_disposables);
+        //
+        //Observable.Merge(_progressObservers.Select(g => g.Lose)).Where(h => h == true).Subscribe(_ =>
+        //{
+        //    HideMobile();
+        //    _inputService.DisableInput();
+        //    //_firstPersonController.Freeze(true);
+        //    //_firstPersonController.ToggleScopeOff();
+        //    //_uiManager.ShowLosePopup().Forget();
+        //}).AddTo(_disposables);
     }
 
     private void HideMobile()

@@ -1,4 +1,6 @@
 using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Triggers;
+using InfimaGames.LowPolyShooterPack;
 using System;
 using UniRx;
 using Zenject;
@@ -11,7 +13,8 @@ public interface IPlayerProgressObserver : IProgressObserver
 public class PlayerProgressObserver : IPlayerProgressObserver, IInitializable, IDisposable
 {
     private readonly ILevelProgressObserver _levelProgressObserver;
-    private readonly IWeaponService _weaponService;
+    //private readonly IWeaponService _weaponService;
+    private readonly Character _character;
 
     private IDisposable _bulletsDisposable;
     private CompositeDisposable _disposables = new();
@@ -22,30 +25,42 @@ public class PlayerProgressObserver : IPlayerProgressObserver, IInitializable, I
     private ReactiveProperty<bool> _win = new(false);
     public IReadOnlyReactiveProperty<bool> Win => _win;
 
-    public PlayerProgressObserver(ILevelProgressObserver levelProgressObserver, IWeaponService weaponService)
+    public PlayerProgressObserver(ILevelProgressObserver levelProgressObserver, Character character)//, IWeaponService weaponService)
     {
         _levelProgressObserver = levelProgressObserver;
-        _weaponService = weaponService;
+        _character = character;
     }
 
     public void Initialize()
     {
-        _weaponService.CurrentWeapon.Subscribe(weapon =>
-        {
-            if (weapon == null)
-                return;
+        Observable.EveryUpdate().Subscribe(_ => ObserveAmmunitionCount()).AddTo(_disposables);
 
-            _bulletsDisposable?.Dispose();
+        //_weaponService.CurrentWeapon.Subscribe(weapon =>
+        //{
+        //    if (weapon == null)
+        //        return;
+        //
+        //    _bulletsDisposable?.Dispose();
+        //
+        //    _bulletsDisposable = weapon.CurrentBulletsCount.Subscribe(async bullets =>
+        //    {
+        //        if (bullets == 0)
+        //            await UniTask.DelayFrame(10);
+        //
+        //        if (bullets == 0 && _levelProgressObserver.KilledEnemies.Value < _levelProgressObserver.TotalEnemies)
+        //            _lose.Value = true;
+        //    });
+        //}).AddTo(_disposables);
+    }
 
-            _bulletsDisposable = weapon.CurrentBulletsCount.Subscribe(async bullets =>
-            {
-                if (bullets == 0)
-                    await UniTask.DelayFrame(10);
+    private void ObserveAmmunitionCount()
+    {
+        if (!_character.IsInitialized)
+            return;
 
-                if (bullets == 0 && _levelProgressObserver.KilledEnemies.Value < _levelProgressObserver.TotalEnemies)
-                    _lose.Value = true;
-            });
-        }).AddTo(_disposables);
+        int currentAmmo = _character.GetInventory().GetEquipped().GetAmmunitionCurrent();
+        if (currentAmmo <= 0 && _levelProgressObserver.KilledEnemies.Value < _levelProgressObserver.TotalEnemies)
+            _lose.Value = true;
     }
 
     public void Dispose()

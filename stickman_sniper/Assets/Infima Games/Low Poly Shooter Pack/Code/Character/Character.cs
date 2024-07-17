@@ -314,6 +314,8 @@ namespace InfimaGames.LowPolyShooterPack
         private int shotsFired;
 
         private bool _isInitialized;
+        public bool IsInitialized => _isInitialized;
+        public bool freeze;
         #endregion
 
         #region UNITY
@@ -327,6 +329,9 @@ namespace InfimaGames.LowPolyShooterPack
 
             Observable.EveryUpdate().Subscribe(_ =>
             {
+                if (freeze)
+                    return;
+
                 if (_inputService.AnyKeyDown)
                     _cursorLocker.Lock();
             }).AddTo(_disposables);

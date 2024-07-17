@@ -2,7 +2,7 @@ using Cysharp.Threading.Tasks;
 using DWTools.Windows;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
+using YG;
 using Zenject;
 
 public sealed class MainMenuSceneState : SceneState
@@ -25,6 +25,8 @@ public sealed class MainMenuSceneState : SceneState
 
         _handler = await _uiManager.CreateWindow("customization_screen", null, _sceneContext.Container);
         await _handler.Show(false);
+
+        YandexGame.Instance._FullscreenShow();
     }
 
     private async UniTask AwaitUImanagerInitialized()
@@ -48,6 +50,7 @@ public sealed class MainMenuSceneState : SceneState
     public override async UniTask OnExitState()
     {
         await base.OnExitState();
+        _handler.Close(true);
         GlobalBlackboard.Blackboard.SetValue(BlackboardConstants.MainMenuReadyBool, false);
     }
 }

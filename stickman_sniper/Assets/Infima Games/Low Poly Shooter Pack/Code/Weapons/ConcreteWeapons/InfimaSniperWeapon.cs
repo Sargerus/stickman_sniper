@@ -45,12 +45,6 @@ public class InfimaSniperWeapon : InfimaWeapon
         //Play the firing animation.
         const string stateName = "Fire";
         animator.Play(stateName, 0, 0.0f);
-        //Reduce ammunition! We just shot, so we need to get rid of one!
-        ammunitionCurrent = Mathf.Clamp(ammunitionCurrent - 1, 0, magazineBehaviour.GetMagazineSize());
-
-        //Set the slide back if we just ran out of ammunition.
-        if (ammunitionCurrent == 0)
-            SetSlideBack(1);
 
         //Play all muzzle effects.
         muzzleBehaviour.Effect();
@@ -60,6 +54,7 @@ public class InfimaSniperWeapon : InfimaWeapon
         //Spawn as many projectiles as we need.
         for (var i = 0; i < shotCount; i++)
         {
+            bool wasShot = false;
             //Determine a random spread value using all of our multipliers.
             Vector3 spreadValue = UnityEngine.Random.insideUnitSphere * (spread * spreadMultiplier);
             //Remove the forward spread component, since locally this would go inside the object we're shooting!
@@ -124,17 +119,29 @@ public class InfimaSniperWeapon : InfimaWeapon
                     //enemy.PrepareForDeath();
                     //hit.rigidbody.AddForce(direction * projectileImpulse, ForceMode.Impulse);
 
-                    return;
+
+                    wasShot = true;
                 }
 
-                var explosive = hit.transform.GetComponentInParent<IExplosive>();
-                if (explosive != null)
+                if (!wasShot)
                 {
-                    explosive.Explode();
-
-                    return;
+                    var explosive = hit.transform.GetComponentInParent<IExplosive>();
+                    if (explosive != null)
+                    {
+                        explosive.Explode();
+                    }
                 }
             }
+
+            //Reduce ammunition! We just shot, so we need to get rid of one!
+            ammunitionCurrent = Mathf.Clamp(ammunitionCurrent - 1, 0, magazineBehaviour.GetMagazineSize());
+
+            //Set the slide back if we just ran out of ammunition.
+            if (ammunitionCurrent == 0)
+                SetSlideBack(1);
+
+            if (wasShot)
+                return;
         }
     }
 }

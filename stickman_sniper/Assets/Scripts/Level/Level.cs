@@ -15,12 +15,11 @@ public class Level : MonoBehaviour
     [SerializeField] private List<Enemy> _enemyPrefabs;
     [SerializeField] private List<NavMeshData> navMeshData;
 
-    private List<Enemy> _enemies = new();
     private Character _player;
     private List<NavMeshDataInstance> _navMeshInstances = new();
 
     [Inject] private Character.Factory _characterFactory;
-    //[Inject] private ILevelProgressObserver _levelProgressObserver;
+    [Inject] private ILevelProgressObserver _levelProgressObserver;
     [Inject] private DiContainer _container;
 
     public async void Start()
@@ -28,25 +27,27 @@ public class Level : MonoBehaviour
         foreach (var nmData in navMeshData)
             _navMeshInstances.Add(NavMesh.AddNavMeshData(nmData));
 
-        int max = Math.Min(_enemiesSpawns.Count, _enemyCountMax);
-        int enemiesCount = UnityEngine.Random.Range(_enemyCountMin, max);
+        //int max = Math.Min(_enemiesSpawns.Count, _enemyCountMax);
+        //int enemiesCount = UnityEngine.Random.Range(_enemyCountMin, max);
+        //
+        //List<Transform> copyList = new(_enemiesSpawns);
+        //for (int i = 0; i < enemiesCount; i++)
+        //{
+        //    Transform place = copyList.Random();
+        //    copyList.Remove(place);
+        //
+        //    var enemy = _container.InstantiatePrefabForComponent<Enemy>(_enemyPrefabs.Random(), place.position, place.rotation, transform);
+        //    _enemies.Add(enemy);
+        //}
 
-        List<Transform> copyList = new(_enemiesSpawns);
-        for (int i = 0; i < enemiesCount; i++)
-        {
-            Transform place = copyList.Random();
-            copyList.Remove(place);
-
-            var enemy = _container.InstantiatePrefabForComponent<Enemy>(_enemyPrefabs.Random(), place.position, place.rotation, transform);
-            _enemies.Add(enemy);
-        }
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
 
         var playerPlace = _playerSpawns.Random();
         _player = _characterFactory.Create();
         _player.transform.position = playerPlace.position;
         _player.transform.rotation = playerPlace.rotation;
         await _player.Initialize();
-        //_levelProgressObserver.Observe(_enemies);
+        _levelProgressObserver.Observe(enemies);
     }
 
     private void OnDestroy()

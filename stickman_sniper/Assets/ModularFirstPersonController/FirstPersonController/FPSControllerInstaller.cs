@@ -34,7 +34,7 @@ public class FPSControllerInstaller : MonoInstaller
         //Container.BindInterfacesTo<HandsController>().FromInstance(_handsController).AsSingle();
         Container.BindInterfacesTo<PlayerProgressObserver>().AsSingle().NonLazy();
         //Container.Bind<IUiManager>().FromInstance(_uiManager).AsSingle();
-  //UNCOMMENT//Container.BindInterfacesTo<WinLoseDecider>().AsSingle().NonLazy();
+        Container.BindInterfacesTo<WinLoseDecider>().AsSingle().NonLazy();
         Container.BindInterfacesTo<BulletFlyProducer>().AsSingle();
         Container.BindInterfacesTo<EnemyDeadProducer>().AsSingle();
         Container.BindInterfacesTo<CoreProducer>().AsSingle();

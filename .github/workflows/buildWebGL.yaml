@@ -6,7 +6,10 @@ jobs:
     name: Build my project
     runs-on: ubuntu-latest
     steps:
-
+      - run: sudo rm -rf /usr/share/dotnet
+      - run: sudo rm -rf /opt/ghc
+      - run: sudo rm -rf "/usr/local/share/boost"
+      - run: sudo rm -rf "$AGENT_TOOLSDIRECTORY"
         # - name: Free Disk Space (Ubuntu)
         # uses: jlumbroso/free-disk-space@main
         # with:

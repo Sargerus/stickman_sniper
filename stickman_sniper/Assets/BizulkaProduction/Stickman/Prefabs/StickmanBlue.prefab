@@ -2857,6 +2857,7 @@ GameObject:
   - component: {fileID: 8143844528215128124}
   - component: {fileID: 4766247166971872669}
   - component: {fileID: 5344197186349070809}
+  - component: {fileID: 8714953377011767107}
   m_Layer: 3
   m_Name: StickmanBlue
   m_TagString: Untagged
@@ -3068,6 +3069,19 @@ MonoBehaviour:
       Version: 1.7.9
   gizmoViewMode: 2
   showBehaviorDesignerGizmo: 1
+--- !u!114 &8714953377011767107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6600773666189992893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 174d1dea5d6569f4fa7e7f07a4a41153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _agent: {fileID: 818592266}
 --- !u!1 &7029396900188980880
 GameObject:
   m_ObjectHideFlags: 0

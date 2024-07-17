@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      #Clean Up
-    - name: Clean Repo from previous builds
-      uses: AutoModality/action-clean@v1
+      # Clean Up
+      - name: Clean Repo from previous builds
+        uses: AutoModality/action-clean@v1
 
       # Notify build start
       - name: notify-build-start

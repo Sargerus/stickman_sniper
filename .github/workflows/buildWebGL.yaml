@@ -25,6 +25,8 @@ jobs:
           ssh-private-key: |
                         ${{ secrets.SSH_PRIVATE_KEY }}
                         ${{ secrets.SSH_DWTOOLS_PRIVATE_KEY }}
+                        ${{ secrets.SSH_DWWINDOWS_PRIVATE_KEY }}
+                        ${{ secrets.SSH_DWSLOWMOTION_PRIVATE_KEY }}
       - run: git submodule update --init --recursive --remote
           
       # Cache

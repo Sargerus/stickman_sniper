@@ -77,4 +77,7 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: --
           document: build/WebGL/WebGL.zip
+
+      - name: Display directory structure
+        run: tree -L 5  # Уровень вложенности 2, можно изменить по необходимости
             

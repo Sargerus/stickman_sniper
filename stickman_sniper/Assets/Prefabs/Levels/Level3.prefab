@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 2454892287987052929}
   - component: {fileID: 2454892287987052931}
   - component: {fileID: 8332601131627173574}
+  - component: {fileID: 8402247748145715749}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Metal
@@ -247,6 +248,35 @@ MonoBehaviour:
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 8e30d330c4527a247a6163a6dabc2b34, type: 2}
+--- !u!114 &8402247748145715749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2454892287987052942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 4
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_BuildHeightMesh: 0
+  m_NavMeshData: {fileID: 23800000, guid: 06b93e5ad6e9d9e4ab6dededaf2101c5, type: 2}
 --- !u!1 &2454892289327345423
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,12 +310,13 @@ Transform:
   - {fileID: 8498902112256087932}
   - {fileID: 6911005868894651150}
   - {fileID: 4712267006403566303}
-  - {fileID: 8560382171500170366}
   - {fileID: 7527640966167070490}
-  - {fileID: 3929029022644365548}
-  - {fileID: 7026731040717937271}
-  - {fileID: 8617707890821683269}
-  - {fileID: 8156713418123148886}
+  - {fileID: 7177628781441846148}
+  - {fileID: 4372219781901044725}
+  - {fileID: 5527877717598457689}
+  - {fileID: 8302597879847909368}
+  - {fileID: 7213947879852853815}
+  - {fileID: 924902445622596800}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -308,7 +339,9 @@ MonoBehaviour:
   - {fileID: 6336979422504647029}
   _enemyPrefabs:
   - {fileID: 6730840368580610037, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-  navMeshData: {fileID: 23800000, guid: 8e30d330c4527a247a6163a6dabc2b34, type: 2}
+  navMeshData:
+  - {fileID: 23800000, guid: 8e30d330c4527a247a6163a6dabc2b34, type: 2}
+  - {fileID: 23800000, guid: 06b93e5ad6e9d9e4ab6dededaf2101c5, type: 2}
 --- !u!1 &2454892289988608247
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,7 +649,7 @@ Transform:
   - {fileID: 8128098701232796755}
   - {fileID: 5448834667707806965}
   m_Father: {fileID: 2454892289327345408}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5927232995755786411
 GameObject:
@@ -1035,139 +1068,85 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1637128648516175218}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &2441812615573653329
+--- !u!1001 &2046762330446984798
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 2454892289327345408}
     m_Modifications:
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.JSONSerialization
-      value: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(315,73)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0.204081535,99.3617)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-180,117.959152)"},"ID":2,"Name":"Selector","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-80,100)"},"ID":3,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"CheckReactComponent","NodeData":{"Offset":"(-408.5,105)"},"ID":4,"Name":"Check
-        React Component","Instant":true,"SharedFloatRadius":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"SearchRadius","IsShared":true,"SinglemValue":15},"SharedLayerMaskLayerMask":{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"CharacterLayerMask","IsShared":true,"LayerMaskmValue":1024},"SharedLayerMaskVisibleItemsLayerMask":{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"EyeIgnoreThingsLayerMask","IsShared":true,"LayerMaskmValue":130871},"SharedNavMeshAgentNavMeshAgent":{"Type":"SharedNavMeshAgent","Name":"NavAgent","IsShared":true,"NavMeshAgentmValue":0},"SharedVector3LastCharacterSeenPosition":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterSeenPosition","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedVector3LastCharacterShootPosition":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterShootPosition","IsShared":true,"Vector3mValue":"(0,0,0)"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-182.775543,113.163208)"},"ID":5,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"SetEnemyAnimatorValues","NodeData":{"Offset":"(-262.775543,97.16321)"},"ID":6,"Name":"Set
-        Enemy Animator Values","Instant":true,"SharedEnemyAnimatorControllerenemyAnimatorController":{"Type":"SharedEnemyAnimatorController","Name":"EnemyAnimatorController","IsShared":true,"EnemyAnimatorControllermValue":1},"BooleanSetWalk":true,"BooleanIsWalk":false,"BooleanSetShooting":true,"BooleanIsShooting":false},{"Type":"SetBool","NodeData":{"Offset":"(-110,100)"},"ID":7,"Name":"Set
-        Bool","Instant":true,"SharedBoolVariableToSet":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"CharacterWasSeen","IsShared":true,"BooleanmValue":false},"BooleanValue":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityNavMeshAgent.ResetPath","NodeData":{"Offset":"(0,100)"},"ID":8,"Name":"Reset
-        Path","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null}},{"Type":"SetFloat","NodeData":{"Offset":"(110,100)"},"ID":9,"Name":"Set
-        Float","Instant":true,"SharedFloatVariableToSet":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"SearchRadius","IsShared":true,"SinglemValue":15},"SingleValue":25}]},{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(109.76741,105.348633)"},"ID":10,"Name":"Attack","Instant":true,"ExternalBehavior[]externalBehaviors":[2],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]},{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnSuccess","NodeData":{"Offset":"(147.5,213)"},"ID":11,"Name":"Return
-        Success","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(2.94177818,86.70715)"},"ID":12,"Name":"Pursuit","Instant":true,"ExternalBehavior[]externalBehaviors":[3],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(170,110)"},"ID":13,"Name":"Patrol","Instant":true,"ExternalBehavior[]externalBehaviors":[4],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"CurrentPatrolWaypoint","IsShared":true},{"Type":"SharedNavMeshAgent","Name":"NavAgent","IsShared":true,"NavMeshAgentmValue":5},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"WaypointsContainer","IsShared":true,"TransformmValue":6},{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"CharacterLayerMask","IsShared":true,"LayerMaskmValue":1024},{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"EyeIgnoreThingsLayerMask","IsShared":true,"LayerMaskmValue":130871},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"SearchRadius","IsShared":true,"SinglemValue":15},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"CharacterWasSeen","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterSeenPosition","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterShootPosition","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"SharedEnemyBattleController","Name":"EnemyBattleController","IsShared":true,"EnemyBattleControllermValue":7},{"Type":"SharedEnemyAnimatorController","Name":"EnemyAnimatorController","IsShared":true,"EnemyAnimatorControllermValue":8},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"AimRotateTransform","IsShared":true,"TransformmValue":9}]}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[6]
-      value: 
-      objectReference: {fileID: 7527640966167070490}
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[7]
-      value: 
-      objectReference: {fileID: 2441812614773177695}
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[8]
-      value: 
-      objectReference: {fileID: 5829822657118388077}
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[9]
-      value: 
-      objectReference: {fileID: 8156713418123148886}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.33
+      value: -11.15
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.06
+      value: -9.61
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5843904113223262893, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5843904113223262893, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 6600773666189992893, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 6600773666189992893, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_Name
-      value: Stickman_good_4
+      value: StickmanBlue_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 459334c53c67f5346b6404462844d07b, type: 3}
---- !u!114 &2441812614773177695 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 818592270, guid: 459334c53c67f5346b6404462844d07b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2441812615573653329}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f90997d136c3d249b2e394eabaf3aba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5829822657118388077 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8143844528215128124, guid: 459334c53c67f5346b6404462844d07b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2441812615573653329}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d127d23bf37dcc34f802c291c8da609c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &8156713418123148886 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: b82472bea9260024db3474a5fa40cee1, type: 3}
+--- !u!4 &5527877717598457689 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+  m_CorrespondingSourceObject: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
     type: 3}
-  m_PrefabInstance: {fileID: 2441812615573653329}
+  m_PrefabInstance: {fileID: 2046762330446984798}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2454892288194903597
 PrefabInstance:
@@ -1399,273 +1378,85 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2454892288194903597}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &2746613285530596729
+--- !u!1001 &2587802636871749375
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 2454892289327345408}
     m_Modifications:
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.JSONSerialization
-      value: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(315,73)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0.204081535,99.3617)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-180,117.959152)"},"ID":2,"Name":"Selector","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-80,100)"},"ID":3,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"CheckReactComponent","NodeData":{"Offset":"(-408.5,105)"},"ID":4,"Name":"Check
-        React Component","Instant":true,"SharedFloatRadius":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"SearchRadius","IsShared":true,"SinglemValue":15},"SharedLayerMaskLayerMask":{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"CharacterLayerMask","IsShared":true,"LayerMaskmValue":1024},"SharedLayerMaskVisibleItemsLayerMask":{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"EyeIgnoreThingsLayerMask","IsShared":true,"LayerMaskmValue":130871},"SharedNavMeshAgentNavMeshAgent":{"Type":"SharedNavMeshAgent","Name":"NavAgent","IsShared":true,"NavMeshAgentmValue":0},"SharedVector3LastCharacterSeenPosition":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterSeenPosition","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedVector3LastCharacterShootPosition":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterShootPosition","IsShared":true,"Vector3mValue":"(0,0,0)"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-182.775543,113.163208)"},"ID":5,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"SetEnemyAnimatorValues","NodeData":{"Offset":"(-262.775543,97.16321)"},"ID":6,"Name":"Set
-        Enemy Animator Values","Instant":true,"SharedEnemyAnimatorControllerenemyAnimatorController":{"Type":"SharedEnemyAnimatorController","Name":"EnemyAnimatorController","IsShared":true,"EnemyAnimatorControllermValue":1},"BooleanSetWalk":true,"BooleanIsWalk":false,"BooleanSetShooting":true,"BooleanIsShooting":false},{"Type":"SetBool","NodeData":{"Offset":"(-110,100)"},"ID":7,"Name":"Set
-        Bool","Instant":true,"SharedBoolVariableToSet":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"CharacterWasSeen","IsShared":true,"BooleanmValue":false},"BooleanValue":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityNavMeshAgent.ResetPath","NodeData":{"Offset":"(0,100)"},"ID":8,"Name":"Reset
-        Path","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null}},{"Type":"SetFloat","NodeData":{"Offset":"(110,100)"},"ID":9,"Name":"Set
-        Float","Instant":true,"SharedFloatVariableToSet":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"SearchRadius","IsShared":true,"SinglemValue":15},"SingleValue":25}]},{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(109.76741,105.348633)"},"ID":10,"Name":"Attack","Instant":true,"ExternalBehavior[]externalBehaviors":[2],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]},{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnSuccess","NodeData":{"Offset":"(147.5,213)"},"ID":11,"Name":"Return
-        Success","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(2.94177818,86.70715)"},"ID":12,"Name":"Pursuit","Instant":true,"ExternalBehavior[]externalBehaviors":[3],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(170,110)"},"ID":13,"Name":"Patrol","Instant":true,"ExternalBehavior[]externalBehaviors":[4],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"CurrentPatrolWaypoint","IsShared":true},{"Type":"SharedNavMeshAgent","Name":"NavAgent","IsShared":true,"NavMeshAgentmValue":5},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"WaypointsContainer","IsShared":true,"TransformmValue":6},{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"CharacterLayerMask","IsShared":true,"LayerMaskmValue":1024},{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"EyeIgnoreThingsLayerMask","IsShared":true,"LayerMaskmValue":130871},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"SearchRadius","IsShared":true,"SinglemValue":15},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"CharacterWasSeen","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterSeenPosition","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterShootPosition","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"SharedEnemyBattleController","Name":"EnemyBattleController","IsShared":true,"EnemyBattleControllermValue":7},{"Type":"SharedEnemyAnimatorController","Name":"EnemyAnimatorController","IsShared":true,"EnemyAnimatorControllermValue":8},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"AimRotateTransform","IsShared":true,"TransformmValue":9}]}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[6]
-      value: 
-      objectReference: {fileID: 7527640966167070490}
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[7]
-      value: 
-      objectReference: {fileID: 2746613285265723255}
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[8]
-      value: 
-      objectReference: {fileID: 6276136927295835461}
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[9]
-      value: 
-      objectReference: {fileID: 8560382171500170366}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 8.190567
-      objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 6.1024265
-      objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5843904113223262893, guid: 459334c53c67f5346b6404462844d07b,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6600773666189992893, guid: 459334c53c67f5346b6404462844d07b,
-        type: 3}
-      propertyPath: m_Name
-      value: Stickman_good
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 459334c53c67f5346b6404462844d07b, type: 3}
---- !u!114 &2746613285265723255 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 818592270, guid: 459334c53c67f5346b6404462844d07b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2746613285530596729}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f90997d136c3d249b2e394eabaf3aba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6276136927295835461 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8143844528215128124, guid: 459334c53c67f5346b6404462844d07b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2746613285530596729}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d127d23bf37dcc34f802c291c8da609c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &8560382171500170366 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2746613285530596729}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &2830872639473475906
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2454892289327345408}
-    m_Modifications:
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.JSONSerialization
-      value: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(315,73)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0.204081535,99.3617)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-180,117.959152)"},"ID":2,"Name":"Selector","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-80,100)"},"ID":3,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"CheckReactComponent","NodeData":{"Offset":"(-408.5,105)"},"ID":4,"Name":"Check
-        React Component","Instant":true,"SharedFloatRadius":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"SearchRadius","IsShared":true,"SinglemValue":15},"SharedLayerMaskLayerMask":{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"CharacterLayerMask","IsShared":true,"LayerMaskmValue":1024},"SharedLayerMaskVisibleItemsLayerMask":{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"EyeIgnoreThingsLayerMask","IsShared":true,"LayerMaskmValue":130871},"SharedNavMeshAgentNavMeshAgent":{"Type":"SharedNavMeshAgent","Name":"NavAgent","IsShared":true,"NavMeshAgentmValue":0},"SharedVector3LastCharacterSeenPosition":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterSeenPosition","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedVector3LastCharacterShootPosition":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterShootPosition","IsShared":true,"Vector3mValue":"(0,0,0)"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-182.775543,113.163208)"},"ID":5,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"SetEnemyAnimatorValues","NodeData":{"Offset":"(-262.775543,97.16321)"},"ID":6,"Name":"Set
-        Enemy Animator Values","Instant":true,"SharedEnemyAnimatorControllerenemyAnimatorController":{"Type":"SharedEnemyAnimatorController","Name":"EnemyAnimatorController","IsShared":true,"EnemyAnimatorControllermValue":1},"BooleanSetWalk":true,"BooleanIsWalk":false,"BooleanSetShooting":true,"BooleanIsShooting":false},{"Type":"SetBool","NodeData":{"Offset":"(-110,100)"},"ID":7,"Name":"Set
-        Bool","Instant":true,"SharedBoolVariableToSet":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"CharacterWasSeen","IsShared":true,"BooleanmValue":false},"BooleanValue":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityNavMeshAgent.ResetPath","NodeData":{"Offset":"(0,100)"},"ID":8,"Name":"Reset
-        Path","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null}},{"Type":"SetFloat","NodeData":{"Offset":"(110,100)"},"ID":9,"Name":"Set
-        Float","Instant":true,"SharedFloatVariableToSet":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"SearchRadius","IsShared":true,"SinglemValue":15},"SingleValue":25}]},{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(109.76741,105.348633)"},"ID":10,"Name":"Attack","Instant":true,"ExternalBehavior[]externalBehaviors":[2],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]},{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnSuccess","NodeData":{"Offset":"(147.5,213)"},"ID":11,"Name":"Return
-        Success","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(2.94177818,86.70715)"},"ID":12,"Name":"Pursuit","Instant":true,"ExternalBehavior[]externalBehaviors":[3],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(170,110)"},"ID":13,"Name":"Patrol","Instant":true,"ExternalBehavior[]externalBehaviors":[4],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"CurrentPatrolWaypoint","IsShared":true},{"Type":"SharedNavMeshAgent","Name":"NavAgent","IsShared":true,"NavMeshAgentmValue":5},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"WaypointsContainer","IsShared":true,"TransformmValue":6},{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"CharacterLayerMask","IsShared":true,"LayerMaskmValue":1024},{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"EyeIgnoreThingsLayerMask","IsShared":true,"LayerMaskmValue":130871},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"SearchRadius","IsShared":true,"SinglemValue":15},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"CharacterWasSeen","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterSeenPosition","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterShootPosition","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"SharedEnemyBattleController","Name":"EnemyBattleController","IsShared":true,"EnemyBattleControllermValue":7},{"Type":"SharedEnemyAnimatorController","Name":"EnemyAnimatorController","IsShared":true,"EnemyAnimatorControllermValue":8},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"AimRotateTransform","IsShared":true,"TransformmValue":9}]}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[6]
-      value: 
-      objectReference: {fileID: 7527640966167070490}
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[7]
-      value: 
-      objectReference: {fileID: 2830872640292051788}
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[8]
-      value: 
-      objectReference: {fileID: 6218900273817262462}
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[9]
-      value: 
-      objectReference: {fileID: 8617707890821683269}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.14
+      value: -6.65
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.67
+      value: 9.29
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5843904113223262893, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5843904113223262893, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 6600773666189992893, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 6600773666189992893, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_Name
-      value: Stickman_good_3
+      value: StickmanBlue_2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 459334c53c67f5346b6404462844d07b, type: 3}
---- !u!114 &2830872640292051788 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 818592270, guid: 459334c53c67f5346b6404462844d07b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2830872639473475906}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f90997d136c3d249b2e394eabaf3aba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6218900273817262462 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8143844528215128124, guid: 459334c53c67f5346b6404462844d07b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2830872639473475906}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d127d23bf37dcc34f802c291c8da609c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &8617707890821683269 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: b82472bea9260024db3474a5fa40cee1, type: 3}
+--- !u!4 &8302597879847909368 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+  m_CorrespondingSourceObject: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
     type: 3}
-  m_PrefabInstance: {fileID: 2830872639473475906}
+  m_PrefabInstance: {fileID: 2587802636871749375}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3332587085779925269
 PrefabInstance:
@@ -1742,7 +1533,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3332587085779925269}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &3554059904740598640
+--- !u!1001 &3696742092702724739
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1752,12 +1543,12 @@ PrefabInstance:
     - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
       propertyPath: mBehaviorSource.mTaskData.JSONSerialization
       value: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(315,73)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0.204081535,99.3617)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-180,117.959152)"},"ID":2,"Name":"Selector","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-80,100)"},"ID":3,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"CheckReactComponent","NodeData":{"Offset":"(-408.5,105)"},"ID":4,"Name":"Check
-        React Component","Instant":true,"SharedFloatRadius":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"SearchRadius","IsShared":true,"SinglemValue":15},"SharedLayerMaskLayerMask":{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"CharacterLayerMask","IsShared":true,"LayerMaskmValue":1024},"SharedLayerMaskVisibleItemsLayerMask":{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"EyeIgnoreThingsLayerMask","IsShared":true,"LayerMaskmValue":130871},"SharedNavMeshAgentNavMeshAgent":{"Type":"SharedNavMeshAgent","Name":"NavAgent","IsShared":true,"NavMeshAgentmValue":0},"SharedVector3LastCharacterSeenPosition":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterSeenPosition","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedVector3LastCharacterShootPosition":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterShootPosition","IsShared":true,"Vector3mValue":"(0,0,0)"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-182.775543,113.163208)"},"ID":5,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"SetEnemyAnimatorValues","NodeData":{"Offset":"(-262.775543,97.16321)"},"ID":6,"Name":"Set
+        React Component","Instant":true,"SharedFloatRadius":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"SearchRadius","IsShared":true,"SinglemValue":8},"SharedLayerMaskLayerMask":{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"CharacterLayerMask","IsShared":true,"LayerMaskmValue":1024},"SharedLayerMaskVisibleItemsLayerMask":{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"EyeIgnoreThingsLayerMask","IsShared":true,"LayerMaskmValue":130871},"SharedNavMeshAgentNavMeshAgent":{"Type":"SharedNavMeshAgent","Name":"NavAgent","IsShared":true,"NavMeshAgentmValue":0},"SharedVector3LastCharacterSeenPosition":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterSeenPosition","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedVector3LastCharacterShootPosition":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterShootPosition","IsShared":true,"Vector3mValue":"(0,0,0)"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-182.775543,113.163208)"},"ID":5,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"SetEnemyAnimatorValues","NodeData":{"Offset":"(-262.775543,97.16321)"},"ID":6,"Name":"Set
         Enemy Animator Values","Instant":true,"SharedEnemyAnimatorControllerenemyAnimatorController":{"Type":"SharedEnemyAnimatorController","Name":"EnemyAnimatorController","IsShared":true,"EnemyAnimatorControllermValue":1},"BooleanSetWalk":true,"BooleanIsWalk":false,"BooleanSetShooting":true,"BooleanIsShooting":false},{"Type":"SetBool","NodeData":{"Offset":"(-110,100)"},"ID":7,"Name":"Set
         Bool","Instant":true,"SharedBoolVariableToSet":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"CharacterWasSeen","IsShared":true,"BooleanmValue":false},"BooleanValue":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityNavMeshAgent.ResetPath","NodeData":{"Offset":"(0,100)"},"ID":8,"Name":"Reset
         Path","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null}},{"Type":"SetFloat","NodeData":{"Offset":"(110,100)"},"ID":9,"Name":"Set
-        Float","Instant":true,"SharedFloatVariableToSet":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"SearchRadius","IsShared":true,"SinglemValue":15},"SingleValue":25}]},{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(109.76741,105.348633)"},"ID":10,"Name":"Attack","Instant":true,"ExternalBehavior[]externalBehaviors":[2],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]},{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnSuccess","NodeData":{"Offset":"(147.5,213)"},"ID":11,"Name":"Return
-        Success","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(2.94177818,86.70715)"},"ID":12,"Name":"Pursuit","Instant":true,"ExternalBehavior[]externalBehaviors":[3],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(170,110)"},"ID":13,"Name":"Patrol","Instant":true,"ExternalBehavior[]externalBehaviors":[4],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"CurrentPatrolWaypoint","IsShared":true},{"Type":"SharedNavMeshAgent","Name":"NavAgent","IsShared":true,"NavMeshAgentmValue":5},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"WaypointsContainer","IsShared":true,"TransformmValue":6},{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"CharacterLayerMask","IsShared":true,"LayerMaskmValue":1024},{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"EyeIgnoreThingsLayerMask","IsShared":true,"LayerMaskmValue":130871},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"SearchRadius","IsShared":true,"SinglemValue":15},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"CharacterWasSeen","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterSeenPosition","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterShootPosition","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"SharedEnemyBattleController","Name":"EnemyBattleController","IsShared":true,"EnemyBattleControllermValue":7},{"Type":"SharedEnemyAnimatorController","Name":"EnemyAnimatorController","IsShared":true,"EnemyAnimatorControllermValue":8},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"AimRotateTransform","IsShared":true,"TransformmValue":9}]}'
+        Float","Instant":true,"SharedFloatVariableToSet":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"SearchRadius","IsShared":true,"SinglemValue":8},"SingleValue":25}]},{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(109.76741,105.348633)"},"ID":10,"Name":"Attack","Instant":true,"ExternalBehavior[]externalBehaviors":[2],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]},{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnSuccess","NodeData":{"Offset":"(147.5,213)"},"ID":11,"Name":"Return
+        Success","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(2.94177818,86.70715)"},"ID":12,"Name":"Pursuit","Instant":true,"ExternalBehavior[]externalBehaviors":[3],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(170,110)"},"ID":13,"Name":"Patrol","Instant":true,"ExternalBehavior[]externalBehaviors":[4],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"CurrentPatrolWaypoint","IsShared":true},{"Type":"SharedNavMeshAgent","Name":"NavAgent","IsShared":true,"NavMeshAgentmValue":5},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"WaypointsContainer","IsShared":true,"TransformmValue":6},{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"CharacterLayerMask","IsShared":true,"LayerMaskmValue":1024},{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"EyeIgnoreThingsLayerMask","IsShared":true,"LayerMaskmValue":130871},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"SearchRadius","IsShared":true,"SinglemValue":8},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"CharacterWasSeen","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterSeenPosition","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterShootPosition","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"SharedEnemyBattleController","Name":"EnemyBattleController","IsShared":true,"EnemyBattleControllermValue":7},{"Type":"SharedEnemyAnimatorController","Name":"EnemyAnimatorController","IsShared":true,"EnemyAnimatorControllermValue":8},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"AimRotateTransform","IsShared":true,"TransformmValue":9}]}'
       objectReference: {fileID: 0}
     - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
       propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.size
@@ -1770,24 +1561,24 @@ PrefabInstance:
     - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
       propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[7]
       value: 
-      objectReference: {fileID: 3554059903931718014}
+      objectReference: {fileID: 3696742092958926989}
     - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
       propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[8]
       value: 
-      objectReference: {fileID: 4635947654751247180}
+      objectReference: {fileID: 4776568969219984063}
     - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
       propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[9]
       value: 
-      objectReference: {fileID: 7026731040717937271}
+      objectReference: {fileID: 7177628781441846148}
     - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.84
+      value: 4.342467
       objectReference: {fileID: 0}
     - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
         type: 3}
@@ -1797,7 +1588,7 @@ PrefabInstance:
     - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.89
+      value: 1.1313252
       objectReference: {fileID: 0}
     - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
         type: 3}
@@ -1807,17 +1598,17 @@ PrefabInstance:
     - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
         type: 3}
@@ -1842,15 +1633,15 @@ PrefabInstance:
     - target: {fileID: 6600773666189992893, guid: 459334c53c67f5346b6404462844d07b,
         type: 3}
       propertyPath: m_Name
-      value: Stickman_good_2
+      value: Stickman_good
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 459334c53c67f5346b6404462844d07b, type: 3}
---- !u!114 &3554059903931718014 stripped
+--- !u!114 &3696742092958926989 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 818592270, guid: 459334c53c67f5346b6404462844d07b,
     type: 3}
-  m_PrefabInstance: {fileID: 3554059904740598640}
+  m_PrefabInstance: {fileID: 3696742092702724739}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -1858,11 +1649,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f90997d136c3d249b2e394eabaf3aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4635947654751247180 stripped
+--- !u!114 &4776568969219984063 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8143844528215128124, guid: 459334c53c67f5346b6404462844d07b,
     type: 3}
-  m_PrefabInstance: {fileID: 3554059904740598640}
+  m_PrefabInstance: {fileID: 3696742092702724739}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -1870,11 +1661,91 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d127d23bf37dcc34f802c291c8da609c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &7026731040717937271 stripped
+--- !u!4 &7177628781441846148 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
     type: 3}
-  m_PrefabInstance: {fileID: 3554059904740598640}
+  m_PrefabInstance: {fileID: 3696742092702724739}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3804538251591447344
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2454892289327345408}
+    m_Modifications:
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5843904113223262893, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6600773666189992893, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_Name
+      value: StickmanBlue_3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b82472bea9260024db3474a5fa40cee1, type: 3}
+--- !u!4 &7213947879852853815 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+    type: 3}
+  m_PrefabInstance: {fileID: 3804538251591447344}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5678236300458863234
 PrefabInstance:
@@ -1955,6 +1826,86 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5748849472792389203, guid: e1ad4dab8b77e5e4cb90b7caec4532ae,
     type: 3}
   m_PrefabInstance: {fileID: 5678236300458863234}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6630584935969729991
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2454892289327345408}
+    m_Modifications:
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5843904113223262893, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6600773666189992893, guid: b82472bea9260024db3474a5fa40cee1,
+        type: 3}
+      propertyPath: m_Name
+      value: StickmanBlue_4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b82472bea9260024db3474a5fa40cee1, type: 3}
+--- !u!4 &924902445622596800 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
+    type: 3}
+  m_PrefabInstance: {fileID: 6630584935969729991}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6675172890789442832
 PrefabInstance:
@@ -2041,140 +1992,86 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6675172890789442832}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &7374590606298534379
+--- !u!1001 &7817200825647002354
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 2454892289327345408}
     m_Modifications:
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.JSONSerialization
-      value: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(315,73)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0.204081535,99.3617)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-180,117.959152)"},"ID":2,"Name":"Selector","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-80,100)"},"ID":3,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Both","Children":[{"Type":"CheckReactComponent","NodeData":{"Offset":"(-408.5,105)"},"ID":4,"Name":"Check
-        React Component","Instant":true,"SharedFloatRadius":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"SearchRadius","IsShared":true,"SinglemValue":15},"SharedLayerMaskLayerMask":{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"CharacterLayerMask","IsShared":true,"LayerMaskmValue":1024},"SharedLayerMaskVisibleItemsLayerMask":{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"EyeIgnoreThingsLayerMask","IsShared":true,"LayerMaskmValue":130871},"SharedNavMeshAgentNavMeshAgent":{"Type":"SharedNavMeshAgent","Name":"NavAgent","IsShared":true,"NavMeshAgentmValue":0},"SharedVector3LastCharacterSeenPosition":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterSeenPosition","IsShared":true,"Vector3mValue":"(0,0,0)"},"SharedVector3LastCharacterShootPosition":{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterShootPosition","IsShared":true,"Vector3mValue":"(0,0,0)"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-182.775543,113.163208)"},"ID":5,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"SetEnemyAnimatorValues","NodeData":{"Offset":"(-262.775543,97.16321)"},"ID":6,"Name":"Set
-        Enemy Animator Values","Instant":true,"SharedEnemyAnimatorControllerenemyAnimatorController":{"Type":"SharedEnemyAnimatorController","Name":"EnemyAnimatorController","IsShared":true,"EnemyAnimatorControllermValue":1},"BooleanSetWalk":true,"BooleanIsWalk":false,"BooleanSetShooting":true,"BooleanIsShooting":false},{"Type":"SetBool","NodeData":{"Offset":"(-110,100)"},"ID":7,"Name":"Set
-        Bool","Instant":true,"SharedBoolVariableToSet":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"CharacterWasSeen","IsShared":true,"BooleanmValue":false},"BooleanValue":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityNavMeshAgent.ResetPath","NodeData":{"Offset":"(0,100)"},"ID":8,"Name":"Reset
-        Path","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null}},{"Type":"SetFloat","NodeData":{"Offset":"(110,100)"},"ID":9,"Name":"Set
-        Float","Instant":true,"SharedFloatVariableToSet":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"SearchRadius","IsShared":true,"SinglemValue":15},"SingleValue":25}]},{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(109.76741,105.348633)"},"ID":10,"Name":"Attack","Instant":true,"ExternalBehavior[]externalBehaviors":[2],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]},{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnSuccess","NodeData":{"Offset":"(147.5,213)"},"ID":11,"Name":"Return
-        Success","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(2.94177818,86.70715)"},"ID":12,"Name":"Pursuit","Instant":true,"ExternalBehavior[]externalBehaviors":[3],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.BehaviorTreeReference","NodeData":{"Offset":"(170,110)"},"ID":13,"Name":"Patrol","Instant":true,"ExternalBehavior[]externalBehaviors":[4],"SharedNamedVariable[]variables":[],"Booleancollapsed":false}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"CurrentPatrolWaypoint","IsShared":true},{"Type":"SharedNavMeshAgent","Name":"NavAgent","IsShared":true,"NavMeshAgentmValue":5},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"WaypointsContainer","IsShared":true,"TransformmValue":6},{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"CharacterLayerMask","IsShared":true,"LayerMaskmValue":1024},{"Type":"BehaviorDesigner.Runtime.SharedLayerMask","Name":"EyeIgnoreThingsLayerMask","IsShared":true,"LayerMaskmValue":130871},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"SearchRadius","IsShared":true,"SinglemValue":15},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"CharacterWasSeen","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterSeenPosition","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"LastCharacterShootPosition","IsShared":true,"Vector3mValue":"(0,0,0)"},{"Type":"SharedEnemyBattleController","Name":"EnemyBattleController","IsShared":true,"EnemyBattleControllermValue":7},{"Type":"SharedEnemyAnimatorController","Name":"EnemyAnimatorController","IsShared":true,"EnemyAnimatorControllermValue":8},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"AimRotateTransform","IsShared":true,"TransformmValue":9}]}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[6]
-      value: 
-      objectReference: {fileID: 7527640966167070490}
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[7]
-      value: 
-      objectReference: {fileID: 7374590607107419109}
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[8]
-      value: 
-      objectReference: {fileID: 1680810673054820823}
-    - target: {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[9]
-      value: 
-      objectReference: {fileID: 3929029022644365548}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.99
+      value: -2.7423782
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.97
+      value: -0.49581623
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5843904113223262893, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 5843904113223262893, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 6600773666189992893, guid: 459334c53c67f5346b6404462844d07b,
+    - target: {fileID: 6600773666189992893, guid: b82472bea9260024db3474a5fa40cee1,
         type: 3}
       propertyPath: m_Name
-      value: Stickman_good_1
+      value: StickmanBlue
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 459334c53c67f5346b6404462844d07b, type: 3}
---- !u!114 &1680810673054820823 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8143844528215128124, guid: 459334c53c67f5346b6404462844d07b,
-    type: 3}
-  m_PrefabInstance: {fileID: 7374590606298534379}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d127d23bf37dcc34f802c291c8da609c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &3929029022644365548 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: b82472bea9260024db3474a5fa40cee1, type: 3}
+--- !u!4 &4372219781901044725 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
+  m_CorrespondingSourceObject: {fileID: 5823567742257707271, guid: b82472bea9260024db3474a5fa40cee1,
     type: 3}
-  m_PrefabInstance: {fileID: 7374590606298534379}
+  m_PrefabInstance: {fileID: 7817200825647002354}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7374590607107419109 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 818592270, guid: 459334c53c67f5346b6404462844d07b,
-    type: 3}
-  m_PrefabInstance: {fileID: 7374590606298534379}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f90997d136c3d249b2e394eabaf3aba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8058056892625391632
 PrefabInstance:
   m_ObjectHideFlags: 0

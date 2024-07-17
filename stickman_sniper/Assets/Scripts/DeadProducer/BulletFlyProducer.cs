@@ -38,7 +38,7 @@ namespace stickman_sniper.Producer
             bulletDirector.GetRandomCamera().gameObject.SetActive(true);
 
             float totalTime = 0;
-            _slowmotionTimeController.AlignTimeScale(0.1f);
+            _slowmotionTimeController.AlignTimeScale(0f);
             _cameraProvider.Camera.gameObject.SetActive(true);
             _inputService.DisableInput();
             while (totalTime < (bulletDirector.Duration / 1000)) 

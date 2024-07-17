@@ -76,8 +76,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8daf2d0937ecdb44b2e6f5d41263175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RaycastOrigin: {fileID: 2140847069}
-  RaycastTarget: {fileID: 2140847069}
+  RaycastOrigin: {fileID: 3509666149753672319}
+  RaycastTarget: {fileID: 3509666149753672319}
 --- !u!1 &90811143594253013
 GameObject:
   m_ObjectHideFlags: 0
@@ -2858,7 +2858,7 @@ GameObject:
   - component: {fileID: 8143844528215128124}
   - component: {fileID: 4766247166971872669}
   m_Layer: 3
-  m_Name: Stickman_good
+  m_Name: StickmanRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

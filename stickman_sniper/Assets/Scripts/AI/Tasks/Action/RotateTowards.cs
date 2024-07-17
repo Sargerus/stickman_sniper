@@ -10,7 +10,10 @@ public class RotateTowardsVector : Action
 
     public override TaskStatus OnUpdate()
     {
-        RotTransform.Value.rotation = Quaternion.LookRotation((Target.Value - RotTransform.Value.position).normalized);
+        //workaround(animation rigging required)
+        Vector3 rot = new(Target.Value.x, RotTransform.Value.position.y, Target.Value.z);
+
+        RotTransform.Value.rotation = Quaternion.LookRotation((rot - RotTransform.Value.position).normalized);
         return TaskStatus.Running;
     }
 }

@@ -13,11 +13,11 @@ public class Level : MonoBehaviour
     [SerializeField] private int _enemyCountMax;
     [SerializeField] private List<Transform> _playerSpawns;
     [SerializeField] private List<Enemy> _enemyPrefabs;
-    [SerializeField] private NavMeshData navMeshData;
+    [SerializeField] private List<NavMeshData> navMeshData;
 
     private List<Enemy> _enemies = new();
     private Character _player;
-    private NavMeshDataInstance _navMeshInstance;
+    private List<NavMeshDataInstance> _navMeshInstances = new();
 
     [Inject] private Character.Factory _characterFactory;
     //[Inject] private ILevelProgressObserver _levelProgressObserver;
@@ -25,7 +25,8 @@ public class Level : MonoBehaviour
 
     public async void Start()
     {
-        _navMeshInstance = NavMesh.AddNavMeshData(navMeshData);
+        foreach (var nmData in navMeshData)
+            _navMeshInstances.Add(NavMesh.AddNavMeshData(nmData));
 
         int max = Math.Min(_enemiesSpawns.Count, _enemyCountMax);
         int enemiesCount = UnityEngine.Random.Range(_enemyCountMin, max);
@@ -50,6 +51,7 @@ public class Level : MonoBehaviour
 
     private void OnDestroy()
     {
-        NavMesh.RemoveNavMeshData(_navMeshInstance);
+        foreach (var instance in _navMeshInstances)
+            NavMesh.RemoveNavMeshData(instance);
     }
 }

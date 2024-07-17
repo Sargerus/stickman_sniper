@@ -22,7 +22,7 @@ MonoBehaviour:
     uniqueID: 000
     photo: https://justplaygames.ru/public/icon_player.png
   autoGameReadyAPI: 1
-  AdWhenLoadingScene: 1
+  AdWhenLoadingScene: 0
   showFirstAd: 1
   rewardedAfterClosing: 1
   adDisplayCalls: 0

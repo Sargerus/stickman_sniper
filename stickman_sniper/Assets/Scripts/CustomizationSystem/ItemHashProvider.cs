@@ -1,5 +1,7 @@
 using Sirenix.OdinInspector;
+#if UNITY_EDITOR
 using Sirenix.Utilities.Editor;
+#endif
 using System;
 using UnityEngine;
 

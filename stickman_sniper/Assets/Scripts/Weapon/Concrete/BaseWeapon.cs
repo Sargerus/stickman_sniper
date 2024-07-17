@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UniRx;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public abstract class BaseWeapon : IWeapon
 {

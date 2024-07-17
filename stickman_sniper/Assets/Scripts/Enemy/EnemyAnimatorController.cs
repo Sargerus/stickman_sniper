@@ -13,4 +13,9 @@ public class EnemyAnimatorController : MonoBehaviour
     {
         _animator.SetBool("IsShooting", isShooting);
     }
+
+    public void SetCroushing(bool isCrouching)
+    {
+        _animator.SetBool("IsCrouching", isCrouching);
+    }
 }

@@ -11,6 +11,9 @@ public class SetEnemyAnimatorValues : Action
     public bool SetShooting;
     public bool IsShooting;
 
+    public bool SetCrouching;
+    public bool IsCrouching;
+
     public override TaskStatus OnUpdate()
     {
         if (SetWalk)
@@ -18,6 +21,9 @@ public class SetEnemyAnimatorValues : Action
 
         if(SetShooting)
             enemyAnimatorController.Value.SetShoot(IsShooting);
+
+        if(SetCrouching)
+            enemyAnimatorController.Value.SetCroushing(IsCrouching);
 
         return TaskStatus.Success;
     }

@@ -10,6 +10,7 @@ jobs:
       - run: sudo rm -rf /opt/ghc
       - run: sudo rm -rf "/usr/local/share/boost"
       - run: sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+      - run: echo "::debug::Set the Octocat variable"
         # - name: Free Disk Space (Ubuntu)
         # uses: jlumbroso/free-disk-space@main
         # with:

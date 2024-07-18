@@ -45,12 +45,12 @@ jobs:
       - run: git submodule update --init --recursive --remote
           
       # Cache
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
-          path: stickman_sniper/stickman_sniper/Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          path: stickman_sniper/Library
+          key: Library-WebGL
           restore-keys: |
-            Library-
+            Library-123
 
       # Build
       - name: Build project

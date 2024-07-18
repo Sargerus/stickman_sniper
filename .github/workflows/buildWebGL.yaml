@@ -73,12 +73,12 @@ jobs:
 
       - run: echo "::debug::Displaying Log123123"
 
-      - uses: appleboy/telegram-action@v0.1.1
-        with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: --
-          document: build/WebGL/WebGL.zip
+      # - uses: appleboy/telegram-action@v0.1.1
+      #  with:
+      #    to: ${{ secrets.TELEGRAM_TO }}
+      #    token: ${{ secrets.TELEGRAM_TOKEN }}
+      #    message: --
+      #    document: build/WebGL/WebGL.zip
       
       - name: Display directory structure
         run: tree -L 5  # Уровень вложенности 2, можно изменить по необходимости

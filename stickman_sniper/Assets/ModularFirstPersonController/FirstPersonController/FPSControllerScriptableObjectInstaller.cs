@@ -5,13 +5,13 @@ using Zenject;
 [CreateAssetMenu(menuName = "FPSControllerSOInstaller", fileName = "FPSControllerScriptableObjectInstaller")]
 public class FPSControllerScriptableObjectInstaller : ScriptableObjectInstaller
 {
-    [SerializeField] private WeaponsContainerSO _weaponContainer;
+    //[SerializeField] private WeaponsContainerSO _weaponContainer;
     [SerializeField] private InputHandlerContainerAggregatorSO _inputAggregator;
-    [SerializeField] private CustomiationDataContainerSO customiationDataContainerSO;
+    //[SerializeField] private CustomiationDataContainerSO customiationDataContainerSO;
 
     public override void InstallBindings()
     {
-        Container.BindInstances(_weaponContainer, _inputAggregator, customiationDataContainerSO);
+        Container.BindInstances(_inputAggregator);//_weaponContainer, _inputAggregator, customiationDataContainerSO);
 
         _inputAggregator.InputHandlersContainer.ForEach(container =>
         {

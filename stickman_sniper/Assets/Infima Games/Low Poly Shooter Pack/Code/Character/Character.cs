@@ -354,7 +354,7 @@ namespace InfimaGames.LowPolyShooterPack
             layerOverlay = characterAnimator.GetLayerIndex("Layer Overlay");
 
             await InitializeInventory();
-            await canvasSpawner.Initialize();
+            //await canvasSpawner.Initialize();
             _playersOverlayHandler = await _uiManager.CreateWindow("players_overlay", null, _diContainer);
             await _playersOverlayHandler.Show(true);
 

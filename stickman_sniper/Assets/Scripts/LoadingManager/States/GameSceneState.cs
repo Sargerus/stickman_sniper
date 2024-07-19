@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using DWTools.Windows;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
@@ -8,6 +9,8 @@ public sealed class GameSceneState : SceneState
 {
     [Inject] private IUIManager _uiManager;
 
+    private PreloadBehavior _preloadBehavior;
+
     public GameSceneState(AssetReference scene) : base(scene)
     {
     }
@@ -15,8 +18,14 @@ public sealed class GameSceneState : SceneState
     public override async UniTask OnEnterState()
     {
         await base.OnEnterState();
-        _sceneContext.Container.Inject(this);
 
+        if (_sceneContext.TryGetComponent<PreloadBehavior>(out _preloadBehavior))
+        {
+            await _preloadBehavior.Load();
+        }
+
+        _sceneContext.Run();
+        _sceneContext.Container.Inject(this);
         await AwaitUImanagerInitialized();
     }
 
@@ -40,6 +49,7 @@ public sealed class GameSceneState : SceneState
 
     public override async UniTask OnExitState()
     {
+        await _preloadBehavior.Clear();
         await base.OnExitState();
         GlobalBlackboard.Blackboard.SetValue(BlackboardConstants.GameOverBool, false);
     }

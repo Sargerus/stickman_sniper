@@ -48,7 +48,7 @@ public abstract class SceneState : IState
         }
 
         _sceneContext = sceneContextGameObject.GetComponent<SceneContext>();
-        _sceneContext.Run();
+        //_sceneContext.Run(); //do it in childs
     }
 
     public virtual async UniTask OnExitState()

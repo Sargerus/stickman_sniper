@@ -17,12 +17,16 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 9336b12806445c04db3e32f825df57ed
   m_SerializeEntries:
+  - m_GUID: 119a9806dd925154aafcbe8477c1b7cd
+    m_Address: Assets/Scenes/Level.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   - m_GUID: 916b60b543d44624ab58b4944c64e03f
     m_Address: Assets/Scenes/ShopScene.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 119a9806dd925154aafcbe8477c1b7cd
-    m_Address: Assets/Scenes/Level.unity
+  - m_GUID: c61f9fa57f2f6924198784dc08eb736c
+    m_Address: Assets/Scripts/PreloadAssets/GamePreloadFile.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

@@ -3491,7 +3491,6 @@ GameObject:
   - component: {fileID: 9208175043652371081}
   - component: {fileID: 6501385044156571549}
   - component: {fileID: 9208175043637860742}
-  - component: {fileID: 1045855042783491295}
   - component: {fileID: 5035946307361483098}
   - component: {fileID: 8619290460925894114}
   - component: {fileID: 2650331122968292741}
@@ -3738,23 +3737,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 058ad0f0e88b6054990c6e98008ae4ea, type: 3}
   holdToRun: 1
   holdToAim: 1
-  canvasSpawner: {fileID: 1045855042783491295}
---- !u!114 &1045855042783491295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6478321898639290927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2bd74ba84b94cd4bbb9b189a5e89fba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasPrefab: {fileID: 5393623835024644669, guid: 48d7771c50bd625489d38055025597a3,
-    type: 3}
-  qualitySettingsPrefab: {fileID: 5965040680208419700, guid: 458b1dae88c7baf46a163b218ce42a30,
-    type: 3}
+  canvasSpawner: {fileID: 0}
+  freeze: 0
 --- !u!114 &5035946307361483098
 MonoBehaviour:
   m_ObjectHideFlags: 0

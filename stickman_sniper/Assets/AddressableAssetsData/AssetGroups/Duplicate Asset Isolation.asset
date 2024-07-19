@@ -1,0 +1,869 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Duplicate Asset Isolation
+  m_EditorClassIdentifier: 
+  m_GroupName: Duplicate Asset Isolation
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 03460371d0f45ad4482de5354f8a946b
+  m_SerializeEntries:
+  - m_GUID: 720a6531fb0bd3649b7771aaee7cd12e
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/ARs/A_FP_PCH_AR_01_Holster.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 144e9e27c691b1e4898d0e3c20d2aa9d
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/ARs/A_FP_PCH_AR_Fire.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 01f303f9ca7e04b478d7cc50f0f96f70
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/ARs/A_FP_PCH_AR_Aim_Fire.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f5a1384a9d9291c4898a54d2e1526593
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/ARs/A_FP_PCH_AR_01_Aim_Pose.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9e2dd26ab6618fd41afde0a260f013b5
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/ARs/A_FP_PCH_AR_01_Inspect.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c454e0fa9f500cb4292fc34b3c21c15a
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/ARs/A_FP_PCH_AR_01_Unholster.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 027ae8cddc85a484fa5fd415d19d7a8e
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Animators/Character/AC_LPSP_PCH.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f312af9f4da791b4c9c6bb02c492a398
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/ARs/A_FP_PCH_AR_01_Idle_Pose.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: adacdc90eaa7f1b4eb4ea6579890aad7
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/Snipers/A_FP_PCH_Sniper_01_Reload_Bolt.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ac4c302108621c14294ac65e8477101a
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/_Common/A_FP_PCH_Fire_Empty.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9fb6f43119b54ff4f97adf28a084973b
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/_Common/A_FP_PCH_Walk_F_Additive.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f39c50a10cfb3fc42b61a61d5a00d00c
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/_Common/A_FP_PCH_Aim_In_Transition.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bd4b82521afa4b84590e89c84a17d8b1
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/ARs/A_FP_PCH_AR_01_Aim_Reload.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 190c6562398e20e4891c3765cfc97777
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/_Common/A_FP_PCH_Walk_R_Additive.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 76279f43345be9f4cb08a669ca69afe5
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/Snipers/A_FP_PCH_Sniper_01_Reload_Bolt_Aim.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 72b7a1a30822d2449a9a79bae00ddc92
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/_Common/A_FP_PCH_Grenade_Throw_Additive.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7d59e8a31c0143b4da688c141cc5fecb
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/_Common/A_FP_PCH_Run_02.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 38747445eb6db9c40b49145fe26ed13b
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/Snipers/A_FP_PCH_Sniper_01_Reload_Close.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1bd7f5660d40c3548b45a6e3108a7daa
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/_Common/A_FP_PCH_Aim_Walk_F_Additive.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ab9a0b2887708a745906e9d2478180fe
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/Snipers/A_FP_PCH_Sniper_01_Reload_Open.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 402e385809e25da41bd06d2dc022c5fb
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/ARs/A_FP_PCH_AR_01_Reload_Empty.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b4487df8f05127a41831dd693cf663da
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/_Common/A_FP_PCH_Knife_Attack_01.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5b85b1c9f32d1444ea3fe7fbddd544c0
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/_Common/A_FP_PCH_Aim_Out_Transition.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 28f784c9020e1c44583b059828f40c47
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/_Common/A_FP_PCH_Idle.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 167273fa36def954bb121f743b3b2633
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/ARs/A_FP_PCH_AR_01_Aim_Reload_Empty.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 08f6dd1ba7528b944847abc00740e80d
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/_Common/A_FP_PCH_Aim_Idle.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bd8d61cb762c49d489995fa1062356fe
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/ARs/A_FP_PCH_AR_01_Reload.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f1f38febec9aaad4ea06c3319d5bd08a
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/_Common/A_FP_PCH_Walk_B_Additive.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 301001dc7daddb24e823dd8945d29db1
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/_Common/A_FP_PCH_Grenade_Throw.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1e2a22cdabc581a4f9499f7eb13643f6
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/Snipers/A_FP_PCH_Sniper_01_Reload_Insert_Additive.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: effb89ce0d3b9364982bb5ecad307e0e
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/_Common/A_FP_PCH_Walk_L_Additive.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d4f5209f0c2925d4885a0547adafb3eb
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/_Common/A_FP_PCH_Walk_F_Pose_Additive.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: afe80d867ef6b8c4fa45b07f1f99533c
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Audio/SFX/Weapons/Aiming/S_WEP_Aim_In.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b1c68c048883aa04e98206611bbd70f7
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Materials/Effects/M_Smoke.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 294f8fd558aa0d1488d4997453398cf0
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Materials/Effects/M_Sparks.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 46965f9cbaf525742a6da4c2172a99cd
+    m_Address: Packages/com.unity.cinemachine/Presets/Noise/Handheld_normal_mild.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 674087750461e8b488460fee85c245aa
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Effects/T_Smoke_01_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 89aec69d264f8854a9b5b74042a882ca
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Materials/Weapons/Basic/M_WEP_Basic_006.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e0ed79ffbec3d7e4eb26bafbbfd4a322
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Effects/T_Sparks_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b2f784312e9670a42b8344a235aa79e9
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Weapons/Basic/T_WEP_Basic_R.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6889e49109dba6b449cb904427f70663
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Weapons/Basic/T_WEP_Basic_006_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: be92ead103ef3e448bb854eb6e17f8cb
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Meshes/Weapons/_Common/Attachments/SM_ATT_Laser_Flashlight_01.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e1d2196309ba6554ca2be7c5902e4afa
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Effects/Particles/P_LPSP_WEP_Sparks.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b4ba6b63a20ac1d40809f039814c78e8
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Meshes/Weapons/_Common/Attachments/SM_ATT_Muzzle_Silencer_02.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ee888c55b5f95c14eba4dc19576bb568
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Meshes/Weapons/_Common/Attachments/SM_ATT_Laser_Sight_01.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a57c9e471e563034a852986569e485c4
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Meshes/Weapons/_Common/Attachments/SM_ATT_Bipod_01.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 25a6bd588ee932f4f8be552fd0fae250
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Effects/Particles/P_LPSP_WEP_Flash_Light.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 707a4de858c77174fbe7b4e91cfdbb73
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Meshes/Weapons/_Common/Attachments/SM_ATT_Grip_01.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 89021e39adba19b4a96bca608b0fa8a0
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Meshes/Weapons/_Common/Attachments/SM_ATT_Muzzle_Silencer_01.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 647dc2abdbbf72141a1e3930efbb80fa
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Meshes/Weapons/_Common/Attachments/SM_ATT_Muzzle_Silencer_03.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 22b4dadcbcffc034e9cd31f0a3eeb360
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Materials/Attachments/M_ATT_Sight_Unlit.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 57d5804d68ddb164fb822b9ee3b41bc3
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Audio/SFX/Weapons/Attachments/S_WEP_Flashlight_Click.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c361195eab8debd4a9e93a094d36fd44
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Meshes/Weapons/_Common/Attachments/SM_ATT_Bipod_02.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2735bebe54c1f5a4096f5134a96f7e77
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Effects/Particles/P_LPSP_WEP_Flash.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c1bd91cf7c20534478c9b9c5d69d1732
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Audio/SFX/Weapons/Fire/S_WEP_Fire_Silencer.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f844f710b6862a943bf57ee4a9ce04cd
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Weapons/Camo/T_WEP_Camo_N.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2fb81250390b0024091503721bdfba55
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Materials/Attachments/M_ATT_Sight_Arrow_Blue.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cc0825e088a9e8d499c906ebc9bd80fe
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Materials/Attachments/M_ATT_Sight_Fade_Round.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 07a7da614bf6c4248bf6a1d8b1d8ded2
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Materials/Attachments/M_ATT_Sight_Fade_Square.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a2af51d11a8e77e46a401ffa58a90202
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Weapons/CarbonFibre/T_WEP_CarbonFibre_N.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3b775d329715a5942ae37758a655f070
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Meshes/Weapons/_Common/Attachments/SM_ATT_Scope_01.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fc2eb113b4247a34cb781d00e063c175
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Meshes/Weapons/_Common/Attachments/SM_ATT_Scope_05.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f1db66e3a408dfa4486f697bbfccc274
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Meshes/Weapons/_Common/Attachments/SM_ATT_Scope_07.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 40f2c0248da6bba49aba5e266e3228c4
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Meshes/Weapons/_Common/Attachments/SM_ATT_Scope_08.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ed6fcf45ab46697498ac48504a84b569
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Materials/Attachments/M_ATT_Sight_Crosshair_002.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 865f0206f06607f49aeeab6e92b66df4
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Weapons/CarbonFibre/T_WEP_CarbonFibre_R.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c18a31a781292dc41a55401b67e27aaa
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Materials/Attachments/M_ATT_Sight_Crosshair_001.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a0d4ff787bd9b3947bc197f5ae854608
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Materials/Attachments/M_ATT_Sight_Transparent.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 75221d49756bf2248a68884d57d32b79
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Materials/Attachments/M_ATT_Sight_Crosshair_003.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6df038b9e2eec764d943b5cc40db642b
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Meshes/Weapons/_Common/Attachments/SM_ATT_Scope_02.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e4d9768aa76f407438b7b190fbd986cf
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Materials/Attachments/M_ATT_Sight_Crosshair_005.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cf9d905b090312d4189331eca97bbdaf
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Meshes/Weapons/_Common/Attachments/SM_ATT_Scope_06.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 80bf4e8bfc0663f47a7bcd9fc18eb041
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Materials/Attachments/M_ATT_Sight_Square_Blue.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 40933edcd467d0e4fad3d8d48e3af809
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Materials/Attachments/M_ATT_Sight_Render.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f5b61efc82806d847b76f67c9c255f82
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Meshes/Weapons/_Common/Attachments/SM_ATT_Scope_03.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 04399e6e430c8e845b138c711cb1d00d
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Meshes/Weapons/_Common/Attachments/SM_ATT_Scope_04.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 168039ce75a94e047abcf0e3a3dd1599
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Materials/Attachments/M_ATT_Sight_Arrow_Red.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f5aba0ef6d364d84a9046d9e7ea24b2a
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Materials/Attachments/M_ATT_Sight_Dot_Red_02.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8c5cdd00c2d2c55478a6b90300461851
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Attachments/T_ATT_Sight_Base_04_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 650dd9526735d5b46b79224bc6e94025
+    m_Address: Packages/com.unity.render-pipelines.universal/Shaders/Unlit.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 97f764530d15ba94a8b0207cac2ee02f
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Attachments/T_ATT_Sight_Square_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 45900544ae4cc574fa0eb2159822e349
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Attachments/T_ATT_Scope_Transparent_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 362e0dc4b4f99514e84630d1c5ec58fe
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Attachments/T_ATT_Sight_Base_02_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dd17fe352996dfc409b4a0b27112539c
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Attachments/T_ATT_Scope_Fade_Square_01_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 65a361f6948448b42b952db72edc85e8
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Attachments/T_ATT_Sight_Base_01_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6197ed293576b9349a3c9ef09c37f52e
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Attachments/T_ATT_Sight_Dot_03_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 890d33bab01f973429f8ea31211bccfe
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Attachments/T_ATT_Scope_Fade_Round_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: feaaf94c1c67c5c449e2b7ea49db3313
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Materials/Effects/M_MuzzleFlash.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 30393aecf89fca649882f23c1b1240f5
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Attachments/T_ATT_Sight_Arrow_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f310968e371fce4449dffd6143cc2af4
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Attachments/T_ATT_Sight_Crosshair_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 62cc14ff2c39bb84dbaf6154cdbd50a2
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Meshes/Effects/SM_MuzzleFlash.FBX
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 485ca161da43e314bb4e46c394437d12
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Effects/T_MuzzleFlash_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e8c6ac030dc3bdf40aadef4930eff563
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Meshes/Effects/SM_Laser_Beam.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 635828d3eec9ec1438a282f691d37fa4
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Materials/Effects/M_Laser_Beam.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d82512f9c8e5d4a4d938b575d47f88d4
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/PostProcessResources.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a5ba727c907a5d341b912fbc8638bdf7
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Demo/T_Cookie_Flashlight.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a469f920b21fc7c4fb5b950917ce2fb2
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f75014305794b3948a3c6d5ccd550e05
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/FinalPass.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 92c63830cd50c0b4fbb8233613839958
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Debug/Waveform.compute
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 382151503e2a43a4ebb7366d1632731d
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/Uber.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 31e9175024adfd44aba2530ff9b77494
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/Texture3DLerp.compute
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bfe953600e8fb1849a804ee08ace7b4c
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_23.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 351e95d0e20a54849bd4ce5f9b498934
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_36.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 119591e0bb084e848835d237546b3882
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_61.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4bf4cff0d0bac3d43894e2e8839feb40
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/CopyStd.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5e542d0126a2c7848b66bffc428905fd
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_55.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c1e1d3119c6fd4646aea0b4b74cacc1a
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/Bloom.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0fa10b21877c61b4db40ba5708815f81
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_30.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c55042318a938344ab23cd7f09dd0076
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_8.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: acde5141d5f4f7a4188394bd52c4dc38
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise256px/LDR_LLL1_5.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 50b54341495978843a6f85583ed4417d
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e8ce9961912f3214586fe8709b9012c1
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/CopyStdFromDoubleWide.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1abfe0e165ca1e9428b455ffc9a2d9ef
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise256px/LDR_LLL1_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 729a3ae164bcb3b4380459386adcf331
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_19.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6dda07f1420a968449cf4c6620c44d9f
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_20.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: afe1e502240079342a0a980484b6da8b
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_10.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 600d6212b59bb40409d19d750b5fd1e9
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/MultiScaleVOUpsample.compute
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 999434725cbc2be4eb54043b36efd4a8
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise256px/LDR_LLL1_6.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 15e54aa23a938444389469d53765d741
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_44.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a71093f2a4fe26a40805c22739e10e4a
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Debug/Vectorscope.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6dba4103d23a7904fbc49099355aff3e
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/GaussianDownsample.compute
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 936dea238abb0864ab3985a995e16a29
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_54.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b52d5033b68309943a2386c270a90f44
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise256px/LDR_LLL1_4.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c072b653e98a06e40857d76ca8c7eecd
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise256px/LDR_LLL1_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: aff59c63d25d43f4c938f248837c30fb
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_48.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d8c290e38ff0425409d0ae6a98c95e41
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_50.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1d6958e30e40a254dbe5a54c573eeb3c
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_37.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b266511438fae724f9d3ce6bd26583e8
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_42.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0ef78d24e85a44f4da9d5b5eaa00e50b
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/DepthOfField.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 79b86f3419b87f3429164a956da8cfab
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_6.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: aa80dc44aa4fe4c43bb9d51d90cf2958
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_29.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f6439b54b28f3884eb67579dec0b6f21
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_14.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5ab0816423f0dfe45841cab3b05ec9ef
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/DiscardAlpha.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b9960364038cbfa4aa49d7b2032d3110
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_45.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1a9ce5640cde5934aae0022f020464a6
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_40.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6017f374382d64245a0a4aab668e6f38
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise256px/LDR_LLL1_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 42496b74c071f5749950ca1abe33e945
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/Lut3DBaker.compute
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d5a51525b27e3ee4aadbeb39cbcf0750
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_51.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0a79c155edf9b2d429d4736abee5acdb
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_35.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b7f000750830ddb4bbc80065b9314ce9
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_21.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c94b57b5a32a22d43ade66e09f6a4bd2
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_53.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0d8afcb51cc9f0349a6d190da929b838
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/GrainBaker.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b34a29e523cb9d545881e193a079f2df
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Debug/LightMeter.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b71bb466b71fd13449dd736f63caeb67
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_33.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 319b8e66db3faa4438cf6982e9c89b2f
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_34.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 373f9bf6b0841af4ebf26d25e4a3f4e2
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6fa5cf178eaaa5f42b820f636bb6e0bd
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_4.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e4d3e4779e48a374f91d48d4c0aedb7b
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/MultiScaleVODownsample2.compute
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3f7c3687170b90e4a8d2ee6b142670f4
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_49.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3c2f1fb7e4b66e74191b7c328ada52d9
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 32c6a5f7143b86c44bd5cdee2ff3f8ad
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_24.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 70d0a1182b29d6347ac70374c3593bba
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise256px/LDR_LLL1_7.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4c63bc487e6c29a4a99f85a6c47b292b
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/MultiScaleVODownsample1.compute
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 67f9497810829eb4791ec19e95781e51
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/MultiScaleVO.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f4b8ab78b57749d4e96d36f6d8a395d0
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_25.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bdd06fb88ef36ed4a85dd506352c2d80
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_27.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2ee161d8945169243b5698fec114e1b7
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_15.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 34a460e8a2e66c243a9c12024e5a798d
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/MultiScaleVORender.compute
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d99701099481a2f489610e977df6dcbc
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/SMAA/SearchTex.tga
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a1ae041906217ae44a774d4ca139af50
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_5.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d7640629310e79646af0f46eb55ae466
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/ScalableAO.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d96974690c77f50489eb60ec84bd8dac
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_59.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2c459b89a7c8b1a4fbefe0d81341651c
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/MotionBlur.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 81af42a93ade3dd46a9b583d4eec76d6
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/SubpixelMorphologicalAntialiasing.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 34a819c9e33402547a81619693adc8d5
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/Texture2DLerp.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 73ec4ae984a0a0f44a2be737e41a6f2f
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/SMAA/AreaTex.tga
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4117fce9491711c4094d33a048e36e73
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/DeferredFog.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 68613e6a221be1a4b9f31d7fa1c2d1bf
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_13.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9660a4ca1ca8425408ac25c641932977
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_38.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a03c400b0e3959f428ee99dfc6cfc263
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_62.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0f8fa14b3731cda4e947062e734d5e1e
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise256px/LDR_LLL1_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 02c0a84bd64c6f044954d8bde9b46ec8
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_28.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 71bc1b6b66e8b784b972199b7e90204e
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_43.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 02d2da9bc88d25c4d878c1ed4e0b3854
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/CopyStdFromTexArray.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7ad194cbe7d006f4bace915156972026
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/Lut2DBaker.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 980acadb960f8424c94307ec0e585b4e
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_12.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 87a5e40cc271ea648b583616f6ebe7fe
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_32.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 34845e0ca016b7448842e965db5890a5
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/AutoExposure.compute
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b958ad1c92bd3d64c9e61318b8681dab
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Debug/Overlays.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1378a33cdd085d64c9da863d2484ff21
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_47.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4a11d65ce13d5f542a0ff136cc2f3fba
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_63.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e1efca7c36fd01840aae0dd10378de5c
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Debug/Vectorscope.compute
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 51bcf79c50dc92e47ba87821b61100c3
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/TemporalAntialiasing.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f997a3dc9254c44459323cced085150c
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/ScreenSpaceReflections.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cd9006dc442cc244e89b3f492384d46a
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_41.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cdbdb71de5f9c454b980f6d0e87f0afb
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/Copy.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 85a45a6d8b2ffb84987d2b028ecfb220
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_58.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 153f7d6dfbe713d4884df0f1e243ba92
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_16.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6b0a189df0bd4d5448eaefb4e673ace8
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_31.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bf95b6fdc179b0e4f890c841406193fc
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_17.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 71583cfd8899717428d5b1a95fa39cda
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_9.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 74aca53eb7273624baffc2bf5e5cc173
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_18.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e138166e7a7c70f49943be7edda35d35
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_57.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3020ac7ece79a7f4eb789a236f8bd6c5
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Debug/Waveform.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3ac02e7e783571c468f9c086d2384ba7
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_7.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8ecbbcae4cc747a4abbc4adce795d25e
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_46.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 404fa8def46b1c447817e1ebdaa7144e
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_60.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 771903fe7b4674445829e52e91cff019
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_11.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d2e8e90fac2e6a341a38e1c3963c218d
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_52.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 09f6c01f98a3ded4daf1afc52a3c260f
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_26.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: df01d03f056c6f445b4b8a0ae054207c
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_22.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 547dbd5f858c74047ba3f213e4408307
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_39.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 70f23eaf7d8ae9147aa542d20e93733b
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Textures/BlueNoise64px/LDR_LLL1_56.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 18183ebfeeab97749b43e38b928604a7
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Debug/Histogram.compute
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f7ea35cfb33fcad4ab8f2429ec103bef
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Debug/Histogram.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8c2fcbdf9bc58664f89917f7b9d79501
+    m_Address: Packages/com.unity.postprocessing/PostProcessing/Shaders/Builtins/ExposureHistogram.compute
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e956f0cf9bd913842b3edea3ecdc4a2f
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Materials/Casings/M_WEP_Casings.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6712afb132d841c4aa3527bc49c32877
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Casings/T_WEP_Casings_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 933532a4fcc9baf4fa0491de14d08ed7
+    m_Address: Packages/com.unity.render-pipelines.universal/Shaders/Lit.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 36e335017ad71d54fbb10842863188ae
+    m_Address: Packages/com.unity.render-pipelines.core/Runtime/FallbackShader.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e6e9a19c3678ded42a3bc431ebef7dbd
+    m_Address: Packages/com.unity.render-pipelines.universal/Shaders/Utils/FallbackError.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3ab1704d1ccd64346a4142c5eee15a6c, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 4148b6af635a2bf45b02428376205ce8, type: 2}
+    - {fileID: 11400000, guid: 9278c58ec7a69f745ab6f7d9d1f38ffe, type: 2}

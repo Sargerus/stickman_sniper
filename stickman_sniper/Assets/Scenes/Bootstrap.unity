@@ -810,6 +810,7 @@ MonoBehaviour:
   _container: {fileID: 11400000, guid: a32773669e7478244ad58fe63de0dcb9, type: 2}
   uiCamera: {fileID: 0}
   _completedLevels: {fileID: 0}
+  _preloadContainer: {fileID: 11400000, guid: 5750e4e0db1b13844b0c9d83636a594c, type: 2}
 --- !u!114 &1870464310 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5531512662929766589, guid: ce533427e935d124696c9b65457e85ac,

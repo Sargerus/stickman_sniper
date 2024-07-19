@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Grenades
+  m_EditorClassIdentifier: 
+  m_GroupName: Grenades
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 02b2bc8a84f14e54680235dd7c20354d
+  m_SerializeEntries:
+  - m_GUID: 7b04fe350ed10a741a1e245447860d9e
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Prefabs/Projectiles/P_LPSP_PROJ_Grenade_01.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3ab1704d1ccd64346a4142c5eee15a6c, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 63d32f628b03f1d41930276aa47746f0, type: 2}
+    - {fileID: 11400000, guid: e81d988cf4352e44f98ec7c03673e9cd, type: 2}

@@ -1,6 +1,7 @@
 using DW.StateMachine;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -22,6 +23,7 @@ public class LoadingManager : IDisposable
     public const string GameScene = "GameScene";
 
     private readonly SceneAddressablesContainer _sceneAddressablesContainer;
+    private readonly PreloadScriptableObjectContainer _preloadData;
 
     private StateMachine _gameStateMachine;
     private IDisposable _updateDisposable;

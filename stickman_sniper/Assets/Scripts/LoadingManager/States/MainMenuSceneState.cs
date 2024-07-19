@@ -19,6 +19,7 @@ public sealed class MainMenuSceneState : SceneState
     {
         await base.OnEnterState();
 
+        _sceneContext.Run();
         _sceneContext.Container.Inject(this);
 
         await AwaitUImanagerInitialized();

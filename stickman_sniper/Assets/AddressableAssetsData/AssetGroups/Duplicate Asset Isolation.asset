@@ -33,10 +33,6 @@ MonoBehaviour:
     m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/ARs/A_FP_PCH_AR_01_Aim_Pose.fbx
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 9e2dd26ab6618fd41afde0a260f013b5
-    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/ARs/A_FP_PCH_AR_01_Inspect.fbx
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: c454e0fa9f500cb4292fc34b3c21c15a
     m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Animations/Character/ARs/A_FP_PCH_AR_01_Unholster.fbx
     m_ReadOnly: 0
@@ -395,10 +391,6 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: d82512f9c8e5d4a4d938b575d47f88d4
     m_Address: Packages/com.unity.postprocessing/PostProcessing/PostProcessResources.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: a5ba727c907a5d341b912fbc8638bdf7
-    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Demo/T_Cookie_Flashlight.png
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: a469f920b21fc7c4fb5b950917ce2fb2

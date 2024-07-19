@@ -27,10 +27,10 @@ public class FPSControllerInstaller : MonoInstaller
         //Container.BindInstance(_weaponCamera).WithId("weapon").AsCached();
         Container.BindInstance(_slowmotionCamera).WithId("slowmotion").AsCached();
         Container.Bind<Character>().FromComponentOnRoot().AsSingle();
-        Container.BindInterfacesAndSelfTo<WeaponFactory>().AsSingle();
+        //Container.BindInterfacesAndSelfTo<WeaponFactory>().AsSingle();
         Container.Bind<IMobileInputProvider>().FromInstance(_mobileCanvas).AsSingle();
         Container.BindInterfacesTo<InputService>().AsSingle().WithArguments(YandexGame.Device);
-        Container.BindInterfacesTo<WeaponService>().AsSingle();
+        //Container.BindInterfacesTo<WeaponService>().AsSingle();
         //Container.BindInterfacesTo<HandsController>().FromInstance(_handsController).AsSingle();
         Container.BindInterfacesTo<PlayerProgressObserver>().AsSingle().NonLazy();
         //Container.Bind<IUiManager>().FromInstance(_uiManager).AsSingle();

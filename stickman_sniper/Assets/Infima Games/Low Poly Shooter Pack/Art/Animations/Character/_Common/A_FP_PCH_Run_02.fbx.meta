@@ -478,7 +478,7 @@ ModelImporter:
       takeName: Scene
       internalID: 0
       firstFrame: 0
-      lastFrame: 400
+      lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -506,7 +506,7 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 0.01
-    meshCompression: 0
+    meshCompression: 3
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1

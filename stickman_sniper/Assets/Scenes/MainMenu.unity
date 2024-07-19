@@ -240,6 +240,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMPComponent: {fileID: 0}
+  uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
   text: 
@@ -549,7 +551,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1745328977}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: test_lock, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
@@ -1110,6 +1112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMPComponent: {fileID: 0}
+  uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
   text: 
@@ -1358,7 +1362,6 @@ GameObject:
   - component: {fileID: 1745328980}
   - component: {fileID: 1745328979}
   - component: {fileID: 1745328978}
-  - component: {fileID: 1745328977}
   - component: {fileID: 1745328976}
   m_Layer: 0
   m_Name: Camera
@@ -1381,21 +1384,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Camera: {fileID: 1745328979}
   Tag: mainMenuCamera
---- !u!114 &1745328977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745328975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9beca941f366204b8a4f9f0fcd981a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camera: {fileID: 1745328979}
-  _gameStart: {fileID: 1686947458}
-  _restoreAfterAd: {fileID: 0}
 --- !u!114 &1745328978
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,6 @@
+using Cysharp.Threading.Tasks;
 using DWTools;
+using stickman_sniper.Purchases;
 using System;
 using TMPro;
 using UniRx;
@@ -11,6 +13,8 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
     [SerializeField] private TMP_Text text;
     [SerializeField] private UnityEngine.UI.Button button;
 
+    private IPurchaseService _purchaseService;
+
     private GameObject _bgImage;
     private GameObject _itemImage;
     private CompositeDisposable _disposables = new();
@@ -18,41 +22,65 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
     public CustomizationScreenShopCell Item => this;
     public IPool<CustomizationScreenShopCell> Pool { get; set; }
 
-    public CustomizationScreenShopCell SetBackground(GameObject image, bool worldPositionStays)
+    public void ResolveDependencies(IPurchaseService purchaseService)
+    {
+        _purchaseService = purchaseService;
+    }
+
+    public async UniTask Init(ShopProductVisual visual)
+    {
+        string GetProductText(ShopProductVisual visual) => visual.ObtainBy switch
+        {
+            ShopProductVisual.ObtainType.SoftCurrency => visual.Cost.ToString(),
+            _ => visual.Cost.ToString()
+        };
+
+        Item.SetText(GetProductText(visual));
+
+        if (visual.ProductBackground.RuntimeKeyIsValid())
+        {
+            SetBackground(await visual.ProductBackground.InstantiateAsync(), false);
+        }
+
+        if (visual.ProductImage.RuntimeKeyIsValid())
+        {
+            SetItemImage(await visual.ProductImage.InstantiateAsync(), false);
+        }
+    }
+
+    private CustomizationScreenShopCell SetBackground(GameObject image, bool worldPositionStays)
     {
         _bgImage = image;
         image.transform.SetParent(bgImageParent, worldPositionStays);
         return this;
     }
 
-    public CustomizationScreenShopCell SetItemImage(GameObject image, bool worldPositionStays)
+    private CustomizationScreenShopCell SetItemImage(GameObject image, bool worldPositionStays)
     {
         _itemImage = image;
         image.transform.SetParent(itemImageParent, worldPositionStays);
         return this;
     }
 
-    public CustomizationScreenShopCell SetText(string text)
+    private CustomizationScreenShopCell SetText(string text)
     {
         this.text.SetText(text);
         return this;
     }
 
-    public CustomizationScreenShopCell SetOnClickHandler(string key, IObserver<string> onClickHandler)
+    public void SetOnClickHandler(string key, IObserver<string> onClickHandler)
     {
         button.OnClickAsObservable().SubscribeWithState2(key, onClickHandler, (_, key, onClickHandler) =>
         {
             onClickHandler.OnNext(key);
         }).AddTo(_disposables);
-
-        return this;
     }
 
-    public CustomizationScreenShopCell ContinueWith(Action<CustomizationScreenShopCell> action)
-    {
-        action?.Invoke(this);
-        return this;
-    }
+    //public CustomizationScreenShopCell ContinueWith(Action<CustomizationScreenShopCell> action)
+    //{
+    //    action?.Invoke(this);
+    //    return this;
+    //}
 
     public void ReturnToPool()
     {

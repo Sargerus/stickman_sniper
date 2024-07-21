@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
+using stickman_sniper.Purchases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
 
     [SerializeField, BoxGroup("Tabs")] private List<CustomizationScreenTab> tabs;
 
+    private IPurchaseService _purchaseService;
     private ShopPresentationConfig _shopProductConfig;
     private WeaponCharacteristicsContainer _weaponCharacteristicsContainer;
     private IObserver<string> _backClickHandler;
@@ -36,17 +38,19 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
     private CustomizationIndexes _customizationIndexes;
 
     public void ResolveDependencies(ShopPresentationConfig shopProductConfig,
-        WeaponCharacteristicsContainer weaponCharacteristicsContainer)
+        WeaponCharacteristicsContainer weaponCharacteristicsContainer,
+        IPurchaseService purchaseService)
     {
         _shopProductConfig = shopProductConfig;
         _weaponCharacteristicsContainer = weaponCharacteristicsContainer;
+        _purchaseService = purchaseService;
     }
 
     public async UniTask Init(string key, IObserver<string> backClickHandler)
     {
         _key = key;
         _backClickHandler = backClickHandler;
-        _productVisuals = _shopProductConfig.GetConfig(key);
+        _productVisuals = _shopProductConfig.GetConfigByKey(key);
         var charContainer = _weaponCharacteristicsContainer.Config.FirstOrDefault(g => g.WeaponKey.Equals(key));
 
         if (charContainer != null)
@@ -122,23 +126,16 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
             CustomizationScreenShopCell cell = Instantiate(cellPrefab, container);
             _cells.Add(cell);
 
-            var weaponInventoryVisuals = _shopProductConfig.ShopProductVisual.FirstOrDefault(g => g.Hash.Equals(content[i]));
-            cell.Item.SetText(weaponInventoryVisuals.ProductName)
-                .SetOnClickHandler(i.ToString(), _cellClickHandler)
-                .ContinueWith(async g =>
-                {
-                    if (weaponInventoryVisuals.ProductBackground.RuntimeKeyIsValid())
-                    {
-                        g.SetBackground(await weaponInventoryVisuals.ProductBackground.InstantiateAsync(), false);
-                    }
-                })
-                .ContinueWith(async g =>
-                {
-                    if (weaponInventoryVisuals.ProductImage.RuntimeKeyIsValid())
-                    {
-                        g.SetItemImage(await weaponInventoryVisuals.ProductImage.InstantiateAsync(), false);
-                    }
-                });
+            ShopProductVisual weaponInventoryVisuals = _shopProductConfig.GetConfigByHash(content[i]);
+
+            if (weaponInventoryVisuals.IsBoughtByDefault)
+            {
+                _purchaseService.Purchase(weaponInventoryVisuals.Hash);
+            }
+
+            cell.Item.ResolveDependencies(_purchaseService);
+            cell.Item.Init(weaponInventoryVisuals);
+            cell.Item.SetOnClickHandler(i.ToString(), _cellClickHandler);
         }
 
         _currentTab = tab;

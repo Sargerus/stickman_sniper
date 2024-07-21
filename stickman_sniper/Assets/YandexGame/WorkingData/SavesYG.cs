@@ -22,6 +22,7 @@ namespace YG
         // Ваши сохранения
         public int levelsPassed = 0;
         public List<CurrencyEntity> currencies = new();
+        public List<string> purchases = new();
         // ...
 
         // Поля (сохранения) можно удалять и создавать новые. При обновлении игры сохранения ломаться не должны

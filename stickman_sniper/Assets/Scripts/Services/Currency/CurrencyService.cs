@@ -47,6 +47,7 @@ namespace stickman_sniper.Currency
                 return;
 
             property.Value += value;
+            Save();
         }
 
         public IReadOnlyReactiveProperty<float> CreateCurrency(string key)
@@ -56,6 +57,8 @@ namespace stickman_sniper.Currency
                 property = new(0);
                 _currencies.Add(key, property);
             }
+
+            Save();
 
             return property;
         }
@@ -67,7 +70,7 @@ namespace stickman_sniper.Currency
             return result;
         }
 
-        private void Save(string key)
+        private void Save()
         {
             YandexGame.savesData.currencies = _currencies.Select(g => new CurrencyEntity(g.Key, g.Value.Value)).ToList();
             YandexGame.SaveProgress();
@@ -75,7 +78,7 @@ namespace stickman_sniper.Currency
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

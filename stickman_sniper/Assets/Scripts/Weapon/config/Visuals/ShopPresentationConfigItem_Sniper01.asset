@@ -1,0 +1,452 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08ae6abcd56c1da4c98b8eb6f01723d2, type: 3}
+  m_Name: ShopPresentationConfigItem_Sniper01
+  m_EditorClassIdentifier: 
+  Items:
+  - ProductKey: Sniper 01
+    ProductName: Sniper Rifle MX-01
+    Hash: -368270586
+    IsBoughtByDefault: 1
+    ProductImage:
+      m_AssetGUID: 3afca42c37c94054ca159e687822fefd
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 177d7394c15e09f4c90350257ae8954b
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 25569ffc3e369364bb39e365d934353e
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 0
+    Cost: 0
+    IsBuyAd: 0
+    IsBuyMoney: 0
+  - ProductKey: Sniper 01_scope_1
+    ProductName: 1
+    Hash: 504452041
+    IsBoughtByDefault: 1
+    ProductImage:
+      m_AssetGUID: 44f185f6d5445f94f869fa1d66cc95fb
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 54f3c0def95721c4cade98c5bdadcc42
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 608b505d9e0fca141a46b8ac70f96ddc
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 0
+    Cost: 0
+    IsBuyAd: 0
+    IsBuyMoney: 0
+  - ProductKey: Sniper 01_scope_2
+    ProductName: 2
+    Hash: -1149852207
+    IsBoughtByDefault: 0
+    ProductImage:
+      m_AssetGUID: 44f185f6d5445f94f869fa1d66cc95fb
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 54f3c0def95721c4cade98c5bdadcc42
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: a2962c3563c7ee246be224e9304464bd
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 1
+    Cost: 200
+    IsBuyAd: 0
+    IsBuyMoney: 0
+  - ProductKey: Sniper 01_scope_3
+    ProductName: 3
+    Hash: -1313552294
+    IsBoughtByDefault: 0
+    ProductImage:
+      m_AssetGUID: 44f185f6d5445f94f869fa1d66cc95fb
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 54f3c0def95721c4cade98c5bdadcc42
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: f3d402d9c5423004a8e08fb187c46276
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 1
+    Cost: 200
+    IsBuyAd: 0
+    IsBuyMoney: 0
+  - ProductKey: Sniper 01_scope_4
+    ProductName: 4
+    Hash: 632185177
+    IsBoughtByDefault: 0
+    ProductImage:
+      m_AssetGUID: 44f185f6d5445f94f869fa1d66cc95fb
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 54f3c0def95721c4cade98c5bdadcc42
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 29f69acff7685bc43a0c3a86db1dbe85
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 1
+    Cost: 200
+    IsBuyAd: 0
+    IsBuyMoney: 0
+  - ProductKey: Sniper 01_scope_5
+    ProductName: 5
+    Hash: 2122329595
+    IsBoughtByDefault: 0
+    ProductImage:
+      m_AssetGUID: 44f185f6d5445f94f869fa1d66cc95fb
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 54f3c0def95721c4cade98c5bdadcc42
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 2cadd769aff535a4fb4d7bf045dc579d
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 1
+    Cost: 200
+    IsBuyAd: 0
+    IsBuyMoney: 0
+  - ProductKey: Sniper 01_scope_6
+    ProductName: 6
+    Hash: 1295361385
+    IsBoughtByDefault: 0
+    ProductImage:
+      m_AssetGUID: 44f185f6d5445f94f869fa1d66cc95fb
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 54f3c0def95721c4cade98c5bdadcc42
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: bdf11905568039047a943adbe62f5e53
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 1
+    Cost: 200
+    IsBuyAd: 0
+    IsBuyMoney: 0
+  - ProductKey: Sniper 01_scope_7
+    ProductName: 7
+    Hash: 880147643
+    IsBoughtByDefault: 0
+    ProductImage:
+      m_AssetGUID: 44f185f6d5445f94f869fa1d66cc95fb
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 54f3c0def95721c4cade98c5bdadcc42
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 95e9b96c3ea7be948b7b8c162831d0ee
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 1
+    Cost: 200
+    IsBuyAd: 0
+    IsBuyMoney: 0
+  - ProductKey: Sniper 01_scope_8
+    ProductName: 8
+    Hash: 1232666277
+    IsBoughtByDefault: 0
+    ProductImage:
+      m_AssetGUID: 44f185f6d5445f94f869fa1d66cc95fb
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 54f3c0def95721c4cade98c5bdadcc42
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: ec5fdd40e62797947a90a79df17d15f5
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 1
+    Cost: 200
+    IsBuyAd: 0
+    IsBuyMoney: 0
+  - ProductKey: Sniper 01_muzzle_1
+    ProductName: 1
+    Hash: -753201110
+    IsBoughtByDefault: 1
+    ProductImage:
+      m_AssetGUID: 98d6f71bbf836dd499079abfb97272f3
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 98d6f71bbf836dd499079abfb97272f3
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 16810aaa7341c99469aecedc37b98ef5
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 0
+    Cost: 0
+    IsBuyAd: 0
+    IsBuyMoney: 0
+  - ProductKey: Sniper 01_muzzle_2
+    ProductName: 2
+    Hash: 903384978
+    IsBoughtByDefault: 0
+    ProductImage:
+      m_AssetGUID: 98d6f71bbf836dd499079abfb97272f3
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 98d6f71bbf836dd499079abfb97272f3
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 209489031a3ced84dbe74e379aae2c76
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 1
+    Cost: 200
+    IsBuyAd: 0
+    IsBuyMoney: 0
+  - ProductKey: Sniper 01_muzzle_3
+    ProductName: 3
+    Hash: 547171636
+    IsBoughtByDefault: 0
+    ProductImage:
+      m_AssetGUID: 98d6f71bbf836dd499079abfb97272f3
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 98d6f71bbf836dd499079abfb97272f3
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 36b623c00545cdb49a842dc448ffc5b8
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 1
+    Cost: 200
+    IsBuyAd: 0
+    IsBuyMoney: 0
+  - ProductKey: Sniper 01_muzzle_4
+    ProductName: 4
+    Hash: 56858736
+    IsBoughtByDefault: 0
+    ProductImage:
+      m_AssetGUID: 98d6f71bbf836dd499079abfb97272f3
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 98d6f71bbf836dd499079abfb97272f3
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 232d12e5a30c1684ca33398f69a2f100
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 1
+    Cost: 200
+    IsBuyAd: 0
+    IsBuyMoney: 0
+  - ProductKey: Sniper 01_laser_1
+    ProductName: 1
+    Hash: 687763307
+    IsBoughtByDefault: 1
+    ProductImage:
+      m_AssetGUID: b84f66d151bfc4843b8ffce85e4f129b
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: bf91218056342e04a948b98434b5fe44
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 9cd79930b39d3b74bad7b19421a5ddf6
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 0
+    Cost: 0
+    IsBuyAd: 0
+    IsBuyMoney: 0
+  - ProductKey: Sniper 01_laser_2
+    ProductName: 2
+    Hash: -513347761
+    IsBoughtByDefault: 0
+    ProductImage:
+      m_AssetGUID: b84f66d151bfc4843b8ffce85e4f129b
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: bf91218056342e04a948b98434b5fe44
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: b8575028f4533b64b8ffada2b0d7b181
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 1
+    Cost: 200
+    IsBuyAd: 0
+    IsBuyMoney: 0
+  - ProductKey: Sniper 01_grip_1
+    ProductName: 1
+    Hash: 1250661548
+    IsBoughtByDefault: 1
+    ProductImage:
+      m_AssetGUID: f1b08957279083841b1178f83aa42632
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 0553f86ad01a78144a430b1d2b83e33c
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: df97592f1c318634e874c1298f212682
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 0
+    Cost: 0
+    IsBuyAd: 0
+    IsBuyMoney: 0
+  - ProductKey: Sniper 01_grip_2
+    ProductName: 2
+    Hash: 370434964
+    IsBoughtByDefault: 0
+    ProductImage:
+      m_AssetGUID: f1b08957279083841b1178f83aa42632
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 0553f86ad01a78144a430b1d2b83e33c
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: edb3e6f3cb3e39d4d82e883b8efa2d34
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 1
+    Cost: 200
+    IsBuyAd: 0
+    IsBuyMoney: 0
+  - ProductKey: Sniper 01_grip_3
+    ProductName: 3
+    Hash: 737545828
+    IsBoughtByDefault: 0
+    ProductImage:
+      m_AssetGUID: f1b08957279083841b1178f83aa42632
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 0553f86ad01a78144a430b1d2b83e33c
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 7038049384741b74c82d78a046954a46
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 1
+    Cost: 200
+    IsBuyAd: 0
+    IsBuyMoney: 0
+  - ProductKey: Sniper 01_magazine_1
+    ProductName: 1
+    Hash: -1329021927
+    IsBoughtByDefault: 1
+    ProductImage:
+      m_AssetGUID: 9465df12d3e31f0438cdb027b8dceba7
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 422f8f132da23a9419e671dbe4b6a0e4
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 3f094606aa34bc54e820a436ae2a363e
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 0
+    Cost: 0
+    IsBuyAd: 0
+    IsBuyMoney: 0

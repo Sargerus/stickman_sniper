@@ -9,13 +9,16 @@ using UnityEngine.AddressableAssets;
 public class ShopPresentationConfig : ScriptableObject
 {
     public List<ShopPresentationItem> ShopPresentationItems;
+    public List<ShopItemPresentationConfig> ShopProductVisual;
 
-    [TableList]
-    public List<ShopProductVisual> ShopProductVisual;
-
-    public ShopProductVisual GetConfig(string key)
+    public ShopProductVisual GetConfigByKey(string productKey)
     {
-        return ShopProductVisual.FirstOrDefault(g => g.ProductKey.Equals(key));
+        return ShopProductVisual.SelectMany(x => x.Items).FirstOrDefault(g => g.ProductKey.Equals(productKey));
+    }
+
+    public ShopProductVisual GetConfigByHash(string productHash)
+    {
+        return ShopProductVisual.SelectMany(x => x.Items).FirstOrDefault(g => g.Hash.Equals(productHash));
     }
 }
 
@@ -30,10 +33,28 @@ public class ShopPresentationItem
 [Serializable]
 public class ShopProductVisual
 {
+    public enum ObtainType
+    {
+        None = 0,
+        SoftCurrency = 1,
+        HardCurrency = 2,
+        Ad = 3,
+        Money = 4
+    }
+
     public string ProductKey;
     public string ProductName;
     public string Hash;
+    public bool IsBoughtByDefault;
     public AssetReference ProductImage;
     public AssetReference ProductBackground;
     public AssetReference Product3DModel;
+
+    public ObtainType ObtainBy;
+    [Sirenix.OdinInspector.ShowIf("ObtainBy", ObtainType.SoftCurrency)] 
+    public float Cost;
+    [Sirenix.OdinInspector.ShowIf("ObtainBy", ObtainType.Ad)]
+    public bool IsBuyAd;
+    [Sirenix.OdinInspector.ShowIf("ObtainBy", ObtainType.Money)]
+    public bool IsBuyMoney;
 }

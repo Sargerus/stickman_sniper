@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using DWTools;
 using DWTools.Customization;
 using Sirenix.OdinInspector;
+using stickman_sniper.Purchases;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ public class CustomizationScreenAllWeapons : MonoBehaviour
     private AvailableWeaponConfig _availableWeaponConfig;
     private CustomiationDataContainerSO _customiationDataContainerSO;
     private ShopPresentationConfig _shopPresentationConfig;
+    private IPurchaseService _purchaseService;
 
     private List<CustomizationScreenTab> _tabs = new();
     private List<IPooledItem<CustomizationScreenShopCell>> _shopCells = new();
@@ -34,11 +36,13 @@ public class CustomizationScreenAllWeapons : MonoBehaviour
     public void ResolveDependencies(
         AvailableWeaponConfig availableWeaponConfig,
         CustomiationDataContainerSO customiationDataContainerSO,
-        ShopPresentationConfig shopPresentationConfig)
+        ShopPresentationConfig shopPresentationConfig,
+        IPurchaseService purchaseService)
     {
         _availableWeaponConfig = availableWeaponConfig;
         _customiationDataContainerSO = customiationDataContainerSO;
         _shopPresentationConfig = shopPresentationConfig;
+        _purchaseService = purchaseService;
     }
 
     public async UniTask Init(IObserver<string> cellClickHandler)
@@ -95,23 +99,17 @@ public class CustomizationScreenAllWeapons : MonoBehaviour
         {
             IPooledItem<CustomizationScreenShopCell> cell = shopCellPool.Get();
             _shopCells.Add(cell);
-            var weaponInventoryVisuals = _shopPresentationConfig.ShopProductVisual.FirstOrDefault(g => g.ProductKey.Equals(weapon));
-            cell.Item.SetText(weaponInventoryVisuals.ProductName)
-                .SetOnClickHandler(weapon, _cellClickHandler)
-                .ContinueWith(async g =>
-                {
-                    if (weaponInventoryVisuals.ProductBackground.RuntimeKeyIsValid())
-                    {
-                        g.SetBackground(await weaponInventoryVisuals.ProductBackground.InstantiateAsync(), false);
-                    }
-                })
-                .ContinueWith(async g =>
-                {
-                    if (weaponInventoryVisuals.ProductImage.RuntimeKeyIsValid())
-                    {
-                        g.SetItemImage(await weaponInventoryVisuals.ProductImage.InstantiateAsync(), false);
-                    }
-                });
+            var weaponInventoryVisuals = _shopPresentationConfig.GetConfigByKey(weapon);
+
+            if (weaponInventoryVisuals.IsBoughtByDefault)
+            {
+                _purchaseService.Purchase(weaponInventoryVisuals.Hash);
+            }
+
+            cell.Item.ResolveDependencies(_purchaseService);
+            cell.Item.Init(weaponInventoryVisuals);
+
+            cell.Item.SetOnClickHandler(weapon, _cellClickHandler);
 
             cell.Item.transform.SetParent(weaponsContainer, false);
             cell.Item.gameObject.SetActive(true);

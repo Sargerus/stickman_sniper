@@ -7,10 +7,9 @@ using Zenject;
 
 public sealed class BootstrapSceneState : IState
 {
-    [Inject] private ICurrencyService _currencyService;
-
     public IGlobalBlackboard GlobalBlackboard { get; set; }
     private LoadingManager _loadingManager;
+    private SceneContext _sceneContext;
 
     public BootstrapSceneState(LoadingManager loadingManager)
     {
@@ -26,10 +25,10 @@ public sealed class BootstrapSceneState : IState
             return;
         }
 
-        SceneContext sceneContext = gameObject.GetComponent<SceneContext>();
-        sceneContext.Run();
+        _sceneContext = gameObject.GetComponent<SceneContext>();
+        _sceneContext.Run();
 
-        var loadingManagerHolder = sceneContext.Container.Resolve<ILoadingManagerHolder>();
+        var loadingManagerHolder = _sceneContext.Container.Resolve<ILoadingManagerHolder>();
         loadingManagerHolder.LoadingManager = _loadingManager;
 
         InitializeCurrency();
@@ -39,7 +38,9 @@ public sealed class BootstrapSceneState : IState
 
     private void InitializeCurrency()
     {
-        _currencyService.CreateCurrency("gold");
+        var currencyService = _sceneContext.Container.Resolve<ICurrencyService>();
+
+        currencyService.CreateCurrency("gold");
     }
 
     public async UniTask OnExitState()

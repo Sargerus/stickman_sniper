@@ -460,6 +460,7 @@ GameObject:
   m_Component:
   - component: {fileID: 782628377}
   - component: {fileID: 782628376}
+  - component: {fileID: 782628378}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: SceneContext
@@ -486,6 +487,7 @@ MonoBehaviour:
   - {fileID: 390096442}
   - {fileID: 441242759}
   - {fileID: 1933085083}
+  - {fileID: 946133458}
   _installerPrefabs: []
   _autoRun: 0
   OnPreInstall:
@@ -520,8 +522,65 @@ Transform:
   - {fileID: 390096443}
   - {fileID: 441242760}
   - {fileID: 1933085084}
+  - {fileID: 946133459}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &782628378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782628375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3530b68933c9b94a98075a510a55bce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &946133457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 946133459}
+  - component: {fileID: 946133458}
+  m_Layer: 0
+  m_Name: CurrencyServiceInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &946133458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946133457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c224db5a45561146b941a8fce1cc0e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &946133459
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946133457}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 782628377}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1068620565
 GameObject:
@@ -810,7 +869,6 @@ MonoBehaviour:
   _container: {fileID: 11400000, guid: a32773669e7478244ad58fe63de0dcb9, type: 2}
   uiCamera: {fileID: 0}
   _completedLevels: {fileID: 0}
-  _preloadContainer: {fileID: 11400000, guid: 5750e4e0db1b13844b0c9d83636a594c, type: 2}
 --- !u!114 &1870464310 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5531512662929766589, guid: ce533427e935d124696c9b65457e85ac,

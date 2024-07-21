@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2891b5333bfe7104c9ead4053b2dcd32, type: 3}
+  m_Name: ShopScriptableObjectInstaller_test
+  m_EditorClassIdentifier: 
+  _availableWeaponConfig: {fileID: 11400000, guid: a6c120e7f42f0694b96dab1173362dfe,
+    type: 2}
+  _customiationDataContainerSO: {fileID: 11400000, guid: 310275a2ed1e55f4dab937b5ee0294f1,
+    type: 2}
+  shopPresentationConfig: {fileID: 11400000, guid: 5ee8374f66699824da67a89602c1916d,
+    type: 2}

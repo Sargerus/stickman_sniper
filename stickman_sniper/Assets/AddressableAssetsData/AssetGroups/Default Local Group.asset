@@ -25,6 +25,10 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Shop_model_P_LPSP_WEP_Sniper_1.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 1f27e9b2c86cc804298382c3e50db864
+    m_Address: Assets/Scripts/Installers/Bootstrap/ShopScriptableObjectInstaller.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3ab1704d1ccd64346a4142c5eee15a6c, type: 2}
   m_SchemaSet:

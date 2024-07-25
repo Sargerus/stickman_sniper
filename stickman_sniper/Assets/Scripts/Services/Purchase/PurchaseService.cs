@@ -12,12 +12,12 @@ namespace stickman_sniper.Purchases
         void Purchase(string hash);
     }
 
-    internal class PurchaseService : IInitializable, IPurchaseService
+    internal class PurchaseService : IPurchaseService
     {
         private HashSet<string> _purchases = new();
         private Dictionary<string, ReactiveProperty<bool>> _cachedProperties = new();
 
-        public void Initialize()
+        public PurchaseService()
         {
             _purchases = YandexGame.savesData.purchases.ToHashSet<string>();
         }
@@ -28,7 +28,7 @@ namespace stickman_sniper.Purchases
         {
             if (!_cachedProperties.TryGetValue(hash, out var property))
             {
-                property = new(false);
+                property = new(_purchases.Contains(hash));
                 _cachedProperties.Add(hash, property);
             }
 
@@ -38,6 +38,7 @@ namespace stickman_sniper.Purchases
         public void Purchase(string hash)
         {
             _purchases.Add(hash);
+            Save();
             GetIsPurchasedReactivePropertyInternal(hash).Value = true;
         }
 

@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using DWTools.Customization;
 using DWTools.Windows;
 using Sirenix.OdinInspector;
+using stickman_sniper.Currency;
 using stickman_sniper.Purchases;
 using System.Threading;
 using UniRx;
@@ -38,12 +39,13 @@ public class CustomizationScreen : BaseWindow
         ShopPresentationConfig shopPresentationConfig,
         WeaponCharacteristicsContainer weaponCharacteristicsContainer,
         ILoadingManagerHolder loadingManagerHolder,
-        IPurchaseService purchaseService)
+        IPurchaseService purchaseService,
+        ICurrencyService currencyService)
     {
         _loadingManagerHolder = loadingManagerHolder;
 
         weaponsGrid.ResolveDependencies(availableWeaponConfig, customiationDataContainerSO, shopPresentationConfig, purchaseService);
-        certainWeapon.ResolveDependencies(shopPresentationConfig, weaponCharacteristicsContainer, purchaseService);
+        certainWeapon.ResolveDependencies(shopPresentationConfig, weaponCharacteristicsContainer, purchaseService, currencyService);
 
         SwitchTabAsync(null, Tabs.AllWeapons).Forget();
     }

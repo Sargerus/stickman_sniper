@@ -13,6 +13,7 @@ public class PodiumController : MonoBehaviour
     private ShopProductVisual _weaponVisuals;
     private GameObject _prefabInstance;
     private Transform _target;
+    private Vector3 pos = new(0.2f, -0.6f, 0.65f);
 
     public IAttachmentManager AttachmentManager { get; private set; }
 
@@ -26,7 +27,7 @@ public class PodiumController : MonoBehaviour
     private async UniTask InitializeAsync(CustomizationIndexes customizationIndexes)
     {
         _prefabInstance = (GameObject)(await _weaponVisuals.Product3DModel.InstantiateAsync(_container));
-        // _prefabInstance.transform.position = Vector3.zero;
+        _prefabInstance.transform.localPosition = pos;
 
         var attachmentManager = _prefabInstance.GetComponentInChildren<WeaponAttachmentManager>();
         _target = _prefabInstance.transform.GetChild(0);

@@ -8,6 +8,14 @@ using UnityEngine;
 
 public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<CustomizationScreenShopCell>
 {
+    public enum CellState
+    {
+        None = 0,
+        Open = 1,
+        Closed = 2,
+        Blocked = 3
+    }
+
     [SerializeField] private Transform bgImageParent;
     [SerializeField] private Transform itemImageParent;
     [SerializeField] private TMP_Text text;
@@ -17,9 +25,12 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
 
     private GameObject _bgImage;
     private GameObject _itemImage;
+    private CellState _cellState;
     private CompositeDisposable _disposables = new();
 
     public CustomizationScreenShopCell Item => this;
+    private ReactiveProperty<CellState> _cellStateReactive = new();
+    public IReadOnlyReactiveProperty<CellState> State => _cellStateReactive;
     public IPool<CustomizationScreenShopCell> Pool { get; set; }
 
     public void ResolveDependencies(IPurchaseService purchaseService)
@@ -35,8 +46,6 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
             _ => visual.Cost.ToString()
         };
 
-        Item.SetText(GetProductText(visual));
-
         if (visual.ProductBackground.RuntimeKeyIsValid())
         {
             SetBackground(await visual.ProductBackground.InstantiateAsync(), false);
@@ -46,6 +55,19 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
         {
             SetItemImage(await visual.ProductImage.InstantiateAsync(), false);
         }
+
+        var boughtProperty = _purchaseService.GetIsPurchasedReactiveProperty(visual.Hash);
+        if (!boughtProperty.Value)
+        {
+            Item.SetText(GetProductText(visual));
+            boughtProperty.Where(x => x == true).Subscribe(_ =>
+            {
+                Item.SetText(string.Empty);
+                _cellStateReactive.Value = CellState.Open;
+            }).AddTo(_disposables);
+        }
+
+        _cellStateReactive.Value = boughtProperty.Value ? CellState.Open : CellState.Closed;
     }
 
     private CustomizationScreenShopCell SetBackground(GameObject image, bool worldPositionStays)

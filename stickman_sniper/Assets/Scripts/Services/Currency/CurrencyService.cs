@@ -29,11 +29,11 @@ namespace stickman_sniper.Currency
         }
     }
 
-    internal class CurrencyService : ICurrencyService, IInitializable, IDisposable
+    internal class CurrencyService : ICurrencyService, IDisposable
     {
         private Dictionary<string, ReactiveProperty<float>> _currencies = new();
 
-        public void Initialize()
+        public CurrencyService()
         {
             foreach (var c in YandexGame.savesData.currencies)
             {

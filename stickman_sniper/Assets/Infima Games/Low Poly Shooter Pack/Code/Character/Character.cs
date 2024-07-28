@@ -13,6 +13,7 @@ using Cysharp.Threading.Tasks;
 using UniRx;
 using InfimaGames.LowPolyShooterPack.Interface;
 using DWTools.Windows;
+using YG;
 
 namespace InfimaGames.LowPolyShooterPack
 {
@@ -90,15 +91,16 @@ namespace InfimaGames.LowPolyShooterPack
         [SerializeField]
         private GameObject knife;
 
-        [Title(label: "Cameras")]
-
         [Tooltip("Normal Camera.")]
-        [SerializeField]
+        [SerializeField, Sirenix.OdinInspector.BoxGroup("Cameras")]
         private Camera cameraWorld;
 
         [Tooltip("Weapon-Only Camera. Depth.")]
-        [SerializeField]
+        [SerializeField, Sirenix.OdinInspector.BoxGroup("Cameras")]
         private Camera cameraDepth;
+
+        [SerializeField, Sirenix.OdinInspector.BoxGroup("Cameras")]
+        private Camera mobileCamera;
 
         [Title(label: "Animation")]
 
@@ -358,6 +360,12 @@ namespace InfimaGames.LowPolyShooterPack
             _playersOverlayHandler = await _uiManager.CreateWindow("players_overlay", null, _diContainer);
             await _playersOverlayHandler.Show(true);
 
+            //initialize camera
+            if (YandexGame.Device.ToDevice() == Device.Mobile)
+            {
+                mobileCamera.gameObject.SetActive(true);
+            }
+
             _isInitialized = true;
         }
 
@@ -376,6 +384,8 @@ namespace InfimaGames.LowPolyShooterPack
         {
             if (!_isInitialized)
                 return;
+
+            _inputService.Update();
 
             OnMove(default);
             OnLook(default);
@@ -429,6 +439,11 @@ namespace InfimaGames.LowPolyShooterPack
 
             //for enemy hp bars
             _progressBarAimDotProvider.Point = cameraWorld.transform.position;
+        }
+
+        protected override void LateUpdate()
+        {
+            _inputService.LateUpdate();
         }
 
         #endregion
@@ -515,7 +530,7 @@ namespace InfimaGames.LowPolyShooterPack
         /// <summary>
         /// IsCursorLocked.
         /// </summary>
-        public override bool IsCursorLocked() => _cursorLocker.IsCursorLocked;
+        public override bool IsCursorLocked() => YandexGame.Device.ToDevice() == Device.Desktop ? _cursorLocker.IsCursorLocked : true;
 
         /// <summary>
         /// IsTutorialTextVisible.
@@ -1445,16 +1460,16 @@ namespace InfimaGames.LowPolyShooterPack
         public void OnLockCursor(InputAction.CallbackContext context)
         {
             //Switch.
-           //switch (context)
-           //{
-           //    //Performed.
-           //    case { phase: InputActionPhase.Performed }:
-           //        //Toggle the cursor locked value.
-           //        cursorLocked = !cursorLocked;
-           //        //Update the cursor's state.
-           //        UpdateCursorState();
-           //        break;
-           //}
+            //switch (context)
+            //{
+            //    //Performed.
+            //    case { phase: InputActionPhase.Performed }:
+            //        //Toggle the cursor locked value.
+            //        cursorLocked = !cursorLocked;
+            //        //Update the cursor's state.
+            //        UpdateCursorState();
+            //        break;
+            //}
         }
 
         /// <summary>

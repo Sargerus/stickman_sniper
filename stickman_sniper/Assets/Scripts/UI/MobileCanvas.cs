@@ -31,7 +31,7 @@ public class MobileCanvas : MonoBehaviour, IMobileInputProvider
         }).AddTo(_fireDisposables);
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (_cachedShootTouch == null || Input.touchCount == 0
             || !Input.touches.Any(g => g.fingerId == _cachedShootTouch))

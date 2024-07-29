@@ -58,7 +58,7 @@ namespace YG
             set => _playerName = value;
         }
         public static string playerId { get => _playerId; }
-        public static string Device { get; private set; } = "mobile";
+        public static string Device { get; private set; }
         public static string playerPhoto
         {
             get => _playerPhoto;

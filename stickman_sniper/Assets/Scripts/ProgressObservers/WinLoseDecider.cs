@@ -40,7 +40,7 @@ public class WinLoseDecider : IInitializable, IDisposable
         {
             HideMobile();
             _character.freeze = true;
-            _inputService.DisableInput();
+            _inputService.DisableInput(true);
             var handler = await _uiManager.CreateWindow("game_over_ui", null, _diContainer);
             await handler.Show(false);
             //_firstPersonController.Freeze(true);

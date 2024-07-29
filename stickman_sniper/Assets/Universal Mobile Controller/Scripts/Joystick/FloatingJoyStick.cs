@@ -19,6 +19,7 @@ namespace UniversalMobileController
         [SerializeField] private RectTransform joyStick;
 
         [Range(0, 10f)][SerializeField] private float joystickMovementRange = 1f;
+        public float MovementRange => joystickMovementRange;
 
         private Vector2 joyStickInput = Vector2.zero;
         private bool _wasCalledUp = true;

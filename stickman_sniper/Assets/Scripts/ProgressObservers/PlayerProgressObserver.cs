@@ -34,23 +34,6 @@ public class PlayerProgressObserver : IPlayerProgressObserver, IInitializable, I
     public void Initialize()
     {
         Observable.EveryUpdate().Subscribe(_ => ObserveAmmunitionCount()).AddTo(_disposables);
-
-        //_weaponService.CurrentWeapon.Subscribe(weapon =>
-        //{
-        //    if (weapon == null)
-        //        return;
-        //
-        //    _bulletsDisposable?.Dispose();
-        //
-        //    _bulletsDisposable = weapon.CurrentBulletsCount.Subscribe(async bullets =>
-        //    {
-        //        if (bullets == 0)
-        //            await UniTask.DelayFrame(10);
-        //
-        //        if (bullets == 0 && _levelProgressObserver.KilledEnemies.Value < _levelProgressObserver.TotalEnemies)
-        //            _lose.Value = true;
-        //    });
-        //}).AddTo(_disposables);
     }
 
     private void ObserveAmmunitionCount()
@@ -58,7 +41,8 @@ public class PlayerProgressObserver : IPlayerProgressObserver, IInitializable, I
         if (!_character.IsInitialized)
             return;
 
-        int currentAmmo = _character.GetInventory().GetEquipped().GetAmmunitionCurrent();
+        var equippedWeapon = _character.GetInventory().GetEquipped();
+        int currentAmmo = equippedWeapon.GetAmmunitionCurrent() + equippedWeapon.GetAmmunitionSpareLeft();
         if (currentAmmo <= 0 && _levelProgressObserver.KilledEnemies.Value < _levelProgressObserver.TotalEnemies)
             _lose.Value = true;
     }

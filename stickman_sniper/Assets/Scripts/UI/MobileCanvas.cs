@@ -14,6 +14,8 @@ public class MobileCanvas : MonoBehaviour, IMobileInputProvider
 
     private bool _isAiming = false;
     private bool _isFiring = false;
+    private bool _isJump = false;
+    private bool _isReload = false;
     private CompositeDisposable _fireDisposables = new();
     private int? _cachedShootTouch = null;
 
@@ -37,8 +39,10 @@ public class MobileCanvas : MonoBehaviour, IMobileInputProvider
             || !Input.touches.Any(g => g.fingerId == _cachedShootTouch))
         {
             _isFiring = false;
-            return;
         }
+
+        _isJump = false;
+        _isReload = false;
     }
 
     public float GetMouseX()
@@ -56,8 +60,20 @@ public class MobileCanvas : MonoBehaviour, IMobileInputProvider
     public bool IsAiming()
         => _isAiming;
 
+    //from button on ui
     public void SetIsAiming()
         => _isAiming = !_isAiming;
+
+    //from button on ui
+    public void SetIsJump()
+        => _isJump = true;
+
+    //from button on ui
+    public void SetIsReload()
+        => _isReload = true;
+
+    public bool IsJumping()
+        => _isJump;
 
     public bool IsShooting()
         => _isFiring;
@@ -66,4 +82,10 @@ public class MobileCanvas : MonoBehaviour, IMobileInputProvider
     {
         _fireDisposables.Dispose();
     }
+
+    public bool IsRunning()
+        => Mathf.Approximately(_moveJoyStick.GetHorizontalAndVerticalValue().magnitude, _moveJoyStick.MovementRange);
+
+    public bool IsReloading()
+        => _isReload;
 }

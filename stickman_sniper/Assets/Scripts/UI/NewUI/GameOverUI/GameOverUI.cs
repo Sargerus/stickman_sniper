@@ -110,8 +110,8 @@ public class GameOverUI : BaseWindow
 
         _restartLevelButton.OnClickAsObservable().Subscribe(_ =>
         {
-            Close(false);
-            _levelLoader.LoadLevel();
+            CloseManaged(true);
+            _loadingManagerHolder.LoadingManager.LoadMainMenuState();
         }).AddTo(_disposables);
     }
 

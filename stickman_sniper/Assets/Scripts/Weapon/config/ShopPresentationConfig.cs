@@ -51,10 +51,6 @@ public class ShopProductVisual
     public AssetReference Product3DModel;
 
     public ObtainType ObtainBy;
-    [Sirenix.OdinInspector.ShowIf("ObtainBy", ObtainType.SoftCurrency)] 
+    [Sirenix.OdinInspector.ShowIf("ObtainBy", ObtainType.SoftCurrency | ObtainType.HardCurrency | ObtainType.Money)] 
     public float Cost;
-    [Sirenix.OdinInspector.ShowIf("ObtainBy", ObtainType.Ad)]
-    public bool IsBuyAd;
-    [Sirenix.OdinInspector.ShowIf("ObtainBy", ObtainType.Money)]
-    public bool IsBuyMoney;
 }

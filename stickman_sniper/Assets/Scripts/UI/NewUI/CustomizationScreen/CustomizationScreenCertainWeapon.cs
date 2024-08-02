@@ -9,6 +9,7 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 using static CustomizationIndexes;
 
 public class CustomizationScreenCertainWeapon : MonoBehaviour
@@ -92,7 +93,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
 
             ShopProductVisual visuals = _shopProductConfig.GetConfigByHash(hash);
 
-            switch(visuals.ObtainBy) 
+            switch (visuals.ObtainBy)
             {
                 case ShopProductVisual.ObtainType.SoftCurrency:
                     {
@@ -101,7 +102,13 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
 
                         _currencyService.AddCurrency(CurrencyServiceConstants.GoldCurrency, -visuals.Cost);
                         _purchaseService.Purchase(hash);
-                        RefreshButtonsState(_currentIndexSelectedReactive.Value);
+                        break;
+                    }
+                case ShopProductVisual.ObtainType.Ad:
+                    {
+                        if (int.TryParse(hash, out int result))
+                            YandexGame.RewVideoShow(result);
+
                         break;
                     }
             }
@@ -124,6 +131,11 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
         _currencyService.GetCurrency(CurrencyServiceConstants.GoldCurrency).Subscribe(x =>
         {
             currencyText.SetText(x.ToString());
+        }).AddTo(_disposables);
+
+        _purchaseService.OnPurchaseComplete.Subscribe(_ =>
+        {
+            RefreshButtonsState(_currentIndexSelectedReactive.Value);
         }).AddTo(_disposables);
 
         await podiumController.Initialize(_productVisuals, _customizationIndexes);
@@ -205,6 +217,16 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
 
                     buyButtonTextEnough.SetText(visual.Cost.ToString());
                     buyButtonTextNotEnough.SetText(visual.Cost.ToString());
+
+                    break;
+                }
+            case ShopProductVisual.ObtainType.Ad:
+                {
+                    buyButtonTextEnough.gameObject.SetActive(true);
+                    buyButtonTextNotEnough.gameObject.SetActive(false);
+
+                    buyButtonTextEnough.SetText("Watch Ad");
+                    buyButtonTextNotEnough.SetText("Watch Ad");
 
                     break;
                 }

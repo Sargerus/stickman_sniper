@@ -43,6 +43,9 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
         string GetProductText(ShopProductVisual visual) => visual.ObtainBy switch
         {
             ShopProductVisual.ObtainType.SoftCurrency => visual.Cost.ToString(),
+            ShopProductVisual.ObtainType.HardCurrency => visual.Cost.ToString(),
+            ShopProductVisual.ObtainType.Money => "$" + visual.Cost.ToString(),
+            ShopProductVisual.ObtainType.Ad => "Ad",
             _ => visual.Cost.ToString()
         };
 

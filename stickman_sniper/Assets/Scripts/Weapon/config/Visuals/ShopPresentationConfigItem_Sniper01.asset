@@ -34,8 +34,6 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     ObtainBy: 0
     Cost: 0
-    IsBuyAd: 0
-    IsBuyMoney: 0
   - ProductKey: Sniper 01_scope_1
     ProductName: 1
     Hash: 504452041
@@ -57,8 +55,6 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     ObtainBy: 0
     Cost: 0
-    IsBuyAd: 0
-    IsBuyMoney: 0
   - ProductKey: Sniper 01_scope_2
     ProductName: 2
     Hash: -1149852207
@@ -78,10 +74,8 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-    ObtainBy: 1
+    ObtainBy: 3
     Cost: 200
-    IsBuyAd: 0
-    IsBuyMoney: 0
   - ProductKey: Sniper 01_scope_3
     ProductName: 3
     Hash: -1313552294
@@ -103,8 +97,6 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     ObtainBy: 1
     Cost: 200
-    IsBuyAd: 0
-    IsBuyMoney: 0
   - ProductKey: Sniper 01_scope_4
     ProductName: 4
     Hash: 632185177
@@ -126,8 +118,6 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     ObtainBy: 1
     Cost: 200
-    IsBuyAd: 0
-    IsBuyMoney: 0
   - ProductKey: Sniper 01_scope_5
     ProductName: 5
     Hash: 2122329595
@@ -149,8 +139,6 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     ObtainBy: 1
     Cost: 200
-    IsBuyAd: 0
-    IsBuyMoney: 0
   - ProductKey: Sniper 01_scope_6
     ProductName: 6
     Hash: 1295361385
@@ -172,8 +160,6 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     ObtainBy: 1
     Cost: 200
-    IsBuyAd: 0
-    IsBuyMoney: 0
   - ProductKey: Sniper 01_scope_7
     ProductName: 7
     Hash: 880147643
@@ -195,8 +181,6 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     ObtainBy: 1
     Cost: 200
-    IsBuyAd: 0
-    IsBuyMoney: 0
   - ProductKey: Sniper 01_scope_8
     ProductName: 8
     Hash: 1232666277
@@ -218,8 +202,6 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     ObtainBy: 1
     Cost: 200
-    IsBuyAd: 0
-    IsBuyMoney: 0
   - ProductKey: Sniper 01_muzzle_1
     ProductName: 1
     Hash: -753201110
@@ -241,8 +223,6 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     ObtainBy: 0
     Cost: 0
-    IsBuyAd: 0
-    IsBuyMoney: 0
   - ProductKey: Sniper 01_muzzle_2
     ProductName: 2
     Hash: 903384978
@@ -264,8 +244,6 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     ObtainBy: 1
     Cost: 200
-    IsBuyAd: 0
-    IsBuyMoney: 0
   - ProductKey: Sniper 01_muzzle_3
     ProductName: 3
     Hash: 547171636
@@ -287,8 +265,6 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     ObtainBy: 1
     Cost: 200
-    IsBuyAd: 0
-    IsBuyMoney: 0
   - ProductKey: Sniper 01_muzzle_4
     ProductName: 4
     Hash: 56858736
@@ -310,8 +286,6 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     ObtainBy: 1
     Cost: 200
-    IsBuyAd: 0
-    IsBuyMoney: 0
   - ProductKey: Sniper 01_laser_1
     ProductName: 1
     Hash: 687763307
@@ -333,8 +307,6 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     ObtainBy: 0
     Cost: 0
-    IsBuyAd: 0
-    IsBuyMoney: 0
   - ProductKey: Sniper 01_laser_2
     ProductName: 2
     Hash: -513347761
@@ -356,8 +328,6 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     ObtainBy: 1
     Cost: 200
-    IsBuyAd: 0
-    IsBuyMoney: 0
   - ProductKey: Sniper 01_grip_1
     ProductName: 1
     Hash: 1250661548
@@ -379,8 +349,6 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     ObtainBy: 0
     Cost: 0
-    IsBuyAd: 0
-    IsBuyMoney: 0
   - ProductKey: Sniper 01_grip_2
     ProductName: 2
     Hash: 370434964
@@ -402,8 +370,6 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     ObtainBy: 1
     Cost: 200
-    IsBuyAd: 0
-    IsBuyMoney: 0
   - ProductKey: Sniper 01_grip_3
     ProductName: 3
     Hash: 737545828
@@ -425,8 +391,6 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     ObtainBy: 1
     Cost: 200
-    IsBuyAd: 0
-    IsBuyMoney: 0
   - ProductKey: Sniper 01_magazine_1
     ProductName: 1
     Hash: -1329021927
@@ -448,5 +412,3 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     ObtainBy: 0
     Cost: 0
-    IsBuyAd: 0
-    IsBuyMoney: 0

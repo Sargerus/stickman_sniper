@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
+using UnityEngine;
 using YG;
 using Zenject;
 
@@ -8,6 +10,7 @@ namespace stickman_sniper.Purchases
 {
     public interface IPurchaseService
     {
+        IObservable<string> OnPurchaseComplete { get; }
         IReadOnlyReactiveProperty<bool> GetIsPurchasedReactiveProperty(string hash);
         void Purchase(string hash);
     }
@@ -17,9 +20,14 @@ namespace stickman_sniper.Purchases
         private HashSet<string> _purchases = new();
         private Dictionary<string, ReactiveProperty<bool>> _cachedProperties = new();
 
+        private Subject<string> _onPurchaseComplete = new();
+        public IObservable<string> OnPurchaseComplete => _onPurchaseComplete;
+
         public PurchaseService()
         {
             _purchases = YandexGame.savesData.purchases.ToHashSet<string>();
+
+            YandexGame.RewardVideoEvent += OnRewardedVideoWatched;
         }
 
         public IReadOnlyReactiveProperty<bool> GetIsPurchasedReactiveProperty(string hash) => GetIsPurchasedReactivePropertyInternal(hash);
@@ -35,11 +43,20 @@ namespace stickman_sniper.Purchases
             return property;
         }
 
+        private void OnRewardedVideoWatched(int guid)
+        {
+            string guidString = guid.ToString();
+            Purchase(guidString);
+            Debug.Log("Bought throug AD");
+        }
+
         public void Purchase(string hash)
         {
             _purchases.Add(hash);
             Save();
             GetIsPurchasedReactivePropertyInternal(hash).Value = true;
+
+            _onPurchaseComplete.OnNext(hash);
         }
 
         private void Save()

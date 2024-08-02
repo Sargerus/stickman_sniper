@@ -1,11 +1,10 @@
-using EasyProgressBar;
 using UnityEngine;
 using Zenject;
 
 public class EnemyHPCanvas : MonoBehaviour
 {
     [SerializeField] private Canvas canvas;
-    [SerializeField] private ProgressBar progressBar;
+    [SerializeField] private Transform progressBar;
 
     private IProgressBarAimDotProvider _progressBarAimDotProvider;
 
@@ -18,7 +17,7 @@ public class EnemyHPCanvas : MonoBehaviour
     private void Update()
     {
         if (_progressBarAimDotProvider != null)
-            progressBar.transform.rotation = Quaternion.LookRotation((progressBar.transform.position - _progressBarAimDotProvider.Point).normalized);
+            progressBar.rotation = Quaternion.LookRotation((progressBar.transform.position - _progressBarAimDotProvider.Point).normalized);
     }
 
     public void SetActiveCanvas(bool active)
@@ -28,6 +27,6 @@ public class EnemyHPCanvas : MonoBehaviour
 
     public void SetHp(float hp)
     {
-        progressBar.FillAmount = hp;
+        progressBar.GetComponent<UnityEngine.UI.Slider>().value = hp;
     }
 }

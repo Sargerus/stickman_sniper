@@ -10,6 +10,7 @@ public sealed class GameSceneState : SceneState
     [Inject] private IUIManager _uiManager;
 
     private PreloadBehavior _preloadBehavior;
+    private InjectBehaviorManagerTasks _injectBehaviorManagerTasks;
 
     public GameSceneState(AssetReference scene) : base(scene)
     {
@@ -18,6 +19,8 @@ public sealed class GameSceneState : SceneState
     public override async UniTask OnEnterState()
     {
         await base.OnEnterState();
+
+        _injectBehaviorManagerTasks = GameObject.FindObjectOfType<InjectBehaviorManagerTasks>();
 
         if (_sceneContext.TryGetComponent<PreloadBehavior>(out _preloadBehavior))
         {
@@ -51,6 +54,7 @@ public sealed class GameSceneState : SceneState
     {
         await _preloadBehavior.Clear();
         await base.OnExitState();
+        _injectBehaviorManagerTasks.ClearTreeData();
         GlobalBlackboard.Blackboard.SetValue(BlackboardConstants.GameOverBool, false);
     }
 }

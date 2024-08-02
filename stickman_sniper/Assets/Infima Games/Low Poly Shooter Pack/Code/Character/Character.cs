@@ -166,6 +166,9 @@ namespace InfimaGames.LowPolyShooterPack
 
         [SerializeField] private CanvasSpawner canvasSpawner;
 
+        [SerializeField, Sirenix.OdinInspector.BoxGroup("CharacterComponent")] private CharacterComponent characterComponent;
+        [SerializeField, Sirenix.OdinInspector.BoxGroup("CharacterComponent")] private CharacterSliderController hpSliderController;
+
         private bool _fireLastFrame;
 
         #endregion
@@ -341,6 +344,9 @@ namespace InfimaGames.LowPolyShooterPack
             //Cache the movement behaviour.
             movementBehaviour = GetComponent<MovementBehaviour>();
 
+            characterComponent.Character.CalculateStats();
+            hpSliderController.Init(characterComponent.Character);
+
             //Max out the grenades.
             grenadeCount = grenadeTotal;
 
@@ -467,6 +473,8 @@ namespace InfimaGames.LowPolyShooterPack
             //Return.
             return lowerWeapon.IsLowered();
         }
+
+        public DWTools.RPG.Character GetRPGCharacter() => characterComponent.Character;
 
         /// <summary>
         /// GetCameraWorld.

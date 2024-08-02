@@ -51,4 +51,9 @@ public class SlowmotionWait : Action, ISlowmotionAgent
         _timeWaitLeft -= deltaTime;
         _taskStatus = _timeWaitLeft > 0 ? TaskStatus.Running : TaskStatus.Success;
     }
+
+    public override void OnBehaviorComplete()
+    {
+        _slowmotionService.RemoveAgent(this);
+    }
 }

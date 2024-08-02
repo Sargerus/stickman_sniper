@@ -33,7 +33,11 @@ public class PlayerProgressObserver : IPlayerProgressObserver, IInitializable, I
 
     public void Initialize()
     {
-        Observable.EveryUpdate().Subscribe(_ => ObserveAmmunitionCount()).AddTo(_disposables);
+        Observable.EveryUpdate().Subscribe(_ =>
+        {
+            ObserveAmmunitionCount();
+            ObserverHP();
+        }).AddTo(_disposables);
     }
 
     private void ObserveAmmunitionCount()
@@ -45,6 +49,18 @@ public class PlayerProgressObserver : IPlayerProgressObserver, IInitializable, I
         int currentAmmo = equippedWeapon.GetAmmunitionCurrent() + equippedWeapon.GetAmmunitionSpareLeft();
         if (currentAmmo <= 0 && _levelProgressObserver.KilledEnemies.Value < _levelProgressObserver.TotalEnemies)
             _lose.Value = true;
+    }
+
+    private void ObserverHP()
+    {
+        if (!_character.IsInitialized)
+            return;
+
+        if (_character.GetRPGCharacter().TryCurrentGetStat(DWTools.RPG.CharacterStat.Health, out var healthStat))
+        {
+            if (healthStat.Value <= 0)
+                _lose.Value = true;
+        }
     }
 
     public void Dispose()

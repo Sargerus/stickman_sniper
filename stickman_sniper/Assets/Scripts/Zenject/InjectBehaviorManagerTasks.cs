@@ -16,6 +16,7 @@ public class InjectBehaviorManagerTasks : MonoBehaviour
     private bool _isInitialied;
     private List<BehaviorDesigner.Runtime.BehaviorManager.BehaviorTree> _behaviorTrees;
     private int _count=0;
+    BehaviorManager bm;
 
     [Inject] private DiContainer _diContainer;
 
@@ -28,7 +29,7 @@ public class InjectBehaviorManagerTasks : MonoBehaviour
             return;
         }
 
-        var bm = GetComponent<BehaviorManager>();
+        bm = GetComponent<BehaviorManager>();
         _behaviorTrees =
             (List<BehaviorDesigner.Runtime.BehaviorManager.BehaviorTree>)typeof(BehaviorManager).GetField("behaviorTrees", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(bm);
 
@@ -37,6 +38,11 @@ public class InjectBehaviorManagerTasks : MonoBehaviour
         //_collectionDisposable = behaviorTrees.ToReactiveCollection().ObserveAdd().Subscribe(e => { ProcessTree(e.Value); });
         //foreach (var tree in behaviorTrees)
         //    ProcessTree(tree);
+    }
+
+    public void ClearTreeData()
+    {
+        processedIndexes.Clear();
     }
 
     private void Update()

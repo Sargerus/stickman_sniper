@@ -39,12 +39,13 @@ public class WinLoseDecider : IInitializable, IDisposable
     public void Initialize()
     {
         Observable.Merge(_progressObservers.SelectMany(g => new List<IReadOnlyReactiveProperty<bool>>() { g.Win, g.Lose }))
-            .ToReactiveProperty().SkipLatestValueOnSubscribe().Subscribe(async _ =>
+            .ToReactiveProperty().SkipLatestValueOnSubscribe().Subscribe(async x =>
         {
             HideMobile();
             _character.freeze = true;
             _inputService.DisableInput(true);
-            _currencyService.AddCurrency(CurrencyServiceConstants.GoldCurrency, 50);
+            if (x)
+                _currencyService.AddCurrency(CurrencyServiceConstants.GoldCurrency, 50);
             var handler = await _uiManager.CreateWindow("game_over_ui", null, _diContainer);
             await handler.Show(false);
             //_firstPersonController.Freeze(true);

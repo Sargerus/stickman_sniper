@@ -1370,6 +1370,7 @@ MonoBehaviour:
   _star2: {fileID: 6794936582713090860}
   _restartsText: {fileID: 6794936584067931445}
   _star3: {fileID: 6794936583581815879}
+  earnCoins: {fileID: 6794936582563283223}
   _nextLevelButton: {fileID: 6794936582746708148}
   _restartLevelButton: {fileID: 6794936582690763842}
 --- !u!114 &5521540039015370968

@@ -21,6 +21,7 @@ public class GameOverUI : BaseWindow
     [SerializeField] private GameObject _star2;
     [SerializeField] private TMP_Text _restartsText;
     [SerializeField] private GameObject _star3;
+    [SerializeField] private GameObject earnCoins;
     [SerializeField] private Button _nextLevelButton;
     [SerializeField] private Button _restartLevelButton;
 
@@ -67,6 +68,7 @@ public class GameOverUI : BaseWindow
         int currentAmmunition = equippedWeapon.GetAmmunitionCurrent();
 
         resultTextWin.gameObject.SetActive(true);
+        earnCoins.SetActive(true);
         resultTextLose.gameObject.SetActive(false);
 
         _killedText.SetText($"{_levelProgressObserver.KilledEnemies}/{_levelProgressObserver.TotalEnemies}");
@@ -94,6 +96,7 @@ public class GameOverUI : BaseWindow
         int currentAmmunition = equippedWeapon.GetAmmunitionCurrent();
 
         resultTextWin.gameObject.SetActive(false);
+        earnCoins.SetActive(false);
         resultTextLose.gameObject.SetActive(true);
 
         _killedText.SetText($"{_levelProgressObserver.KilledEnemies}/{_levelProgressObserver.TotalEnemies}");

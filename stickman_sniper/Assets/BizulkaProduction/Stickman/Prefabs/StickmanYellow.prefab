@@ -76,7 +76,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8daf2d0937ecdb44b2e6f5d41263175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RaycastOrigin: {fileID: 3509666149753672319}
+  RaycastOrigin:
+  - {fileID: 0}
   RaycastTarget: {fileID: 3509666149753672319}
 --- !u!1 &90811143594253013
 GameObject:
@@ -2343,7 +2344,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6db85fc1002af7e44bf4ab4b4b085a16, type: 2}
+  - {fileID: 2100000, guid: 6718846bf30c2284c837c3746beb1c45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

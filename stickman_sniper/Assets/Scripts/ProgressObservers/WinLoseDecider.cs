@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using DWTools;
 using DWTools.Windows;
 using InfimaGames.LowPolyShooterPack;
+using stickman_sniper.Currency;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +17,15 @@ public class WinLoseDecider : IInitializable, IDisposable
     private readonly IInputService _inputService;
     private readonly DiContainer _diContainer;
     private readonly Character _character;
+    private readonly ICurrencyService _currencyService;
 
     private CompositeDisposable _disposables = new();
 
-    public WinLoseDecider(DWTools.Windows.IUIManager uiManager, 
+    public WinLoseDecider(DWTools.Windows.IUIManager uiManager,
         List<IProgressObserver> progressObservers,
-        [Inject(Id ="mobile")] CameraProvider cameraProvider,
+        [Inject(Id = "mobile")] CameraProvider cameraProvider,
         IInputService inputService, DiContainer diContainer,
-        Character character)
+        Character character, ICurrencyService currencyService)
     {
         _uiManager = uiManager;
         _progressObservers = progressObservers;
@@ -31,6 +33,7 @@ public class WinLoseDecider : IInitializable, IDisposable
         _inputService = inputService;
         _diContainer = diContainer;
         _character = character;
+        _currencyService = currencyService;
     }
 
     public void Initialize()
@@ -41,6 +44,7 @@ public class WinLoseDecider : IInitializable, IDisposable
             HideMobile();
             _character.freeze = true;
             _inputService.DisableInput(true);
+            _currencyService.AddCurrency(CurrencyServiceConstants.GoldCurrency, 50);
             var handler = await _uiManager.CreateWindow("game_over_ui", null, _diContainer);
             await handler.Show(false);
             //_firstPersonController.Freeze(true);

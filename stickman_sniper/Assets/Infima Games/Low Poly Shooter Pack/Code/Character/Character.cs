@@ -345,7 +345,7 @@ namespace InfimaGames.LowPolyShooterPack
             movementBehaviour = GetComponent<MovementBehaviour>();
 
             characterComponent.Character.CalculateStats();
-            hpSliderController.Init(characterComponent.Character);
+            //hpSliderController.Init(characterComponent.Character);
 
             //Max out the grenades.
             grenadeCount = grenadeTotal;
@@ -363,7 +363,7 @@ namespace InfimaGames.LowPolyShooterPack
 
             await InitializeInventory();
             //await canvasSpawner.Initialize();
-            _playersOverlayHandler = await _uiManager.CreateWindow("players_overlay", null, _diContainer);
+            _playersOverlayHandler = await _uiManager.CreateWindow("players_overlay", new PlayersOverlayWindowModel("players_overlay", characterComponent.Character), _diContainer);
             await _playersOverlayHandler.Show(true);
 
             //initialize camera

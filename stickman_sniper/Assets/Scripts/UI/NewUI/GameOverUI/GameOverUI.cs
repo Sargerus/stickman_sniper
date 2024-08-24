@@ -13,6 +13,8 @@ using DWTools;
 
 public class GameOverUI : BaseWindow
 {
+    [SerializeField] private TMP_Text resultTextWin;
+    [SerializeField] private TMP_Text resultTextLose;
     [SerializeField] private TMP_Text _killedText;
     [SerializeField] private GameObject _star1;
     [SerializeField] private TMP_Text _bulletsText;
@@ -64,18 +66,17 @@ public class GameOverUI : BaseWindow
         var equippedWeapon = _character.GetInventory().GetEquipped();
         int currentAmmunition = equippedWeapon.GetAmmunitionCurrent();
 
+        resultTextWin.gameObject.SetActive(true);
+        resultTextLose.gameObject.SetActive(false);
+
         _killedText.SetText($"{_levelProgressObserver.KilledEnemies}/{_levelProgressObserver.TotalEnemies}");
         StartCoroutine(ShowStar(_star1.GetComponent<Image>()));
 
         _bulletsText.SetText($"{currentAmmunition}");
         StartCoroutine(ShowStar(_star2.GetComponent<Image>(), 0.4f));
-
-        //
-        //_restartsText.SetText($"{0}");
-        //if (true)
-        //{
-        //    StartCoroutine(ShowStar(_star3.GetComponent<Image>(), 0.8f));
-        //}
+        
+        _restartsText.SetText($"{50}");
+        StartCoroutine(ShowStar(_star3.GetComponent<Image>(), 0.8f));
 
         _nextLevelButton.gameObject.SetActive(true);
         _restartLevelButton.gameObject.SetActive(false);
@@ -92,18 +93,11 @@ public class GameOverUI : BaseWindow
         var equippedWeapon = _character.GetInventory().GetEquipped();
         int currentAmmunition = equippedWeapon.GetAmmunitionCurrent();
 
+        resultTextWin.gameObject.SetActive(false);
+        resultTextLose.gameObject.SetActive(true);
+
         _killedText.SetText($"{_levelProgressObserver.KilledEnemies}/{_levelProgressObserver.TotalEnemies}");
-        //StartCoroutine(ShowStar(_star1.GetComponent<Image>()));
-
         _bulletsText.SetText($"{currentAmmunition}");
-        //StartCoroutine(ShowStar(_star2.GetComponent<Image>(), 0.4f));
-
-        //
-        //_restartsText.SetText($"{0}");
-        //if (true)
-        //{
-        //    StartCoroutine(ShowStar(_star3.GetComponent<Image>(), 0.8f));
-        //}
 
         _nextLevelButton.gameObject.SetActive(false);
         _restartLevelButton.gameObject.SetActive(true);

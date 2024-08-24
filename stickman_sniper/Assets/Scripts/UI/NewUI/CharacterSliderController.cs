@@ -13,17 +13,13 @@ public class CharacterSliderController : MonoBehaviour
     private Slider _slider;
     private IDisposable _disposable;
 
-    private void Awake()
-    {
-        _slider = GetComponent<Slider>();
-    }
-
     public void Init(Character character)
     {
         _character = character;
+        _slider = GetComponent<Slider>();
 
-        if (character.TryGetReactiveStat(statToObserve, out var currentStat) &&
-            character.TryGetBaseStat(statToObserve, out var baseStatEntity))
+        if (_character.TryGetReactiveStat(statToObserve, out var currentStat) &&
+            _character.TryGetBaseStat(statToObserve, out var baseStatEntity))
         {
             _disposable = currentStat.Subscribe(x =>
             {

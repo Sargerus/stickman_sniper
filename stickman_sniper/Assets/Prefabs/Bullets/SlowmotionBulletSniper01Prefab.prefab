@@ -877,7 +877,7 @@ MonoBehaviour:
   _cart: {fileID: 2354320603270489068}
   _camera: {fileID: 3444252325498372810}
   bullet: {fileID: 0}
-  <Duration>k__BackingField: 5000
+  <Duration>k__BackingField: 2000
 --- !u!4 &6175479225790348413 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1556741943076145689, guid: 062a24d1d4d5731479615f82fec0814d,

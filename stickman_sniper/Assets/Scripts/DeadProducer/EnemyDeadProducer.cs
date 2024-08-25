@@ -28,7 +28,7 @@ namespace stickman_sniper.Producer
 
         public async UniTask ShowEnemyDeath(ICinemachineDirector enemyDirector)
         {
-            _slowmotionTimeController.AlignTimeScale(0.1f);
+            _slowmotionTimeController.AlignTimeScale(0.2f);
             _inputService.DisableInput();
 
             enemyDirector.TurnOffAllCameras();

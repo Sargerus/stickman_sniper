@@ -23,6 +23,7 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
     [SerializeField] private BehaviorTree _behaviorTree;
     [SerializeField] private SlowmotionAnimator _slowMotionAnimator;
     [SerializeField] private CharacterComponent _character;
+    [SerializeField] private SlowmotionNavMeshAgent _agent;
 
     private InjectBehaviorManagerTasks _injectBehaviorManagerTasks;
     private List<Rigidbody> _rb;
@@ -65,6 +66,7 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
     {
         _behaviorTree.DisableBehavior();
         _slowMotionAnimator.AllowToUpdate = false;
+        _agent.AllowToUpdate = false;
 
         foreach (var rb in _rb)
         {

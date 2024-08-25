@@ -3205,12 +3205,13 @@ MonoBehaviour:
   - {fileID: 1017827629901234180}
   - {fileID: 7486708360831316353}
   - {fileID: 2732157631090959659}
-  <Duration>k__BackingField: 5000
+  <Duration>k__BackingField: 2000
   enemyHPCanvas: {fileID: 5572058318971066904}
   skinnedMeshRenderer: {fileID: 6556310040279846179}
   _behaviorTree: {fileID: 5344197186349070809}
   _slowMotionAnimator: {fileID: 4766247166971872669}
   _character: {fileID: 6964430274990831434}
+  _agent: {fileID: 0}
 --- !u!114 &6964430274990831434
 MonoBehaviour:
   m_ObjectHideFlags: 0

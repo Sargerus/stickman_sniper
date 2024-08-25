@@ -54,6 +54,13 @@ public class InfimaSniperWeapon : InfimaWeapon
         //Spawn as many projectiles as we need.
         for (var i = 0; i < shotCount; i++)
         {
+            //Reduce ammunition! We just shot, so we need to get rid of one!
+            ammunitionCurrent = Mathf.Clamp(ammunitionCurrent - 1, 0, magazineBehaviour.GetMagazineSize());
+
+            //Set the slide back if we just ran out of ammunition.
+            if (ammunitionCurrent == 0)
+                SetSlideBack(1);
+
             bool wasShot = false;
             //Determine a random spread value using all of our multipliers.
             Vector3 spreadValue = UnityEngine.Random.insideUnitSphere * (spread * spreadMultiplier);
@@ -132,16 +139,6 @@ public class InfimaSniperWeapon : InfimaWeapon
                     }
                 }
             }
-
-            //Reduce ammunition! We just shot, so we need to get rid of one!
-            ammunitionCurrent = Mathf.Clamp(ammunitionCurrent - 1, 0, magazineBehaviour.GetMagazineSize());
-
-            //Set the slide back if we just ran out of ammunition.
-            if (ammunitionCurrent == 0)
-                SetSlideBack(1);
-
-            if (wasShot)
-                return;
         }
     }
 }

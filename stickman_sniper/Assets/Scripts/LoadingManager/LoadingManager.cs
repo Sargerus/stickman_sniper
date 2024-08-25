@@ -40,6 +40,8 @@ public class LoadingManager : IDisposable
 
     public void StartGameMachine()
     {
+        Application.targetFrameRate = 60;
+
         _gameStateMachine = new();
 
         IState bootstrapState = new BootstrapSceneState(this);

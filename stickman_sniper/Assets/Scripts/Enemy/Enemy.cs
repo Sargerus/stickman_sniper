@@ -24,6 +24,7 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
     [SerializeField] private SlowmotionAnimator _slowMotionAnimator;
     [SerializeField] private CharacterComponent _character;
     [SerializeField] private SlowmotionNavMeshAgent _agent;
+    [SerializeField] private ThrowableWeapon _weapon;
 
     private InjectBehaviorManagerTasks _injectBehaviorManagerTasks;
     private List<Rigidbody> _rb;
@@ -62,7 +63,7 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
         enemyHPCanvas.SetActiveCanvas(isActive);
     }
 
-    public void PrepareForDeath()
+    public async UniTask PrepareForDeath()
     {
         _behaviorTree.DisableBehavior();
         _slowMotionAnimator.AllowToUpdate = false;
@@ -76,6 +77,14 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
         ActivateHpCanvas(false);
         skinnedMeshRenderer.material = _deadMaterial;
         _isAlive.Value = false;
+
+        if (_weapon != null)
+        {
+            var parentRb = _weapon.transform.parent.GetComponentInParent<Rigidbody>();
+            _weapon.transform.SetParent(null);
+            await UniTask.WaitUntil(() => parentRb.velocity.magnitude > 0);
+            _weapon.Throw(parentRb.velocity.normalized * 5f, parentRb.angularVelocity * 2f);
+        }
     }
 
     public CinemachineVirtualCamera GetRandomCamera() => _deadCams.Random();

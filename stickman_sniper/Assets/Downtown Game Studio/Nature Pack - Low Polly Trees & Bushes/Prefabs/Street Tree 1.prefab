@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2841804541277288090}
   - component: {fileID: 41914919003374160}
   - component: {fileID: 4462861739726081742}
+  - component: {fileID: 2004511852885165173}
   m_Layer: 0
   m_Name: Street Tree 1
   m_TagString: Untagged
@@ -97,3 +98,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.3250699, y: 4.4601445, z: 1.3115396}
   m_Center: {x: -0.02928111, y: 2.2259243, z: 0.01741147}
+--- !u!208 &2004511852885165173
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987236518323020677}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.2210001, y: 2.44, z: 1.2590001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.33200002, y: 2.226, z: 0.074}
+  m_TimeToStationary: 0.5

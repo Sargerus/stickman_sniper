@@ -49,11 +49,11 @@ MonoBehaviour:
     m_Bits: 8
   slowmotionBullet: {fileID: 1332870974233114119, guid: 5bbe91feacec05344810e6c6294b61b7,
     type: 3}
-  damage: 5
+  damage: 10
   CustomizationIndexes:
     scopeDefaultShow: 1
-    scopeIndex: 1
-    muzzleIndex: 0
+    scopeIndex: 6
+    muzzleIndex: 2
     laserIndex: 0
     gripIndex: 0
     magazineIndex: 0

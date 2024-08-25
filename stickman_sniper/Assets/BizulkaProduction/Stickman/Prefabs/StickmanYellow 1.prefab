@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 818592266, guid: 459334c53c67f5346b6404462844d07b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
         type: 3}
       propertyPath: m_RootOrder
@@ -77,6 +81,11 @@ PrefabInstance:
       propertyPath: _behaviorTree
       value: 
       objectReference: {fileID: 9183450315161375968}
+    - target: {fileID: 6964430274990831434, guid: 459334c53c67f5346b6404462844d07b,
+        type: 3}
+      propertyPath: Character._baseStats.Stats.Array.data[0].Value
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 818592265, guid: 459334c53c67f5346b6404462844d07b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 459334c53c67f5346b6404462844d07b, type: 3}

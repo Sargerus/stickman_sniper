@@ -130,7 +130,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
 
         _currencyService.GetCurrency(CurrencyServiceConstants.GoldCurrency).Subscribe(x =>
         {
-            currencyText.SetText(x.ToString());
+            currencyText.SetText($"<sprite name=\"ic_coin\"> {x}");
         }).AddTo(_disposables);
 
         _purchaseService.OnPurchaseComplete.Subscribe(_ =>

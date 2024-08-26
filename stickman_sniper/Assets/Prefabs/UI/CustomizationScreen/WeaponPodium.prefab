@@ -198,6 +198,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8637761960523721888}
     m_Modifications:
+    - target: {fileID: 455858105772566823, guid: b4c9b441da5d1c24aacee9fbdd6b7096,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 455858105772566823, guid: b4c9b441da5d1c24aacee9fbdd6b7096,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 455858105774468039, guid: b4c9b441da5d1c24aacee9fbdd6b7096,
         type: 3}
       propertyPath: m_RootOrder

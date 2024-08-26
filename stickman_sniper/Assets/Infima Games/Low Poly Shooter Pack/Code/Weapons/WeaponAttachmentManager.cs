@@ -281,7 +281,7 @@ namespace InfimaGames.LowPolyShooterPack
 
             for (int i = 0; i < array.Length; i++)
             {
-                if (!scopeArray[i].TryGetComponent<ItemHashProvider>(out var hashProvider))
+                if (!array[i].TryGetComponent<ItemHashProvider>(out var hashProvider))
                     continue;
 
                 result.Add(i, hashProvider.Hash);

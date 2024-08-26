@@ -21,10 +21,6 @@ MonoBehaviour:
     m_Address: test
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 25569ffc3e369364bb39e365d934353e
-    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Shop_model_P_LPSP_WEP_Sniper_1.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 1f27e9b2c86cc804298382c3e50db864
     m_Address: Assets/Scripts/Installers/Bootstrap/ShopScriptableObjectInstaller.asset
     m_ReadOnly: 0

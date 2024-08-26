@@ -17,14 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 668349086abb2fd46af469db7e4fbdf6
   m_SerializeEntries:
-  - m_GUID: f9ac3888051e50245acfad08631485da
-    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/P_LPSP_WEP_Sniper_01_bg.jpg
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 177d7394c15e09f4c90350257ae8954b
-    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Shop_bg_P_LPSP_WEP_Sniper_01.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 3afca42c37c94054ca159e687822fefd
     m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Shop_icon_P_LPSP_WEP_Sniper_01.prefab
     m_ReadOnly: 0
@@ -41,17 +33,8 @@ MonoBehaviour:
     m_Address: Assets/Scripts/CustomizationSystem/WeaponCharacteristicsSO/Rifles/P_LPSP_WEP_Sniper_01_Characteristics_Default.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 54f3c0def95721c4cade98c5bdadcc42
-    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/scopes/Shop_bg_P_LPSP_WEP_Sniper_01_scope_1
-      1.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 44f185f6d5445f94f869fa1d66cc95fb
     m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_1.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 98d6f71bbf836dd499079abfb97272f3
-    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Muzzles/Shop_bg_P_LPSP_WEP_Sniper_01_muzzle_1.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: c16f12e0bbff6bb4a8d900dbb4a71bbe
@@ -62,20 +45,8 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Lasers/Shop_icon_P_LPSP_WEP_Sniper_01_laser_1.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: bf91218056342e04a948b98434b5fe44
-    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Lasers/Shop_bg_P_LPSP_WEP_Sniper_01_laser_1.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 0553f86ad01a78144a430b1d2b83e33c
-    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Grip/Shop_bg_P_LPSP_WEP_Sniper_01_grip_1.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: f1b08957279083841b1178f83aa42632
     m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Grip/Shop_icon_P_LPSP_WEP_Sniper_01_grip_1.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 422f8f132da23a9419e671dbe4b6a0e4
-    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Magazines/Shop_bg_P_LPSP_WEP_Sniper_01_magazine_1.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 9465df12d3e31f0438cdb027b8dceba7
@@ -84,6 +55,87 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 3f094606aa34bc54e820a436ae2a363e
     m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Meshes/Weapons/Snipers/SM_Sniper_01_Magazine_Default.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 311a0faed71f6fe428424618da940058
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Grip/Shop_icon_P_LPSP_WEP_Sniper_01_grip_2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 932fe53f479171740a5d48e61d1c57e3
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Grip/Shop_icon_P_LPSP_WEP_Sniper_01_grip_3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d10899b41debedd43b38ed937f4247b7
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Lasers/Shop_icon_P_LPSP_WEP_Sniper_01_flashlight_1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a5a3133ffedb7f94c8aaea479acac3c9
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Muzzles/Shop_icon_P_LPSP_WEP_Sniper_01_muzzle_1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 73a3a5a21964c0e4aae6e217030ea14e
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Muzzles/Shop_icon_P_LPSP_WEP_Sniper_01_muzzle_3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0447d1092abffe1439ab67b039a64bdb
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Muzzles/Shop_icon_P_LPSP_WEP_Sniper_01_muzzle_4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 41591b7bb6af0784798602eb15e8364b
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d5b8af0357ae56649b56f9970088189d
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3985f3cf6ab59694996cf9bdcef30b8b
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f7c37f5dd694f574c81aa4d07ffa8d22
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c08897298e04c704dacf49758a1f62e8
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_6.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 901184c407ee22644914ad0f1deb8ee9
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_7.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6e0137272c7203942a4af692527fc684
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_8.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 25569ffc3e369364bb39e365d934353e
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Shop_model_P_LPSP_WEP_Sniper_1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 087d60e676a12104d972a67ea7693bc7
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Shop_bg_P_LPSP_WEP_Sniper_01.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d9b13d2a74d94f74ea07f3a969c9f350
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Grip/Shop_bg_P_LPSP_WEP_Sniper_01_grip_1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 547c10ba5ab51834794b1299fad7e401
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Lasers/Shop_bg_P_LPSP_WEP_Sniper_01_laser_1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a3a29514fe674bd4ab273230484941bd
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Magazines/Shop_bg_P_LPSP_WEP_Sniper_01_magazine_1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fecdc5bc832231146b42550e014fd959
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Muzzles/Shop_bg_P_LPSP_WEP_Sniper_01_muzzle_1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a6776893aeb6c5a4caa0e344cd8c1abc
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_bg_P_LPSP_WEP_Sniper_01_scope_1
+      1.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

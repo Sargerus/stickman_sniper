@@ -8,7 +8,6 @@ using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 using Zenject;
 using DWTools;
-using Unity.VisualScripting;
 using Cysharp.Threading.Tasks;
 using UniRx;
 using InfimaGames.LowPolyShooterPack.Interface;

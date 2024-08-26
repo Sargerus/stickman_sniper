@@ -1,15 +1,21 @@
 using stickman_sniper.Weapon.Explosives;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 namespace stickman_sniper.Environment
 {
-    public class ExplosiveBarrel : MonoBehaviour, IExplosive
+    public interface IExplodee
+    {
+        bool IsExploded { get; }
+        void Explode(ExplosiveSettingsSO explosionSettings);
+    }
+
+    public class ExplosiveBarrel : MonoBehaviour, IExplosive, IExplodee
     {
         [SerializeField] private ExplosiveSettingsSO explosiveSettings;
 
+        public bool IsExploded { get; private set; }
         private Collider[] _buffer;
 
         private void Awake()
@@ -17,29 +23,37 @@ namespace stickman_sniper.Environment
             _buffer = new Collider[20];
         }
 
+        //TODO COMMON INTERFACE INSTEAD OF SWITCH
         public List<Collider> Explode()
         {
+            IsExploded = true;
+
             Physics.OverlapSphereNonAlloc(transform.position, explosiveSettings.Radius, _buffer, explosiveSettings.LayerMask, QueryTriggerInteraction.Collide);
             int i = 0;
             while (i < _buffer.Length - 1 && _buffer[i] != null)
             {
-                var rb = _buffer[i].GetComponent<MainRagdollRigidbody>();
-                if (rb != null)
+                if (_buffer[i].TryGetComponent<IExplodee>(out var explodee))
                 {
-                    var enemy = rb.GetComponentInParent<Enemy>();
-                    enemy.PrepareForDeath();
-
-                    Vector3 direction = (rb.transform.position - transform.position).normalized;
-                    direction.y = explosiveSettings.UpwardModifier;
-                    rb.Rigidbody.AddForce(direction * explosiveSettings.Force, ForceMode.Impulse);
+                    if (!explodee.IsExploded)
+                        explodee.Explode(explosiveSettings);
                 }
 
                 _buffer[i] = null;
                 i++;
             }
 
+            Instantiate(explosiveSettings.ExplosionEffect, transform.position, explosiveSettings.ExplosionEffect.transform.rotation, null);
+
             Destroy(gameObject, 0.1f);
             return _buffer.ToList();
+        }
+
+        public void Explode(ExplosiveSettingsSO explosionSettings)
+        {
+            if (IsExploded)
+                return;
+
+            Explode();
         }
     }
 }

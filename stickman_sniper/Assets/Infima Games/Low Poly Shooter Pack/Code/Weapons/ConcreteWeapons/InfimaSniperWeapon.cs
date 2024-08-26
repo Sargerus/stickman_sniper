@@ -3,8 +3,6 @@ using InfimaGames.LowPolyShooterPack;
 using stickman_sniper.Producer;
 using stickman_sniper.Weapon.Explosives;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -48,6 +46,7 @@ public class InfimaSniperWeapon : InfimaWeapon
 
         //Play all muzzle effects.
         muzzleBehaviour.Effect();
+        _onFire.OnNext(UniRx.Unit.Default);
 
         RaycastHit[] result = new RaycastHit[2];
 
@@ -133,10 +132,7 @@ public class InfimaSniperWeapon : InfimaWeapon
                 if (!wasShot)
                 {
                     var explosive = hit.transform.GetComponentInParent<IExplosive>();
-                    if (explosive != null)
-                    {
-                        explosive.Explode();
-                    }
+                    explosive?.Explode();
                 }
             }
         }

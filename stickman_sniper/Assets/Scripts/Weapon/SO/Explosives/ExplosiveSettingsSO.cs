@@ -9,5 +9,6 @@ namespace stickman_sniper.Weapon.Explosives
         public float Radius;
         public float Force;
         public float UpwardModifier;
+        public GameObject ExplosionEffect;
     }
 }

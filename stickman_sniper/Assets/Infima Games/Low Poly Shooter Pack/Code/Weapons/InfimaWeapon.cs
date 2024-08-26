@@ -1,6 +1,7 @@
 ﻿//Copyright 2022, Infima Games. All Rights Reserved.
 
 using Cysharp.Threading.Tasks;
+using UniRx;
 using UnityEngine;
 
 namespace InfimaGames.LowPolyShooterPack
@@ -137,6 +138,9 @@ namespace InfimaGames.LowPolyShooterPack
         [Tooltip("")]
         [SerializeField]
         protected AudioClip audioClipBoltAction;
+
+        protected Subject<Unit> _onFire = new();
+        public System.IObservable<Unit> OnFire => _onFire; 
 
         #endregion
 
@@ -476,6 +480,7 @@ namespace InfimaGames.LowPolyShooterPack
 
             //Play all muzzle effects.
             muzzleBehaviour.Effect();
+            _onFire.OnNext(Unit.Default);
 
             //Spawn as many projectiles as we need.
             for (var i = 0; i < shotCount; i++)

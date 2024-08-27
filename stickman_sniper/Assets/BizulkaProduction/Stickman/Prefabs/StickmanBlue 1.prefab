@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: mBehaviorSource.behaviorName
       value: BlueStickmanBehaviour
       objectReference: {fileID: 0}
+    - target: {fileID: 818592266, guid: 459334c53c67f5346b6404462844d07b, type: 3}
+      propertyPath: m_WalkableMask
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 5823567742257707271, guid: 459334c53c67f5346b6404462844d07b,
         type: 3}
       propertyPath: m_RootOrder

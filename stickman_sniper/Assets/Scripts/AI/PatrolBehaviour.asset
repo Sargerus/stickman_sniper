@@ -22,20 +22,28 @@ MonoBehaviour:
       variableStartIndex: 
       JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(518.5,30)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.UntilSuccess","NodeData":{"Offset":"(1,109)"},"ID":1,"Name":"Until
         Success","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0,110)"},"ID":2,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"ChooseWaypointTransform","NodeData":{"Offset":"(-290,110)"},"ID":3,"Name":"Choose
-        Waypoint Transform","Instant":true,"Int32WaypointType":0,"SharedTransformWaypointsContainer":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"WaypointsContainer","IsShared":true},"SharedTransformCurrentWaypoint":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"CurrentPatrolWaypoint","IsShared":true}},{"Type":"SetDestinationTransform","NodeData":{"Offset":"(-98.9796143,106.70282)"},"ID":4,"Name":"Set
-        Destination Transform","Instant":true,"SharedNavMeshAgentNavMeshAgent":{"Type":"SharedNavMeshAgent","Name":"NavAgent","IsShared":true},"SharedTransformDestinationTransform":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"CurrentPatrolWaypoint","IsShared":true}},{"Type":"SetEnemyAnimatorValues","NodeData":{"Offset":"(60.2348022,156.530518)"},"ID":5,"Name":"Set
-        Enemy Animator Values","Instant":true,"SharedEnemyAnimatorControllerenemyAnimatorController":{"Type":"SharedEnemyAnimatorController","Name":"EnemyAnimatorController","IsShared":true},"BooleanSetWalk":true,"BooleanIsWalk":true,"BooleanSetShooting":false,"BooleanIsShooting":false},{"Type":"CheckDistanceTransform","NodeData":{"Offset":"(220,110)"},"ID":6,"Name":"Check
-        Distance Transform","Instant":true,"SharedNavMeshAgentAgent":{"Type":"SharedNavMeshAgent","Name":"NavAgent","IsShared":true},"SharedTransformTargetTransform":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"CurrentPatrolWaypoint","IsShared":true},"SingleDistance":0.1},{"Type":"SetEnemyAnimatorValues","NodeData":{"Offset":"(450,160)"},"ID":7,"Name":"Set
-        Enemy Animator Values","Instant":true,"SharedEnemyAnimatorControllerenemyAnimatorController":{"Type":"SharedEnemyAnimatorController","Name":"EnemyAnimatorController","IsShared":true},"BooleanSetWalk":true,"BooleanIsWalk":false,"BooleanSetShooting":false,"BooleanIsShooting":false},{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnFailure","NodeData":{"Offset":"(643,118)"},"ID":8,"Name":"Return
+        Waypoint Transform","Instant":true,"Int32WaypointType":0,"SharedTransformWaypointsContainer":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"WaypointsContainer","IsShared":true,"TransformmValue":0},"SharedTransformCurrentWaypoint":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"CurrentPatrolWaypoint","IsShared":true}},{"Type":"SetDestinationTransform","NodeData":{"Offset":"(-98.9796143,106.70282)"},"ID":4,"Name":"Set
+        Destination Transform","Instant":true,"SharedNavMeshAgentNavMeshAgent":{"Type":"SharedNavMeshAgent","Name":"NavAgent","IsShared":true,"NavMeshAgentmValue":1},"SharedTransformDestinationTransform":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"CurrentPatrolWaypoint","IsShared":true}},{"Type":"SetEnemyAnimatorValues","NodeData":{"Offset":"(60.2348022,156.530518)"},"ID":5,"Name":"Set
+        Enemy Animator Values","Instant":true,"SharedEnemyAnimatorControllerenemyAnimatorController":{"Type":"SharedEnemyAnimatorController","Name":"EnemyAnimatorController","IsShared":true,"EnemyAnimatorControllermValue":2},"BooleanSetWalk":true,"BooleanIsWalk":true,"BooleanSetShooting":false,"BooleanIsShooting":false,"BooleanSetCrouching":false,"BooleanIsCrouching":false},{"Type":"CheckDistanceTransform","NodeData":{"Offset":"(220,110)"},"ID":6,"Name":"Check
+        Distance Transform","Instant":true,"SharedNavMeshAgentAgent":{"Type":"SharedNavMeshAgent","Name":"NavAgent","IsShared":true,"NavMeshAgentmValue":3},"SharedTransformTargetTransform":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"CurrentPatrolWaypoint","IsShared":true},"SingleDistance":0.1},{"Type":"SetEnemyAnimatorValues","NodeData":{"Offset":"(450,160)"},"ID":7,"Name":"Set
+        Enemy Animator Values","Instant":true,"SharedEnemyAnimatorControllerenemyAnimatorController":{"Type":"SharedEnemyAnimatorController","Name":"EnemyAnimatorController","IsShared":true,"EnemyAnimatorControllermValue":4},"BooleanSetWalk":true,"BooleanIsWalk":false,"BooleanSetShooting":false,"BooleanIsShooting":false,"BooleanSetCrouching":false,"BooleanIsCrouching":false},{"Type":"BehaviorDesigner.Runtime.Tasks.ReturnFailure","NodeData":{"Offset":"(643,118)"},"ID":8,"Name":"Return
         Failure","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-0.280517578,98.08057)"},"ID":9,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityNavMeshAgent.ResetPath","NodeData":{"Offset":"(-100,120)"},"ID":10,"Name":"Reset
         Path","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null}},{"Type":"SetTransform","NodeData":{"Offset":"(90,120)"},"ID":11,"Name":"Set
-        Transform","Instant":true,"SharedTransformReference":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"CurrentPatrolWaypoint","IsShared":true}}]}]}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"CurrentPatrolWaypoint","IsShared":true},{"Type":"SharedNavMeshAgent","Name":"NavAgent","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"WaypointsContainer","IsShared":true},{"Type":"SharedEnemyAnimatorController","Name":"EnemyAnimatorController","IsShared":true}]}'
+        Transform","Instant":true,"SharedTransformReference":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"CurrentPatrolWaypoint","IsShared":true}}]}]}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"CurrentPatrolWaypoint","IsShared":true},{"Type":"SharedNavMeshAgent","Name":"NavAgent","IsShared":true,"NavMeshAgentmValue":5},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"WaypointsContainer","IsShared":true,"TransformmValue":6},{"Type":"SharedEnemyAnimatorController","Name":"EnemyAnimatorController","IsShared":true,"EnemyAnimatorControllermValue":7}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
         startIndex: 
         dataPosition: 
-        unityObjects: []
+        unityObjects:
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
         byteData: 
         byteDataArray: 
       Version: 1.7.9

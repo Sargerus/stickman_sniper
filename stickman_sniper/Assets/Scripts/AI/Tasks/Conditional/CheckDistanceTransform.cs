@@ -12,6 +12,10 @@ public class CheckDistanceTransform : Conditional
     public override TaskStatus OnUpdate()
     {
         TaskStatus result = TaskStatus.Running;
+
+        if (TargetTransform.Value == null)
+            return TaskStatus.Success;
+
         if (Vector3.Distance(Agent.Value.transform.position, TargetTransform.Value.position) <= Distance)
         {
             result = TaskStatus.Success;

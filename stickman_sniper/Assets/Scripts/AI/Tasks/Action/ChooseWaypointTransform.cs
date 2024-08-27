@@ -36,6 +36,7 @@ public class ChooseWaypointTransform : Action
         }
 
         _currentIndex++;
+        _currentIndex = Mathf.Clamp(_currentIndex, 0, _waypoints.Count);
         CurrentWaypoint.Value = _waypoints[_currentIndex].transform;
 
         return CurrentWaypoint.Value;

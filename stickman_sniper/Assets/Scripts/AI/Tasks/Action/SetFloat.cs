@@ -5,11 +5,11 @@ using BehaviorDesigner.Runtime.Tasks;
 public class SetFloat : Action
 {
     public SharedFloat VariableToSet;
-    public float Value;
+    public SharedFloat Value;
 
     public override TaskStatus OnUpdate()
     {
-        VariableToSet.Value = Value;
+        VariableToSet.Value = Value.Value;
         return TaskStatus.Success;
     }
 }

@@ -106,8 +106,12 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
                     }
                 case ShopProductVisual.ObtainType.Ad:
                     {
+                        Debug.Log($"AAA pure hash {hash}");
+
                         if (int.TryParse(hash, out int result))
                             YandexGame.RewVideoShow(result);
+
+                        Debug.Log($"AAA int hash {result}");
 
                         break;
                     }

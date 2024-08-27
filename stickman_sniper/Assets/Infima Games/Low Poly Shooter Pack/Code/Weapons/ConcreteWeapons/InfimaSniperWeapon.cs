@@ -48,7 +48,7 @@ public class InfimaSniperWeapon : InfimaWeapon
         muzzleBehaviour.Effect();
         _onFire.OnNext(UniRx.Unit.Default);
 
-        RaycastHit[] result = new RaycastHit[2];
+        //RaycastHit[] result = new RaycastHit[10];
 
         //Spawn as many projectiles as we need.
         for (var i = 0; i < shotCount; i++)
@@ -74,11 +74,9 @@ public class InfimaSniperWeapon : InfimaWeapon
             //projectile.GetComponent<Rigidbody>().velocity = projectile.transform.forward * projectileImpulse;
 
             Ray ray = playerCamera.GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5f + spreadValue.x, 0.5f + spreadValue.y, 0));
-            Array.Clear(result, 0, result.Length);
-            if (Physics.RaycastNonAlloc(ray, result, 100f, layerMask) > 0)
+            //Array.Clear(result, 0, result.Length);
+            if (Physics.Raycast(ray, out var hit, 100f, layerMask))
             {
-                var hit = result[0];
-
                 var enemy = hit.transform.GetComponentInParent<Enemy>();
                 if (enemy != null)
                 {

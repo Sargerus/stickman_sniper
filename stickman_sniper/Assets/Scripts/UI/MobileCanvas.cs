@@ -11,12 +11,15 @@ public class MobileCanvas : MonoBehaviour, IMobileInputProvider
     [SerializeField] private UniversalMobileController.FloatingJoyStick _moveJoyStick;
     [SerializeField] private UniversalMobileController.SpecialTouchPad _cameraJoyStick;
     [SerializeField] private List<Button> _fireButton;
+    [SerializeField] private Button _crouchButton;
 
     private bool _isAiming = false;
     private bool _isFiring = false;
     private bool _isJump = false;
     private bool _isReload = false;
+    private bool _isCrouching = false;
     private CompositeDisposable _fireDisposables = new();
+    private CompositeDisposable _crouchDisposables = new();
     private int? _cachedShootTouch = null;
 
     private void Start()
@@ -31,6 +34,16 @@ public class MobileCanvas : MonoBehaviour, IMobileInputProvider
         {
             _isFiring = false;
         }).AddTo(_fireDisposables);
+
+        _crouchButton.OnPointerDownAsObservable().Subscribe(_ =>
+        {
+            _isCrouching = true;
+        }).AddTo(_crouchDisposables);
+
+        _crouchButton.OnPointerUpAsObservable().Subscribe(_ =>
+        {
+            _isCrouching = false;
+        }).AddTo(_crouchDisposables);
     }
 
     private void LateUpdate()
@@ -78,9 +91,13 @@ public class MobileCanvas : MonoBehaviour, IMobileInputProvider
     public bool IsShooting()
         => _isFiring;
 
+    public bool IsCrouching()
+        => _isCrouching;
+
     private void OnDestroy()
     {
         _fireDisposables.Dispose();
+        _crouchDisposables?.Dispose();
     }
 
     public bool IsRunning()

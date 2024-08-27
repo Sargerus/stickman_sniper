@@ -16,7 +16,7 @@ MonoBehaviour:
   playerPhotoSize: 0
   playerInfoSimulation:
     authorized: 1
-    isMobile: 0
+    isMobile: 1
     language: ru
     name: Player this
     uniqueID: 000

@@ -45,7 +45,12 @@ namespace stickman_sniper.Purchases
 
         private void OnRewardedVideoWatched(int guid)
         {
+            Debug.Log($"AAA video watched 1 {guid}");
+
             string guidString = guid.ToString();
+
+            Debug.Log($"AAA video watched guid parsed {guidString}");
+
             Purchase(guidString);
             Debug.Log("Bought throug AD");
         }

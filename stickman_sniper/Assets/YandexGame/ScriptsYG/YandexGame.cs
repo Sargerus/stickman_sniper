@@ -950,7 +950,7 @@ namespace YG
         #region Device
         public void SetDeviceInfo(string device)
         {
-            Device = device;
+            Device = "mobile";
         }
         #endregion
 

@@ -5,9 +5,12 @@ using stickman_sniper.Purchases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
 using YG;
 using static CustomizationIndexes;
@@ -39,12 +42,13 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
     private Subject<string> _cellClickHandler = new();
     private Subject<string> _tabClickHandler = new();
 
-    private ShopProductVisual _productVisuals;
+    private ShopProductVisuals _productVisualsContainer;
     private List<CustomizationScreenShopCell> _cells = new();
     private CompositeDisposable _disposables = new();
     private AttachmentsTab _currentTab = AttachmentsTab.None;
     public ReactiveProperty<int> _currentIndexSelectedReactive = new(-1);
     private CustomizationIndexes _customizationIndexes;
+    private List<AsyncOperationHandle> _listOfDependencies = new();
 
     public void ResolveDependencies(ShopPresentationConfig shopProductConfig,
         WeaponCharacteristicsContainer weaponCharacteristicsContainer,
@@ -60,25 +64,30 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
     {
         _key = key;
         _backClickHandler = backClickHandler;
-        _productVisuals = _shopProductConfig.GetConfigByKey(key);
-        var charContainer = _weaponCharacteristicsContainer.Config.FirstOrDefault(g => g.WeaponKey.Equals(key));
+        _productVisualsContainer = _shopProductConfig.GetConfigByKey(key);
 
+        var charContainer = _weaponCharacteristicsContainer.Config.FirstOrDefault(g => g.WeaponKey.Equals(key));
         if (charContainer != null)
         {
             _customizationIndexes = charContainer.CurrentCustomizationData.CustomizationIndexes;
         }
 
+        await PrelaodDependencies();
+        await podiumController.Initialize(_productVisualsContainer.GetItemByProductKey(key), _customizationIndexes);
+        Subscribe();
+        SubscribeRawImage();
+        InitializeTabs();
+        SwitchTab(AttachmentsTab.Scope);
+    }
+
+    private void Subscribe()
+    {
         backButton.OnClickAsObservable().Subscribe(_ => { _backClickHandler.OnNext(_key); }).AddTo(_disposables);
 
         _currentIndexSelectedReactive.Subscribe(index =>
         {
             RefreshButtonsState(index);
         }).AddTo(_disposables);
-
-        //Observable.EveryUpdate().Subscribe(_ =>
-        //{
-        //    chooseButton.interactable = _currentIndexSelectedReactive.Value >= 0 && _currentIndexSelectedReactive.Value != _customizationIndexes.GetIndex(_currentTab);
-        //}).AddTo(_disposables);
 
         chooseButton.OnClickAsObservable().Subscribe(_ =>
         {
@@ -91,7 +100,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
             if (!_currentContent.TryGetValue(_currentIndexSelectedReactive.Value, out string hash))
                 return;
 
-            ShopProductVisual visuals = _shopProductConfig.GetConfigByHash(hash);
+            ShopProductVisual visuals = _productVisualsContainer.GetItemByHash(hash);
 
             switch (visuals.ObtainBy)
             {
@@ -108,10 +117,8 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
                     {
                         Debug.Log($"AAA pure hash {hash}");
 
-                        if (int.TryParse(hash, out int result))
-                            YandexGame.RewVideoShow(result);
-
-                        Debug.Log($"AAA int hash {result}");
+                        _purchaseService.SetNextBuyByRewardedAd(hash);
+                        YandexGame.RewVideoShow(1);
 
                         break;
                     }
@@ -141,11 +148,36 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
         {
             RefreshButtonsState(_currentIndexSelectedReactive.Value);
         }).AddTo(_disposables);
+    }
 
-        await podiumController.Initialize(_productVisuals, _customizationIndexes);
-        SubscribeRawImage();
-        InitializeTabs();
-        SwitchTab(AttachmentsTab.Scope);
+    private async UniTask PrelaodDependencies()
+    {
+        IReadOnlyList<AssetReference> GetUniqueReferences(IReadOnlyList<AssetReference> references)
+        {
+            HashSet<object> uniqueKeys = new();
+            List<AssetReference> uniqueReferences = new();
+
+            foreach (var reference in references)
+            {
+                if (uniqueKeys.Add(reference.RuntimeKey))
+                {
+                    uniqueReferences.Add(reference);
+                }
+            }
+
+            return uniqueReferences;
+        }
+
+        var images = GetUniqueReferences(_productVisualsContainer.Items.Select(g => g.ProductImage).ToList());
+        var backgrounds = GetUniqueReferences(_productVisualsContainer.Items.Select(g => g.ProductBackground).ToList());
+        var models = GetUniqueReferences(_productVisualsContainer.Items.Select(g => g.Product3DModel).ToList());
+
+        foreach (var item in images.Concat(backgrounds).Concat(models))
+        {
+            _listOfDependencies.Add(Addressables.LoadAssetAsync<GameObject>(item));
+        }
+
+        await UniTask.WhenAll(_listOfDependencies.Select(g => g.ToUniTask()));
     }
 
     private void InitializeTabs()
@@ -183,7 +215,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
             CustomizationScreenShopCell cell = Instantiate(cellPrefab, container);
             _cells.Add(cell);
 
-            ShopProductVisual weaponInventoryVisuals = _shopProductConfig.GetConfigByHash(_currentContent[i]);
+            ShopProductVisual weaponInventoryVisuals = _productVisualsContainer.GetItemByHash(_currentContent[i]);
 
             if (weaponInventoryVisuals.IsBoughtByDefault)
             {
@@ -261,7 +293,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
         }
         else
         {
-            ShopProductVisual visuals = _shopProductConfig.GetConfigByHash(hash);
+            ShopProductVisual visuals = _productVisualsContainer.GetItemByHash(hash);
 
             SetBuyButtonText(visuals);
             buyButton.gameObject.SetActive(true);
@@ -289,5 +321,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
         podiumController.Clear();
         ClearCells();
         _disposables.Clear();
+        _listOfDependencies.ForEach(g => Addressables.Release(g));
+        _listOfDependencies.Clear();
     }
 }

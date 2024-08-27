@@ -950,7 +950,7 @@ namespace YG
         #region Device
         public void SetDeviceInfo(string device)
         {
-            Device = "mobile";
+            Device = device;
         }
         #endregion
 
@@ -1043,6 +1043,8 @@ namespace YG
         public void RewardVideo(int id)
         {
             lastRewardAdID = id;
+            Debug.Log($"AAA reward from js file {id}");
+            Debug.Log($"AAA reward from js file static {lastRewardAdID}");
 #if UNITY_EDITOR
             if (!Instance.infoYG.testErrorOfRewardedAdsInEditor)
                 timeOnOpenRewardedAds -= 3;
@@ -1051,13 +1053,16 @@ namespace YG
 
             if (Time.unscaledTime > timeOnOpenRewardedAds + 2)
             {
+                Debug.Log($"AAA rewardinto cycle");
                 if (Instance.infoYG.rewardedAfterClosing)
                 {
                     rewardAdResult = RewardAdResult.Success;
+                    Debug.Log($"AAA rewardinto cycle sduccess");
                 }
                 else
                 {
                     RewardVideoAd.Invoke();
+                    Debug.Log($"AAA reward info reward id {id}");
                     RewardVideoEvent?.Invoke(id);
                 }
             }

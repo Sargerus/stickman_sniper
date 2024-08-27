@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 1525074962770791338, guid: 0c8a982617abc0e478f50a7269bfc3fa,
         type: 3}
       propertyPath: m_Name
-      value: Shop_bg_item_base
+      value: Shop_bg_P_LPSP_WEP_Sniper_01_grip_1
       objectReference: {fileID: 0}
     - target: {fileID: 9024445916918197748, guid: 0c8a982617abc0e478f50a7269bfc3fa,
         type: 3}
@@ -50,12 +50,12 @@ PrefabInstance:
     - target: {fileID: 9024445916918197748, guid: 0c8a982617abc0e478f50a7269bfc3fa,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 135
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 9024445916918197748, guid: 0c8a982617abc0e478f50a7269bfc3fa,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 135
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 9024445916918197748, guid: 0c8a982617abc0e478f50a7269bfc3fa,
         type: 3}

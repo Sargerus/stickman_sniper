@@ -13,6 +13,9 @@ namespace stickman_sniper.Purchases
         IObservable<string> OnPurchaseComplete { get; }
         IReadOnlyReactiveProperty<bool> GetIsPurchasedReactiveProperty(string hash);
         void Purchase(string hash);
+
+        //workaround SendMessage(int parameter gets corrupted)
+        void SetNextBuyByRewardedAd(string hash);
     }
 
     internal class PurchaseService : IPurchaseService
@@ -22,6 +25,8 @@ namespace stickman_sniper.Purchases
 
         private Subject<string> _onPurchaseComplete = new();
         public IObservable<string> OnPurchaseComplete => _onPurchaseComplete;
+
+        private string _nextBuy;
 
         public PurchaseService()
         {
@@ -43,16 +48,31 @@ namespace stickman_sniper.Purchases
             return property;
         }
 
-        private void OnRewardedVideoWatched(int guid)
+        private void OnRewardedVideoWatched(int _)
         {
-            Debug.Log($"AAA video watched 1 {guid}");
+            try
+            {
+                //Debug.Log($"AAA video watched 1 {guid}");
 
-            string guidString = guid.ToString();
+                //string guidString = guid.ToString();
 
-            Debug.Log($"AAA video watched guid parsed {guidString}");
+                Debug.Log($"AAA video watched guid parsed {_nextBuy}");
 
-            Purchase(guidString);
-            Debug.Log("Bought throug AD");
+                if (_nextBuy != null)
+                {
+                    Purchase(_nextBuy);
+                }
+
+                Debug.Log("Bought throug AD");
+            }
+            catch(Exception e)
+            {
+                Debug.LogError(e);
+            }
+            finally
+            {
+                ClearBuyByRewarded();
+            }
         }
 
         public void Purchase(string hash)
@@ -68,6 +88,16 @@ namespace stickman_sniper.Purchases
         {
             YandexGame.savesData.purchases = _purchases.ToList();
             YandexGame.SaveProgress();
+        }
+
+        public void SetNextBuyByRewardedAd(string hash)
+        {
+            _nextBuy = hash;
+        }
+
+        public void ClearBuyByRewarded()
+        {
+            _nextBuy = null;
         }
     }
 

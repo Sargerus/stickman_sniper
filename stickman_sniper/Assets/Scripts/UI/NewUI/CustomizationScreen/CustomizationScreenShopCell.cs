@@ -18,7 +18,8 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
 
     [SerializeField] private Transform bgImageParent;
     [SerializeField] private Transform itemImageParent;
-    [SerializeField] private TMP_Text text;
+    [SerializeField] private TMP_Text costText;
+    [SerializeField] private TMP_Text productText;
     [SerializeField] private UnityEngine.UI.Button button;
 
     private IPurchaseService _purchaseService;
@@ -40,13 +41,13 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
 
     public async UniTask Init(ShopProductVisual visual)
     {
-        string GetProductText(ShopProductVisual visual) => visual.ObtainBy switch
+        string GetCostText(ShopProductVisual visual) => visual.ObtainBy switch
         {
-            ShopProductVisual.ObtainType.SoftCurrency => visual.Cost.ToString(),
+            ShopProductVisual.ObtainType.SoftCurrency => "<sprite name=\"ic_coin\"> " + visual.Cost.ToString(),
             ShopProductVisual.ObtainType.HardCurrency => visual.Cost.ToString(),
             ShopProductVisual.ObtainType.Money => "$" + visual.Cost.ToString(),
-            ShopProductVisual.ObtainType.Ad => "Ad",
-            _ => visual.Cost.ToString()
+            ShopProductVisual.ObtainType.Ad => "<sprite name=\"ic_ad\">",
+            _ => string.Empty
         };
 
         if (visual.ProductBackground.RuntimeKeyIsValid())
@@ -60,12 +61,12 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
         }
 
         var boughtProperty = _purchaseService.GetIsPurchasedReactiveProperty(visual.Hash);
+        Item.SetCostText(GetCostText(visual));
+        Item.SetProductText(visual.ProductName);
         if (!boughtProperty.Value)
-        {
-            Item.SetText(GetProductText(visual));
+        {            
             boughtProperty.Where(x => x == true).Subscribe(_ =>
             {
-                Item.SetText(string.Empty);
                 _cellStateReactive.Value = CellState.Open;
             }).AddTo(_disposables);
         }
@@ -87,9 +88,15 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
         return this;
     }
 
-    private CustomizationScreenShopCell SetText(string text)
+    private CustomizationScreenShopCell SetCostText(string text)
     {
-        this.text.SetText(text);
+        costText.SetText(text);
+        return this;
+    }
+
+    private CustomizationScreenShopCell SetProductText(string text)
+    {
+        productText.SetText(text);
         return this;
     }
 
@@ -109,7 +116,7 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
 
     public void ReturnToPool()
     {
-        text.SetText(string.Empty);
+        costText.SetText(string.Empty);
 
         if (_bgImage != null)
             Destroy(_bgImage);

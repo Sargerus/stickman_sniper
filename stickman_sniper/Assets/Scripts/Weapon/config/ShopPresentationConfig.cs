@@ -1,4 +1,3 @@
-using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +8,11 @@ using UnityEngine.AddressableAssets;
 public class ShopPresentationConfig : ScriptableObject
 {
     public List<ShopPresentationItem> ShopPresentationItems;
-    public List<ShopItemPresentationConfig> ShopProductVisual;
+    public List<ShopProductVisualContainer> ShopProductVisual;
 
-    public ShopProductVisual GetConfigByKey(string productKey)
+    public ShopProductVisuals GetConfigByKey(string productKey)
     {
-        return ShopProductVisual.SelectMany(x => x.Items).FirstOrDefault(g => g.ProductKey.Equals(productKey));
-    }
-
-    public ShopProductVisual GetConfigByHash(string productHash)
-    {
-        return ShopProductVisual.SelectMany(x => x.Items).FirstOrDefault(g => g.Hash.Equals(productHash));
+        return ShopProductVisual.FirstOrDefault(g => g.Key.Equals(productKey))?.Visuals;
     }
 }
 
@@ -51,6 +45,6 @@ public class ShopProductVisual
     public AssetReference Product3DModel;
 
     public ObtainType ObtainBy;
-    [Sirenix.OdinInspector.ShowIf("ObtainBy", ObtainType.SoftCurrency | ObtainType.HardCurrency | ObtainType.Money)] 
+    [Sirenix.OdinInspector.ShowIf("@this.ObtainBy == ObtainType.SoftCurrency || this.ObtainBy == ObtainType.HardCurrency || this.ObtainBy == ObtainType.Money")]
     public float Cost;
 }

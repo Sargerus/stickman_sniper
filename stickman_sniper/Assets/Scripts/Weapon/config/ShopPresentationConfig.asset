@@ -18,4 +18,5 @@ MonoBehaviour:
     Weapons:
     - Sniper 01
   ShopProductVisual:
-  - {fileID: 11400000, guid: 88b4ae9e9be48e242a7ff1749c2dbc3d, type: 2}
+  - Key: Sniper 01
+    Visuals: {fileID: 11400000, guid: 88b4ae9e9be48e242a7ff1749c2dbc3d, type: 2}

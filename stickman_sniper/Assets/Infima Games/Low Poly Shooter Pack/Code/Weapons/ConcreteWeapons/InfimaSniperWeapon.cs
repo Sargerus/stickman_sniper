@@ -48,8 +48,6 @@ public class InfimaSniperWeapon : InfimaWeapon
         muzzleBehaviour.Effect();
         _onFire.OnNext(UniRx.Unit.Default);
 
-        //RaycastHit[] result = new RaycastHit[10];
-
         //Spawn as many projectiles as we need.
         for (var i = 0; i < shotCount; i++)
         {
@@ -65,16 +63,8 @@ public class InfimaSniperWeapon : InfimaWeapon
             Vector3 spreadValue = UnityEngine.Random.insideUnitSphere * (spread * spreadMultiplier);
             //Remove the forward spread component, since locally this would go inside the object we're shooting!
             spreadValue.z = 0;
-            //Convert to world space.
-            //spreadValue = playerCamera.TransformDirection(spreadValue);
-
-            ////Spawn projectile from the projectile spawn point.
-            //GameObject projectile = Instantiate(prefabProjectile, playerCamera.position, Quaternion.Euler(playerCamera.eulerAngles + spreadValue));
-            ////Add velocity to the projectile.
-            //projectile.GetComponent<Rigidbody>().velocity = projectile.transform.forward * projectileImpulse;
 
             Ray ray = playerCamera.GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5f + spreadValue.x, 0.5f + spreadValue.y, 0));
-            //Array.Clear(result, 0, result.Length);
             if (Physics.Raycast(ray, out var hit, 100f, layerMask))
             {
                 var enemy = hit.transform.GetComponentInParent<Enemy>();
@@ -94,9 +84,6 @@ public class InfimaSniperWeapon : InfimaWeapon
 
                     Vector3 direction = (hit.point - playerCamera.position).normalized;
                     direction.y = 0.5f;
-
-                    //if (_levelProgressObserver.TotalEnemies - _levelProgressObserver.KilledEnemies.Value == 1)
-                    //{
 
                     if (enemy.IsAlive.Value)
                     {

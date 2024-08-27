@@ -46,13 +46,13 @@ MonoBehaviour:
   audioClipBoltAction: {fileID: 8300000, guid: 9437d90133cd4ff41b81629b342d38c9, type: 3}
   layerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 9
   slowmotionBullet: {fileID: 1332870974233114119, guid: 5bbe91feacec05344810e6c6294b61b7,
     type: 3}
   damage: 10
   CustomizationIndexes:
     scopeDefaultShow: 1
-    scopeIndex: 2
+    scopeIndex: -1
     muzzleIndex: 0
     laserIndex: -1
     gripIndex: -1

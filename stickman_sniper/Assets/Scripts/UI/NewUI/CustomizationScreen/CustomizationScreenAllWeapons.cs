@@ -99,15 +99,17 @@ public class CustomizationScreenAllWeapons : MonoBehaviour
         {
             IPooledItem<CustomizationScreenShopCell> cell = shopCellPool.Get();
             _shopCells.Add(cell);
+            
             var weaponInventoryVisuals = _shopPresentationConfig.GetConfigByKey(weapon);
+            var weaponItem = weaponInventoryVisuals.GetItemByProductKey(weapon);
 
-            if (weaponInventoryVisuals.IsBoughtByDefault)
+            if (weaponItem.IsBoughtByDefault)
             {
-                _purchaseService.Purchase(weaponInventoryVisuals.Hash);
+                _purchaseService.Purchase(weaponItem.Hash);
             }
 
             cell.Item.ResolveDependencies(_purchaseService);
-            cell.Item.Init(weaponInventoryVisuals);
+            cell.Item.Init(weaponItem);
 
             cell.Item.SetOnClickHandler(weapon, _cellClickHandler);
 

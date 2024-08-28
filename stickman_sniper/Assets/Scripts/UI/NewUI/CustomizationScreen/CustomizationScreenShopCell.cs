@@ -27,6 +27,8 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
 
     private GameObject _bgImage;
     private GameObject _itemImage;
+    private UISpriteSwaper _swaper;
+    private IReadOnlyReactiveProperty<string> _selectedItem;
     private CompositeDisposable _disposables = new();
 
     public ShopProductVisual Visual;
@@ -41,9 +43,10 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
     {
     }
 
-    public async UniTask Init(ShopProductVisual visual)
+    public async UniTask Init(ShopProductVisual visual, IReadOnlyReactiveProperty<string> selectedItem)
     {
         Visual = visual;
+        _selectedItem = selectedItem;
 
         if (visual.ProductBackground.RuntimeKeyIsValid())
         {
@@ -56,12 +59,21 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
         }
 
         Item.SetProductText(visual.ProductName);
+
+        if (selectedItem != null)
+            _selectedItem.SkipLatestValueOnSubscribe().Subscribe(x =>
+            {
+                _swaper.SetSelected(x.Equals(visual.ProductKey));
+            }).AddTo(_disposables);
     }
 
     private CustomizationScreenShopCell SetBackground(GameObject image, bool worldPositionStays)
     {
         _bgImage = image;
         image.transform.SetParent(bgImageParent, worldPositionStays);
+
+        _swaper = image.GetComponent<UISpriteSwaper>();
+
         return this;
     }
 
@@ -138,11 +150,11 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
         switch (state)
         {
             case CellState.Available:
-                SetAvailable();return;
+                SetAvailable(); return;
             case CellState.Selected:
-                SetSelected();return;
+                SetSelected(); return;
             case CellState.Purchased:
-                SetPurchased();return;
+                SetPurchased(); return;
         }
     }
 

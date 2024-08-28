@@ -7,9 +7,11 @@ public class UISpriteSwaper : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 {
     [SerializeField] private Image defaultImage;
     [SerializeField] private Image highlightedImage;
+    [SerializeField] private Image selectedImage;
 
     private Image _currentImage;
     private Tween _swapTween;
+    private bool _isSelected;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -27,20 +29,45 @@ public class UISpriteSwaper : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        _swapTween?.Kill();
+        if (_isSelected)
+            return;
+
+        _swapTween?.Kill(true);
         _currentImage = highlightedImage;
         _swapTween = highlightedImage.DOFade(1, 0.4f);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        _swapTween?.Kill();
+        if (_isSelected)
+            return;
+
+        _swapTween?.Kill(true);
         _currentImage = defaultImage;
         _swapTween = highlightedImage.DOFade(0, 0.4f);
     }
 
+    public void SetSelected(bool isSelected)
+    {
+        _isSelected = isSelected;
+
+        if (isSelected)
+        {
+            _swapTween?.Kill(true);
+            _currentImage = selectedImage;
+            _swapTween = DOTween.Sequence().Append(highlightedImage.DOFade(0,0.4f)).Join(selectedImage.DOFade(1, 0.4f));
+        }
+        else
+        {
+            _swapTween?.Kill();
+            _currentImage = defaultImage;
+            _swapTween = selectedImage.DOFade(0, 0.4f);
+        }        
+    }
+
     private void OnDisable()
     {
+        _isSelected = false;
         _swapTween?.Kill();
     }
 }

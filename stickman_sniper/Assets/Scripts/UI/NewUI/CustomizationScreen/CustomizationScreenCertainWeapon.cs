@@ -47,6 +47,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
     private CompositeDisposable _disposables = new();
     private AttachmentsTab _currentTab = AttachmentsTab.None;
     public ReactiveProperty<int> _currentIndexSelectedReactive = new(-1);
+    public ReactiveProperty<string> _currentIndexSelectedReactiveString = new();
     private CustomizationIndexes _customizationIndexes;
     private List<AsyncOperationHandle> _listOfDependencies = new();
 
@@ -89,6 +90,9 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
 
         _currentIndexSelectedReactive.Subscribe(index =>
         {
+            if (index >= 0)
+                _currentIndexSelectedReactiveString.Value = _cells[index].Visual.ProductKey;
+
             RefreshButtonsState(index);
         }).AddTo(_disposables);
 
@@ -265,7 +269,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
     private void InitCellState(CustomizationScreenShopCell cell, ShopProductVisual weaponInventoryVisuals, int orderNumber)
     {
         cell.Item.ResolveDependencies();
-        cell.Item.Init(weaponInventoryVisuals);
+        cell.Item.Init(weaponInventoryVisuals, _currentIndexSelectedReactiveString);
         cell.Item.SetOnClickHandler(orderNumber.ToString(), _cellClickHandler);
 
         CellState state = GetCellState(cell);
@@ -383,5 +387,6 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
         _disposables.Clear();
         _listOfDependencies.ForEach(g => Addressables.Release(g));
         _listOfDependencies.Clear();
+        _currentIndexSelectedReactive.Value = -1;
     }
 }

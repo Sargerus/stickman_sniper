@@ -112,7 +112,7 @@ public class CustomizationScreenAllWeapons : MonoBehaviour
             }
 
             cell.Item.ResolveDependencies();
-            cell.Item.Init(weaponItem);
+            cell.Item.Init(weaponItem, null);
             cell.Item.SetState(GetCellState(cell.Item));
 
             cell.Item.SetOnClickHandler(weapon, _cellClickHandler);

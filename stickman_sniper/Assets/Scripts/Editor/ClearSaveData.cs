@@ -13,6 +13,16 @@ public class ClearSaveData : Editor
             file.Delete();
         }
 
+        string[] guids = AssetDatabase.FindAssets("t:ScriptableObject", new[] { "Assets\\Scripts\\CustomizationSystem" });
+        for (int i = 0; i < guids.Length; i++)
+        {
+            var asset = AssetDatabase.LoadAssetAtPath<Object>(guids[i]);
+            if (asset is WeaponCharacteristicsContainer wcc)
+            {
+                wcc.Config.ForEach(g => g.CurrentCustomizationData = g.DefaultCustomizationData);
+            }
+        }
+
         Debug.Log("-==Data cleared==-");
     }
 }

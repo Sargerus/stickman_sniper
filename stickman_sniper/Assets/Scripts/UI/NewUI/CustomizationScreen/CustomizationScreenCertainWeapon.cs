@@ -5,7 +5,6 @@ using stickman_sniper.Purchases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -20,6 +19,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
     [SerializeField] private PodiumController podiumController;
     [SerializeField] private UIElementInputProvider uiElementInputProvider;
     [SerializeField] private TMP_Text currencyText;
+    [SerializeField] private TMP_Text weaponText;
 
     [SerializeField, BoxGroup("Buttons")] private Button backButton;
     [SerializeField, BoxGroup("Buttons")] private Button chooseButton;
@@ -65,6 +65,9 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
         _key = key;
         _backClickHandler = backClickHandler;
         _productVisualsContainer = _shopProductConfig.GetConfigByKey(key);
+        var weaponItem = _productVisualsContainer.GetItemByProductKey(key);
+
+        weaponText.SetText(weaponItem.ProductName);
 
         var charContainer = _weaponCharacteristicsContainer.Config.FirstOrDefault(g => g.WeaponKey.Equals(key));
         if (charContainer != null)
@@ -73,7 +76,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
         }
 
         await PrelaodDependencies();
-        await podiumController.Initialize(_productVisualsContainer.GetItemByProductKey(key), _customizationIndexes);
+        await podiumController.Initialize(weaponItem, _customizationIndexes);
         Subscribe();
         SubscribeRawImage();
         InitializeTabs();
@@ -91,7 +94,23 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
 
         chooseButton.OnClickAsObservable().Subscribe(_ =>
         {
-            _customizationIndexes.SetIndex(_currentTab, _currentIndexSelectedReactive.Value);
+            int newIndex = _currentIndexSelectedReactive.Value;
+
+            _customizationIndexes.SetIndex(_currentTab, newIndex);
+
+            if (newIndex >= 0)
+            {
+                var currentSelected = _cells.FirstOrDefault(g => g.State.Value == CellState.Selected);
+                if (currentSelected != null)
+                    currentSelected.SetState(CellState.Purchased);
+
+                _cells[newIndex].SetState(CellState.Selected);
+            }
+            else
+            {
+                _cells.ForEach(g => g.SetState(GetCellState(g)));
+            }
+
             RefreshButtonsState(_currentIndexSelectedReactive.Value);
         }).AddTo(_disposables);
 
@@ -123,6 +142,9 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
                         break;
                     }
             }
+
+            var selectedCell = _cells[_currentIndexSelectedReactive.Value];
+            selectedCell.SetState(GetCellState(selectedCell));
         }).AddTo(_disposables);
 
         _tabClickHandler.Subscribe(tabKey =>
@@ -201,6 +223,9 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
 
         ClearCells();
 
+        _currentTab = tab;
+        int selectedIndex = _customizationIndexes.GetIndex(_currentTab);
+
         switch (tab)
         {
             case AttachmentsTab.Scope: _currentContent = podiumController.AttachmentManager.GetScopes(); break;
@@ -222,13 +247,10 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
                 _purchaseService.Purchase(weaponInventoryVisuals.Hash);
             }
 
-            cell.Item.ResolveDependencies(_purchaseService);
-            cell.Item.Init(weaponInventoryVisuals);
-            cell.Item.SetOnClickHandler(i.ToString(), _cellClickHandler);
+            InitCellState(cell, weaponInventoryVisuals, i);
         }
 
-        _currentTab = tab;
-        _currentIndexSelectedReactive.Value = _customizationIndexes.GetIndex(_currentTab);
+        _currentIndexSelectedReactive.Value = selectedIndex;
 
         _cellClickHandler.Subscribe(indexString =>
         {
@@ -238,6 +260,44 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
             _currentIndexSelectedReactive.SetValueAndForceNotify(index);
             SetPodiumAttachmentIndex(_currentTab, index);
         }).AddTo(_disposables);
+    }
+
+    private void InitCellState(CustomizationScreenShopCell cell, ShopProductVisual weaponInventoryVisuals, int orderNumber)
+    {
+        cell.Item.ResolveDependencies();
+        cell.Item.Init(weaponInventoryVisuals);
+        cell.Item.SetOnClickHandler(orderNumber.ToString(), _cellClickHandler);
+
+        CellState state = GetCellState(cell);
+        cell.SetState(state);
+
+        var purchasedProprerty = _purchaseService.GetIsPurchasedReactiveProperty(weaponInventoryVisuals.Hash);
+        if (!purchasedProprerty.Value)
+        {
+            purchasedProprerty.Where(x => x).SubscribeWithState(cell, (_, cell) => cell.Item.SetState(GetCellState(cell))).AddTo(_disposables);
+        }
+    }
+
+    private CellState GetCellState(CustomizationScreenShopCell cell)
+    {
+        CellState result = CellState.None;
+
+        int selectedIndex = _customizationIndexes.GetIndex(_currentTab);
+        var purchasedProprerty = _purchaseService.GetIsPurchasedReactiveProperty(cell.Visual.Hash);
+        bool isPurchased = purchasedProprerty.Value;
+        bool isSelected = _cells.IndexOf(cell) == selectedIndex;
+
+        if (isSelected)
+        {
+            result = CellState.Selected;
+        }
+        else if (isPurchased)
+        {
+            result = CellState.Purchased;
+        }
+        else result = CellState.Available;
+
+        return result;
     }
 
     private void SetBuyButtonText(ShopProductVisual visual)

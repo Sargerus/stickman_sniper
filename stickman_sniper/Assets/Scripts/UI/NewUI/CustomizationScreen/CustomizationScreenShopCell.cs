@@ -1,54 +1,49 @@
 using Cysharp.Threading.Tasks;
 using DWTools;
+using Sirenix.OdinInspector;
 using stickman_sniper.Purchases;
 using System;
 using TMPro;
 using UniRx;
 using UnityEngine;
 
+public enum CellState
+{
+    None = 0,
+    Available = 1,
+    Purchased = 2,
+    Selected = 3
+}
+
 public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<CustomizationScreenShopCell>
 {
-    public enum CellState
-    {
-        None = 0,
-        Open = 1,
-        Closed = 2,
-        Blocked = 3
-    }
-
     [SerializeField] private Transform bgImageParent;
     [SerializeField] private Transform itemImageParent;
     [SerializeField] private TMP_Text costText;
     [SerializeField] private TMP_Text productText;
     [SerializeField] private UnityEngine.UI.Button button;
-
-    private IPurchaseService _purchaseService;
+    [SerializeField, BoxGroup("Panels")] private GameObject purchasedPanel;
+    [SerializeField, BoxGroup("Panels")] private GameObject selectedPanel;
 
     private GameObject _bgImage;
     private GameObject _itemImage;
-    private CellState _cellState;
     private CompositeDisposable _disposables = new();
 
+    public ShopProductVisual Visual;
     public CustomizationScreenShopCell Item => this;
-    private ReactiveProperty<CellState> _cellStateReactive = new();
-    public IReadOnlyReactiveProperty<CellState> State => _cellStateReactive;
+
+    private ReactiveProperty<CellState> _state = new();
+    public IReadOnlyReactiveProperty<CellState> State => _state;
+
     public IPool<CustomizationScreenShopCell> Pool { get; set; }
 
-    public void ResolveDependencies(IPurchaseService purchaseService)
+    public void ResolveDependencies()
     {
-        _purchaseService = purchaseService;
     }
 
     public async UniTask Init(ShopProductVisual visual)
     {
-        string GetCostText(ShopProductVisual visual) => visual.ObtainBy switch
-        {
-            ShopProductVisual.ObtainType.SoftCurrency => "<sprite name=\"ic_coin\"> " + visual.Cost.ToString(),
-            ShopProductVisual.ObtainType.HardCurrency => visual.Cost.ToString(),
-            ShopProductVisual.ObtainType.Money => "$" + visual.Cost.ToString(),
-            ShopProductVisual.ObtainType.Ad => "<sprite name=\"ic_ad\">",
-            _ => string.Empty
-        };
+        Visual = visual;
 
         if (visual.ProductBackground.RuntimeKeyIsValid())
         {
@@ -60,18 +55,7 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
             SetItemImage(await visual.ProductImage.InstantiateAsync(), false);
         }
 
-        var boughtProperty = _purchaseService.GetIsPurchasedReactiveProperty(visual.Hash);
-        Item.SetCostText(GetCostText(visual));
         Item.SetProductText(visual.ProductName);
-        if (!boughtProperty.Value)
-        {            
-            boughtProperty.Where(x => x == true).Subscribe(_ =>
-            {
-                _cellStateReactive.Value = CellState.Open;
-            }).AddTo(_disposables);
-        }
-
-        _cellStateReactive.Value = boughtProperty.Value ? CellState.Open : CellState.Closed;
     }
 
     private CustomizationScreenShopCell SetBackground(GameObject image, bool worldPositionStays)
@@ -90,6 +74,7 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
 
     private CustomizationScreenShopCell SetCostText(string text)
     {
+        costText.gameObject.SetActive(true);
         costText.SetText(text);
         return this;
     }
@@ -108,11 +93,58 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
         }).AddTo(_disposables);
     }
 
-    //public CustomizationScreenShopCell ContinueWith(Action<CustomizationScreenShopCell> action)
-    //{
-    //    action?.Invoke(this);
-    //    return this;
-    //}
+    private CustomizationScreenShopCell SetAvailable()
+    {
+        string GetCostText(ShopProductVisual visual) => visual.ObtainBy switch
+        {
+            ShopProductVisual.ObtainType.SoftCurrency => "<sprite name=\"ic_coin\"> " + visual.Cost.ToString(),
+            ShopProductVisual.ObtainType.HardCurrency => visual.Cost.ToString(),
+            ShopProductVisual.ObtainType.Money => "$" + visual.Cost.ToString(),
+            ShopProductVisual.ObtainType.Ad => "<sprite name=\"ic_ad\">",
+            _ => string.Empty
+        };
+
+        Item.SetCostText(GetCostText(Visual));
+        costText.gameObject.SetActive(true);
+        selectedPanel.SetActive(false);
+        purchasedPanel.SetActive(false);
+
+        _state.Value = CellState.Available;
+        return this;
+    }
+
+    private CustomizationScreenShopCell SetPurchased()
+    {
+        costText.gameObject.SetActive(false);
+        selectedPanel.SetActive(false);
+        purchasedPanel.SetActive(true);
+
+        _state.Value = CellState.Purchased;
+        return this;
+    }
+
+    private CustomizationScreenShopCell SetSelected()
+    {
+        costText.gameObject.SetActive(false);
+        selectedPanel.SetActive(true);
+        purchasedPanel.SetActive(false);
+
+        _state.Value = CellState.Selected;
+        return this;
+    }
+
+    public void SetState(CellState state)
+    {
+        switch (state)
+        {
+            case CellState.Available:
+                SetAvailable();return;
+            case CellState.Selected:
+                SetSelected();return;
+            case CellState.Purchased:
+                SetPurchased();return;
+        }
+    }
 
     public void ReturnToPool()
     {

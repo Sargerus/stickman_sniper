@@ -24,6 +24,7 @@ public class CustomizationScreenAllWeapons : MonoBehaviour
     private CustomiationDataContainerSO _customiationDataContainerSO;
     private ShopPresentationConfig _shopPresentationConfig;
     private IPurchaseService _purchaseService;
+    private IGameStartWeaponInventoryService _gameStartWeaponInventoryService;
 
     private List<CustomizationScreenTab> _tabs = new();
     private List<IPooledItem<CustomizationScreenShopCell>> _shopCells = new();
@@ -37,12 +38,14 @@ public class CustomizationScreenAllWeapons : MonoBehaviour
         AvailableWeaponConfig availableWeaponConfig,
         CustomiationDataContainerSO customiationDataContainerSO,
         ShopPresentationConfig shopPresentationConfig,
+        IGameStartWeaponInventoryService gameStartWeaponInventoryService,
         IPurchaseService purchaseService)
     {
         _availableWeaponConfig = availableWeaponConfig;
         _customiationDataContainerSO = customiationDataContainerSO;
         _shopPresentationConfig = shopPresentationConfig;
         _purchaseService = purchaseService;
+        _gameStartWeaponInventoryService = gameStartWeaponInventoryService;
     }
 
     public async UniTask Init(IObserver<string> cellClickHandler)
@@ -108,13 +111,34 @@ public class CustomizationScreenAllWeapons : MonoBehaviour
                 _purchaseService.Purchase(weaponItem.Hash);
             }
 
-            cell.Item.ResolveDependencies(_purchaseService);
+            cell.Item.ResolveDependencies();
             cell.Item.Init(weaponItem);
+            cell.Item.SetState(GetCellState(cell.Item));
 
             cell.Item.SetOnClickHandler(weapon, _cellClickHandler);
-
             cell.Item.transform.SetParent(weaponsContainer, false);
             cell.Item.gameObject.SetActive(true);
         }
+    }
+
+    private CellState GetCellState(CustomizationScreenShopCell cell)
+    {
+        CellState result = CellState.None;
+
+        var purchasedProprerty = _purchaseService.GetIsPurchasedReactiveProperty(cell.Visual.Hash);
+        bool isPurchased = purchasedProprerty.Value;
+        bool isSelected = _gameStartWeaponInventoryService.MainWeapon.Equals(cell.Visual.ProductKey);
+
+        if (isSelected)
+        {
+            result = CellState.Selected;
+        }
+        else if (isPurchased)
+        {
+            result = CellState.Purchased;
+        }
+        else result = CellState.Available;
+
+        return result;
     }
 }

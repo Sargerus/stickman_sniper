@@ -16,7 +16,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 72
   Radius: 5
-  Force: 700
+  Force: 350
   UpwardModifier: 2
   ExplosionEffect: {fileID: 1126181125208960, guid: ca26d7307564ff848b29e32bbe6279ef,
     type: 3}

@@ -1,5 +1,6 @@
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
+using DWTools.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -30,14 +31,14 @@ public class ChooseWaypointTransform : Action
 
     public Transform Next()
     {
-        if (_currentIndex + 1 >= _waypoints.Count)
-        {
-            _currentIndex = -1;
-        }
-
-        _currentIndex++;
-        _currentIndex = Mathf.Clamp(_currentIndex, 0, _waypoints.Count);
-        CurrentWaypoint.Value = _waypoints[_currentIndex].transform;
+        //if (_currentIndex + 1 >= _waypoints.Count)
+        //{
+        //    _currentIndex = -1;
+        //}
+        //
+        //_currentIndex++;
+        //_currentIndex = Mathf.Clamp(_currentIndex, 0, _waypoints.Count);
+        CurrentWaypoint.Value = _waypoints.Random().transform;
 
         return CurrentWaypoint.Value;
     }

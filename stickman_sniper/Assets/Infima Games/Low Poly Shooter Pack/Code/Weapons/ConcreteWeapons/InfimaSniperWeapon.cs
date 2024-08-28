@@ -12,6 +12,7 @@ public class InfimaSniperWeapon : InfimaWeapon
     [SerializeField] private GameObject slowmotionBullet;
     [SerializeField] private Transform bulletStartPosition;
     [SerializeField] private float damage;
+    [SerializeField] private float shootDistance;
 
     private ICoreProducer _coreProducer;
 
@@ -65,7 +66,7 @@ public class InfimaSniperWeapon : InfimaWeapon
             spreadValue.z = 0;
 
             Ray ray = playerCamera.GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5f + spreadValue.x, 0.5f + spreadValue.y, 0));
-            if (Physics.Raycast(ray, out var hit, 100f, layerMask))
+            if (Physics.Raycast(ray, out var hit, shootDistance, layerMask))
             {
                 var enemy = hit.transform.GetComponentInParent<Enemy>();
                 if (enemy != null)

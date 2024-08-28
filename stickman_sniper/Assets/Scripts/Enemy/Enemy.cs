@@ -6,6 +6,7 @@ using DWTools.RPG;
 using DWTools.Slowmotion;
 using Sirenix.OdinInspector;
 using stickman_sniper.Producer;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,21 +27,18 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
     [SerializeField] private SlowmotionNavMeshAgent _agent;
     [SerializeField] private ThrowableWeapon _weapon;
 
-    private InjectBehaviorManagerTasks _injectBehaviorManagerTasks;
     private List<Rigidbody> _rb;
     private ReactiveProperty<bool> _isAlive = new(true);
     public IReadOnlyReactiveProperty<bool> IsAlive => _isAlive;
     private Dictionary<string, object> _cinemaData = new();
+    private IDisposable _waitDeadFly; private bool _isStaticDead;
 
     private void Awake()
     {
         _rb = GetComponentsInChildren<Rigidbody>().ToList();
         _character.Character.CalculateStats();
 
-        foreach (var rb in _rb)
-        {
-            rb.isKinematic = true;
-        }
+        SetRb(true);
 
         _deadCams.ForEach(g => g.gameObject.SetActive(false));
 
@@ -69,10 +67,7 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
         _slowMotionAnimator.AllowToUpdate = false;
         _agent.AllowToUpdate = false;
 
-        foreach (var rb in _rb)
-        {
-            rb.isKinematic = false;
-        }
+        SetRb(false);
 
         ActivateHpCanvas(false);
         skinnedMeshRenderer.material = _deadMaterial;
@@ -84,6 +79,23 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
             _weapon.transform.SetParent(null);
             await UniTask.WaitUntil(() => parentRb.velocity.magnitude > 0);
             _weapon.Throw(parentRb.velocity.normalized * 5f, parentRb.angularVelocity * 2f);
+        }
+
+        _waitDeadFly = Observable.EveryUpdate().TakeWhile(_ => _isStaticDead == false && gameObject != null).Subscribe(_ =>
+        {
+            if (_rb.Any(x => !Mathf.Approximately(x.velocity.sqrMagnitude, 0)))
+                return;
+
+            _isStaticDead = true;
+            SetRb(true);
+        });
+    }
+
+    private void SetRb(bool isKinematic)
+    {
+        foreach (var rb in _rb)
+        {
+            rb.isKinematic = isKinematic;
         }
     }
 
@@ -123,5 +135,11 @@ public class Enemy : SlowmotionRoot, ICinemachineDirector
     public void Clear()
     {
         _cinemaData?.Clear();
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        _waitDeadFly?.Dispose();
     }
 }

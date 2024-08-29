@@ -371,6 +371,7 @@ MonoBehaviour:
   _enemyPrefabs:
   - {fileID: 6730840368580610037, guid: 459334c53c67f5346b6404462844d07b, type: 3}
   navMeshData:
+  - {fileID: 23800000, guid: 97d14c00a767d4b4f84901b4c9ff97bb, type: 2}
   - {fileID: 23800000, guid: 78d2b66380ea045438ae72fcbb026562, type: 2}
 --- !u!1 &2454892289988608247
 GameObject:
@@ -626,7 +627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_CollectObjects: 0
+  m_CollectObjects: 2
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
@@ -729,7 +730,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 131072
   m_UseGeometry: 0
   m_DefaultArea: 4
   m_IgnoreNavMeshAgent: 1
@@ -739,7 +740,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.033333335
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: af62211886f48024bad766ec938a13ff, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 97d14c00a767d4b4f84901b4c9ff97bb, type: 2}
 --- !u!1 &5178836570883385400
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,7 +918,7 @@ GameObject:
   - component: {fileID: 2012668978406701671}
   - component: {fileID: 7794433517668476513}
   - component: {fileID: 4503576690155347081}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1060,7 +1061,7 @@ GameObject:
   - component: {fileID: 8344822078224326147}
   - component: {fileID: 6212815156689983329}
   - component: {fileID: 5835508262680050178}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}

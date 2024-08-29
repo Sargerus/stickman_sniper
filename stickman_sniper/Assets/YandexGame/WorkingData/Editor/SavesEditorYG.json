@@ -1,5 +1,5 @@
 {
-    "idSave": 174,
+    "idSave": 99,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
@@ -10,17 +10,17 @@
         true,
         false
     ],
-    "levelsPassed": 7,
+    "levelsPassed": 24,
     "currencies": [
         {
             "Key": "gold",
-            "Value": 360.0
+            "Value": 860.0
         }
     ],
     "purchases": [
         "-368270586",
-        "-1329021927",
+        "880147643",
         "-753201110",
-        "-1149852207"
+        "903384978"
     ]
 }

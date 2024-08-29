@@ -528,7 +528,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.033333335
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 2d2252012f0590446b7c73abc7851d7b, type: 2}
 --- !u!114 &8402247748145715749
@@ -557,7 +557,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.033333335
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 69e67cc316e74bc47934dcf8850d94c1, type: 2}
 --- !u!1 &2454892289327345423
@@ -615,8 +615,7 @@ MonoBehaviour:
   - {fileID: 6336979422504647029}
   _enemyPrefabs:
   - {fileID: 6730840368580610037, guid: 459334c53c67f5346b6404462844d07b, type: 3}
-  navMeshData:
-  - {fileID: 23800000, guid: 2611534c512825f449d4d4dfeefb5638, type: 2}
+  navMeshData: []
 --- !u!1 &2454892289988608247
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,7 +967,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.033333335
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 2611534c512825f449d4d4dfeefb5638, type: 2}
 --- !u!1 &4684604075074985540
@@ -26603,6 +26602,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4781655487711998900, guid: 0184048a5efdfdc48bb663b4b6e998d5,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4781655487711998900, guid: 0184048a5efdfdc48bb663b4b6e998d5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.3
       objectReference: {fileID: 0}
     - target: {fileID: 7627044392682886766, guid: 0184048a5efdfdc48bb663b4b6e998d5,
         type: 3}

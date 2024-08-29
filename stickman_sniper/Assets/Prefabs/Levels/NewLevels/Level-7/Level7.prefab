@@ -379,7 +379,7 @@ MonoBehaviour:
   _enemyPrefabs:
   - {fileID: 6730840368580610037, guid: 459334c53c67f5346b6404462844d07b, type: 3}
   navMeshData:
-  - {fileID: 23800000, guid: 2611534c512825f449d4d4dfeefb5638, type: 2}
+  - {fileID: 23800000, guid: 3e3e73bbd6b835d40bd4a2dd90ee1e17, type: 2}
 --- !u!1 &2454892289988608247
 GameObject:
   m_ObjectHideFlags: 0

@@ -346,8 +346,6 @@ MonoBehaviour:
   _enemyPrefabs:
   - {fileID: 6730840368580610037, guid: 459334c53c67f5346b6404462844d07b, type: 3}
   navMeshData:
-  - {fileID: 23800000, guid: 2d2252012f0590446b7c73abc7851d7b, type: 2}
-  - {fileID: 23800000, guid: 69e67cc316e74bc47934dcf8850d94c1, type: 2}
   - {fileID: 23800000, guid: 0ca8fea4a04e9274b917dd628ac9ae9e, type: 2}
 --- !u!1 &2454892289988608247
 GameObject:
@@ -661,7 +659,7 @@ GameObject:
   - component: {fileID: 5917868062326581654}
   - component: {fileID: 8264736279713163318}
   - component: {fileID: 8289645387133300001}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 2454892289327345408}
   - component: {fileID: 2864153896263572652}
   m_Layer: 0
-  m_Name: Level15
+  m_Name: Level20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -626,8 +626,8 @@ MonoBehaviour:
   _enemyPrefabs:
   - {fileID: 6730840368580610037, guid: 459334c53c67f5346b6404462844d07b, type: 3}
   navMeshData:
-  - {fileID: 23800000, guid: 41e2bb3d7010f754bbbaf5aabec70357, type: 2}
-  - {fileID: 23800000, guid: 8079ffae7e380d44992e0c2d81df61d5, type: 2}
+  - {fileID: 23800000, guid: d4f03cf7db9ae0542a1c22a9099df94b, type: 2}
+  - {fileID: 23800000, guid: e5a00f67e301a2d43a170861492ba726, type: 2}
 --- !u!1 &2454892289988608247
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,7 +1438,7 @@ GameObject:
   - component: {fileID: 7445381118654323982}
   - component: {fileID: 881343273373573135}
   - component: {fileID: 7189903675939846359}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: w
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1578,7 +1578,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 131072
   m_UseGeometry: 0
   m_DefaultArea: 3
   m_IgnoreNavMeshAgent: 1
@@ -1588,7 +1588,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.033333335
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 8079ffae7e380d44992e0c2d81df61d5, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: e5a00f67e301a2d43a170861492ba726, type: 2}
 --- !u!1 &4684604075074985540
 GameObject:
   m_ObjectHideFlags: 0
@@ -2279,7 +2279,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 131072
   m_UseGeometry: 0
   m_DefaultArea: 4
   m_IgnoreNavMeshAgent: 1
@@ -2289,7 +2289,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.033333335
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 41e2bb3d7010f754bbbaf5aabec70357, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: d4f03cf7db9ae0542a1c22a9099df94b, type: 2}
 --- !u!1 &7052783573988008621
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,8 @@ namespace InfimaGames.LowPolyShooterPack
 
         private IInputService _inputService;
 
+        private bool _isEnabled;
+
         [Inject]
         private void Construct(IInputService inputService, Character playerCharacter)
         {
@@ -204,6 +206,9 @@ namespace InfimaGames.LowPolyShooterPack
         /// Moves the camera to the character, processes jumping and plays sounds every frame.
         protected override void Update()
         {
+            if (controller.enabled == false || _isEnabled == false)
+                return;
+
             //Get the equipped weapon!
             //equippedWeapon = playerCharacter.GetInventory().GetEquipped();
 
@@ -450,6 +455,18 @@ namespace InfimaGames.LowPolyShooterPack
         /// Returns the value of Grounded.
         /// </summary>
         public override bool IsGrounded() => controller.isGrounded;
+
+        public override void HardSetPosition(Vector3 position)
+        {
+            controller.enabled = false;
+            transform.position = position;
+            controller.enabled = true;
+        }
+
+        public override void EnableBehaviour()
+        {
+            _isEnabled = true;
+        }
 
         #endregion
     }

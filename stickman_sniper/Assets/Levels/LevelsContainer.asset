@@ -12,19 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ce03edecc237a40a596135d7e333e5, type: 3}
   m_Name: LevelsContainer
   m_EditorClassIdentifier: 
-  TestLevel: {fileID: 0}
+  TestLevel: {fileID: 2864153896263572652, guid: 343e3a96e33149a46aef5b5ff3e3520a,
+    type: 3}
   Levels:
-  - {fileID: 2864153896263572652, guid: e73af295af6ad7743b725ed52ccfd2a9, type: 3}
-  - {fileID: 2864153896263572652, guid: 17bf3242e8c9e354ea50c595be76f768, type: 3}
-  - {fileID: 2864153896263572652, guid: af1b7187e35c8e644b5ffe3359d44867, type: 3}
-  - {fileID: 2864153896263572652, guid: 40d470c03134f70439e94831a5c922c7, type: 3}
-  - {fileID: 2864153896263572652, guid: eb02c58e207f24044a3c5f9e7dc89285, type: 3}
-  - {fileID: 2864153896263572652, guid: c25f82e41d3f65547bb36b4b13a93835, type: 3}
-  - {fileID: 2864153896263572652, guid: f9c52b289ed77784c85490bde84a5dda, type: 3}
-  - {fileID: 2864153896263572652, guid: 1fd331bb62bdd9444a23f1fde2b5aa07, type: 3}
-  - {fileID: 2864153896263572652, guid: c8527b535bf950544989cd2d08cc438e, type: 3}
-  - {fileID: 2864153896263572652, guid: 206865e70e235044fb32046c3ad71658, type: 3}
-  - {fileID: 2864153896263572652, guid: 0b575c85807c18f4c982babfe5f25373, type: 3}
-  - {fileID: 2864153896263572652, guid: e84d10848f7c6ca4eaf275e71b2ab5f8, type: 3}
-  - {fileID: 2864153896263572652, guid: caf4cd536abd8a04fa1387beabaf5df0, type: 3}
-  - {fileID: 2864153896263572652, guid: 0cfcdd83e8271624395ee8dd6f9ad217, type: 3}
+  - {fileID: 3701799682196021622, guid: eb02c58e207f24044a3c5f9e7dc89285, type: 3}

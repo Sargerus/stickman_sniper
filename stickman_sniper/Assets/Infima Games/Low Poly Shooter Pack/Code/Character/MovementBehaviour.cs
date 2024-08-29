@@ -112,6 +112,10 @@ namespace InfimaGames.LowPolyShooterPack
         /// </summary>
         public abstract void TryToggleCrouch();
 
+        public abstract void EnableBehaviour();
+
+        public abstract void HardSetPosition(Vector3 position);
+
         #endregion
     }
 }

@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using DWTools;
 using DWTools.Extensions;
 using InfimaGames.LowPolyShooterPack;
 using System;
@@ -21,32 +23,24 @@ public class Level : MonoBehaviour
     [Inject] private Character.Factory _characterFactory;
     [Inject] private ILevelProgressObserver _levelProgressObserver;
     [Inject] private DiContainer _container;
+    [Inject] private CursorLocker _cursorLocker;
 
-    public async void Start()
+    public void Start()
     {
         foreach (var nmData in navMeshData)
             _navMeshInstances.Add(NavMesh.AddNavMeshData(nmData));
 
-        //int max = Math.Min(_enemiesSpawns.Count, _enemyCountMax);
-        //int enemiesCount = UnityEngine.Random.Range(_enemyCountMin, max);
-        //
-        //List<Transform> copyList = new(_enemiesSpawns);
-        //for (int i = 0; i < enemiesCount; i++)
-        //{
-        //    Transform place = copyList.Random();
-        //    copyList.Remove(place);
-        //
-        //    var enemy = _container.InstantiatePrefabForComponent<Enemy>(_enemyPrefabs.Random(), place.position, place.rotation, transform);
-        //    _enemies.Add(enemy);
-        //}
-
         Enemy[] enemies = FindObjectsOfType<Enemy>();
 
         var playerPlace = _playerSpawns.Random();
+        Debug.Log($"Placer place {playerPlace.position}");
         _player = _characterFactory.Create();
+        Debug.Log($"Player position before {_player.transform.position}");
         _player.transform.position = playerPlace.position;
+        Debug.Log($"Player position after {_player.transform.position}");
         _player.transform.rotation = playerPlace.rotation;
-        await _player.Initialize();
+        _player.Initialize();
+
         _levelProgressObserver.Observe(enemies);
     }
 

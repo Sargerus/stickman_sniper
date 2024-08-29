@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
+using DWTools;
 using DWTools.Windows;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
@@ -35,7 +35,7 @@ public sealed class GameSceneState : SceneState
     private async UniTask AwaitUImanagerInitialized()
     {
         await UniTask.WaitUntil(() => _uiManager != null);
-
+        await UniTask.WaitUntil(() => GameObject.FindObjectsOfType<UICameraProvider>().Length > 0);
         var cameras = GameObject.FindObjectsOfType<UICameraProvider>();
         UICameraProvider uiCamera = null;
         foreach (var c in cameras)

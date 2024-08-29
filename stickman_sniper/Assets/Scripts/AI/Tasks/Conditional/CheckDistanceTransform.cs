@@ -14,7 +14,7 @@ public class CheckDistanceTransform : Conditional
         TaskStatus result = TaskStatus.Running;
 
         if (TargetTransform.Value == null)
-            return TaskStatus.Success;
+            return TaskStatus.Failure;
 
         if (Vector3.Distance(Agent.Value.transform.position, TargetTransform.Value.position) <= Distance)
         {

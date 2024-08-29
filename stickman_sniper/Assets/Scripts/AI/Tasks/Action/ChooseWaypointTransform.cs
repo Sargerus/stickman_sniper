@@ -17,12 +17,16 @@ public class ChooseWaypointTransform : Action
 
     public override void OnAwake()
     {
-        _waypoints = WaypointsContainer.Value.GetComponentsInChildren<Waypoint>().Where(g => g.WaypointType == WaypointType)
-            .Select(g => g.transform).ToList();
+        if (WaypointsContainer.Value != null)
+            _waypoints = WaypointsContainer.Value.GetComponentsInChildren<Waypoint>().Where(g => g.WaypointType == WaypointType)
+                .Select(g => g.transform).ToList();
     }
 
     public override TaskStatus OnUpdate()
     {
+        if (_waypoints == null || _waypoints.Count == 0)
+            return TaskStatus.Failure;
+
         if (CurrentWaypoint.Value == null)
             Next();
 
@@ -31,15 +35,7 @@ public class ChooseWaypointTransform : Action
 
     public Transform Next()
     {
-        //if (_currentIndex + 1 >= _waypoints.Count)
-        //{
-        //    _currentIndex = -1;
-        //}
-        //
-        //_currentIndex++;
-        //_currentIndex = Mathf.Clamp(_currentIndex, 0, _waypoints.Count);
         CurrentWaypoint.Value = _waypoints.Random().transform;
-
         return CurrentWaypoint.Value;
     }
 }

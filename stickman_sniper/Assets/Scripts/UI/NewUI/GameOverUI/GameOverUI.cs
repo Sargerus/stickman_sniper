@@ -10,6 +10,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using InfimaGames.LowPolyShooterPack;
 using DWTools;
+using stickman_sniper.Currency;
 
 public class GameOverUI : BaseWindow
 {
@@ -30,19 +31,21 @@ public class GameOverUI : BaseWindow
     private Character _character;
     private ILevelLoader _levelLoader;
     private CursorLocker _cursorLocker;
+    private ICurrencyService _currencyService;
 
     private CompositeDisposable _disposables = new();
 
     [Inject]
     public void Construct(ILevelProgressObserver levelProgressObserver,
         Character character, ILoadingManagerHolder loadingManagerHolder, ILevelLoader levelLoader,
-        CursorLocker cursorLocker)
+        CursorLocker cursorLocker, ICurrencyService currencyService)
     {
         _levelProgressObserver = levelProgressObserver;
         _character = character;
         _loadingManagerHolder = loadingManagerHolder;
         _levelLoader = levelLoader;
         _cursorLocker = cursorLocker;
+        _currencyService = currencyService;
     }
 
     protected override async UniTask BeforeShow(CancellationToken token)
@@ -64,8 +67,10 @@ public class GameOverUI : BaseWindow
 
     private void ShowWinUI()
     {
+        _currencyService.AddCurrency(CurrencyServiceConstants.GoldCurrency, _levelProgressObserver.TotalEnemies * 10);
+
         var equippedWeapon = _character.GetInventory().GetEquipped();
-        int currentAmmunition = equippedWeapon.GetAmmunitionCurrent();
+        int currentAmmunition = equippedWeapon.GetAmmunitionCurrent() + equippedWeapon.GetAmmunitionSpareLeft();
 
         resultTextWin.gameObject.SetActive(true);
         earnCoins.SetActive(true);
@@ -76,8 +81,8 @@ public class GameOverUI : BaseWindow
 
         _bulletsText.SetText($"{currentAmmunition}");
         StartCoroutine(ShowStar(_star2.GetComponent<Image>(), 0.4f));
-        
-        _restartsText.SetText($"{50}");
+
+        _restartsText.SetText($"{_levelProgressObserver.TotalEnemies * 10}");
         StartCoroutine(ShowStar(_star3.GetComponent<Image>(), 0.8f));
 
         _nextLevelButton.gameObject.SetActive(true);

@@ -79,6 +79,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
         await PrelaodDependencies();
         await podiumController.Initialize(weaponItem, _customizationIndexes);
         Subscribe();
+        RefreshButtonsState(_currentIndexSelectedReactive.Value);
         SubscribeRawImage();
         InitializeTabs();
         SwitchTab(AttachmentsTab.Scope);
@@ -88,10 +89,14 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
     {
         backButton.OnClickAsObservable().Subscribe(_ => { _backClickHandler.OnNext(_key); }).AddTo(_disposables);
 
-        _currentIndexSelectedReactive.Subscribe(index =>
+        _currentIndexSelectedReactive.SkipLatestValueOnSubscribe().Subscribe(index =>
         {
             if (index >= 0)
-                _currentIndexSelectedReactiveString.Value = _cells[index].Visual.ProductKey;
+            {
+                var i = _productVisualsContainer.GetItemByHash(_currentContent[index]);
+                _currentIndexSelectedReactiveString.SetValueAndForceNotify(i.ProductKey);
+            }
+            else _currentIndexSelectedReactiveString.Value = string.Empty;
 
             RefreshButtonsState(index);
         }).AddTo(_disposables);
@@ -227,9 +232,6 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
 
         ClearCells();
 
-        _currentTab = tab;
-        int selectedIndex = _customizationIndexes.GetIndex(_currentTab);
-
         switch (tab)
         {
             case AttachmentsTab.Scope: _currentContent = podiumController.AttachmentManager.GetScopes(); break;
@@ -238,6 +240,9 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
             case AttachmentsTab.Grip: _currentContent = podiumController.AttachmentManager.GetGrips(); break;
             case AttachmentsTab.Magazine: _currentContent = podiumController.AttachmentManager.GetMagazines(); break;
         }
+
+        _currentTab = tab;
+        _currentIndexSelectedReactive.Value = _customizationIndexes.GetIndex(_currentTab);
 
         for (int i = 0; i < _currentContent.Count; i++)
         {
@@ -252,9 +257,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
             }
 
             InitCellState(cell, weaponInventoryVisuals, i);
-        }
-
-        _currentIndexSelectedReactive.Value = selectedIndex;
+        }        
 
         _cellClickHandler.Subscribe(indexString =>
         {

@@ -17,7 +17,6 @@ public class WinLoseDecider : IInitializable, IDisposable
     private readonly IInputService _inputService;
     private readonly DiContainer _diContainer;
     private readonly Character _character;
-    private readonly ICurrencyService _currencyService;
 
     private CompositeDisposable _disposables = new();
 
@@ -25,7 +24,7 @@ public class WinLoseDecider : IInitializable, IDisposable
         List<IProgressObserver> progressObservers,
         [Inject(Id = "mobile")] CameraProvider cameraProvider,
         IInputService inputService, DiContainer diContainer,
-        Character character, ICurrencyService currencyService)
+        Character character)
     {
         _uiManager = uiManager;
         _progressObservers = progressObservers;
@@ -33,7 +32,6 @@ public class WinLoseDecider : IInitializable, IDisposable
         _inputService = inputService;
         _diContainer = diContainer;
         _character = character;
-        _currencyService = currencyService;
     }
 
     public void Initialize()
@@ -44,8 +42,6 @@ public class WinLoseDecider : IInitializable, IDisposable
             HideMobile();
             _character.freeze = true;
             _inputService.DisableInput(true);
-            if (x)
-                _currencyService.AddCurrency(CurrencyServiceConstants.GoldCurrency, 50);
             var handler = await _uiManager.CreateWindow("game_over_ui", null, _diContainer);
             await handler.Show(false);
             //_firstPersonController.Freeze(true);

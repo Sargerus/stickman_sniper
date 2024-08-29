@@ -13,6 +13,7 @@ using UniRx;
 using InfimaGames.LowPolyShooterPack.Interface;
 using DWTools.Windows;
 using YG;
+using UniversalMobileController;
 
 namespace InfimaGames.LowPolyShooterPack
 {
@@ -327,6 +328,7 @@ namespace InfimaGames.LowPolyShooterPack
         public override async UniTask Initialize()
         {
             //Always make sure that our cursor is locked when the game starts!
+            _cursorLocker.Lock();
             //cursorLocked = true;
             //Update the cursor's state.
             //UpdateCursorState();
@@ -362,7 +364,9 @@ namespace InfimaGames.LowPolyShooterPack
 
             await InitializeInventory();
             //await canvasSpawner.Initialize();
+            Debug.Log("Initialize ui");
             _playersOverlayHandler = await _uiManager.CreateWindow("players_overlay", new PlayersOverlayWindowModel("players_overlay", characterComponent.Character), _diContainer);
+            Debug.Log("Show ui");
             await _playersOverlayHandler.Show(true);
 
             //initialize camera
@@ -370,6 +374,8 @@ namespace InfimaGames.LowPolyShooterPack
             {
                 mobileCamera.gameObject.SetActive(true);
             }
+
+            movementBehaviour.EnableBehaviour();
 
             _isInitialized = true;
         }

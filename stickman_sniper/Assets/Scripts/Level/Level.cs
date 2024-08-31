@@ -33,11 +33,8 @@ public class Level : MonoBehaviour
         Enemy[] enemies = FindObjectsOfType<Enemy>();
 
         var playerPlace = _playerSpawns.Random();
-        Debug.Log($"Placer place {playerPlace.position}");
         _player = _characterFactory.Create();
-        Debug.Log($"Player position before {_player.transform.position}");
         _player.transform.position = playerPlace.position;
-        Debug.Log($"Player position after {_player.transform.position}");
         _player.transform.rotation = playerPlace.rotation;
         _player.Initialize();
 

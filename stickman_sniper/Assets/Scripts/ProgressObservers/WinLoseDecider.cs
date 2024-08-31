@@ -1,3 +1,4 @@
+using Counters;
 using Cysharp.Threading.Tasks;
 using DWTools;
 using DWTools.Windows;
@@ -7,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
+using YG;
 using Zenject;
 
 public class WinLoseDecider : IInitializable, IDisposable
@@ -44,6 +46,11 @@ public class WinLoseDecider : IInitializable, IDisposable
             _inputService.DisableInput(true);
             var handler = await _uiManager.CreateWindow("game_over_ui", null, _diContainer);
             await handler.Show(false);
+
+            if (YandexGame.savesData.levelsPassed >= 5 && YandexGame.EnvironmentData.reviewCanShow)
+            {
+                YandexGame.ReviewShow(true);
+            }
             //_firstPersonController.Freeze(true);
             //_firstPersonController.ToggleScopeOff();
             //_uiManager.ShowWinPopup().Forget();

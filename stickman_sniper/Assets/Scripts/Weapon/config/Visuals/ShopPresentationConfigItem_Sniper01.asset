@@ -96,7 +96,7 @@ MonoBehaviour:
       m_SubObjectType: 
       m_EditorAssetChanged: 0
     ObtainBy: 1
-    Cost: 200
+    Cost: 300
   - ProductKey: Sniper 01_scope_4
     ProductName: 
     Hash: 632185177
@@ -116,8 +116,8 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-    ObtainBy: 1
-    Cost: 200
+    ObtainBy: 3
+    Cost: 400
   - ProductKey: Sniper 01_scope_5
     ProductName: 
     Hash: 2122329595
@@ -138,7 +138,7 @@ MonoBehaviour:
       m_SubObjectType: 
       m_EditorAssetChanged: 0
     ObtainBy: 1
-    Cost: 200
+    Cost: 500
   - ProductKey: Sniper 01_scope_6
     ProductName: 
     Hash: 1295361385
@@ -159,7 +159,7 @@ MonoBehaviour:
       m_SubObjectType: 
       m_EditorAssetChanged: 0
     ObtainBy: 1
-    Cost: 200
+    Cost: 600
   - ProductKey: Sniper 01_scope_7
     ProductName: 
     Hash: 880147643
@@ -180,7 +180,7 @@ MonoBehaviour:
       m_SubObjectType: 
       m_EditorAssetChanged: 0
     ObtainBy: 1
-    Cost: 200
+    Cost: 700
   - ProductKey: Sniper 01_scope_8
     ProductName: 
     Hash: 1232666277
@@ -201,7 +201,7 @@ MonoBehaviour:
       m_SubObjectType: 
       m_EditorAssetChanged: 0
     ObtainBy: 1
-    Cost: 200
+    Cost: 800
   - ProductKey: Sniper 01_muzzle_1
     ProductName: 
     Hash: -753201110
@@ -264,7 +264,7 @@ MonoBehaviour:
       m_SubObjectType: 
       m_EditorAssetChanged: 0
     ObtainBy: 1
-    Cost: 200
+    Cost: 300
   - ProductKey: Sniper 01_muzzle_4
     ProductName: 
     Hash: 56858736
@@ -285,7 +285,7 @@ MonoBehaviour:
       m_SubObjectType: 
       m_EditorAssetChanged: 0
     ObtainBy: 1
-    Cost: 200
+    Cost: 400
   - ProductKey: Sniper 01_laser_1
     ProductName: 
     Hash: 687763307
@@ -327,7 +327,7 @@ MonoBehaviour:
       m_SubObjectType: 
       m_EditorAssetChanged: 0
     ObtainBy: 1
-    Cost: 200
+    Cost: 300
   - ProductKey: Sniper 01_grip_1
     ProductName: 
     Hash: 1250661548

@@ -24,6 +24,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
     [SerializeField, BoxGroup("Buttons")] private Button backButton;
     [SerializeField, BoxGroup("Buttons")] private Button chooseButton;
     [SerializeField, BoxGroup("Buttons")] private Button buyButton;
+    [SerializeField, BoxGroup("Buttons")] private Button adButton;
     [SerializeField, BoxGroup("Buttons")] private TMP_Text buyButtonTextEnough;
     [SerializeField, BoxGroup("Buttons")] private TMP_Text buyButtonTextNotEnough;
 
@@ -156,6 +157,30 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
             selectedCell.SetState(GetCellState(selectedCell));
         }).AddTo(_disposables);
 
+        adButton.OnClickAsObservable().Subscribe(_ =>
+        {
+            if (!_currentContent.TryGetValue(_currentIndexSelectedReactive.Value, out string hash))
+                return;
+
+            ShopProductVisual visuals = _productVisualsContainer.GetItemByHash(hash);
+
+            switch (visuals.ObtainBy)
+            {
+                case ShopProductVisual.ObtainType.Ad:
+                    {
+                        Debug.Log($"AAA pure hash {hash}");
+
+                        _purchaseService.SetNextBuyByRewardedAd(hash);
+                        YandexGame.RewVideoShow(1);
+
+                        break;
+                    }
+            }
+
+            var selectedCell = _cells[_currentIndexSelectedReactive.Value];
+            selectedCell.SetState(GetCellState(selectedCell));
+        }).AddTo(_disposables);
+
         _tabClickHandler.Subscribe(tabKey =>
         {
             AttachmentsTab ConvertStringToTab(string key) => key switch
@@ -257,7 +282,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
             }
 
             InitCellState(cell, weaponInventoryVisuals, i);
-        }        
+        }
 
         _cellClickHandler.Subscribe(indexString =>
         {
@@ -315,21 +340,12 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
                 {
                     bool isEnoughMoney = _currencyService.GetCurrency(CurrencyServiceConstants.GoldCurrency).Value >= visual.Cost;
 
+                    adButton.gameObject.SetActive(false);
                     buyButtonTextEnough.gameObject.SetActive(isEnoughMoney);
                     buyButtonTextNotEnough.gameObject.SetActive(!isEnoughMoney);
 
-                    buyButtonTextEnough.SetText(visual.Cost.ToString());
-                    buyButtonTextNotEnough.SetText(visual.Cost.ToString());
-
-                    break;
-                }
-            case ShopProductVisual.ObtainType.Ad:
-                {
-                    buyButtonTextEnough.gameObject.SetActive(true);
-                    buyButtonTextNotEnough.gameObject.SetActive(false);
-
-                    buyButtonTextEnough.SetText("Watch Ad");
-                    buyButtonTextNotEnough.SetText("Watch Ad");
+                    buyButtonTextEnough.SetText($"<sprite name=\"ic_coin\"> {visual.Cost}");
+                    buyButtonTextNotEnough.SetText($"<sprite name=\"ic_coin\"> {visual.Cost}");
 
                     break;
                 }
@@ -356,14 +372,26 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
         if (_purchaseService.GetIsPurchasedReactiveProperty(hash).Value)
         {
             buyButton.gameObject.SetActive(false);
+            adButton.gameObject.SetActive(false);
             chooseButton.gameObject.SetActive(_currentIndexSelectedReactive.Value >= 0 && _currentIndexSelectedReactive.Value != _customizationIndexes.GetIndex(_currentTab));
         }
         else
         {
             ShopProductVisual visuals = _productVisualsContainer.GetItemByHash(hash);
 
-            SetBuyButtonText(visuals);
-            buyButton.gameObject.SetActive(true);
+            switch (visuals.ObtainBy)
+            {
+                case ShopProductVisual.ObtainType.SoftCurrency:
+                    buyButton.gameObject.SetActive(true);
+                    adButton.gameObject.SetActive(false);
+                    SetBuyButtonText(visuals);
+                    break;
+                case ShopProductVisual.ObtainType.Ad:
+                    buyButton.gameObject.SetActive(false);
+                    adButton.gameObject.SetActive(true);
+                    break;
+            }
+
             chooseButton.gameObject.SetActive(false);
         }
     }

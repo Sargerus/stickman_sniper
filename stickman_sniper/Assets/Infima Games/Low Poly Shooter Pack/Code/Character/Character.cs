@@ -364,9 +364,7 @@ namespace InfimaGames.LowPolyShooterPack
 
             await InitializeInventory();
             //await canvasSpawner.Initialize();
-            Debug.Log("Initialize ui");
             _playersOverlayHandler = await _uiManager.CreateWindow("players_overlay", new PlayersOverlayWindowModel("players_overlay", characterComponent.Character), _diContainer);
-            Debug.Log("Show ui");
             await _playersOverlayHandler.Show(true);
 
             //initialize camera

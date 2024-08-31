@@ -1,2 +1,2 @@
 Build path: D:/UnityProjects/stickman_sniper/stickman_sniper/stickman_sniper/Builds
-Build number: 76
+Build number: 78

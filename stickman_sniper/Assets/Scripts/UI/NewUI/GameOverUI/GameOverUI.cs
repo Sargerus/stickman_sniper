@@ -98,7 +98,7 @@ public class GameOverUI : BaseWindow
     private void ShowLoseUI()
     {
         var equippedWeapon = _character.GetInventory().GetEquipped();
-        int currentAmmunition = equippedWeapon.GetAmmunitionCurrent();
+        int currentAmmunition = equippedWeapon.GetAmmunitionCurrent() + equippedWeapon.GetAmmunitionSpareLeft();
 
         resultTextWin.gameObject.SetActive(false);
         earnCoins.SetActive(false);

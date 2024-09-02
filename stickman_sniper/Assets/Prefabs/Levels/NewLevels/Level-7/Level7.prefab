@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9222028131231652000
 Transform:
   m_ObjectHideFlags: 0
@@ -1718,8 +1718,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3612133921926705550, guid: 360d5822e57359447b9ce3d8a3b37532, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 360d5822e57359447b9ce3d8a3b37532, type: 3}
 --- !u!4 &7349119201711022628 stripped
 Transform:

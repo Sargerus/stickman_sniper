@@ -1,7 +1,7 @@
 {
-    "idSave": 16,
+    "idSave": 2,
     "isFirstSession": false,
-    "language": "en",
+    "language": "ru",
     "promptDone": false,
     "money": 1,
     "newPlayerName": "Hello!",
@@ -10,11 +10,11 @@
         true,
         false
     ],
-    "levelsPassed": 1,
+    "levelsPassed": 0,
     "currencies": [
         {
             "Key": "gold",
-            "Value": 20.0
+            "Value": 0.0
         }
     ],
     "purchases": [

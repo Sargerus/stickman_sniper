@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using YG.Insides.Utils;
 using YG.EditorScr;
+using System.IO;
 
 namespace YG.Insides
 {
@@ -24,6 +25,14 @@ namespace YG.Insides
             localization_IsActive = DefineSymbols.CheckDefine(define_Localization);
             saves_IsActive = DefineSymbols.CheckDefine(define_Saves);
             textMP_IsActive = DefineSymbols.CheckDefine(define_TextMP);
+
+            if (PlayerPrefs.GetInt("RebootUnityDialogIsRequired") == 1)
+            {
+                PlayerPrefs.SetInt("RebootUnityDialogIsRequired", 0);
+                PlayerPrefs.Save();
+                EditorUtility.DisplayDialog("Changing PluginYG settings", "Please restart the Unity editor!", "OK");
+                RecompileScripts();
+            }
         }
 
         public override void OnInspectorGUI()
@@ -34,11 +43,17 @@ namespace YG.Insides
             base.OnInspectorGUI();
             GUILayout.Space(10);
 
+            GUIStyle styleRed = new GUIStyle(GUI.skin.label);
+            styleRed.normal.textColor = Color.red;
+            GUIStyle styleGreen = new GUIStyle(GUI.skin.label);
+            styleGreen.normal.textColor = Color.green;
+
             if (localization_IsActive)
             {
                 if (GUILayout.Button("Deactivate Newtonsoft for AUTO_LOCALIZATION"))
                 {
                     DefineSymbols.RemoveDefine(define_Localization);
+                    SaveDialogRebootEditor();
                 }
             }
             else
@@ -47,20 +62,22 @@ namespace YG.Insides
                 {
                     if (!PackageDownloader.IsPackageImported(newtonsoftUrl))
                     {
-                        PackageDownloader.DownloadPackage(newtonsoftUrl);
+                        if (!PackageDownloader.DownloadPackage(newtonsoftUrl))
+                            return;
                     }
 
                     DefineSymbols.AddDefine(define_Localization);
+                    SaveDialogRebootEditor();
                 }
             }
 
             if (localization_IsActive)
             {
-                GUILayout.Label("Newtonsoft is currently ACTIVE for auto_localization");
+                GUILayout.Label("Newtonsoft is currently ACTIVE for auto_localization", styleGreen);
             }
             else
             {
-                GUILayout.Label("Newtonsoft is currently DEACTIVE for auto_localization");
+                GUILayout.Label("Newtonsoft is currently DEACTIVE for auto_localization", styleRed);
             }
 
             GUILayout.Space(7);
@@ -70,6 +87,7 @@ namespace YG.Insides
                 if (GUILayout.Button("Deactivate Newtonsoft for SAVES_DATA"))
                 {
                     DefineSymbols.RemoveDefine(define_Saves);
+                    SaveDialogRebootEditor();
                 }
             }
             else
@@ -78,20 +96,22 @@ namespace YG.Insides
                 {
                     if (!PackageDownloader.IsPackageImported(newtonsoftUrl))
                     {
-                        PackageDownloader.DownloadPackage(newtonsoftUrl);
+                        if (!PackageDownloader.DownloadPackage(newtonsoftUrl))
+                            return;
                     }
 
                     DefineSymbols.AddDefine(define_Saves);
+                    SaveDialogRebootEditor();
                 }
             }
 
             if (saves_IsActive)
             {
-                GUILayout.Label("Newtonsoft is currently ACTIVE for saves_data");
+                GUILayout.Label("Newtonsoft is currently ACTIVE for saves_data", styleGreen);
             }
             else
             {
-                GUILayout.Label("Newtonsoft is currently DEACTIVE for saves_data");
+                GUILayout.Label("Newtonsoft is currently DEACTIVE for saves_data", styleRed);
             }
 
             GUILayout.Space(7);
@@ -101,6 +121,7 @@ namespace YG.Insides
                 if (GUILayout.Button("Deactivate TEXT_MESH_PRO"))
                 {
                     DefineSymbols.RemoveDefine(define_TextMP);
+                    SaveDialogRebootEditor();
                 }
             }
             else
@@ -109,21 +130,48 @@ namespace YG.Insides
                 {
                     if (!PackageDownloader.IsPackageImported(textMPUrl))
                     {
-                        PackageDownloader.DownloadPackage(textMPUrl);
+                        if (!PackageDownloader.DownloadPackage(textMPUrl))
+                            return;
                     }
 
                     DefineSymbols.AddDefine(define_TextMP);
+                    SaveDialogRebootEditor();
                 }
             }
 
             if (textMP_IsActive)
             {
-                GUILayout.Label("TextMeshPro is ACTIVE for pluginYG");
+                GUILayout.Label("TextMeshPro is ACTIVE for pluginYG", styleGreen);
             }
             else
             {
-                GUILayout.Label("TextMeshPro is DEACTIVE for pluginYG");
+                GUILayout.Label("TextMeshPro is DEACTIVE for pluginYG", styleRed);
+            }
+
+            void SaveDialogRebootEditor()
+            {
+                PlayerPrefs.SetInt("RebootUnityDialogIsRequired", 1);
+                PlayerPrefs.Save();
+            }
+        }
+
+        public static void RecompileScripts()
+        {
+            string path = Application.dataPath + "/YandexGame/ScriptsYG/InfoYG/Editor/InfoYGEditor.cs";
+            if (File.Exists(path))
+            {
+                string text = File.ReadAllText(path);
+                text += "\n";
+                File.WriteAllText(path, text);
             }
         }
     }
 }
+
+
+
+
+
+
+
+

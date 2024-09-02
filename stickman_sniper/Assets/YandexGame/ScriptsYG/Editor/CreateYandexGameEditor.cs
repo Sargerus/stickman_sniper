@@ -1,4 +1,4 @@
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace YG.Insides
@@ -17,7 +17,7 @@ namespace YG.Insides
             {
                 PrefabUtility.InstantiatePrefab(prefab);
                 prefab.transform.position = new Vector3(0f, 0f, 0f);
-                Undo.RegisterCreatedObjectUndo(SceneAsset.FindObjectOfType<YandexGame>().gameObject, "Create YandexGame");
+                Undo.RegisterCreatedObjectUndo(SceneAsset.FindAnyObjectByType<YandexGame>().gameObject, "Create YandexGame");
             }
         }
     }

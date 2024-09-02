@@ -1,5 +1,4 @@
-using UnityEngine;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEditor.Build.Reporting;
 using UnityEditor.Build;
@@ -26,17 +25,6 @@ namespace YG.EditorScr.BuildModify
             ModifyBuildManager.ModifyIndex(pathToBuiltProject);
             ArchivingBuild.Archiving(pathToBuiltProject);
             BuildLog.WritingLog(pathToBuiltProject);
-        }
-
-        [MenuItem("Tools/PluginYG/Run Modify Build", false)]
-        public static void ModifyBuildMenuItem()
-        {
-            string buildPatch = BuildLog.ReadProperty("Build path");
-
-            if (buildPatch != null)
-                ModifyBuildManager.ModifyIndex(buildPatch);
-            else
-                Debug.LogError("Log is missing build patch");
         }
     }
 }

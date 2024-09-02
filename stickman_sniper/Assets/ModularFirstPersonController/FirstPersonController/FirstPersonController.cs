@@ -35,7 +35,7 @@ public class FirstPersonController : MonoBehaviour
     public Camera uiCamera;
     public Camera mobileCamera;
     public Camera weaponCamera;
-    public UIManager uiManager;
+    //public UIManager uiManager;
     public UniversalMobileController.FloatingJoyStick _moveJoystick;
     //public TMP_Text _text;
 
@@ -698,7 +698,7 @@ public class FirstPersonControllerEditor : Editor
         fpc.uiCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("UI Camera", "UI cameara"), fpc.uiCamera, typeof(Camera), true);
         fpc.mobileCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Mobile Camera", "Mobile Camera"), fpc.mobileCamera, typeof(Camera), true);
         fpc.weaponCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Weapon Camera", "Weapon Camera"), fpc.weaponCamera, typeof(Camera), true);
-        fpc.uiManager = (UIManager)EditorGUILayout.ObjectField(new GUIContent("UI Manager", "UI Manager"), fpc.uiManager, typeof(UIManager), true);
+        //fpc.uiManager = (UIManager)EditorGUILayout.ObjectField(new GUIContent("UI Manager", "UI Manager"), fpc.uiManager, typeof(UIManager), true);
         //fpc._text = (TMP_Text)EditorGUILayout.ObjectField(new GUIContent("text", "text"), fpc._text, typeof(TMP_Text), true);
         fpc.fov = EditorGUILayout.Slider(new GUIContent("Field of View", "The camera’s view angle. Changes the player camera directly."), fpc.fov, fpc.zoomFOV, 179f);
         fpc.cameraCanMove = EditorGUILayout.ToggleLeft(new GUIContent("Enable Camera Rotation", "Determines if the camera is allowed to move."), fpc.cameraCanMove);

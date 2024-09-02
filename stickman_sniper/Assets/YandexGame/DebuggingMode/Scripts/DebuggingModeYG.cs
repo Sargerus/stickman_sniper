@@ -70,7 +70,6 @@ namespace YG
                     "\nplayerId - " + playerId +
                     "\nauth - " + YandexGame.auth +
                     "\nSDKEnabled - " + YandexGame.SDKEnabled +
-                    "\ninitializedLB - " + YandexGame.initializedLB +
                     "\nphotoSize - " + YandexGame.photoSize +
                     "\ndomain - " + YandexGame.EnvironmentData.domain +
                     "\ndeviceType - " + YandexGame.EnvironmentData.deviceType +
@@ -83,7 +82,9 @@ namespace YG
                     "\nbrowserLang - " + YandexGame.EnvironmentData.browserLang +
                     "\npayload - " + YandexGame.EnvironmentData.payload +
                     "\npromptCanShow - " + YandexGame.EnvironmentData.promptCanShow +
-                    "\nreviewCanShow - " + YandexGame.EnvironmentData.reviewCanShow;
+                    "\nreviewCanShow - " + YandexGame.EnvironmentData.reviewCanShow +
+                    "\nplatform - " + YandexGame.EnvironmentData.platform +
+                    "\nbrowser - " + YandexGame.EnvironmentData.browser;
             }
         }
 
@@ -94,12 +95,12 @@ namespace YG
 
         public void AuthCheckButton()
         {
-            GameObject.FindObjectOfType<YandexGame>().InitializationGame();
+            GameObject.FindAnyObjectByType<YandexGame>()._RequestAuth();
         }
 
         public void AuthDialogButton()
         {
-            GameObject.FindObjectOfType<YandexGame>()._OpenAuthDialog();
+            GameObject.FindAnyObjectByType<YandexGame>()._OpenAuthDialog();
         }
 
         public void FullAdButton()
@@ -138,7 +139,7 @@ namespace YG
 
         public void RedefineLangButton()
         {
-            GameObject.FindObjectOfType<YandexGame>()._LanguageRequest();
+            GameObject.FindAnyObjectByType<YandexGame>()._LanguageRequest();
         }
 
         public void SwitchLanguage(Text text)

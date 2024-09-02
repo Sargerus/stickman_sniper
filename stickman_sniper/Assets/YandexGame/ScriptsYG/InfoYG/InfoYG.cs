@@ -10,18 +10,33 @@ using TMPro;
 
 namespace YG
 {
-    [CreateAssetMenu(fileName = "YandexGameData", menuName = "InfoYG"), HelpURL("https://ash-message-bf4.notion.site/PluginYG-d457b23eee604b7aa6076116aab647ed")]
+    [/*CreateAssetMenu(fileName = "YandexGameData", menuName = "InfoYG"),*/
+        HelpURL("https://ash-message-bf4.notion.site/PluginYG-d457b23eee604b7aa6076116aab647ed")]
     public partial class InfoYG : ScriptableObject
     {
         [Header("———————  Basic settings  ———————")]
 
         [Tooltip("При инициализации объекта Player авторизованному игроку будет показано диалоговое окно с запросом на предоставление доступа к персональным данным. Запрашивается доступ только к аватару и имени, идентификатор пользователя всегда передается автоматически. Примерное содержание: Игра запрашивает доступ к вашему аватару и имени пользователя на сервисах Яндекса.\nЕсли вам достаточно знать идентификатор, а имя и аватар пользователя не нужны, используйте опциональный параметр scopes: false. В этом случае диалоговое окно не будет показано.")]
         public bool scopes = true;
-
         public enum PlayerPhotoSize { small, medium, large };
         [ConditionallyVisible(nameof(scopes))]
         [Tooltip("Размер подкачанного изображения пользователя.")]
         public PlayerPhotoSize playerPhotoSize;
+
+        public string GetPlayerPhotoSize()
+        {
+            if (playerPhotoSize == PlayerPhotoSize.small)
+                return "small";
+            else if (playerPhotoSize == PlayerPhotoSize.medium)
+                return "medium";
+            else if (playerPhotoSize == PlayerPhotoSize.large)
+                return "large";
+
+            return null;
+        }
+
+        [Tooltip("Метод из SDK Яндекс при выполнении которого отражается момент, когда игра загрузила все ресурсы и готова к взаимодействию с пользователем.\n\nЕсли данный параметр 'Auto Game Ready API' включен, то плагин сам выполнит метод Game Ready API сразу после загрузки игры.\n\nЕсли в Вашей игре имеются свои реализации загрузки игры, например, загрузка первой сцены, то Вам необходимо снять галку 'Auto Game Ready API' и самостоятельно выполнять этот метод (по желанию), когда игра будет полностью загружена. Выполнение метода: `YandexGame.GameReadyAPI();`")]
+        public bool autoGameReadyAPI = true;
 
 #if UNITY_EDITOR
         [Serializable]
@@ -32,13 +47,14 @@ namespace YG
             public string language = "ru";
             public string name = "Player this";
             public string uniqueID = "000";
-            public string photo = photoExample;
+            public string photo = avatarExample;
+            [Tooltip("Четыре возможных значения, зависящих от частоты и объема покупок пользователя:\n\n •  paying — пользователь купил портальную валюту на сумму более 500 рублей за последний месяц.\n\n •  partially_paying — у пользователя была хотя бы одна покупка портальной валюты реальными деньгами за последний год.\n\n •  not_paying — пользователь не делал покупок портальной валюты реальными деньгами за последний год.\n\n •  unknown — пользователь не из РФ или он не разрешил передачу такой информации разработчику.")]
+            public string payingStatus = "paying";
+            [Tooltip("Время в мс, синхронизированное с сервером.")]
+            public long serverTime = 1721201231000;
         }
-        [ConditionallyVisible(nameof(scopes))]
         public PlayerInfoSimulation playerInfoSimulation;
 #endif
-
-        public bool autoGameReadyAPI = true;
 
         [Header("———————  Advertisement  ———————")]
 
@@ -59,12 +75,15 @@ namespace YG
         [Tooltip("Обработка вызовов показа рекламы\n\n •  Until Ad Is Shown - Не включать ограничительный таймер плагина, пока реклама не будет успешно показана. Если запрос на показ рекламы был отклонён по различным причинам, то вызовы к показу рекламы будут выполняться пока она не покажется.\n\n •  Resetting Timer After Any Ad Display - Включать ограничительный таймер плагина после любого вызова рекламы. Даже если реклама не была показана, запросы на рекламу смогут вновь выполняться только через указанный вами временной промежуток (Fullscreen Ad Interval).")]
         public AdCallsMode adDisplayCalls = AdCallsMode.until;
 
-        [Tooltip("Интервал запросов на вызов полноэкранной рекламы."), Min(5)]
+        [Tooltip("Интервал запросов на вызов полноэкранной рекламы."), Min(1)]
         public int fullscreenAdInterval = 60;
 
 #if UNITY_EDITOR
         [Tooltip("Длительность симуляции показа рекламы."), Min(0)]
         public float durationOfAdSimulation = 0.5f;
+
+        [Tooltip("Задержка открытия рекламы. Может быть полезна для тестирования уведомления о том, что скоро откроется реклама, перед ёё показом (в момент ожидания рекламы)."), Min(0)]
+        public float loadAdWithDelaySimulation = 0.0f;
 
         [Tooltip("Нажмите галочку, чтобы сэмулировать вызов ошибки при просмотре рекламы за вознаграждение. (Только для Unity Editor)")]
         public bool testErrorOfRewardedAdsInEditor;
@@ -88,17 +107,38 @@ namespace YG
         [Min(0)]
         public int saveCloudInterval = 5;
 
-        [Tooltip("Выполнять метод 'SaveProgress' при закрытии игры?")]
+        [Tooltip("Выполнять определённый метод при закрытии или обновлении страницы игры.")]
         public bool saveOnQuitGame = false;
+
+        [Serializable]
+        public class QuitGameMethod
+        {
+            [Tooltip("Имя объекта, который содержит нужный метод для выполнения после закрытия игры.")]
+            public string objectName = "YandexGame";
+
+            [Tooltip("Имя метода. Подходит публичный метод без перегрузок.")]
+            public string methodName = "_SaveProgress";
+        }
+        [ConditionallyVisible(nameof(saveOnQuitGame))]
+        public QuitGameMethod quitGameParameters = new QuitGameMethod
+        {
+            objectName = "YandexGame",
+            methodName = "_SaveProgress"
+        };
 
         [Header("———————  Leaderboards  ———————")]
 
         [Tooltip("Вкл/Выкл лидерборды")]
         public bool leaderboardEnable = true;
 
+        [ConditionallyVisible(nameof(leaderboardEnable)), Tooltip("Записывать рекорд анонимных игроков?")]
+        public bool saveScoreAnonymousPlayers = true;
+
         #region LeaderboardSimulation
 #if UNITY_EDITOR
-        public static string photoExample = "https://justplaygames.ru/public/icon_player.png";
+        public const string avatarExample = "https://justplaygames.ru/public/icon_player.png";
+        public const string hideAvatar = "https://games-sdk.yandex.ru/games/api/sdk/v1/player/avatar/0/islands-retina-small";
+
         public LBData[] leaderboardSimulation = new LBData[]
         {
             new LBData
@@ -107,12 +147,12 @@ namespace YG
                 entries = "Test LeaderBoard\nName: advanced\n1. anonymous: 10\n2. Ivan: 15\n3. Tanya: 23",
                 players = new LBPlayerData[6]
                 {
-                    new LBPlayerData { name = "anonymous", rank = 1, score = 10, uniqueID = "123", photo = photoExample},
-                    new LBPlayerData { name = "Ivan", rank = 2, score = 15, uniqueID = "321", photo = photoExample },
-                    new LBPlayerData { name = "Tanya", rank = 3, score = 23, uniqueID = "456", photo = photoExample },
-                    new LBPlayerData { name = "Player4", rank = 4, score = 30, uniqueID = "321", photo = photoExample },
-                    new LBPlayerData { name = "Player this", rank = 5, score = 40, uniqueID = "000", photo = photoExample },
-                    new LBPlayerData { name = "Player6", rank = 6, score = 50, uniqueID = "321", photo = photoExample }
+                    new LBPlayerData { name = "anonymous", rank = 1, score = 10, uniqueID = "123", photo = hideAvatar},
+                    new LBPlayerData { name = "Ivan", rank = 2, score = 15, uniqueID = "321", photo = avatarExample },
+                    new LBPlayerData { name = "Tanya", rank = 3, score = 23, uniqueID = "456", photo = avatarExample },
+                    new LBPlayerData { name = "Player4", rank = 4, score = 30, uniqueID = "321", photo = avatarExample },
+                    new LBPlayerData { name = "Player this", rank = 5, score = 40, uniqueID = "000", photo = avatarExample },
+                    new LBPlayerData { name = "Player6", rank = 6, score = 50, uniqueID = "321", photo = avatarExample }
                 },
                 type = "numeric",
                 thisPlayer = new LBThisPlayerData
@@ -132,12 +172,12 @@ namespace YG
                 entries = "Test LeaderBoard\nName: time\n1. anonymous: 10\n2. Max: 15\n3. Maria: 23",
                 players = new LBPlayerData[6]
                 {
-                    new LBPlayerData { name = "anonymous", rank = 1, score = 7123, uniqueID = "789", photo = photoExample},
-                    new LBPlayerData { name = "Max", rank = 2, score = 15321, uniqueID = "987", photo = photoExample },
-                    new LBPlayerData { name = "Maria", rank = 3, score = 62000, uniqueID = "891", photo = photoExample },
-                    new LBPlayerData { name = "Player4", rank = 4, score = 122000, uniqueID = "321", photo = photoExample },
-                    new LBPlayerData { name = "Player this", rank = 5, score = 127000, uniqueID = "000", photo = photoExample },
-                    new LBPlayerData { name = "Player6", rank = 6, score = 340000, uniqueID = "321", photo = photoExample }
+                    new LBPlayerData { name = "anonymous", rank = 1, score = 7123, uniqueID = "789", photo = hideAvatar},
+                    new LBPlayerData { name = "Max", rank = 2, score = 15321, uniqueID = "987", photo = avatarExample },
+                    new LBPlayerData { name = "Maria", rank = 3, score = 62000, uniqueID = "891", photo = avatarExample },
+                    new LBPlayerData { name = "Player4", rank = 4, score = 122000, uniqueID = "321", photo = avatarExample },
+                    new LBPlayerData { name = "Player this", rank = 5, score = 127000, uniqueID = "000", photo = avatarExample },
+                    new LBPlayerData { name = "Player6", rank = 6, score = 340000, uniqueID = "321", photo = avatarExample }
                 },
                 type = "numeric",
                 thisPlayer = new LBThisPlayerData
@@ -156,12 +196,12 @@ namespace YG
         public bool LocalizationEnable;
 
         public enum CallingLanguageCheck { FirstLaunchOnly, EveryGameLaunch, DoNotChangeLanguageStartup };
-        [Tooltip("Менять язык игры в соответствии с языком установленным Я.Играми:\nFirstLaunchOnly - Только при первом запуске игры\nEveryGameLaunch - Каждый раз при запуске игры\nDoNotChangeLanguageStartup - Не менять язык при запуске игры.")]
+        [Tooltip("Менять язык игры в соответствии с языком из данных окружения SDK Яндекс Игр:\n\n •  First LaunchOnly - Только при первом запуске игры.\n\n •  Every Game Launch - Каждый раз при запуске игры.\n\n •  Do Not Change Language Startup - Не менять язык при запуске игры.")]
         [ConditionallyVisible(nameof(LocalizationEnable))]
         public CallingLanguageCheck callingLanguageCheck = CallingLanguageCheck.EveryGameLaunch;
 
         public enum TranslateMethod { AutoLocalization, Manual, CSVFile };
-        [Tooltip("Метод перевода. \nAutoLocalization - Автоматический перевод через интернет с помощью Google Translate \nManual - Ручной режим. Вы сами записываете перевод в компоненте LanguageYG \nCSVFile - Перевод с помощью Excel файла.")]
+        [Tooltip("Метод перевода.\n\n •  AutoLocalization - Автоматический перевод через интернет с помощью Google Translate.\n\n •  Manual - Ручной режим. Вы сами записываете перевод в компоненте LanguageYG.\n\n •  CSVFile - Перевод с помощью Excel файла.")]
         [ConditionallyVisible(nameof(LocalizationEnable))]
         public TranslateMethod translateMethod;
 
@@ -346,7 +386,10 @@ namespace YG
                 title = "Gun",
                 description = "Product - Gun",
                 imageURI = "https://justplaygames.ru/public/Paymant1.png",
+                price = "5 YAN",
                 priceValue = "5",
+                priceCurrencyCode = "YAN",
+                currencyImageURL = "https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png",
                 consumed = true
             },
             new Purchase
@@ -355,7 +398,10 @@ namespace YG
                 title = "Armor",
                 description = "Product - Armor",
                 imageURI = "https://justplaygames.ru/public/Paymant2.png",
+                price = "10 YAN",
                 priceValue = "10",
+                priceCurrencyCode = "YAN",
+                currencyImageURL = "https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png",
                 consumed = true
             },
             new Purchase
@@ -364,7 +410,10 @@ namespace YG
                 title = "Grenade",
                 description = "Product - Grenade",
                 imageURI = "https://justplaygames.ru/public/Paymant3.png",
+                price = "30 YAN",
                 priceValue = "30",
+                priceCurrencyCode = "YAN",
+                currencyImageURL = "https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png",
                 consumed = true
             }
         };
@@ -411,11 +460,5 @@ namespace YG
         [ConditionallyVisible(nameof(pixelRatioEnable))]
         [Min(0)]
         public float pixelRatioValue = 1;
-
-        [Min(0), Tooltip("Для более старых версий Unity требуется задержка старта SDK (задержка в кардах в секунду).\nСтавить задержку сдедует, если при запуске игры на Web сервере, после загрузки игры происходит краш или функции SDK не работают. В таком случае, обновите Unity до актуальной версии, либо поставьте задержку (рекомедруется: 20).\nЕсли SDK успешно загружается, задержку ставить не требуется.")]
-        public int SDKStartDelay;
-
-        [Tooltip("(Для кастомных баннеров, не для рекламных. Они устарели и их нельзя использовать в Я.Играх!). Если данный параметр выключен, то статические баннеры будут отображаться только во время загрузки игры. Если данный параметр включен, то статические баннеры будут отображаться и во время загрузки игры и в самой игре они тоже будут присутствовать.")]
-        public bool staticRBTInGame;
     }
 }

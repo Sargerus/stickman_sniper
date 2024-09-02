@@ -13,7 +13,7 @@ public class FPSControllerInstaller : MonoInstaller
     [SerializeField] private CameraProvider _mobileCamera;
     [SerializeField] private CameraProvider _weaponCamera;
     [SerializeField] private CameraProvider _slowmotionCamera;
-    [SerializeField] private UIManager _uiManager;
+    //[SerializeField] private UIManager _uiManager;
     [SerializeField] private HandsController _handsController;
     [SerializeField] private MobileCanvas _mobileCanvas;
 

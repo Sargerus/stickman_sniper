@@ -28,10 +28,9 @@ namespace YG.Example
 
             textPlayerData.text = "playerName - " + YandexGame.playerName +
                 "\nplayerId - " + playerId +
+                "\nphotoSize - " + YandexGame.photoSize +
                 "\nauth - " + YandexGame.auth +
-                "\nSDKEnabled - " + YandexGame.SDKEnabled +
-                "\ninitializedLB - " + YandexGame.initializedLB +
-                "\nphotoSize - " + YandexGame.photoSize;
+                "\npayingStatus - " + YandexGame.payingStatus;
 
             if (imageLoad != null && YandexGame.auth)
                 imageLoad.Load(YandexGame.playerPhoto);
@@ -44,10 +43,15 @@ namespace YG.Example
                 "\nisTV - " + YandexGame.EnvironmentData.isTV +
                 "\nisTablet - " + YandexGame.EnvironmentData.isTablet +
                 "\nappID - " + YandexGame.EnvironmentData.appID +
+                "\nlang (sort) - " + YandexGame.lang +
+                "\nenvir lang - " + YandexGame.EnvironmentData.language +
                 "\nbrowserLang - " + YandexGame.EnvironmentData.browserLang +
                 "\npayload - " + YandexGame.EnvironmentData.payload +
                 "\npromptCanShow - " + YandexGame.EnvironmentData.promptCanShow +
-                "\nreviewCanShow - " + YandexGame.EnvironmentData.reviewCanShow;
+                "\nreviewCanShow - " + YandexGame.EnvironmentData.reviewCanShow +
+                "\nplatform - " + YandexGame.EnvironmentData.platform +
+                "\nbrowser - " + YandexGame.EnvironmentData.browser +
+                "\nisFullscreen - " + YandexGame.isFullscreen;
         }
     }
 }

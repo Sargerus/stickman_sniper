@@ -109,6 +109,49 @@ public class WeaponCharacteristicsScriptable : ScriptableObject
     public float damage;
 
     public CustomizationIndexes CustomizationIndexes;
+
+#if UNITY_EDITOR
+    public void CopyValues(WeaponCharacteristicsScriptable wcs)
+    {
+        weaponName = wcs.weaponName;
+        multiplierMovementSpeed = wcs.multiplierMovementSpeed;
+        automatic = wcs.automatic;
+        boltAction = wcs.boltAction;
+        shotCount = wcs.shotCount;
+        spread = wcs.spread;
+        projectileImpulse = wcs.projectileImpulse;
+        roundsPerMinutes = wcs.roundsPerMinutes;
+        cycledReload = wcs.cycledReload;
+        canReloadWhenFull = wcs.canReloadWhenFull;
+        automaticReloadOnEmpty = wcs.automaticReloadOnEmpty;
+        automaticReloadOnEmptyDelay = wcs.automaticReloadOnEmptyDelay;
+        socketEjection = wcs.socketEjection;
+        canReloadAimed = wcs.canReloadAimed;
+        prefabCasing = wcs.prefabCasing;
+        prefabProjectile = wcs.prefabProjectile;
+        controller = wcs.controller;
+        spriteBody = wcs.spriteBody;
+        audioClipHolster = wcs.audioClipHolster;
+        audioClipUnholster = wcs.audioClipUnholster;
+        audioClipReload = wcs.audioClipReload;
+        audioClipReloadEmpty = wcs.audioClipReloadEmpty;
+        audioClipReloadOpen = wcs.audioClipReloadOpen;
+        audioClipReloadInsert = wcs.audioClipReloadInsert;
+        audioClipReloadClose = wcs.audioClipReloadClose;
+        audioClipFireEmpty = wcs.audioClipFireEmpty;
+        audioClipBoltAction = wcs.audioClipBoltAction;
+        layerMask = wcs.layerMask;
+        slowmotionBullet = wcs.slowmotionBullet;
+        damage = wcs.damage;
+
+        CustomizationIndexes.scopeDefaultShow = wcs.CustomizationIndexes.scopeDefaultShow;
+        CustomizationIndexes.scopeIndex = wcs.CustomizationIndexes.scopeIndex;
+        CustomizationIndexes.muzzleIndex = wcs.CustomizationIndexes.muzzleIndex;
+        CustomizationIndexes.laserIndex = wcs.CustomizationIndexes.laserIndex;
+        CustomizationIndexes.gripIndex = wcs.CustomizationIndexes.gripIndex;
+        CustomizationIndexes.magazineIndex = wcs.CustomizationIndexes.magazineIndex;
+    }
+#endif
 }
 
 [Serializable]

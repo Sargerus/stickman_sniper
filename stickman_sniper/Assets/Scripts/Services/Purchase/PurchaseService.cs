@@ -18,21 +18,30 @@ namespace stickman_sniper.Purchases
         void SetNextBuyByRewardedAd(string hash);
     }
 
-    internal class PurchaseService : IPurchaseService
+    internal partial class PurchaseService : IPurchaseService, IDisposable
     {
         private HashSet<string> _purchases = new();
         private Dictionary<string, ReactiveProperty<bool>> _cachedProperties = new();
+        private HashToProductKeyMapper _hashToProductKeyMapper;
 
         private Subject<string> _onPurchaseComplete = new();
         public IObservable<string> OnPurchaseComplete => _onPurchaseComplete;
 
         private string _nextBuy;
 
-        public PurchaseService()
+        public PurchaseService(HashToProductKeyMapper hashToProductKeyMapper)
         {
+            _hashToProductKeyMapper = hashToProductKeyMapper;
             _purchases = YandexGame.savesData.purchases.ToHashSet<string>();
+            Subscribe();
+        }
 
+        private void Subscribe()
+        {
             YandexGame.RewardVideoEvent += OnRewardedVideoWatched;
+            YandexGame.OpenFullAdEvent += OpenFullAdEvent;
+            YandexGame.CloseFullAdEvent += CloseFullAdEvent;
+            YandexGame.ErrorFullAdEvent += ErrorFullAdEvent;
         }
 
         public IReadOnlyReactiveProperty<bool> GetIsPurchasedReactiveProperty(string hash) => GetIsPurchasedReactivePropertyInternal(hash);
@@ -52,18 +61,10 @@ namespace stickman_sniper.Purchases
         {
             try
             {
-                //Debug.Log($"AAA video watched 1 {guid}");
-
-                //string guidString = guid.ToString();
-
-                Debug.Log($"AAA video watched guid parsed {_nextBuy}");
-
                 if (_nextBuy != null)
                 {
                     Purchase(_nextBuy);
                 }
-
-                Debug.Log("Bought throug AD");
             }
             catch(Exception e)
             {
@@ -75,8 +76,29 @@ namespace stickman_sniper.Purchases
             }
         }
 
+        private void OpenFullAdEvent()
+        {
+            string productKey = _hashToProductKeyMapper.GetProductKeyByHash(_nextBuy);
+            AnalyticsEventFactory.GetWatchRewardedStartEvent().AddProductKey(productKey);
+        }
+
+        private void CloseFullAdEvent()
+        {
+            string productKey = _hashToProductKeyMapper.GetProductKeyByHash(_nextBuy);
+            AnalyticsEventFactory.GetWatchRewardedCompleteEvent().AddProductKey(productKey);
+        }
+
+        private void ErrorFullAdEvent()
+        {
+            string productKey = _hashToProductKeyMapper.GetProductKeyByHash(_nextBuy);
+            AnalyticsEventFactory.GetWatchRewardedFailedEvent().AddProductKey(productKey);
+        }
+
         public void Purchase(string hash)
         {
+            string productKey = _hashToProductKeyMapper.GetProductKeyByHash(hash);
+            AnalyticsEventFactory.GetPurchaseEvent().AddProductKey(productKey).Send();
+
             _purchases.Add(hash);
             Save();
             GetIsPurchasedReactivePropertyInternal(hash).Value = true;
@@ -98,6 +120,13 @@ namespace stickman_sniper.Purchases
         public void ClearBuyByRewarded()
         {
             _nextBuy = null;
+        }
+
+        public void Dispose()
+        {
+            YandexGame.RewardVideoEvent -= OnRewardedVideoWatched;
+            YandexGame.OpenFullAdEvent -= OpenFullAdEvent;
+            YandexGame.CloseFullAdEvent -= CloseFullAdEvent;
         }
     }
 

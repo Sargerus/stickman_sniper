@@ -12,17 +12,17 @@ public class ClearSaveData : Editor
         {
             file.Delete();
         }
-        //
-        //string[] guids = AssetDatabase.FindAssets("t:ScriptableObject", new[] { "Assets\\Scripts\\CustomizationSystem" });
-        //for (int i = 0; i < guids.Length; i++)
-        //{
-        //    var path = AssetDatabase.GUIDToAssetPath(guids[i]);
-        //    var asset = AssetDatabase.LoadAssetAtPath<Object>(path);
-        //    if (asset is WeaponCharacteristicsContainer wcc)
-        //    {
-        //        wcc.Config.ForEach(g => g.CurrentCustomizationData = g.DefaultCustomizationData);
-        //    }
-        //}
+        
+        string[] guids = AssetDatabase.FindAssets("t:ScriptableObject", new[] { "Assets\\Scripts\\CustomizationSystem" });
+        for (int i = 0; i < guids.Length; i++)
+        {
+            var path = AssetDatabase.GUIDToAssetPath(guids[i]);
+            var asset = AssetDatabase.LoadAssetAtPath<Object>(path);
+            if (asset is WeaponCharacteristicsContainer wcc)
+            {
+                wcc.Config.ForEach(g => g.CurrentCustomizationData.CopyValues(g.DefaultCustomizationData));
+            }
+        }
 
         Debug.Log("-==Data cleared==-");
     }

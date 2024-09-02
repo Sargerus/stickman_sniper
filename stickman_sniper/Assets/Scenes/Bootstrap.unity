@@ -779,6 +779,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1404810828}
   - component: {fileID: 1404810827}
+  - component: {fileID: 1404810829}
   m_Layer: 0
   m_Name: PurchaseServiceInstaller
   m_TagString: Untagged
@@ -798,6 +799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ba8a390e5a21d4a869118751625208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hashToProductKeyMapper: {fileID: 1404810829}
 --- !u!4 &1404810828
 Transform:
   m_ObjectHideFlags: 0
@@ -813,6 +815,20 @@ Transform:
   m_Father: {fileID: 782628377}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1404810829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404810826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 983c2997a3ad9df47a2fc790acb60b24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _visuals:
+  - {fileID: 11400000, guid: 88b4ae9e9be48e242a7ff1749c2dbc3d, type: 2}
 --- !u!1 &1454371762
 GameObject:
   m_ObjectHideFlags: 0

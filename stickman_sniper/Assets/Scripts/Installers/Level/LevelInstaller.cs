@@ -15,6 +15,7 @@ public class LevelInstaller : MonoInstaller, IPreloadBehavior
 
         Container.BindFactory<Character, Character.Factory>().FromSubContainerResolve().ByNewContextPrefab(character).AsSingle();
         Container.BindInterfacesTo<LevelProgressObserver>().AsSingle();
+        Container.BindInterfacesAndSelfTo<CurrentLevelService>().AsSingle();
         
         Container.BindInterfacesTo<LevelConstructor>().AsSingle().NonLazy();
         Container.BindInitializableExecutionOrder<LevelConstructor>(int.MaxValue);

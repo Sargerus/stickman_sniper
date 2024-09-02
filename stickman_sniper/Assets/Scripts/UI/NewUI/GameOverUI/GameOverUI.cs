@@ -12,6 +12,7 @@ using InfimaGames.LowPolyShooterPack;
 using DWTools;
 using stickman_sniper.Currency;
 using YG;
+using System.Collections.Generic;
 
 public class GameOverUI : BaseWindow
 {
@@ -33,13 +34,15 @@ public class GameOverUI : BaseWindow
     private ILevelLoader _levelLoader;
     private CursorLocker _cursorLocker;
     private ICurrencyService _currencyService;
+    private LevelsContainerSO _levelsContainer;
+    private CurrentLevelService _currentLevelService;
 
     private CompositeDisposable _disposables = new();
 
     [Inject]
     public void Construct(ILevelProgressObserver levelProgressObserver,
         Character character, ILoadingManagerHolder loadingManagerHolder, ILevelLoader levelLoader,
-        CursorLocker cursorLocker, ICurrencyService currencyService)
+        CursorLocker cursorLocker, ICurrencyService currencyService, CurrentLevelService currentLevelService)
     {
         _levelProgressObserver = levelProgressObserver;
         _character = character;
@@ -47,6 +50,7 @@ public class GameOverUI : BaseWindow
         _levelLoader = levelLoader;
         _cursorLocker = cursorLocker;
         _currencyService = currencyService;
+        _currentLevelService = currentLevelService;
     }
 
     protected override async UniTask BeforeShow(CancellationToken token)
@@ -64,7 +68,7 @@ public class GameOverUI : BaseWindow
 
         _nextLevelButton.OnClickAsObservable().Merge(_restartLevelButton.OnClickAsObservable()).Subscribe(_ =>
         {
-            YandexGame.Instance._FullscreenShow();
+            YandexGame.FullscreenShow();
             CloseManaged(true);
             _loadingManagerHolder.LoadingManager.LoadMainMenuState();
         }).AddTo(_disposables);
@@ -77,6 +81,8 @@ public class GameOverUI : BaseWindow
 
     private void ShowWinUI()
     {
+        AnalyticsEventFactory.GetLevelCompletedEvent().AddLevelNumber(_currentLevelService.CurrentLevel).Send();
+
         _currencyService.AddCurrency(CurrencyServiceConstants.GoldCurrency, _levelProgressObserver.TotalEnemies * 10);
 
         var equippedWeapon = _character.GetInventory().GetEquipped();
@@ -101,6 +107,8 @@ public class GameOverUI : BaseWindow
 
     private void ShowLoseUI()
     {
+        AnalyticsEventFactory.GetLevelFailedEvent().AddLevelNumber(_currentLevelService.CurrentLevel).Send();
+
         var equippedWeapon = _character.GetInventory().GetEquipped();
         int currentAmmunition = equippedWeapon.GetAmmunitionCurrent() + equippedWeapon.GetAmmunitionSpareLeft();
 

@@ -142,15 +142,6 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
                         _purchaseService.Purchase(hash);
                         break;
                     }
-                case ShopProductVisual.ObtainType.Ad:
-                    {
-                        Debug.Log($"AAA pure hash {hash}");
-
-                        _purchaseService.SetNextBuyByRewardedAd(hash);
-                        YandexGame.RewVideoShow(1);
-
-                        break;
-                    }
             }
 
             var selectedCell = _cells[_currentIndexSelectedReactive.Value];

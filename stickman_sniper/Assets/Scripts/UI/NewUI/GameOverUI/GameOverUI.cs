@@ -11,6 +11,7 @@ using Cysharp.Threading.Tasks;
 using InfimaGames.LowPolyShooterPack;
 using DWTools;
 using stickman_sniper.Currency;
+using YG;
 
 public class GameOverUI : BaseWindow
 {
@@ -50,6 +51,8 @@ public class GameOverUI : BaseWindow
 
     protected override async UniTask BeforeShow(CancellationToken token)
     {
+        YandexGame.GameplayStop();
+
         if (_levelProgressObserver.Win.Value)
         {
             ShowWinUI();
@@ -58,6 +61,13 @@ public class GameOverUI : BaseWindow
         {
             ShowLoseUI();
         }
+
+        _nextLevelButton.OnClickAsObservable().Merge(_restartLevelButton.OnClickAsObservable()).Subscribe(_ =>
+        {
+            YandexGame.Instance._FullscreenShow();
+            CloseManaged(true);
+            _loadingManagerHolder.LoadingManager.LoadMainMenuState();
+        }).AddTo(_disposables);
     }
 
     protected override async UniTask AfterShow(CancellationToken token)
@@ -87,12 +97,6 @@ public class GameOverUI : BaseWindow
 
         _nextLevelButton.gameObject.SetActive(true);
         _restartLevelButton.gameObject.SetActive(false);
-
-        _nextLevelButton.OnClickAsObservable().Subscribe(_ =>
-        {
-            CloseManaged(true);
-            _loadingManagerHolder.LoadingManager.LoadMainMenuState();
-        }).AddTo(_disposables);
     }
 
     private void ShowLoseUI()
@@ -109,12 +113,6 @@ public class GameOverUI : BaseWindow
 
         _nextLevelButton.gameObject.SetActive(false);
         _restartLevelButton.gameObject.SetActive(true);
-
-        _restartLevelButton.OnClickAsObservable().Subscribe(_ =>
-        {
-            CloseManaged(true);
-            _loadingManagerHolder.LoadingManager.LoadMainMenuState();
-        }).AddTo(_disposables);
     }
 
     private IEnumerator ShowStar(Image image, float delay = 0)

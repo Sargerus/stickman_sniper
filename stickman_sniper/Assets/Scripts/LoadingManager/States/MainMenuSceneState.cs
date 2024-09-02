@@ -10,6 +10,7 @@ public sealed class MainMenuSceneState : SceneState
     [Inject] private IUIManager _uiManager;
 
     private IWindowHandler _handler;
+    private bool _gameApiReadyWasSet;
 
     public MainMenuSceneState(AssetReference scene) : base(scene)
     {
@@ -27,13 +28,17 @@ public sealed class MainMenuSceneState : SceneState
         _handler = await _uiManager.CreateWindow("customization_screen", null, _sceneContext.Container);
         await _handler.Show(false);
 
-        YandexGame.Instance._FullscreenShow();
+        if (!_gameApiReadyWasSet)
+        {
+            YandexGame.GameReadyAPI();
+            _gameApiReadyWasSet = true;
+        }
     }
 
     private async UniTask AwaitUImanagerInitialized()
     {
         await UniTask.WaitUntil(() => _uiManager != null);
-        
+
         var cameras = GameObject.FindObjectsOfType<UICameraProvider>();
         UICameraProvider uiCamera = null;
         foreach (var c in cameras)
@@ -44,7 +49,7 @@ public sealed class MainMenuSceneState : SceneState
                 break;
             }
         }
-        
+
         _uiManager.SetCamera(uiCamera.Camera);
     }
 

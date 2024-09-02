@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using YG;
 using Zenject;
 
 public class Level : MonoBehaviour
@@ -39,6 +40,7 @@ public class Level : MonoBehaviour
         _player.Initialize();
 
         _levelProgressObserver.Observe(enemies);
+        YandexGame.GameplayStart();
     }
 
     private void OnDestroy()

@@ -1,0 +1,19 @@
+{
+    "name": "StickmanSniperBattleController",
+    "rootNamespace": "StickmanSniper.BattleController",
+    "references": [
+        "UniTask",
+        "Zenject",
+        "StickmanSniperBullet",
+        "DWToolsFeature_Slowmotion"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

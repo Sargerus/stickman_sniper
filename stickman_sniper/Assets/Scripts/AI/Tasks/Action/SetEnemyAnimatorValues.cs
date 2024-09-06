@@ -1,30 +1,33 @@
 using BehaviorDesigner.Runtime.Tasks;
 
-[TaskCategory("EnemyAnimatorController")]
-public class SetEnemyAnimatorValues : Action
+namespace StickmanSniper.AI
 {
-    public SharedEnemyAnimatorController enemyAnimatorController;
-
-    public bool SetWalk;
-    public bool IsWalk;
-
-    public bool SetShooting;
-    public bool IsShooting;
-
-    public bool SetCrouching;
-    public bool IsCrouching;
-
-    public override TaskStatus OnUpdate()
+    [TaskCategory("EnemyAnimatorController")]
+    public class SetEnemyAnimatorValues : Action
     {
-        if (SetWalk)
-            enemyAnimatorController.Value.SetWalk(IsWalk);
+        public SharedEnemyAnimatorController enemyAnimatorController;
 
-        if(SetShooting)
-            enemyAnimatorController.Value.SetShoot(IsShooting);
+        public bool SetWalk;
+        public bool IsWalk;
 
-        if(SetCrouching)
-            enemyAnimatorController.Value.SetCroushing(IsCrouching);
+        public bool SetShooting;
+        public bool IsShooting;
 
-        return TaskStatus.Success;
+        public bool SetCrouching;
+        public bool IsCrouching;
+
+        public override TaskStatus OnUpdate()
+        {
+            if (SetWalk)
+                enemyAnimatorController.Value.SetWalk(IsWalk);
+
+            if (SetShooting)
+                enemyAnimatorController.Value.SetShoot(IsShooting);
+
+            if (SetCrouching)
+                enemyAnimatorController.Value.SetCroushing(IsCrouching);
+
+            return TaskStatus.Success;
+        }
     }
 }

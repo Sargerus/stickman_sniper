@@ -1,9 +1,12 @@
 using BehaviorDesigner.Runtime;
 using UnityEngine.AI;
 
-[System.Serializable]
-public class SharedNavMeshAgent : SharedVariable<NavMeshAgent>
+namespace StickmanSniper.AI
 {
-    public static implicit operator SharedNavMeshAgent(NavMeshAgent value)
-    { return new SharedNavMeshAgent { Value = value }; }
+    [System.Serializable]
+    public class SharedNavMeshAgent : SharedVariable<NavMeshAgent>
+    {
+        public static implicit operator SharedNavMeshAgent(NavMeshAgent value)
+        { return new SharedNavMeshAgent { Value = value }; }
+    }
 }

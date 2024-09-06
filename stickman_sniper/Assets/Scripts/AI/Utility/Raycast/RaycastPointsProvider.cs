@@ -1,8 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RaycastPointsProvider : MonoBehaviour
+namespace StickmanSniper.AI
 {
-    public List<Transform> RaycastOrigin;
-    public Transform RaycastTarget;
+    public class RaycastPointsProvider : MonoBehaviour
+    {
+        public List<Transform> RaycastOrigin;
+        public Transform RaycastTarget;
+    }
 }

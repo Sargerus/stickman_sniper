@@ -2,24 +2,27 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine.AI;
 
-[TaskCategory("Unity/NavMeshAgent")]
-public class CheckNavMeshPathReachable : Conditional
+namespace StickmanSniper.AI
 {
-    public SharedNavMeshAgent agent;
-    public SharedVector3 target;
-
-    public override TaskStatus OnUpdate()
+    [TaskCategory("Unity/NavMeshAgent")]
+    public class CheckNavMeshPathReachable : Conditional
     {
-        TaskStatus result = TaskStatus.Failure;
+        public SharedNavMeshAgent agent;
+        public SharedVector3 target;
 
-        //unity workaround
-        //fix it once you have better solution
-        NavMeshPath navMeshPath = new NavMeshPath();
-        if (agent.Value.CalculatePath(target.Value, navMeshPath) && navMeshPath.status == NavMeshPathStatus.PathComplete)
+        public override TaskStatus OnUpdate()
         {
-            result = TaskStatus.Success;
-        }
+            TaskStatus result = TaskStatus.Failure;
 
-        return result;
+            //unity workaround
+            //fix it once you have better solution
+            NavMeshPath navMeshPath = new NavMeshPath();
+            if (agent.Value.CalculatePath(target.Value, navMeshPath) && navMeshPath.status == NavMeshPathStatus.PathComplete)
+            {
+                result = TaskStatus.Success;
+            }
+
+            return result;
+        }
     }
 }

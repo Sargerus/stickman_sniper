@@ -2,21 +2,24 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
-[TaskCategory("Utility")]
-public class CheckDistanceVector3 : Conditional
+namespace StickmanSniper.AI
 {
-    public SharedNavMeshAgent Agent;
-    public SharedVector3 TargetPosition;
-    public float Distance;
-
-    public override TaskStatus OnUpdate()
+    [TaskCategory("Utility")]
+    public class CheckDistanceVector3 : Conditional
     {
-        TaskStatus result = TaskStatus.Running;
-        if (Vector3.Distance(Agent.Value.transform.position, TargetPosition.Value) <= Distance)
-        {
-            result = TaskStatus.Success;
-        }
+        public SharedNavMeshAgent Agent;
+        public SharedVector3 TargetPosition;
+        public float Distance;
 
-        return result;
+        public override TaskStatus OnUpdate()
+        {
+            TaskStatus result = TaskStatus.Running;
+            if (Vector3.Distance(Agent.Value.transform.position, TargetPosition.Value) <= Distance)
+            {
+                result = TaskStatus.Success;
+            }
+
+            return result;
+        }
     }
 }

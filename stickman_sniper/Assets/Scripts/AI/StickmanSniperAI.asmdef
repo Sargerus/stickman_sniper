@@ -1,0 +1,21 @@
+{
+    "name": "StickmanSniperAI",
+    "rootNamespace": "StickmanSniper.AI",
+    "references": [
+        "GUID:5923e21e631ce034184cdc8ac2cc2038",
+        "GUID:ae4de4f3c850b6d4ca2cda18c07d8f41",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:76a9df5ada63c03418fd870942b0fdd9",
+        "GUID:83d6c0b8259374e41a300be0e05c7209",
+        "GUID:fa74939452a29364c909e6247fca2f69"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

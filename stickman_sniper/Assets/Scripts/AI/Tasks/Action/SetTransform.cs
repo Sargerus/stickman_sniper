@@ -2,15 +2,18 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
-[TaskCategory("Set Values")]
-public class SetTransform : Action
+namespace StickmanSniper.AI
 {
-    public SharedTransform Reference;
-    public Transform Value;
-
-    public override TaskStatus OnUpdate()
+    [TaskCategory("Set Values")]
+    public class SetTransform : Action
     {
-        Reference.Value = Value; 
-        return TaskStatus.Success;
+        public SharedTransform Reference;
+        public Transform Value;
+
+        public override TaskStatus OnUpdate()
+        {
+            Reference.Value = Value;
+            return TaskStatus.Success;
+        }
     }
 }

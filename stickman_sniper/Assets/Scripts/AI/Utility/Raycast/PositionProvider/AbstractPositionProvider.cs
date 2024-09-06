@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public abstract class AbstractPositionProvider : MonoBehaviour
+namespace StickmanSniper.AI
 {
-    public abstract Vector3 GetPosition();
+    public abstract class AbstractPositionProvider : MonoBehaviour
+    {
+        public abstract Vector3 GetPosition();
+    }
 }

@@ -5,37 +5,40 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[TaskCategory("Stickman")]
-public class ChooseWaypointTransform : Action
+namespace StickmanSniper.AI
 {
-    public int WaypointType;
-    public SharedTransform WaypointsContainer;
-    public SharedTransform CurrentWaypoint;
-
-    private List<Transform> _waypoints;
-    private int _currentIndex = -1;
-
-    public override void OnAwake()
+    [TaskCategory("Stickman")]
+    public class ChooseWaypointTransform : Action
     {
-        if (WaypointsContainer.Value != null)
-            _waypoints = WaypointsContainer.Value.GetComponentsInChildren<Waypoint>().Where(g => g.WaypointType == WaypointType)
-                .Select(g => g.transform).ToList();
-    }
+        public int WaypointType;
+        public SharedTransform WaypointsContainer;
+        public SharedTransform CurrentWaypoint;
 
-    public override TaskStatus OnUpdate()
-    {
-        if (_waypoints == null || _waypoints.Count == 0)
-            return TaskStatus.Failure;
+        private List<Transform> _waypoints;
+        private int _currentIndex = -1;
 
-        if (CurrentWaypoint.Value == null)
-            Next();
+        public override void OnAwake()
+        {
+            if (WaypointsContainer.Value != null)
+                _waypoints = WaypointsContainer.Value.GetComponentsInChildren<Waypoint>().Where(g => g.WaypointType == WaypointType)
+                    .Select(g => g.transform).ToList();
+        }
 
-        return TaskStatus.Success;
-    }
+        public override TaskStatus OnUpdate()
+        {
+            if (_waypoints == null || _waypoints.Count == 0)
+                return TaskStatus.Failure;
 
-    public Transform Next()
-    {
-        CurrentWaypoint.Value = _waypoints.Random().transform;
-        return CurrentWaypoint.Value;
+            if (CurrentWaypoint.Value == null)
+                Next();
+
+            return TaskStatus.Success;
+        }
+
+        public Transform Next()
+        {
+            CurrentWaypoint.Value = _waypoints.Random().transform;
+            return CurrentWaypoint.Value;
+        }
     }
 }

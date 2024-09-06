@@ -1,29 +1,32 @@
 using BehaviorDesigner.Runtime;
 using UnityEngine;
 
-[RequireComponent(typeof(BehaviorTree))]
-public class GizmosShowRadius : MonoBehaviour
+namespace StickmanSniper.AI
 {
-    public string VariableName = "SearchRadius";
-    private BehaviorTree _behaviorTree;
-
-    private void Awake()
+    [RequireComponent(typeof(BehaviorTree))]
+    public class GizmosShowRadius : MonoBehaviour
     {
-        _behaviorTree = GetComponent<BehaviorTree>();
-    }
+        public string VariableName = "SearchRadius";
+        private BehaviorTree _behaviorTree;
 
-    void OnDrawGizmosSelected()
-    {
-        
-        if (_behaviorTree == null)
+        private void Awake()
         {
-            if (!TryGetComponent<BehaviorTree>(out _behaviorTree))
-                return;
+            _behaviorTree = GetComponent<BehaviorTree>();
         }
 
-        SharedFloat radius = (SharedFloat)_behaviorTree.GetVariable(VariableName);
+        void OnDrawGizmosSelected()
+        {
 
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(transform.position, radius.Value);
+            if (_behaviorTree == null)
+            {
+                if (!TryGetComponent<BehaviorTree>(out _behaviorTree))
+                    return;
+            }
+
+            SharedFloat radius = (SharedFloat)_behaviorTree.GetVariable(VariableName);
+
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireSphere(transform.position, radius.Value);
+        }
     }
 }

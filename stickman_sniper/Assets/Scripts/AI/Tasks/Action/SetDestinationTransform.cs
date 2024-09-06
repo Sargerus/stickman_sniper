@@ -3,30 +3,33 @@ using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
-[TaskCategory("Unity/NavMeshAgent")]
-public class SetDestinationTransform : Action
+namespace StickmanSniper.AI
 {
-    public SharedNavMeshAgent NavMeshAgent;
-    public SharedTransform DestinationTransform;
-
-    public override void OnStart()
+    [TaskCategory("Unity/NavMeshAgent")]
+    public class SetDestinationTransform : Action
     {
-        if (NavMeshAgent == null)
+        public SharedNavMeshAgent NavMeshAgent;
+        public SharedTransform DestinationTransform;
+
+        public override void OnStart()
         {
-            Debug.LogError("SetDestinationTransform: agent is empty");
-            return;
+            if (NavMeshAgent == null)
+            {
+                Debug.LogError("SetDestinationTransform: agent is empty");
+                return;
+            }
         }
-    }
 
-    public override TaskStatus OnUpdate()
-    {
-        //NavMeshPath navMeshPath = new();
-        //if (!NavMeshAgent.Value.CalculatePath(DestinationTransform.Value.position, navMeshPath) || navMeshPath.status != NavMeshPathStatus.PathComplete)
-        //{
-        //    return TaskStatus.Failure;
-        //}
+        public override TaskStatus OnUpdate()
+        {
+            //NavMeshPath navMeshPath = new();
+            //if (!NavMeshAgent.Value.CalculatePath(DestinationTransform.Value.position, navMeshPath) || navMeshPath.status != NavMeshPathStatus.PathComplete)
+            //{
+            //    return TaskStatus.Failure;
+            //}
 
-        NavMeshAgent.Value.SetDestination(DestinationTransform.Value.position);
-        return TaskStatus.Success;
+            NavMeshAgent.Value.SetDestination(DestinationTransform.Value.position);
+            return TaskStatus.Success;
+        }
     }
 }

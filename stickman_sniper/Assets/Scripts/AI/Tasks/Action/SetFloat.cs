@@ -1,15 +1,18 @@
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 
-[TaskCategory("Set Values")]
-public class SetFloat : Action
+namespace StickmanSniper.AI
 {
-    public SharedFloat VariableToSet;
-    public SharedFloat Value;
-
-    public override TaskStatus OnUpdate()
+    [TaskCategory("Set Values")]
+    public class SetFloat : Action
     {
-        VariableToSet.Value = Value.Value;
-        return TaskStatus.Success;
+        public SharedFloat VariableToSet;
+        public SharedFloat Value;
+
+        public override TaskStatus OnUpdate()
+        {
+            VariableToSet.Value = Value.Value;
+            return TaskStatus.Success;
+        }
     }
 }

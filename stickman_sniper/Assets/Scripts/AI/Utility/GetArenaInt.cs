@@ -2,11 +2,14 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class GetArenaInt : MonoBehaviour
+namespace StickmanSniper.AI
 {
-    [Button]
-    private void LogAreaInt(string areaName)
+    public class GetArenaInt : MonoBehaviour
     {
-        Debug.Log(NavMesh.GetAreaFromName(areaName));
+        [Button]
+        private void LogAreaInt(string areaName)
+        {
+            Debug.Log(NavMesh.GetAreaFromName(areaName));
+        }
     }
 }

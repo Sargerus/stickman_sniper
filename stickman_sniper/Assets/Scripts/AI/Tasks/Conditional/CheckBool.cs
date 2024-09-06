@@ -1,15 +1,18 @@
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 
-[TaskCategory("Check Values")]
-public class CheckBool : Conditional
+namespace StickmanSniper.AI
 {
-    public SharedBool Template;
-    public bool TestValue;
-
-    public override TaskStatus OnUpdate()
+    [TaskCategory("Check Values")]
+    public class CheckBool : Conditional
     {
-        TaskStatus status = Template.Value == TestValue ? TaskStatus.Success : TaskStatus.Failure;
-        return status;
+        public SharedBool Template;
+        public bool TestValue;
+
+        public override TaskStatus OnUpdate()
+        {
+            TaskStatus status = Template.Value == TestValue ? TaskStatus.Success : TaskStatus.Failure;
+            return status;
+        }
     }
 }

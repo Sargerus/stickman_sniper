@@ -14,6 +14,7 @@ using InfimaGames.LowPolyShooterPack.Interface;
 using DWTools.Windows;
 using YG;
 using UniversalMobileController;
+using DWTools.RPG;
 
 namespace InfimaGames.LowPolyShooterPack
 {

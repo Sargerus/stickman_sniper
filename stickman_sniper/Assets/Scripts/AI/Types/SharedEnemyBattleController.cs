@@ -1,7 +1,10 @@
 using BehaviorDesigner.Runtime;
 
-public class SharedEnemyBattleController : SharedVariable<EnemyBattleController>
+namespace StickmanSniper.AI
 {
-    public static implicit operator SharedEnemyBattleController(EnemyBattleController value)
-    { return new SharedEnemyBattleController { Value = value }; }
+    public class SharedEnemyBattleController : SharedVariable<EnemyBattleController>
+    {
+        public static implicit operator SharedEnemyBattleController(EnemyBattleController value)
+        { return new SharedEnemyBattleController { Value = value }; }
+    }
 }

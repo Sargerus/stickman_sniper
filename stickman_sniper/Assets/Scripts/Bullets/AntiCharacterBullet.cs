@@ -1,5 +1,5 @@
+using DWTools.RPG;
 using DWTools.Slowmotion;
-using stickman_sniper.Producer;
 using UnityEngine;
 
 public class AntiCharacterBullet : SlowmotionRoot
@@ -25,7 +25,7 @@ public class AntiCharacterBullet : SlowmotionRoot
         AllowToUpdate = true;
     }
 
-    protected override void SelfUpdate()
+    protected override void SelfUpdate(float deltaTime)
     {
         if (Vector3.Distance(transform.position, _targetCache) <= 1)
         {
@@ -33,7 +33,7 @@ public class AntiCharacterBullet : SlowmotionRoot
             return;
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, _targetCache, _direction.magnitude * _speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _targetCache, _direction.magnitude * _speed * deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)

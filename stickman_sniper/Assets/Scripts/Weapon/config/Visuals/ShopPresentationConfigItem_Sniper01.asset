@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Items:
   - ProductKey: Sniper 01
-    ProductName: Sniper Rifle MX-01
+    ProductName: SR MX-01
     Hash: -368270586
     IsBoughtByDefault: 1
     ProductImage:

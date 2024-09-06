@@ -19,6 +19,9 @@ public abstract class BaseAnalyticEvent
 
     public BaseAnalyticEvent AddProductKey(string productKey)
     {
+        if (string.IsNullOrEmpty(productKey))
+            productKey = string.Empty;
+
         _param.Add(YandexMetricaConstants.Parameters.product_key, productKey);
         return this;
     }

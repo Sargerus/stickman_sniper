@@ -20,7 +20,7 @@ public class ShopPresentationConfig : ScriptableObject
 public class ShopPresentationItem
 {
     public string TagName;
-    public string TabName;
+    public TranslationData TabName;
     public List<string> Weapons;
 }
 

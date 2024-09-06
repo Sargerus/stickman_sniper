@@ -29,7 +29,7 @@ public class FPSControllerInstaller : MonoInstaller
         Container.Bind<Character>().FromComponentOnRoot().AsSingle();
         //Container.BindInterfacesAndSelfTo<WeaponFactory>().AsSingle();
         Container.Bind<IMobileInputProvider>().FromInstance(_mobileCanvas).AsSingle();
-        Container.BindInterfacesTo<InputService>().AsSingle().WithArguments(YandexGame.Device);
+        Container.BindInterfacesTo<InputService>().AsSingle().WithArguments(YandexGame.EnvironmentData.deviceType);
         //Container.BindInterfacesTo<WeaponService>().AsSingle();
         //Container.BindInterfacesTo<HandsController>().FromInstance(_handsController).AsSingle();
         Container.BindInterfacesTo<PlayerProgressObserver>().AsSingle().NonLazy();

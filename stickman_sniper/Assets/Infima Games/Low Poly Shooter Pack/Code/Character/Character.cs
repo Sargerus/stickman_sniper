@@ -367,9 +367,13 @@ namespace InfimaGames.LowPolyShooterPack
             _playersOverlayHandler = await _uiManager.CreateWindow("players_overlay", new PlayersOverlayWindowModel("players_overlay", characterComponent.Character), _diContainer);
             await _playersOverlayHandler.Show(true);
 
+            Debug.Log("ASD Initialize mobile camera");
+            Debug.Log($"ASD {YandexGame.EnvironmentData.deviceType}");
+            Debug.Log($"ASD {YandexGame.EnvironmentData.deviceType.ToDevice()}");
             //initialize camera
-            if (YandexGame.Device.ToDevice() == Device.Mobile)
+            if (YandexGame.EnvironmentData.deviceType.ToDevice() == Device.Mobile)
             {
+                Debug.Log("ASD Initialize mobile camera success");
                 mobileCamera.gameObject.SetActive(true);
             }
 
@@ -541,7 +545,7 @@ namespace InfimaGames.LowPolyShooterPack
         /// <summary>
         /// IsCursorLocked.
         /// </summary>
-        public override bool IsCursorLocked() => YandexGame.Device.ToDevice() == Device.Desktop ? _cursorLocker.IsCursorLocked : true;
+        public override bool IsCursorLocked() => YandexGame.EnvironmentData.deviceType.ToDevice() == Device.Desktop ? _cursorLocker.IsCursorLocked : true;
 
         /// <summary>
         /// IsTutorialTextVisible.

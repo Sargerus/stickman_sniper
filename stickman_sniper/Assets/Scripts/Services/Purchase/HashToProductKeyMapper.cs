@@ -7,20 +7,25 @@ public class HashToProductKeyMapper : MonoBehaviour
     [SerializeField]
     private List<ShopProductVisuals> _visuals;
 
-    private Dictionary<string, string> _hashToProductKey = new();
+    private Dictionary<string, string> _hashToProductKey;
 
-    public string GetProductKeyByHash(string hash)
+    public void FilLCache()
     {
-        string result = string.Empty;
-        _hashToProductKey.TryGetValue(hash, out result);
-        return result;
-    }
+        _hashToProductKey = new();
 
-    private void Start()
-    {
         foreach (var visual in _visuals.SelectMany(g => g.Items))
         {
             _hashToProductKey.Add(visual.Hash, visual.ProductKey);
         }
+    }
+
+    public string GetProductKeyByHash(string hash)
+    {
+        if (string.IsNullOrEmpty(hash))
+            return null;
+
+        string result = string.Empty;
+        _hashToProductKey.TryGetValue(hash, out result);
+        return result;
     }
 }

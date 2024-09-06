@@ -66,9 +66,12 @@ public class GameOverUI : BaseWindow
             ShowLoseUI();
         }
 
-        _nextLevelButton.OnClickAsObservable().Merge(_restartLevelButton.OnClickAsObservable()).Subscribe(_ =>
+        _nextLevelButton.OnClickAsObservable().Merge(_restartLevelButton.OnClickAsObservable()).Subscribe(async _ =>
         {
+            _nextLevelButton.interactable = false;
+            _restartLevelButton.interactable = false;
             YandexGame.FullscreenShow();
+            await UniTask.Delay(1000);
             CloseManaged(true);
             _loadingManagerHolder.LoadingManager.LoadMainMenuState();
         }).AddTo(_disposables);

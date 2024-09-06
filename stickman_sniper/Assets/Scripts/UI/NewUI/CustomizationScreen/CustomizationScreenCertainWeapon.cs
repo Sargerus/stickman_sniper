@@ -233,8 +233,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
 
         for (int i = 0; i < tabs.Count; i++)
         {
-            tabs[i].SetTabName(asd[i])
-                .SetOnClickHandler(asd[i], _tabClickHandler);
+            tabs[i].SetOnClickHandler(asd[i], _tabClickHandler);
         }
     }
 

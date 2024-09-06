@@ -32,6 +32,7 @@ namespace stickman_sniper.Purchases
         public PurchaseService(HashToProductKeyMapper hashToProductKeyMapper)
         {
             _hashToProductKeyMapper = hashToProductKeyMapper;
+            _hashToProductKeyMapper.FilLCache();
             _purchases = YandexGame.savesData.purchases.ToHashSet<string>();
             Subscribe();
         }

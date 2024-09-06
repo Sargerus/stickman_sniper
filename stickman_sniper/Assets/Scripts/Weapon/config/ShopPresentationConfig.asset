@@ -14,7 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShopPresentationItems:
   - TagName: sniper
-    TabName: Sniper Rifles
+    TabName:
+      ruEnabled: 1
+      ruTranslation: "\u0421\u043D\u0430\u0439\u043F\u0435\u0440\u0441\u043A\u0438\u0435
+        \u0412\u0438\u043D\u0442\u043E\u0432\u043A\u0438"
+      enEnabled: 1
+      enTranslation: Sniper Rifles
+      trEnabled: 1
+      trTranslation: "Keskin Ni\u015Fanc\u0131 T\xFCfekleri"
     Weapons:
     - Sniper 01
   ShopProductVisual:

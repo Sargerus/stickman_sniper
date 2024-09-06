@@ -6,7 +6,6 @@ namespace YG
     public partial class YandexGame
     {
         public static JsonEnvironmentData EnvironmentData = new JsonEnvironmentData();
-        public static string Device { get; set; }
 
         // Initialization
 
@@ -44,8 +43,9 @@ namespace YG
 
         public void SetEnvirData(string data)
         {
+            Debug.Log("ASD JSON environment");
             EnvironmentData = JsonUtility.FromJson<JsonEnvironmentData>(data);
-            Device = EnvironmentData.deviceType;
+            Debug.Log("ASD environment jsoned");
             GetDataInvoke();
         }
 
@@ -53,8 +53,6 @@ namespace YG
 #if UNITY_EDITOR
         private static void InitEnvirForEditor()
         {
-            Device = EnvironmentData.deviceType;
-
             if (Instance.infoYG.playerInfoSimulation.isMobile)
             {
                 EnvironmentData.deviceType = "mobile";

@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using YG;
 
 public class CustomizationScreenTab : MonoBehaviour
 {
@@ -10,8 +11,10 @@ public class CustomizationScreenTab : MonoBehaviour
 
     private CompositeDisposable _disposables = new();
 
-    public CustomizationScreenTab SetTabName(string name)
+    public CustomizationScreenTab SetTabName(TranslationData trData)
     {
+        string name = trData.GetTranslation(YandexGame.lang);
+
         if (tabName != null)
             tabName.SetText(name);
 

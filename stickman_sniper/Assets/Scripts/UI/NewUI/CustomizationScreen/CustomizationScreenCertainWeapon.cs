@@ -1,4 +1,5 @@
 using Currency;
+using Customization;
 using Cysharp.Threading.Tasks;
 using Purchase;
 using Sirenix.OdinInspector;
@@ -12,7 +13,6 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
 using YG;
-using static CustomizationIndexes;
 
 public class CustomizationScreenCertainWeapon : MonoBehaviour
 {

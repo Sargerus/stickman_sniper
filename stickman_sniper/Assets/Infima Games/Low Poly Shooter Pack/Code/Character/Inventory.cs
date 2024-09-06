@@ -4,6 +4,7 @@ using Zenject;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Customization;
 
 namespace InfimaGames.LowPolyShooterPack
 {

@@ -1,3 +1,4 @@
+using Customization;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "[CustomizationIndexesConfig]/CustomizationConfig", fileName = "new CustomizationConfig")]

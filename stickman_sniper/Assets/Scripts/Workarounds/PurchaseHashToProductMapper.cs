@@ -1,23 +1,22 @@
+#if UNITY_EDITOR
 using Purchase;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace StickmanSniper
+public class PurchaseHashToProductMapper : MonoBehaviour
 {
-    public class PurchaseHashToProductMapper : MonoBehaviour
-    {
-        [SerializeField] private List<ShopProductVisuals> _visuals;
-        [SerializeField] private HashToProductKeyMapper _keyMapper;
+    [SerializeField] private List<ShopProductVisuals> _visuals;
+    [SerializeField] private HashToProductKeyMapper _keyMapper;
 
-        [Button]
-        private void FillCache()
+    [Button]
+    private void FillCache()
+    {
+        foreach (var visual in _visuals.SelectMany(g => g.Items))
         {
-            foreach (var visual in _visuals.SelectMany(g => g.Items))
-            {
-                _keyMapper.Values.Add(new(visual.Hash, visual.ProductKey));
-            }
+            _keyMapper.Values.Add(new(visual.Hash, visual.ProductKey));
         }
     }
 }
+#endif

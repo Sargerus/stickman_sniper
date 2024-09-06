@@ -1,4 +1,3 @@
-using DWTools.Customization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +20,4 @@ public class WeaponConfig
 {
     public string Name;
     public AssetReference Prefab;
-    //public WeaponCharacteristicsScriptable DefaultCustomizationData;
-    //public WeaponCharacteristicsScriptable CurrentCustomizationData;
-    //public List<CustomizeItem> CustomizationData;
 }

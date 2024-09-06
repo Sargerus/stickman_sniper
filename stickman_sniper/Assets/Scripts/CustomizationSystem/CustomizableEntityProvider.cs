@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace DWTools.Customization
+namespace Customization
 {
     [Serializable]
     public class CustomizableEntityItem

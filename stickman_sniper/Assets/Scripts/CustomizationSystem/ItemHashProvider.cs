@@ -5,10 +5,12 @@ using Sirenix.Utilities.Editor;
 using System;
 using UnityEngine;
 
-public class ItemHashProvider : MonoBehaviour
+namespace Customization
 {
-    [ReadOnly]
-    public string Hash;
+    public class ItemHashProvider : MonoBehaviour
+    {
+        [ReadOnly]
+        public string Hash;
 
 #if UNITY_EDITOR
     [Button]
@@ -37,4 +39,5 @@ public class ItemHashProvider : MonoBehaviour
         GenerateHash();
     }
 #endif
+    }
 }

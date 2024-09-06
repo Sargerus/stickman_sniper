@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
-namespace stickman_sniper.Purchases
+namespace StickmanSniper.Cheats
 {
     public class PurchaseCheats : MonoBehaviour
     {

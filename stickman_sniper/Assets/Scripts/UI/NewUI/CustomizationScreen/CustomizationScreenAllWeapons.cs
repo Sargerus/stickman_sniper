@@ -19,7 +19,6 @@ public class CustomizationScreenAllWeapons : MonoBehaviour
     [SerializeField] private CustomizationScreemShopCellPool shopCellPool;
 
     private AvailableWeaponConfig _availableWeaponConfig;
-    private CustomiationDataContainerSO _customiationDataContainerSO;
     private ShopPresentationConfig _shopPresentationConfig;
     private IPurchaseService _purchaseService;
     private IGameStartWeaponInventoryService _gameStartWeaponInventoryService;
@@ -34,13 +33,11 @@ public class CustomizationScreenAllWeapons : MonoBehaviour
 
     public void ResolveDependencies(
         AvailableWeaponConfig availableWeaponConfig,
-        CustomiationDataContainerSO customiationDataContainerSO,
         ShopPresentationConfig shopPresentationConfig,
         IGameStartWeaponInventoryService gameStartWeaponInventoryService,
         IPurchaseService purchaseService)
     {
         _availableWeaponConfig = availableWeaponConfig;
-        _customiationDataContainerSO = customiationDataContainerSO;
         _shopPresentationConfig = shopPresentationConfig;
         _purchaseService = purchaseService;
         _gameStartWeaponInventoryService = gameStartWeaponInventoryService;

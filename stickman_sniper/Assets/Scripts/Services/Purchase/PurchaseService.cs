@@ -1,3 +1,4 @@
+using Analytics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using UnityEngine;
 using YG;
 using Zenject;
 
-namespace stickman_sniper.Purchases
+namespace Purchase
 {
     public interface IPurchaseService
     {
@@ -32,7 +33,6 @@ namespace stickman_sniper.Purchases
         public PurchaseService(HashToProductKeyMapper hashToProductKeyMapper)
         {
             _hashToProductKeyMapper = hashToProductKeyMapper;
-            _hashToProductKeyMapper.FilLCache();
             _purchases = YandexGame.savesData.purchases.ToHashSet<string>();
             Subscribe();
         }

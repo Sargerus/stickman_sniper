@@ -1,8 +1,21 @@
-﻿
-using stickman_sniper.Currency;
+﻿using System;
 using System.Collections.Generic;
+
 namespace YG
 {
+    [Serializable]
+    public class KeyValueEntity
+    {
+        public string Key;
+        public float Value;
+
+        public KeyValueEntity(string key, float value)
+        {
+            Key = key;
+            Value = value;
+        }
+    }
+
     [System.Serializable]
     public class SavesYG
     {
@@ -20,7 +33,7 @@ namespace YG
 
         // Ваши сохранения
         public int levelsPassed = 0;
-        public List<CurrencyEntity> currencies = new();
+        public List<KeyValueEntity> currencies = new();
         public List<string> purchases = new();
 
         // ...

@@ -1,6 +1,12 @@
-public class LevelFailedEvent : BaseAnalyticEvent
+using System.Collections.Generic;
+
+namespace Analytics
 {
-    public LevelFailedEvent(string eventName) : base(eventName)
+    public class LevelFailedEvent : BaseAnalyticEvent
     {
+        public LevelFailedEvent(string eventName, IReadOnlyList<IAnalyticSystem> systems)
+            : base(eventName, systems)
+        {
+        }
     }
 }

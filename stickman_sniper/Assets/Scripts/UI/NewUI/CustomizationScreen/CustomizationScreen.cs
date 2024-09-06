@@ -1,9 +1,9 @@
+using Currency;
 using Cysharp.Threading.Tasks;
 using DWTools.Customization;
 using DWTools.Windows;
+using Purchase;
 using Sirenix.OdinInspector;
-using stickman_sniper.Currency;
-using stickman_sniper.Purchases;
 using System.Threading;
 using UniRx;
 using UnityEngine;

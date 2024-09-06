@@ -1,12 +1,15 @@
 using UnityEngine;
 
-public class RotateOverTime : MonoBehaviour
+namespace StickmanSniper.Utilities
 {
-    public Vector3 RotationAxis;
-    public float RotationSpeed;
-
-    void Update()
+    public class RotateOverTime : MonoBehaviour
     {
-        transform.Rotate(RotationSpeed * Time.deltaTime * RotationAxis);
+        public Vector3 RotationAxis;
+        public float RotationSpeed;
+
+        void Update()
+        {
+            transform.Rotate(RotationSpeed * Time.deltaTime * RotationAxis);
+        }
     }
 }

@@ -1,6 +1,12 @@
-public class PurchaseEvent : BaseAnalyticEvent
+using System.Collections.Generic;
+
+namespace Analytics
 {
-    public PurchaseEvent(string eventName) : base(eventName)
+    public class PurchaseEvent : BaseAnalyticEvent
     {
+        public PurchaseEvent(string eventName, IReadOnlyList<IAnalyticSystem> systems)
+            : base(eventName, systems)
+        {
+        }
     }
 }

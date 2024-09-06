@@ -1,32 +1,16 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
-using Unity.VisualScripting;
-using UnityEngine;
 using YG;
 
-namespace stickman_sniper.Currency
+namespace Currency
 {
     public interface ICurrencyService
     {
         IReadOnlyReactiveProperty<float> CreateCurrency(string key);
         IReadOnlyReactiveProperty<float> GetCurrency(string key);
         void AddCurrency(string key, float value);
-    }
-
-    [Serializable]
-    public class CurrencyEntity
-    {
-        public string Key;
-        public float Value;
-
-        public CurrencyEntity(string key, float value)
-        {
-            Key = key;
-            Value = value;
-        }
     }
 
     internal class CurrencyService : ICurrencyService, IDisposable
@@ -72,13 +56,13 @@ namespace stickman_sniper.Currency
 
         private void Save()
         {
-            YandexGame.savesData.currencies = _currencies.Select(g => new CurrencyEntity(g.Key, g.Value.Value)).ToList();
+            YandexGame.savesData.currencies = _currencies.Select(g => new KeyValueEntity(g.Key, g.Value.Value)).ToList();
             YandexGame.SaveProgress();
         }
 
         public void Dispose()
         {
-            
+
         }
     }
 }

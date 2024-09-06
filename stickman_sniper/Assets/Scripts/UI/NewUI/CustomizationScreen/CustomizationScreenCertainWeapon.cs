@@ -1,7 +1,7 @@
+using Currency;
 using Cysharp.Threading.Tasks;
+using Purchase;
 using Sirenix.OdinInspector;
-using stickman_sniper.Currency;
-using stickman_sniper.Purchases;
 using System;
 using System.Collections.Generic;
 using System.Linq;

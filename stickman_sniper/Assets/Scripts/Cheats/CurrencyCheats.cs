@@ -1,8 +1,9 @@
+using Currency;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
-namespace stickman_sniper.Currency
+namespace stickman_sniper.Cheats
 {
     public class CurrencyCheats : MonoBehaviour
     {

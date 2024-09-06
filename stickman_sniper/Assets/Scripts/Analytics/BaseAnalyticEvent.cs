@@ -1,33 +1,39 @@
+using Sirenix.Utilities;
 using System.Collections.Generic;
-using YG;
 
-public abstract class BaseAnalyticEvent
+namespace Analytics
 {
-    protected string _eventName;
-    protected Dictionary<string, string> _param = new();
-
-    public BaseAnalyticEvent(string eventName)
+    public abstract class BaseAnalyticEvent
     {
-        _eventName = eventName;
-    }
+        protected string _eventName;
+        protected Dictionary<string, string> _param = new();
 
-    public BaseAnalyticEvent AddLevelNumber(int levelNumber)
-    {
-        _param.Add(YandexMetricaConstants.Parameters.level_number, levelNumber.ToString());
-        return this;
-    }
+        private readonly IReadOnlyList<IAnalyticSystem> _systems;
 
-    public BaseAnalyticEvent AddProductKey(string productKey)
-    {
-        if (string.IsNullOrEmpty(productKey))
-            productKey = string.Empty;
+        public BaseAnalyticEvent(string eventName, IReadOnlyList<IAnalyticSystem> systems)
+        {
+            _eventName = eventName;
+            _systems = systems;
+        }
 
-        _param.Add(YandexMetricaConstants.Parameters.product_key, productKey);
-        return this;
-    }
+        public BaseAnalyticEvent AddLevelNumber(int levelNumber)
+        {
+            _param.Add(YandexMetricaConstants.Parameters.level_number, levelNumber.ToString());
+            return this;
+        }
 
-    public virtual void Send()
-    {
-        YandexMetrica.Send(_eventName, _param);
+        public BaseAnalyticEvent AddProductKey(string productKey)
+        {
+            if (string.IsNullOrEmpty(productKey))
+                productKey = string.Empty;
+
+            _param.Add(YandexMetricaConstants.Parameters.product_key, productKey);
+            return this;
+        }
+
+        public virtual void Send()
+        {
+            _systems.ForEach(g => g.Send(_eventName, _param));
+        }
     }
 }

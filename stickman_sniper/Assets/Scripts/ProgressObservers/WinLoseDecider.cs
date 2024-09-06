@@ -1,9 +1,6 @@
-using Counters;
 using Cysharp.Threading.Tasks;
 using DWTools;
-using DWTools.Windows;
 using InfimaGames.LowPolyShooterPack;
-using stickman_sniper.Currency;
 using System;
 using System.Collections.Generic;
 using System.Linq;

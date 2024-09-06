@@ -1,6 +1,12 @@
-public class LevelCompletedEvent : BaseAnalyticEvent
+using System.Collections.Generic;
+
+namespace Analytics
 {
-    public LevelCompletedEvent(string eventName) : base(eventName)
+    public class LevelCompletedEvent : BaseAnalyticEvent
     {
+        public LevelCompletedEvent(string eventName, IReadOnlyList<IAnalyticSystem> systems)
+            : base(eventName, systems)
+        {
+        }
     }
 }

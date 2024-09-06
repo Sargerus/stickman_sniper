@@ -1,37 +1,47 @@
-public static class AnalyticsEventFactory
+using System.Collections.Generic;
+
+namespace Analytics
 {
-    public static LevelLoadedEvent GetLevelLoadedEvent()
+    public static class AnalyticsEventFactory
     {
-        return new(YandexMetricaConstants.Events.level_loaded);
-    }
+        private static IReadOnlyList<IAnalyticSystem> _analyticSystems;
 
-    public static LevelCompletedEvent GetLevelCompletedEvent()
-    {
-        return new(YandexMetricaConstants.Events.level_completed);
-    }
+        public static void SetAnalyticSystems(IReadOnlyList<IAnalyticSystem> analyticSystems)
+            => _analyticSystems = analyticSystems;
 
-    public static LevelFailedEvent GetLevelFailedEvent()
-    {
-        return new(YandexMetricaConstants.Events.level_failed);
-    }
+        public static LevelLoadedEvent GetLevelLoadedEvent()
+        {
+            return new(YandexMetricaConstants.Events.level_loaded, _analyticSystems);
+        }
 
-    public static PurchaseEvent GetPurchaseEvent()
-    {
-        return new(YandexMetricaConstants.Events.purchase);
-    }
+        public static LevelCompletedEvent GetLevelCompletedEvent()
+        {
+            return new(YandexMetricaConstants.Events.level_completed, _analyticSystems);
+        }
 
-    public static WatchRewardedStartEvent GetWatchRewardedStartEvent()
-    {
-        return new(YandexMetricaConstants.Events.watch_rewarded_start);
-    }
+        public static LevelFailedEvent GetLevelFailedEvent()
+        {
+            return new(YandexMetricaConstants.Events.level_failed, _analyticSystems);
+        }
 
-    public static WatchRewardedCompleteEvent GetWatchRewardedCompleteEvent()
-    {
-        return new(YandexMetricaConstants.Events.watch_rewarded_complete);
-    }
+        public static PurchaseEvent GetPurchaseEvent()
+        {
+            return new(YandexMetricaConstants.Events.purchase, _analyticSystems);
+        }
 
-    public static WatchRewardedFailedEvent GetWatchRewardedFailedEvent()
-    {
-        return new(YandexMetricaConstants.Events.watch_rewarded_failed);
+        public static WatchRewardedStartEvent GetWatchRewardedStartEvent()
+        {
+            return new(YandexMetricaConstants.Events.watch_rewarded_start, _analyticSystems);
+        }
+
+        public static WatchRewardedCompleteEvent GetWatchRewardedCompleteEvent()
+        {
+            return new(YandexMetricaConstants.Events.watch_rewarded_complete, _analyticSystems);
+        }
+
+        public static WatchRewardedFailedEvent GetWatchRewardedFailedEvent()
+        {
+            return new(YandexMetricaConstants.Events.watch_rewarded_failed, _analyticSystems);
+        }
     }
 }

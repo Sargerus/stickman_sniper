@@ -1,5 +1,5 @@
+using Analytics;
 using DWTools.Extensions;
-using System.Collections.Generic;
 using UnityEngine;
 using YG;
 using Zenject;

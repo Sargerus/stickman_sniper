@@ -1,4 +1,4 @@
-namespace stickman_sniper.Currency
+namespace Currency
 {
     public static class CurrencyServiceConstants
     {

@@ -1,7 +1,6 @@
+using Currency;
 using Cysharp.Threading.Tasks;
 using DW.StateMachine;
-using stickman_sniper.Currency;
-using System;
 using UnityEngine;
 using Zenject;
 

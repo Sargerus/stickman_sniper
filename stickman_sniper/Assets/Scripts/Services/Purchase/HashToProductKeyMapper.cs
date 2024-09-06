@@ -1,31 +1,43 @@
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class HashToProductKeyMapper : MonoBehaviour
+namespace Purchase
 {
-    [SerializeField]
-    private List<ShopProductVisuals> _visuals;
-
-    private Dictionary<string, string> _hashToProductKey;
-
-    public void FilLCache()
+    [CreateAssetMenu(menuName = "[Purchase] Purchase/HashToProductKeyMapper", fileName = "new HashToProductKeyMapper")]
+    public class HashToProductKeyMapper : ScriptableObject
     {
-        _hashToProductKey = new();
+        private Dictionary<string, string> HashToProductKey = new();
 
-        foreach (var visual in _visuals.SelectMany(g => g.Items))
+        public List<Values> Values = new();        
+
+        public string GetProductKeyByHash(string hash)
         {
-            _hashToProductKey.Add(visual.Hash, visual.ProductKey);
+            if (string.IsNullOrEmpty(hash))
+                return null;
+
+            if (HashToProductKey.Count == 0)
+            {
+                foreach (var v in Values)
+                    HashToProductKey.Add(v.Key, v.MappedValue);
+            }
+
+            string result = string.Empty;
+            HashToProductKey.TryGetValue(hash, out result);
+            return result;
         }
     }
 
-    public string GetProductKeyByHash(string hash)
+    [Serializable]
+    public class Values
     {
-        if (string.IsNullOrEmpty(hash))
-            return null;
+        public string Key;
+        public string MappedValue;
 
-        string result = string.Empty;
-        _hashToProductKey.TryGetValue(hash, out result);
-        return result;
+        public Values(string key, string mappedValue)
+        {
+            Key = key;
+            MappedValue = mappedValue;
+        }
     }
 }

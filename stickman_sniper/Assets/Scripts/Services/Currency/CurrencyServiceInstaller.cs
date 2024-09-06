@@ -1,6 +1,6 @@
 using Zenject;
 
-namespace stickman_sniper.Currency
+namespace Currency
 {
     public class CurrencyServiceInstaller : MonoInstaller
     {

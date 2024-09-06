@@ -1,15 +1,13 @@
 using Cysharp.Threading.Tasks;
 using DWTools;
 using DWTools.Customization;
+using Purchase;
 using Sirenix.OdinInspector;
-using stickman_sniper.Purchases;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
 using UnityEngine;
-using Zenject;
 
 public class CustomizationScreenAllWeapons : MonoBehaviour
 {

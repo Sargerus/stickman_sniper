@@ -1,6 +1,12 @@
-public class WatchRewardedFailedEvent : BaseAnalyticEvent
+using System.Collections.Generic;
+
+namespace Analytics
 {
-    public WatchRewardedFailedEvent(string eventName) : base(eventName)
+    public class WatchRewardedFailedEvent : BaseAnalyticEvent
     {
+        public WatchRewardedFailedEvent(string eventName, IReadOnlyList<IAnalyticSystem> systems)
+            : base(eventName, systems)
+        {
+        }
     }
 }

@@ -1,13 +1,15 @@
-using stickman_sniper.Purchases;
 using UnityEngine;
 using Zenject;
 
-public class PurchaseServiceInstaller : MonoInstaller
+namespace Purchase
 {
-    [SerializeField] private HashToProductKeyMapper _hashToProductKeyMapper;
-
-    public override void InstallBindings()
+    public class PurchaseServiceInstaller : MonoInstaller
     {
-        Container.BindInterfacesTo<PurchaseService>().AsSingle().WithArguments(_hashToProductKeyMapper);
+        [SerializeField] private HashToProductKeyMapper _hashToProductKeyMapper;
+
+        public override void InstallBindings()
+        {
+            Container.BindInterfacesTo<PurchaseService>().AsSingle().WithArguments(_hashToProductKeyMapper);
+        }
     }
 }

@@ -1,5 +1,4 @@
 using DWTools.Windows;
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -10,9 +9,9 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using InfimaGames.LowPolyShooterPack;
 using DWTools;
-using stickman_sniper.Currency;
 using YG;
-using System.Collections.Generic;
+using Currency;
+using Analytics;
 
 public class GameOverUI : BaseWindow
 {

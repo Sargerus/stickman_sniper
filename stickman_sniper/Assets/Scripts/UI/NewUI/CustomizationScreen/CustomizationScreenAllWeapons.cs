@@ -20,7 +20,6 @@ public class CustomizationScreenAllWeapons : MonoBehaviour
 
     [SerializeField] private CustomizationScreemShopCellPool shopCellPool;
 
-    private AvailableWeaponConfig _availableWeaponConfig;
     private CustomiationDataContainerSO _customiationDataContainerSO;
     private ShopPresentationConfig _shopPresentationConfig;
     private IPurchaseService _purchaseService;
@@ -35,13 +34,11 @@ public class CustomizationScreenAllWeapons : MonoBehaviour
     private CompositeDisposable _disposables = new();
 
     public void ResolveDependencies(
-        AvailableWeaponConfig availableWeaponConfig,
         CustomiationDataContainerSO customiationDataContainerSO,
         ShopPresentationConfig shopPresentationConfig,
         IGameStartWeaponInventoryService gameStartWeaponInventoryService,
         IPurchaseService purchaseService)
     {
-        _availableWeaponConfig = availableWeaponConfig;
         _customiationDataContainerSO = customiationDataContainerSO;
         _shopPresentationConfig = shopPresentationConfig;
         _purchaseService = purchaseService;
@@ -55,7 +52,7 @@ public class CustomizationScreenAllWeapons : MonoBehaviour
         foreach (var item in _shopPresentationConfig.ShopPresentationItems)
         {
             //var shopVisualInfo = _shopPresentationConfig.ShopPresentationItems.FirstOrDefault(g => g.TagName.Equals(item.Tag));
-            var availableWeapons = item.Weapons.Where(g => _availableWeaponConfig.AvailableWeapons.Any(h => h.Equals(g)));
+            var availableWeapons = item.Weapons;
         
             _tagWeaponLink.Add(item.TagName, availableWeapons.ToList());
         

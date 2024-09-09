@@ -34,7 +34,6 @@ public class CustomizationScreen : BaseWindow
 
     [Inject]
     private void Construct(
-        AvailableWeaponConfig availableWeaponConfig,
         CustomiationDataContainerSO customiationDataContainerSO,
         ShopPresentationConfig shopPresentationConfig,
         WeaponCharacteristicsContainer weaponCharacteristicsContainer,
@@ -45,7 +44,7 @@ public class CustomizationScreen : BaseWindow
     {
         _loadingManagerHolder = loadingManagerHolder;
 
-        weaponsGrid.ResolveDependencies(availableWeaponConfig, customiationDataContainerSO, shopPresentationConfig, gameStartWeaponInventoryService, purchaseService);
+        weaponsGrid.ResolveDependencies(customiationDataContainerSO, shopPresentationConfig, gameStartWeaponInventoryService, purchaseService);
         certainWeapon.ResolveDependencies(shopPresentationConfig, weaponCharacteristicsContainer, purchaseService, currencyService);
 
         SwitchTabAsync(null, Tabs.AllWeapons).Forget();

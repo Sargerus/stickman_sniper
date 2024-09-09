@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -55,14 +56,14 @@ public class UISpriteSwaper : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         {
             _swapTween?.Kill(true);
             _currentImage = selectedImage;
-            _swapTween = DOTween.Sequence().Append(highlightedImage.DOFade(0,0.4f)).Join(selectedImage.DOFade(1, 0.4f));
+            _swapTween = DOTween.Sequence().Append(highlightedImage.DOFade(0, 0.4f)).Join(selectedImage.DOFade(1, 0.4f));
         }
         else
         {
             _swapTween?.Kill();
             _currentImage = defaultImage;
             _swapTween = selectedImage.DOFade(0, 0.4f);
-        }        
+        }
     }
 
     private void OnDisable()

@@ -1,7 +1,9 @@
 using Cysharp.Threading.Tasks;
 using InfimaGames.LowPolyShooterPack;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using static CustomizationIndexes;
 
 public class PodiumController : MonoBehaviour
 {
@@ -34,6 +36,21 @@ public class PodiumController : MonoBehaviour
         attachmentManager.SetIndexes(customizationIndexes);
         attachmentManager.Initialize();
         AttachmentManager = attachmentManager;
+    }
+
+    public void SetPodiumAttachmentIndex(AttachmentsTab tab, int index)
+    {
+        AttachmentManager.SetAttachmentIndex(tab, index);
+    }
+
+    public int GetAttachmentIndex(AttachmentsTab tab)
+    {
+        return AttachmentManager.GetAttachmentIndex(tab);
+    }
+
+    public Dictionary<int, string> GetAttachments(AttachmentsTab tab)
+    {
+        return AttachmentManager.GetAttachments(tab);
     }
 
     public void ApplyInput(Vector2 delta)

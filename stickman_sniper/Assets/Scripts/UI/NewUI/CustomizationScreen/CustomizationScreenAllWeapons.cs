@@ -95,13 +95,13 @@ public class CustomizationScreenAllWeapons : MonoBehaviour
         if (!_tagWeaponLink.TryGetValue(tabTag, out var weapons))
             return;
 
-        foreach (var weapon in weapons)
+        for (int i =0; i< weapons.Count; i++)
         {
             IPooledItem<CustomizationScreenShopCell> cell = shopCellPool.Get();
             _shopCells.Add(cell);
             
-            var weaponInventoryVisuals = _shopPresentationConfig.GetConfigByKey(weapon);
-            var weaponItem = weaponInventoryVisuals.GetItemByProductKey(weapon);
+            var weaponInventoryVisuals = _shopPresentationConfig.GetConfigByKey(weapons[i]);
+            var weaponItem = weaponInventoryVisuals.GetItemByProductKey(weapons[i]);
 
             if (weaponItem.IsBoughtByDefault)
             {
@@ -109,10 +109,10 @@ public class CustomizationScreenAllWeapons : MonoBehaviour
             }
 
             cell.Item.ResolveDependencies();
-            cell.Item.Init(weaponItem, null);
+            cell.Item.Init(weaponItem);
             cell.Item.SetState(GetCellState(cell.Item));
 
-            cell.Item.SetOnClickHandler(weapon, _cellClickHandler);
+            cell.Item.SetOnClickHandler(weaponItem.ProductKey, _cellClickHandler);
             cell.Item.transform.SetParent(weaponsContainer, false);
             cell.Item.gameObject.SetActive(true);
         }
@@ -128,7 +128,7 @@ public class CustomizationScreenAllWeapons : MonoBehaviour
 
         if (isSelected)
         {
-            result = CellState.Selected;
+            result = CellState.Chosen;
         }
         else if (isPurchased)
         {

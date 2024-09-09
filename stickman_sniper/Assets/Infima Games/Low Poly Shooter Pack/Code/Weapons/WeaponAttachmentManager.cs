@@ -1,18 +1,23 @@
 ﻿//Copyright 2022, Infima Games. All Rights Reserved.
 
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace InfimaGames.LowPolyShooterPack
 {
     public interface IAttachmentManager
-    {
+    {        
+        int GetAttachmentIndex(AttachmentsTab tab);
+
+        void SetAttachmentIndex(AttachmentsTab tab, int index);
         void SetScopeIndex(int index);
         void SetMuzzleIndex(int index);
         void SetLaserIndex(int index);
         void SetGripIndex(int index);
         void SetMagazineIndex(int index);
 
+        Dictionary<int, string> GetAttachments(AttachmentsTab tab);
         Dictionary<int, string> GetScopes();
         Dictionary<int, string> GetMuzzles();
         Dictionary<int, string> GetLasers();
@@ -290,5 +295,68 @@ namespace InfimaGames.LowPolyShooterPack
             return result;
         }
 
+        public void SetAttachmentIndex(AttachmentsTab tab, int index)
+        {
+            switch (tab)
+            {
+                case AttachmentsTab.Scope: SetScopeIndex(index); return;
+                case AttachmentsTab.Muzzle: SetMuzzleIndex(index); return;
+                case AttachmentsTab.Laser: SetLaserIndex(index); return;
+                case AttachmentsTab.Grip: SetGripIndex(index); return;
+                case AttachmentsTab.Magazine: SetMagazineIndex(index); return;
+            }
+        }
+
+        public int GetAttachmentIndex(AttachmentsTab tab)
+        {
+            return tab switch
+            {
+                AttachmentsTab.Scope => scopeIndex,
+                AttachmentsTab.Muzzle => muzzleIndex,
+                AttachmentsTab.Laser => laserIndex,
+                AttachmentsTab.Grip => gripIndex,
+                AttachmentsTab.Magazine => magazineIndex,
+                _ => -1,
+            };
+        }
+
+        public Dictionary<int, string> GetAttachments(AttachmentsTab tab)
+        {
+            return tab switch
+            {
+                AttachmentsTab.Scope => GetScopes(),
+                AttachmentsTab.Muzzle => GetMuzzles(),
+                AttachmentsTab.Laser => GetLasers(),
+                AttachmentsTab.Grip => GetGrips(),
+                AttachmentsTab.Magazine => GetMagazines(),
+                _ => new(),
+            };
+        }
+
+        //optimize
+        //public int GetIndexByHash(string hash)
+        //{
+        //    var arr = GetScopes();
+        //    if (arr.Values.ToList().IndexOf(hash) != -1)
+        //        return arr.Values.ToList().IndexOf(hash);
+        //
+        //    arr = GetMuzzles();
+        //    if (arr.Values.ToList().IndexOf(hash) != -1)
+        //        return arr.Values.ToList().IndexOf(hash);
+        //
+        //    arr = GetLasers();
+        //    if (arr.Values.ToList().IndexOf(hash) != -1)
+        //        return arr.Values.ToList().IndexOf(hash);
+        //
+        //    arr = GetGrips();
+        //    if (arr.Values.ToList().IndexOf(hash) != -1)
+        //        return arr.Values.ToList().IndexOf(hash);
+        //
+        //    arr = GetMagazines();
+        //    if (arr.Values.ToList().IndexOf(hash) != -1)
+        //        return arr.Values.ToList().IndexOf(hash);
+        //
+        //    return -1;
+        //}
     }
 }

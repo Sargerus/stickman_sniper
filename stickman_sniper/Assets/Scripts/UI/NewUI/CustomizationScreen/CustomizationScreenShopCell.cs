@@ -12,7 +12,8 @@ public enum CellState
     None = 0,
     Available = 1,
     Purchased = 2,
-    Selected = 3
+    Chosen = 3,
+    Hover = 4
 }
 
 public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<CustomizationScreenShopCell>
@@ -23,14 +24,14 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
     [SerializeField] private TMP_Text productText;
     [SerializeField] private UnityEngine.UI.Button button;
     [SerializeField, BoxGroup("Panels")] private GameObject purchasedPanel;
-    [SerializeField, BoxGroup("Panels")] private GameObject selectedPanel;
+    [SerializeField, BoxGroup("Panels")] private GameObject chosenPanel;
 
     private GameObject _bgImage;
     private GameObject _itemImage;
-    private UISpriteSwaper _swaper;
     private IReadOnlyReactiveProperty<string> _selectedItem;
     private CompositeDisposable _disposables = new();
 
+    public UISpriteSwaper Swaper;
     public ShopProductVisual Visual;
     public CustomizationScreenShopCell Item => this;
 
@@ -43,10 +44,9 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
     {
     }
 
-    public async UniTask Init(ShopProductVisual visual, IReadOnlyReactiveProperty<string> selectedItem)
+    public async UniTask Init(ShopProductVisual visual)
     {
         Visual = visual;
-        _selectedItem = selectedItem;
 
         if (visual.ProductBackground.RuntimeKeyIsValid())
         {
@@ -59,12 +59,6 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
         }
 
         Item.SetProductText(visual.ProductName);
-
-        if (selectedItem != null)
-            _selectedItem.SkipLatestValueOnSubscribe().Subscribe(x =>
-            {
-                _swaper.SetSelected(x.Equals(visual.ProductKey));
-            }).AddTo(_disposables);
     }
 
     private CustomizationScreenShopCell SetBackground(GameObject image, bool worldPositionStays)
@@ -72,7 +66,7 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
         _bgImage = image;
         image.transform.SetParent(bgImageParent, worldPositionStays);
 
-        _swaper = image.GetComponent<UISpriteSwaper>();
+        Swaper = image.GetComponent<UISpriteSwaper>();
 
         return this;
     }
@@ -118,7 +112,7 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
 
         Item.SetCostText(GetCostText(Visual));
         costText.gameObject.SetActive(true);
-        selectedPanel.SetActive(false);
+        chosenPanel.SetActive(false);
         purchasedPanel.SetActive(false);
 
         _state.Value = CellState.Available;
@@ -128,20 +122,20 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
     private CustomizationScreenShopCell SetPurchased()
     {
         costText.gameObject.SetActive(false);
-        selectedPanel.SetActive(false);
+        chosenPanel.SetActive(false);
         purchasedPanel.SetActive(true);
 
         _state.Value = CellState.Purchased;
         return this;
     }
 
-    private CustomizationScreenShopCell SetSelected()
+    private CustomizationScreenShopCell SetChosen()
     {
         costText.gameObject.SetActive(false);
-        selectedPanel.SetActive(true);
+        chosenPanel.SetActive(true);
         purchasedPanel.SetActive(false);
 
-        _state.Value = CellState.Selected;
+        _state.Value = CellState.Chosen;
         return this;
     }
 
@@ -151,8 +145,8 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
         {
             case CellState.Available:
                 SetAvailable(); return;
-            case CellState.Selected:
-                SetSelected(); return;
+            case CellState.Chosen:
+                SetChosen(); return;
             case CellState.Purchased:
                 SetPurchased(); return;
         }

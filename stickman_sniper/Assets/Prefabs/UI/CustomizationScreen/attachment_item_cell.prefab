@@ -558,7 +558,7 @@ GameObject:
   - component: {fileID: 2474063814711942128}
   - component: {fileID: 84602413162452134}
   m_Layer: 5
-  m_Name: selectedPanel
+  m_Name: chosenPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -848,7 +848,30 @@ MonoBehaviour:
   productText: {fileID: 2593107915970978806}
   button: {fileID: 2697773003173233392}
   purchasedPanel: {fileID: 2459633235761912488}
-  selectedPanel: {fileID: 4281291841626515430}
+  chosenPanel: {fileID: 4281291841626515430}
+  Swaper: {fileID: 0}
+  Visual:
+    ProductKey: 
+    ProductName: 
+    Hash: 
+    IsBoughtByDefault: 0
+    ProductImage:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 0
+    Cost: 0
 --- !u!1 &7667356801216764211
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,10 +33,6 @@ MonoBehaviour:
     m_Address: Assets/Scripts/CustomizationSystem/WeaponCharacteristicsSO/Rifles/P_LPSP_WEP_Sniper_01_Characteristics_Default.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 44f185f6d5445f94f869fa1d66cc95fb
-    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_1.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: c16f12e0bbff6bb4a8d900dbb4a71bbe
     m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Muzzles/Shop_icon_P_LPSP_WEP_Sniper_01_muzzle_1.prefab
     m_ReadOnly: 0
@@ -81,34 +77,6 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Muzzles/Shop_icon_P_LPSP_WEP_Sniper_01_muzzle_4.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 41591b7bb6af0784798602eb15e8364b
-    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_2.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: d5b8af0357ae56649b56f9970088189d
-    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_3.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 3985f3cf6ab59694996cf9bdcef30b8b
-    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_4.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: f7c37f5dd694f574c81aa4d07ffa8d22
-    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_5.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: c08897298e04c704dacf49758a1f62e8
-    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_6.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 901184c407ee22644914ad0f1deb8ee9
-    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_7.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 6e0137272c7203942a4af692527fc684
-    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_8.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 25569ffc3e369364bb39e365d934353e
     m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Shop_model_P_LPSP_WEP_Sniper_1.prefab
     m_ReadOnly: 0
@@ -136,6 +104,38 @@ MonoBehaviour:
   - m_GUID: a6776893aeb6c5a4caa0e344cd8c1abc
     m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_bg_P_LPSP_WEP_Sniper_01_scope_1
       1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 44f185f6d5445f94f869fa1d66cc95fb
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 41591b7bb6af0784798602eb15e8364b
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d5b8af0357ae56649b56f9970088189d
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3985f3cf6ab59694996cf9bdcef30b8b
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f7c37f5dd694f574c81aa4d07ffa8d22
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c08897298e04c704dacf49758a1f62e8
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_6.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 901184c407ee22644914ad0f1deb8ee9
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_7.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6e0137272c7203942a4af692527fc684
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Scopes/Shop_icon_P_LPSP_WEP_Sniper_01_scope_8.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

@@ -157,16 +157,6 @@ public class WeaponCharacteristicsScriptable : ScriptableObject
 [Serializable]
 public class CustomizationIndexes
 {
-    public enum AttachmentsTab
-    {
-        None = 0,
-        Scope = 1,
-        Muzzle = 2,
-        Laser = 3,
-        Grip = 4,
-        Magazine = 5
-    }
-
     public CustomizationIndexes()
     {
         

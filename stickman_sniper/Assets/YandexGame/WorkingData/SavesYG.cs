@@ -1,6 +1,7 @@
 ﻿
 using stickman_sniper.Currency;
 using System.Collections.Generic;
+using static BootstrapSceneState;
 namespace YG
 {
     [System.Serializable]
@@ -22,6 +23,7 @@ namespace YG
         public int levelsPassed = 0;
         public List<CurrencyEntity> currencies = new();
         public List<string> purchases = new();
+        public List<WeaponIndexes> weaponSelectedIndexes = new();
 
         // ...
 

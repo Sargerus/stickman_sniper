@@ -1050,6 +1050,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _container: {fileID: 11400000, guid: a32773669e7478244ad58fe63de0dcb9, type: 2}
+  weaponCharacteristicsContainer: {fileID: 11400000, guid: c8c11b2098866f749844a63a14876fb9,
+    type: 2}
   uiCamera: {fileID: 0}
   _completedLevels: {fileID: 0}
 --- !u!114 &1870464310 stripped

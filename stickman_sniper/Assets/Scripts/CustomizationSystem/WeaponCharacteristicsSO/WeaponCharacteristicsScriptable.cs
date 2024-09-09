@@ -167,6 +167,21 @@ public class CustomizationIndexes
         Magazine = 5
     }
 
+    public CustomizationIndexes()
+    {
+        
+    }
+
+    public CustomizationIndexes(CustomizationIndexes source)
+    {
+        scopeDefaultShow = source.scopeDefaultShow;
+        scopeIndex = source.scopeIndex;
+        muzzleIndex = source.muzzleIndex;
+        laserIndex = source.laserIndex;
+        gripIndex = source.gripIndex;
+        magazineIndex = source.magazineIndex;
+    }
+
     [Title(label: "Scope")]
 
     [Tooltip("Determines if the ironsights should be shown on the weapon model.")]

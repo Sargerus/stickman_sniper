@@ -24,13 +24,15 @@ public class LoadingManager : IDisposable
 
     private readonly SceneAddressablesContainer _sceneAddressablesContainer;
     private readonly PreloadScriptableObjectContainer _preloadData;
+    private readonly WeaponCharacteristicsContainer _weaponCharacteristicsContainer;
 
     private StateMachine _gameStateMachine;
     private IDisposable _updateDisposable;
 
-    public LoadingManager(SceneAddressablesContainer sceneAddressablesContainer)
+    public LoadingManager(SceneAddressablesContainer sceneAddressablesContainer, WeaponCharacteristicsContainer weaponCharacteristicsContainer)
     {
         _sceneAddressablesContainer = sceneAddressablesContainer;
+        _weaponCharacteristicsContainer = weaponCharacteristicsContainer;
 
         _updateDisposable = Observable.EveryUpdate().Subscribe(x =>
         {
@@ -44,7 +46,7 @@ public class LoadingManager : IDisposable
 
         _gameStateMachine = new();
 
-        IState bootstrapState = new BootstrapSceneState(this);
+        IState bootstrapState = new BootstrapSceneState(this, _weaponCharacteristicsContainer);
         IState mainMenuState = new MainMenuSceneState(_sceneAddressablesContainer.Get(MainMenu));
         IState gameState = new GameSceneState(_sceneAddressablesContainer.Get(GameScene));
 

@@ -12,6 +12,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
 using YG;
+using static BootstrapSceneState;
 using static CustomizationIndexes;
 
 public class CustomizationScreenCertainWeapon : MonoBehaviour
@@ -51,6 +52,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
     public ReactiveProperty<string> _currentIndexSelectedReactiveString = new();
     private CustomizationIndexes _customizationIndexes;
     private List<AsyncOperationHandle> _listOfDependencies = new();
+    private WeaponIndexes _weaponIndexes;
 
     public void ResolveDependencies(ShopPresentationConfig shopProductConfig,
         WeaponCharacteristicsContainer weaponCharacteristicsContainer,
@@ -68,6 +70,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
         _backClickHandler = backClickHandler;
         _productVisualsContainer = _shopProductConfig.GetConfigByKey(key);
         var weaponItem = _productVisualsContainer.GetItemByProductKey(key);
+        _weaponIndexes = YandexGame.savesData.weaponSelectedIndexes.FirstOrDefault(g => g.WeaponKey.Equals(key));
 
         weaponText.SetText(weaponItem.ProductName);
 
@@ -106,6 +109,9 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
         {
             int newIndex = _currentIndexSelectedReactive.Value;
 
+            //this workaround was set for WebGL for saving, because WebGL doesnt suppor save through scriptables: they are cleared on start
+            _weaponIndexes.Indexes.SetIndex(_currentTab, newIndex);
+            YandexGame.SaveProgress();
             _customizationIndexes.SetIndex(_currentTab, newIndex);
 
             if (newIndex >= 0)

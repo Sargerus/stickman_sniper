@@ -6,6 +6,7 @@ using Zenject;
 public class GameEntryPoint : MonoBehaviour
 {
     [SerializeField] private SceneAddressablesContainer _container;
+    [SerializeField] private WeaponCharacteristicsContainer weaponCharacteristicsContainer;
     [SerializeField] private Camera uiCamera;
     [SerializeField] private TMP_Text _completedLevels;
 
@@ -29,7 +30,7 @@ public class GameEntryPoint : MonoBehaviour
 
         _isInitialize = true;
 
-        LoadingManager loadingManager = new(_container);
+        LoadingManager loadingManager = new(_container, weaponCharacteristicsContainer);
         loadingManager.StartGameMachine();
         //_completedLevels.SetText($" {YandexGame.savesData.levelsPassed + 1}/47");
     }

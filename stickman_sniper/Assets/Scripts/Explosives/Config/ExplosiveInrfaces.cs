@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace stickman_sniper.Weapon.Explosives
+namespace StickmanSniper.Explosives
 {
     public interface IExplosive
     {

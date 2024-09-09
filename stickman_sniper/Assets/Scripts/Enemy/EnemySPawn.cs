@@ -1,19 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySPawn : MonoBehaviour
+namespace StickmanSniper.Enemy
 {
-    private void OnDrawGizmos()
+    public class EnemySPawn : MonoBehaviour
     {
-        Gizmos.color = Color.red;
-        Vector3 from = transform.position;;
-        Gizmos.DrawLine(from, transform.position + transform.forward);
-    }
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Vector3 from = transform.position; ;
+            Gizmos.DrawLine(from, transform.position + transform.forward);
+        }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(transform.position, 0.4f);
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(transform.position, 0.4f);
+        }
     }
 }

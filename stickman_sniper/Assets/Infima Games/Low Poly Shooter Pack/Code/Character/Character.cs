@@ -13,8 +13,8 @@ using UniRx;
 using InfimaGames.LowPolyShooterPack.Interface;
 using DWTools.Windows;
 using YG;
-using UniversalMobileController;
 using DWTools.RPG;
+using StickmanSniper.Utilities;
 
 namespace InfimaGames.LowPolyShooterPack
 {
@@ -26,7 +26,7 @@ namespace InfimaGames.LowPolyShooterPack
     public sealed class Character : CharacterBehaviour
     {
         private IInputService _inputService;
-        private IProgressBarAimDotProvider _progressBarAimDotProvider;
+        private IPointProvider _progressBarAimDotProvider;
         private DiContainer _diContainer;
         private CursorLocker _cursorLocker;
         private IUIManager _uiManager;
@@ -36,7 +36,7 @@ namespace InfimaGames.LowPolyShooterPack
 
         [Inject]
         private void Construct(IInputService inputService,
-            IProgressBarAimDotProvider progressBarAimDotProvider,
+            IPointProvider progressBarAimDotProvider,
             DiContainer diContainer,
             CursorLocker cursorLocker,
             IUIManager uiManager)

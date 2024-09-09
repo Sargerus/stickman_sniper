@@ -7,7 +7,6 @@ using Zenject;
 using UniRx;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using InfimaGames.LowPolyShooterPack;
 using DWTools;
 using YG;
 using Currency;

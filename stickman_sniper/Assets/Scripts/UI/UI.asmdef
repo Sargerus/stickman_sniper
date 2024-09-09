@@ -1,0 +1,31 @@
+{
+    "name": "UI",
+    "rootNamespace": "StickmanSniper.UI",
+    "references": [
+        "Zenject",
+        "UniTask",
+        "UniRx",
+        "Unity.Addressables",
+        "Unity.TextMeshPro",
+        "UniTask.DOTween",
+        "DOTween.Modules",
+        "DWWindows",
+        "DWTools",
+        "UMC",
+        "Currency",
+        "Purchase",
+        "Customization",
+        "YandexGame",
+        "Analytics",
+        "Translation"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

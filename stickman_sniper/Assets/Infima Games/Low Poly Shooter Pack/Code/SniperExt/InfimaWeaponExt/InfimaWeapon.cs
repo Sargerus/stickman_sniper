@@ -13,9 +13,6 @@ namespace InfimaGames.LowPolyShooterPack
     public class InfimaWeapon : WeaponBehaviour
     {
         #region FIELDS SERIALIZED
-
-        [Title(label: "Settings")]
-
         [Tooltip("Weapon Name. Currently not used for anything, but in the future, we will use this for pickups!")]
         [SerializeField]
         protected string weaponName;
@@ -24,7 +21,6 @@ namespace InfimaGames.LowPolyShooterPack
         [SerializeField]
         protected float multiplierMovementSpeed = 1.0f;
 
-        [Title(label: "Firing")]
 
         [Tooltip("Is this weapon automatic? If yes, then holding down the firing button will continuously fire.")]
         [SerializeField]
@@ -50,7 +46,6 @@ namespace InfimaGames.LowPolyShooterPack
         [SerializeField]
         protected int roundsPerMinutes = 200;
 
-        [Title(label: "Reloading")]
 
         [Tooltip("Determines if this weapon reloads in cycles, meaning that it inserts one bullet at a time, or not.")]
         [SerializeField]
@@ -68,7 +63,6 @@ namespace InfimaGames.LowPolyShooterPack
         [SerializeField]
         protected float automaticReloadOnEmptyDelay = 0.25f;
 
-        [Title(label: "Animation")]
 
         [Tooltip("Transform that represents the weapon's ejection port, meaning the part of the weapon that casings shoot from.")]
         [SerializeField]
@@ -78,7 +72,6 @@ namespace InfimaGames.LowPolyShooterPack
         [SerializeField]
         protected bool canReloadAimed = true;
 
-        [Title(label: "Resources")]
 
         [Tooltip("Casing Prefab.")]
         [SerializeField]
@@ -96,7 +89,6 @@ namespace InfimaGames.LowPolyShooterPack
         [SerializeField]
         protected Sprite spriteBody;
 
-        [Title(label: "Audio Clips Holster")]
 
         [Tooltip("Holster Audio Clip.")]
         [SerializeField]
@@ -106,7 +98,6 @@ namespace InfimaGames.LowPolyShooterPack
         [SerializeField]
         protected AudioClip audioClipUnholster;
 
-        [Title(label: "Audio Clips Reloads")]
 
         [Tooltip("Reload Audio Clip.")]
         [SerializeField]
@@ -116,7 +107,6 @@ namespace InfimaGames.LowPolyShooterPack
         [SerializeField]
         protected AudioClip audioClipReloadEmpty;
 
-        [Title(label: "Audio Clips Reloads Cycled")]
 
         [Tooltip("Reload Open Audio Clip.")]
         [SerializeField]
@@ -130,7 +120,6 @@ namespace InfimaGames.LowPolyShooterPack
         [SerializeField]
         protected AudioClip audioClipReloadClose;
 
-        [Title(label: "Audio Clips Other")]
 
         [Tooltip("AudioClip played when this weapon is fired without any ammunition.")]
         [SerializeField]

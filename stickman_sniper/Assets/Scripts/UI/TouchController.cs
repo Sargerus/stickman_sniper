@@ -2,13 +2,7 @@ using DWTools;
 using System.Linq;
 using UnityEngine;
 using UniversalMobileController;
-using YG;
 using Zenject;
-
-public interface IFinger
-{
-    void SetFingerId(int? fingerId);
-}
 
 public class TouchController : MonoBehaviour
 {

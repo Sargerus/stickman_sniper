@@ -1,9 +1,8 @@
-using stickman_sniper.Weapon.Explosives;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace stickman_sniper.Environment
+namespace StickmanSniper.Explosives
 {
     public interface IExplodee
     {

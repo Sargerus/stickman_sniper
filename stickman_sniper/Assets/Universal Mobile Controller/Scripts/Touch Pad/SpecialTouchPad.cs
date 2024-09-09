@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
-using YG;
-using DWTools;
-using TMPro;
-using System.Linq;
+using StickmanSniper.Utilities;
 
 namespace UniversalMobileController
 {
@@ -27,9 +24,6 @@ namespace UniversalMobileController
         private int? uniqueFingerId = null;
         private bool _wasCalledUp = true;
 
-        [SerializeField]
-        private TMP_Text _log;
-
         void EraseInput()
         {
             touchPadInput = Vector2.zero;
@@ -39,10 +33,8 @@ namespace UniversalMobileController
         {
             if (UniversalMobileController_Manager.editMode|| touchPadState == State.Un_Interactable || uniqueFingerId == null) { EraseInput(); return; }
 
-            _log.text += "2";
             if (pressingTouchPad)
             {
-                _log.text += "3";
                 if (eventPointerID < Input.touches.Length && eventPointerID >= 0)
                 {
                     distanceBetweenTouch = Input.touches[eventPointerID].position - PointerOld;
@@ -68,16 +60,12 @@ namespace UniversalMobileController
             pressingTouchPad = true;
             eventPointerID = eventData.pointerId;
             PointerOld = eventData.position;
-
-            _log.SetText(string.Empty);
-            _log.text += " OnPointerDown";
         }
 
         public void OnPointerUp(PointerEventData eventData)
         {
             pressingTouchPad = false;
             uniqueFingerId = null;
-            _log.text +=" OnPointerUp";
             _wasCalledUp = true;
             EraseInput();
         }
@@ -110,7 +98,6 @@ namespace UniversalMobileController
             if (uniqueFingerId == null && _wasCalledUp == false)
             {
                 OnPointerUp(null);
-                _log.text += "Uniq=null";
             }
         }
     }

@@ -1,0 +1,26 @@
+{
+    "name": "Enemy",
+    "rootNamespace": "StickmanSniper.Enemy",
+    "references": [
+        "Zenject",
+        "UniTask",
+        "Producers",
+        "Cinemachine",
+        "DWTools",
+        "UniRx",
+        "DWToolsFeature_Slowmotion",
+        "BehaviourDesigner",
+        "Explosives",
+        "StickmanSniperUtilities",
+        "Infima"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

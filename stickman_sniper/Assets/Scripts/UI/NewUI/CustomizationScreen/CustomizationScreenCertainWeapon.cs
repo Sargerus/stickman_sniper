@@ -3,6 +3,7 @@ using Customization;
 using Cysharp.Threading.Tasks;
 using Purchase;
 using Sirenix.OdinInspector;
+using StickmanSniper.Podium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,6 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
 using YG;
 

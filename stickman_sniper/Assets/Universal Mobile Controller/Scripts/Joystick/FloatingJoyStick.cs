@@ -4,9 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using Zenject;
 using DWTools;
-using System.Linq;
-using YG;
-using TMPro;
+using StickmanSniper.Utilities;
 
 namespace UniversalMobileController
 {
@@ -36,9 +34,6 @@ namespace UniversalMobileController
         public UnityEvent onStartedDraggingJoystick;
         public UnityEvent onStoppedDraggingJoystick;
 
-        [SerializeField]
-        private TMP_Text _log;
-
         private void Start()
         {
             onGameStart.Invoke();
@@ -50,9 +45,6 @@ namespace UniversalMobileController
             if (UniversalMobileController_Manager.editMode || joystickState == State.Un_Interactable) { return; }
             _wasCalledUp = false;
             SetJoystickColor(pressedColor);
-
-            _log.SetText(string.Empty);
-            _log.text += " OnPointerDown";
 
             Vector3 posToConvert = new(eventdata.position.x, eventdata.position.y, GetComponentInParent<Canvas>().planeDistance);
 
@@ -68,8 +60,6 @@ namespace UniversalMobileController
         {
             if (UniversalMobileController_Manager.editMode || joystickState == State.Un_Interactable) { return; }
             SetJoystickColor(normalColor);
-
-            _log.text += " OnPointerUp";
 
             joyStickInput = new Vector2(0, 0);
             joyStick.anchoredPosition = new Vector2(0, 0);
@@ -130,7 +120,6 @@ namespace UniversalMobileController
             if (uniqueFingerId == null && _wasCalledUp == false)
             {
                 OnPointerUp(null);
-                _log.text += "Uniq=null";
             }
         }
     }

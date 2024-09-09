@@ -1,30 +1,33 @@
-using stickman_sniper.Environment;
-using stickman_sniper.Weapon.Explosives;
+using StickmanSniper.Explosives;
 using UnityEngine;
 
-public class MainRagdollRigidbody : MonoBehaviour, IExplodee
+namespace StickmanSniper.Enemy
 {
-    [SerializeField] private Rigidbody rb;
 
-    public Rigidbody Rigidbody => rb;
-
-    public bool IsExploded { get; private set; }
-
-    public void Explode(ExplosiveSettingsSO explosionSettings)
+    public class MainRagdollRigidbody : MonoBehaviour, IExplodee
     {
-        IsExploded = true;
+        [SerializeField] private Rigidbody rb;
 
-        if (TryGetComponent<MainRagdollRigidbody>(out var rb))
+        public Rigidbody Rigidbody => rb;
+
+        public bool IsExploded { get; private set; }
+
+        public void Explode(ExplosiveSettingsSO explosionSettings)
         {
-            var enemy = rb.GetComponentInParent<Enemy>();
-            if (!enemy.IsAlive.Value)
-                return;
+            IsExploded = true;
 
-            enemy.PrepareForDeath();
+            if (TryGetComponent<MainRagdollRigidbody>(out var rb))
+            {
+                var enemy = rb.GetComponentInParent<Enemy>();
+                if (!enemy.IsAlive.Value)
+                    return;
 
-            Vector3 direction = (rb.transform.position - transform.position).normalized;
-            direction.y = explosionSettings.UpwardModifier;
-            rb.Rigidbody.AddForce(direction * explosionSettings.Force, ForceMode.Impulse);
+                enemy.PrepareForDeath();
+
+                Vector3 direction = (rb.transform.position - transform.position).normalized;
+                direction.y = explosionSettings.UpwardModifier;
+                rb.Rigidbody.AddForce(direction * explosionSettings.Force, ForceMode.Impulse);
+            }
         }
     }
 }

@@ -1,0 +1,27 @@
+{
+    "name": "Infima",
+    "rootNamespace": "InfimaGames.LowPolyShooterPack",
+    "references": [
+        "Zenject",
+        "UniTask",
+        "UniRx",
+        "Toolbox.Editor",
+        "Toolbox",
+        "DWTools",
+        "Unity.InputSystem",
+        "DWWindows",
+        "YandexGame",
+        "StickmanSniperUtilities",
+        "Unity.TextMeshPro",
+        "UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

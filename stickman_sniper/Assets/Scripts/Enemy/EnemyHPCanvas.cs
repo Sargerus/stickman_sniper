@@ -1,32 +1,36 @@
+using StickmanSniper.Utilities;
 using UnityEngine;
 using Zenject;
 
-public class EnemyHPCanvas : MonoBehaviour
+namespace StickmanSniper.Enemy
 {
-    [SerializeField] private Canvas canvas;
-    [SerializeField] private Transform progressBar;
-
-    private IProgressBarAimDotProvider _progressBarAimDotProvider;
-
-    [Inject]
-    private void Construct([InjectOptional] IProgressBarAimDotProvider progressBarAimDotProvider)
+    public class EnemyHPCanvas : MonoBehaviour
     {
-        _progressBarAimDotProvider = progressBarAimDotProvider;
-    }
+        [SerializeField] private Canvas canvas;
+        [SerializeField] private Transform progressBar;
 
-    private void Update()
-    {
-        if (_progressBarAimDotProvider != null)
-            progressBar.rotation = Quaternion.LookRotation((progressBar.transform.position - _progressBarAimDotProvider.Point).normalized);
-    }
+        private IPointProvider _progressBarAimDotProvider;
 
-    public void SetActiveCanvas(bool active)
-    {
-        canvas.enabled = active;
-    }
+        [Inject]
+        private void Construct([InjectOptional(Id = SharedConstants.ProgressBarAimDotProvider)] IPointProvider progressBarAimDotProvider)
+        {
+            _progressBarAimDotProvider = progressBarAimDotProvider;
+        }
 
-    public void SetHp(float hp)
-    {
-        progressBar.GetComponent<UnityEngine.UI.Slider>().value = hp;
+        private void Update()
+        {
+            if (_progressBarAimDotProvider != null)
+                progressBar.rotation = Quaternion.LookRotation((progressBar.transform.position - _progressBarAimDotProvider.Point).normalized);
+        }
+
+        public void SetActiveCanvas(bool active)
+        {
+            canvas.enabled = active;
+        }
+
+        public void SetHp(float hp)
+        {
+            progressBar.GetComponent<UnityEngine.UI.Slider>().value = hp;
+        }
     }
 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4840233239652911365}
   - component: {fileID: 3644505754493758525}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: P_LPSP_WEP_ATT_Scope_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4144556170997563075}
   m_Father: {fileID: 0}
@@ -47,27 +48,14 @@ MonoBehaviour:
   multiplierMouseSensitivity: 0.8
   multiplierSpread: 0.1
   sprite: {fileID: 0}
-  aimingSway:
-    look:
-      location:
-        horizontal: {x: -0.01, y: 0, z: 0}
-        vertical: {x: 0, y: 0, z: -0.01}
-      rotation:
-        horizontal: {x: 0, y: 0, z: 0}
-        vertical: {x: 0, y: 0, z: 0}
-    movement:
-      location:
-        horizontal: {x: -0.02, y: 0, z: 0}
-        vertical: {x: 0, y: 0.02, z: 0}
-      rotation:
-        horizontal: {x: 0, y: 2, z: 0}
-        vertical: {x: 0, y: 0, z: 0}
+  swayMultiplier: 1
   offsetAimingLocation: {x: 0, y: 0, z: 0}
   offsetAimingRotation: {x: 0, y: 0, z: 0}
   fieldOfViewMultiplierAim: 0.75
   fieldOfViewMultiplierAimWeapon: 1
   materialIndex: -1
   materialHidden: {fileID: 2100000, guid: 22b4dadcbcffc034e9cd31f0a3eeb360, type: 2}
+  Key: 
 --- !u!1 &5853884452024527085
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,7 +65,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1902313121568570597}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SOCKET_Scope_02_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,6 +82,7 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4144556170997563073}
   m_RootOrder: 0
@@ -108,6 +97,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 6df038b9e2eec764d943b5cc40db642b, type: 3}
       propertyPath: m_Name
       value: SM_ATT_Scope_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6df038b9e2eec764d943b5cc40db642b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 6df038b9e2eec764d943b5cc40db642b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6df038b9e2eec764d943b5cc40db642b, type: 3}
       propertyPath: m_RootOrder
@@ -167,15 +164,15 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 80bf4e8bfc0663f47a7bcd9fc18eb041, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6df038b9e2eec764d943b5cc40db642b, type: 3}
---- !u!4 &4144556170997563075 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400000, guid: 6df038b9e2eec764d943b5cc40db642b,
-    type: 3}
-  m_PrefabInstance: {fileID: 4144556170997163075}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4144556170997563073 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 6df038b9e2eec764d943b5cc40db642b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4144556170997163075}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4144556170997563075 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 6df038b9e2eec764d943b5cc40db642b,
     type: 3}
   m_PrefabInstance: {fileID: 4144556170997163075}
   m_PrefabAsset: {fileID: 0}

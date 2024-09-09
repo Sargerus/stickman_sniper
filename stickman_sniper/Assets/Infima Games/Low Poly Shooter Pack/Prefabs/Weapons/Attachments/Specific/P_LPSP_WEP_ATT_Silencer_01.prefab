@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7013524309131928554}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SOCKET_Silencer_01_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2904974346715953620}
   m_RootOrder: 0
@@ -39,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2904974346715953620}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SOCKET_Silencer_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,6 +57,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.000000024874074, y: -0.2214434, z: -0.00000004004687}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7013524309131928554}
   m_Father: {fileID: 2904974346715953622}
@@ -73,7 +75,7 @@ GameObject:
   - component: {fileID: 2904974346715150838}
   - component: {fileID: 2904974346714184502}
   - component: {fileID: 3921058973405605945}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: P_LPSP_WEP_ATT_Silencer_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,6 +92,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2904974346715953620}
   m_Father: {fileID: 0}
@@ -114,6 +117,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

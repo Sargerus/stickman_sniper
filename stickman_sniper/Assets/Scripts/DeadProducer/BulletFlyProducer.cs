@@ -6,14 +6,14 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace stickman_sniper.Producer
+namespace StickmanSniper.Producers
 {
-    internal interface IBulletFlyProducer
+    public interface IBulletFlyProducer
     {
         UniTask SendBulletInSlowmotionAsync(Vector3 startPosition, Vector3 endPosition, ICinemachineDirector bulletDirector);
     }
 
-    internal class BulletFlyProducer : IBulletFlyProducer, IDisposable
+    public class BulletFlyProducer : IBulletFlyProducer, IDisposable
     {
         private CameraProvider _cameraProvider;
         private IInputService _inputService;

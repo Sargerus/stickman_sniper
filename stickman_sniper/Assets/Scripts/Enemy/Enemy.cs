@@ -5,14 +5,12 @@ using DWTools.Extensions;
 using DWTools.RPG;
 using DWTools.Slowmotion;
 using Sirenix.OdinInspector;
-using stickman_sniper.Producer;
+using StickmanSniper.Producers;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
 using UnityEngine;
-using Zenject;
 
 public class Enemy : SlowmotionRoot, ICinemachineDirector
 {

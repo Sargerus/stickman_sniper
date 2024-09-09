@@ -2,14 +2,14 @@ using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine;
 
-namespace stickman_sniper.Producer
+namespace StickmanSniper.Producers
 {
     public interface ICoreProducer
     {
-        UniTask KillEnemyWeaponSlowmotion(Enemy enemy, Vector3 startPos, Vector3 hitPoint, GameObject prefab, Action onHitCallback);
+        UniTask KillEnemyWeaponSlowmotion(ICinemachineDirector enemyDirector, Vector3 startPos, Vector3 hitPoint, GameObject prefab, Action onHitCallback);
     }
 
-    internal class CoreProducer : ICoreProducer
+    public class CoreProducer : ICoreProducer
     {
         private readonly IBulletFlyProducer _bulletSlowmotionService;
         private readonly IEnemyDeadProducer _enemyDeadProducer;
@@ -21,7 +21,7 @@ namespace stickman_sniper.Producer
             _enemyDeadProducer = enemyDeadProducer;
         }
 
-        public async UniTask KillEnemyWeaponSlowmotion(Enemy enemy, Vector3 startPos, Vector3 hitPoint, GameObject prefab, Action onHitCallback)
+        public async UniTask KillEnemyWeaponSlowmotion(ICinemachineDirector enemyDirector, Vector3 startPos, Vector3 hitPoint, GameObject prefab, Action onHitCallback)
         {
             var bulletSlowmotion = GameObject.Instantiate(prefab);
             var bulletDirector = bulletSlowmotion.GetComponent<ICinemachineDirector>();
@@ -32,7 +32,7 @@ namespace stickman_sniper.Producer
             GameObject.Destroy(bulletSlowmotion, 0.1f);
 
             onHitCallback?.Invoke();
-            await _enemyDeadProducer.ShowEnemyDeath(enemy);
+            await _enemyDeadProducer.ShowEnemyDeath(enemyDirector);
         }
     }
 }

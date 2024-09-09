@@ -1,8 +1,8 @@
 using Customization;
 using Cysharp.Threading.Tasks;
 using InfimaGames.LowPolyShooterPack;
-using stickman_sniper.Producer;
 using stickman_sniper.Weapon.Explosives;
+using StickmanSniper.Producers;
 using UnityEngine;
 using Zenject;
 

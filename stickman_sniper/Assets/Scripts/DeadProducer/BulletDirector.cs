@@ -3,7 +3,7 @@ using DWTools.Extensions;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace stickman_sniper.Producer
+namespace StickmanSniper.Producers
 {
     public class BulletDirector : MonoBehaviour, ICinemachineDirector
     {

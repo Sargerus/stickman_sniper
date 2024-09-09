@@ -1,9 +1,9 @@
 using DWTools;
 using InfimaGames.LowPolyShooterPack;
-using stickman_sniper.Producer;
 using UnityEngine;
 using YG;
 using Zenject;
+using StickmanSniper.Producers;
 
 public class FPSControllerInstaller : MonoInstaller
 {

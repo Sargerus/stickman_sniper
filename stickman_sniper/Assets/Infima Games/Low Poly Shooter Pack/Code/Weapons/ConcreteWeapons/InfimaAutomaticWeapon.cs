@@ -1,8 +1,8 @@
 //Copyright 2022, Infima Games. All Rights Reserved.
 
 using Cysharp.Threading.Tasks;
-using stickman_sniper.Producer;
 using stickman_sniper.Weapon.Explosives;
+using StickmanSniper.Producers;
 using System;
 using UnityEngine;
 using Zenject;

@@ -1,7 +1,7 @@
 using Cinemachine;
 using UnityEngine;
 
-namespace stickman_sniper.Producer
+namespace StickmanSniper.Producers
 {
     public interface ICinemachineActor
     {

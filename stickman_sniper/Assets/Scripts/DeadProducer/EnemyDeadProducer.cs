@@ -4,14 +4,14 @@ using DWTools;
 using DWTools.Slowmotion;
 using Zenject;
 
-namespace stickman_sniper.Producer
+namespace StickmanSniper.Producers
 {
-    internal interface IEnemyDeadProducer
+    public interface IEnemyDeadProducer
     {
         UniTask ShowEnemyDeath(ICinemachineDirector enemyDirector);
     }
 
-    internal class EnemyDeadProducer : IEnemyDeadProducer
+    public class EnemyDeadProducer : IEnemyDeadProducer
     {
         private CameraProvider _cameraProvider;
         private IInputService _inputService;

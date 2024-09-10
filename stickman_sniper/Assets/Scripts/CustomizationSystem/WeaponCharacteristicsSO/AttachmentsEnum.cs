@@ -8,6 +8,12 @@ public enum AttachmentsTab
     Magazine = 5
 }
 
+public enum InventoryTab
+{
+    None = 0,
+    SniperRifle = 1
+}
+
 public static class AttachmentsTabExtensions
 {
     public static AttachmentsTab ToAttachmentTab(this string key) => key switch

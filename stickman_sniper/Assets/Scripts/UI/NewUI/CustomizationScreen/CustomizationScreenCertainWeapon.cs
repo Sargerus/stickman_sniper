@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UniRx;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -29,27 +30,30 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
     [SerializeField, BoxGroup("Buttons")] private TMP_Text buyButtonTextEnough;
     [SerializeField, BoxGroup("Buttons")] private TMP_Text buyButtonTextNotEnough;
 
-    [SerializeField, BoxGroup("Tabs")] private List<CustomizationScreenTab> tabs;
+    [SerializeField, BoxGroup("Tabs")] private Transform tabsContainer;
+    [SerializeField, BoxGroup("Tabs")] private CustomizationScreenTab tabPrefab;
 
     private ReactiveProperty<AttachmentsTab> _currentTab = new(AttachmentsTab.None);
-    public ReactiveProperty<string> _currentChosen = new();
-    public ReactiveProperty<string> _currentSelected = new();
+    public ReactiveProperty<int> _currentChosen = new();
+    public Dictionary<AttachmentsTab, ReactiveProperty<int>> _selectedItems = new();
     public ReactiveProperty<string> _currentIndexChosenReactiveString = new();
 
+    private ReactiveProperty<int> _currentSelected => _selectedItems[_currentTab.Value];
     private IPurchaseService _purchaseService;
     private ICurrencyService _currencyService;
     private ShopPresentationConfig _shopProductConfig;
     private WeaponCharacteristicsContainer _weaponCharacteristicsContainer;
     private IObserver<string> _backClickHandler;
-    private Dictionary<int, string> _currentContent = new();
+    private Dictionary<int, string> _currentTabAttachments = new();
     private string _key;
     private Subject<string> _cellClickHandler = new();
-    private Subject<string> _tabClickHandler = new();
+    private Subject<AttachmentsTab> _tabClickHandler = new();
 
     private ShopProductVisuals _productVisualsContainer;
     private CompositeDisposable _disposables = new();
     private CustomizationIndexes _customizationIndexes;
     private List<AsyncOperationHandle> _listOfDependencies = new();
+    private List<CustomizationScreenTab> _tabs = new();
     private WeaponIndexes _weaponIndexes;
 
     public void ResolveDependencies(ShopPresentationConfig shopProductConfig,
@@ -67,32 +71,33 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
         _key = key;
         _backClickHandler = backClickHandler;
         _productVisualsContainer = _shopProductConfig.GetConfigByKey(key);
+
         var weaponItem = _productVisualsContainer.GetItemByProductKey(key);
         _weaponIndexes = YandexGame.savesData.weaponSelectedIndexes.FirstOrDefault(g => g.WeaponKey.Equals(key));
-
-        weaponText.SetText(weaponItem.ProductName);
+        
+        weaponText.SetText(weaponItem.ProductName);        
 
         var charContainer = _weaponCharacteristicsContainer.Config.FirstOrDefault(g => g.WeaponKey.Equals(key));
         if (charContainer != null)
         {
             _customizationIndexes = charContainer.CurrentCustomizationData.CustomizationIndexes;
-        }
+        }        
 
         await PrelaodDependencies();
         await podiumController.Initialize(weaponItem, _customizationIndexes);
         await weaponItemsHandler.Initialize(_currentTab,
-            _currentSelected,
+            _selectedItems,
             _currentChosen,
             podiumController.AttachmentManager,
             _productVisualsContainer,
             _purchaseService,
             _customizationIndexes);
 
-        Subscribe();
-        RefreshButtonsState(_currentChosen.Value);
-        SubscribeRawImage();
         InitializeTabs();
+        SubscribeRawImage();
         SwitchTab(AttachmentsTab.Scope);
+        RefreshButtonsState(_currentChosen.Value);
+        Subscribe();
     }
 
     private void Subscribe()
@@ -101,20 +106,20 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
 
         chooseButton.OnClickAsObservable().Subscribe(_ =>
         {
-            string productChosen = _currentSelected.Value;
-            int newIndex = GetAttachmentIndexByProductKey(productChosen);
+            int newIndex = _currentSelected.Value;
 
             //this workaround was set for WebGL for saving, because WebGL doesnt suppor save through scriptables: they are cleared at start
             _weaponIndexes.Indexes.SetIndex(_currentTab.Value, newIndex);
             YandexGame.SaveProgress();
             _customizationIndexes.SetIndex(_currentTab.Value, newIndex);
             podiumController.SetPodiumAttachmentIndex(_currentTab.Value, newIndex);
-            _currentChosen.Value = productChosen;
+            _currentChosen.Value = newIndex;
         }).AddTo(_disposables);
 
         buyButton.OnClickAsObservable().Subscribe(_ =>
         {
-            ShopProductVisual visuals = _productVisualsContainer.GetItemByProductKey(_currentSelected.Value);
+            var hash = _currentTabAttachments[_currentSelected.Value];
+            ShopProductVisual visuals = _productVisualsContainer.GetItemByHash(hash);
 
             switch (visuals.ObtainBy)
             {
@@ -132,7 +137,8 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
 
         adButton.OnClickAsObservable().Subscribe(_ =>
         {
-            ShopProductVisual visuals = _productVisualsContainer.GetItemByProductKey(_currentSelected.Value);
+            var hash = _currentTabAttachments[_currentSelected.Value];
+            ShopProductVisual visuals = _productVisualsContainer.GetItemByHash(hash);
 
             switch (visuals.ObtainBy)
             {
@@ -149,7 +155,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
 
         _tabClickHandler.Subscribe(tabKey =>
         {
-            SwitchTab(tabKey.ToAttachmentTab());
+            SwitchTab(tabKey);
         }).AddTo(_disposables);
 
         _currencyService.GetCurrency(CurrencyServiceConstants.GoldCurrency).Subscribe(x =>
@@ -157,19 +163,23 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
             currencyText.SetText($"<sprite name=\"ic_coin\"> {x}");
         }).AddTo(_disposables);
 
-        _currentSelected.Merge(_currentChosen)
-            .Merge(_purchaseService.OnPurchaseComplete)
-            .Merge(_currencyService.GetCurrency(CurrencyServiceConstants.GoldCurrency).Select(_ => string.Empty))
+        _selectedItems.Values.Merge()
+            .Merge(_currentChosen)
+            .Merge(_purchaseService.OnPurchaseComplete.Select(_ => 1))
+            .Merge(_currencyService.GetCurrency(CurrencyServiceConstants.GoldCurrency).Select(_ => 1))
             .Subscribe(_ =>
         {
             RefreshButtonsState(_currentSelected.Value);
         }).AddTo(_disposables);
 
         //podium
-        _currentSelected.SkipLatestValueOnSubscribe().Subscribe(x =>
+        foreach(var tab in _productVisualsContainer.AvailableTabs)
         {
-            podiumController.SetPodiumAttachmentIndex(_currentTab.Value, GetAttachmentIndexByProductKey(x));
-        }).AddTo(_disposables);
+            _selectedItems[tab].SkipLatestValueOnSubscribe().SubscribeWithState(tab, (x, tab) =>
+            {
+                podiumController.SetPodiumAttachmentIndex(tab, x);
+            }).AddTo(_disposables);
+        }
     }
 
     private int GetAttachmentIndexByProductKey(string productKey)
@@ -177,7 +187,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
         if (string.IsNullOrEmpty(productKey))
             return -1;
 
-        var values = _currentContent.Values.ToList();
+        var values = _currentTabAttachments.Values.ToList();
         var hash = _productVisualsContainer.GetItemByProductKey(productKey).Hash;
         return values.IndexOf(hash);
     }
@@ -214,12 +224,17 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
 
     private void InitializeTabs()
     {
-        List<string> asd = new() { "scope", "muzzle", "laser", "grip", "magazine" };
-
-        for (int i = 0; i < tabs.Count; i++)
+        for (int i = 0; i < _productVisualsContainer.AvailableTabs.Count; i++)
         {
-            tabs[i].SetOnClickHandler(asd[i], _tabClickHandler);
+            AttachmentsTab tab = _productVisualsContainer.AvailableTabs[i];
+            CustomizationScreenTab newTab = Instantiate(tabPrefab, tabsContainer);
+            newTab.SetTab(tab).SetOnClickHandler(tab, _tabClickHandler);
+            _selectedItems.Add(tab, new(_customizationIndexes.GetIndex(tab)));
+
+            _tabs.Add(newTab);
         }
+
+        _selectedItems.Add(AttachmentsTab.None, new(-1));
     }
 
     private void SwitchTab(AttachmentsTab tab)
@@ -227,24 +242,11 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
         if (tab == _currentTab.Value)
             return;
 
-        //if(_currentTab.Value != AttachmentsTab.None)
-        //    podiumController.SetPodiumAttachmentIndex(_currentTab.Value, _customizationIndexes.GetIndex(_currentTab.Value));
+        weaponItemsHandler.ClearTab();
 
-        //if (tab != AttachmentsTab.None)
-        //    podiumController.SetPodiumAttachmentIndex(tab, _customizationIndexes.GetIndex(tab));
-
-        _currentContent = podiumController.GetAttachments(tab);
+        _currentTabAttachments = podiumController.GetAttachments(tab);
         _currentTab.Value = tab;
-
-        int chosenIndex = _customizationIndexes.GetIndex(tab);
-        if (chosenIndex >= 0)
-        {
-            _currentChosen.Value = _productVisualsContainer.GetItemByHash(_currentContent[chosenIndex]).ProductKey;
-        }
-        else
-        {
-            _currentChosen.Value = string.Empty;
-        }
+        _currentChosen.Value = _customizationIndexes.GetIndex(tab);
     }
 
     private void SetBuyButtonText(ShopProductVisual visual)
@@ -267,23 +269,22 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
         }
     }
 
-    private void RefreshButtonsState(string productKey)
+    private void RefreshButtonsState(int index)
     {
-        if (string.IsNullOrEmpty(productKey))
+        if (index < 0)
         {
             buyButton.gameObject.SetActive(false);
             adButton.gameObject.SetActive(false);
             return;
         }
 
-        string hash = _productVisualsContainer.GetItemByProductKey(productKey).Hash;
-        int index = GetAttachmentIndexByProductKey(productKey);
+        string hash = _currentTabAttachments[index];
 
         if (_purchaseService.GetIsPurchasedReactiveProperty(hash).Value)
         {
             buyButton.gameObject.SetActive(false);
             adButton.gameObject.SetActive(false);
-            chooseButton.gameObject.SetActive(!string.IsNullOrEmpty(_currentSelected.Value) && index != _customizationIndexes.GetIndex(_currentTab.Value));
+            chooseButton.gameObject.SetActive(_currentSelected.Value >= 0 && index != _customizationIndexes.GetIndex(_currentTab.Value));
         }
         else
         {
@@ -321,6 +322,9 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
         _disposables.Clear();
         _listOfDependencies.ForEach(g => Addressables.Release(g));
         _listOfDependencies.Clear();
-        _currentChosen.Value = string.Empty;
+        _currentChosen.Value = -1;
+        _tabs.ForEach(g => Destroy(g.gameObject));
+        _tabs.Clear();
+        _selectedItems?.Clear();
     }
 }

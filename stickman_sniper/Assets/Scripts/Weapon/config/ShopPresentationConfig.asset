@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShopPresentationItems:
   - TagName: sniper
+    Tab: 1
     TabName:
       ruEnabled: 1
       ruTranslation: "\u0421\u043D\u0430\u0439\u043F\u0435\u0440\u0441\u043A\u0438\u0435

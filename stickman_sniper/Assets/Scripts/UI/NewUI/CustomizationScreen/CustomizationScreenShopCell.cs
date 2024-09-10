@@ -91,7 +91,7 @@ public class CustomizationScreenShopCell : MonoBehaviour, IPooledItem<Customizat
         return this;
     }
 
-    public void SetOnClickHandler(string key, IObserver<string> onClickHandler)
+    public void SetOnClickHandler(int key, IObserver<int> onClickHandler)
     {
         button.OnClickAsObservable().SubscribeWithState2(key, onClickHandler, (_, key, onClickHandler) =>
         {

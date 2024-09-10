@@ -2,12 +2,10 @@ using Cysharp.Threading.Tasks;
 using InfimaGames.LowPolyShooterPack;
 using Sirenix.OdinInspector;
 using stickman_sniper.Purchases;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
 using UnityEngine;
-using YG;
 
 public class CustomizationScreenCertainWeaponItemsHandler : MonoBehaviour
 {
@@ -15,23 +13,24 @@ public class CustomizationScreenCertainWeaponItemsHandler : MonoBehaviour
     [SerializeField, BoxGroup("Context")] private CustomizationScreenShopCell cellPrefab;
 
     private List<CustomizationScreenShopCell> _cells = new();
-    private Subject<string> _cellClickHandler = new();
+    private Subject<int> _cellClickHandler = new();
     private CompositeDisposable _disposables = new();
     private Dictionary<int, string> _currentAttachments;
-    private string _currentChosen;
+    private int _currentChosen;
     private AttachmentsTab _currentTabLocal = AttachmentsTab.None;
+    private IReactiveProperty<int> _currentSelected => _selectedItem[_currentTab.Value];
 
     private IReadOnlyReactiveProperty<AttachmentsTab> _currentTab;
-    private IReactiveProperty<string> _selectedItem;
-    private IReadOnlyReactiveProperty<string> _chosenItem;
+    private Dictionary<AttachmentsTab, ReactiveProperty<int>> _selectedItem;
+    private IReadOnlyReactiveProperty<int> _chosenItem;
     private IAttachmentManager _attachmentManager;
     private ShopProductVisuals _productVisualsContainer;
     private IPurchaseService _purchaseService;
     private CustomizationIndexes _customizationIndexes;
 
     public async UniTask Initialize(IReadOnlyReactiveProperty<AttachmentsTab> currentTab,
-        IReactiveProperty<string> selectedItem,
-        IReadOnlyReactiveProperty<string> chosenItem,
+        Dictionary<AttachmentsTab, ReactiveProperty<int>> selectedItem,
+        IReadOnlyReactiveProperty<int> chosenItem,
         IAttachmentManager attachmentManager,
         ShopProductVisuals productVisualsContainer,
         IPurchaseService purchaseService,
@@ -45,7 +44,7 @@ public class CustomizationScreenCertainWeaponItemsHandler : MonoBehaviour
         _purchaseService = purchaseService;
         _customizationIndexes = customizationIndexes;
 
-        _currentTab.Subscribe(SwitchTab).AddTo(this);
+        _currentTab.SkipLatestValueOnSubscribe().Subscribe(SwitchTab).AddTo(this);
     }
 
     public void SwitchTab(AttachmentsTab tab)
@@ -53,15 +52,12 @@ public class CustomizationScreenCertainWeaponItemsHandler : MonoBehaviour
         if (tab == _currentTabLocal)
             return;
 
-        Clear();
-        _currentChosen = string.Empty;
+        _currentChosen = -1;
         _currentTabLocal = tab;
-
         _currentAttachments = _attachmentManager.GetAttachments(tab);
 
         int selectedIndex = _customizationIndexes.GetIndex(tab);
-        if (selectedIndex >= 0)
-            _selectedItem.Value = _productVisualsContainer.GetItemByHash(_currentAttachments[selectedIndex]).ProductKey;
+        _currentSelected.Value = selectedIndex;
 
         for (int i = 0; i < _currentAttachments.Count; i++)
         {
@@ -75,17 +71,17 @@ public class CustomizationScreenCertainWeaponItemsHandler : MonoBehaviour
                 _purchaseService.Purchase(weaponInventoryVisuals.Hash);
             }
 
-            InitCellState(cell, weaponInventoryVisuals);
+            InitCellState(cell, weaponInventoryVisuals, i);
         }
 
         Subscribe();
     }
 
-    private void InitCellState(CustomizationScreenShopCell cell, ShopProductVisual weaponInventoryVisuals)
+    private void InitCellState(CustomizationScreenShopCell cell, ShopProductVisual weaponInventoryVisuals, int index)
     {
         cell.Item.ResolveDependencies();
         cell.Item.Init(weaponInventoryVisuals);
-        cell.Item.SetOnClickHandler(weaponInventoryVisuals.ProductKey, _cellClickHandler);
+        cell.Item.SetOnClickHandler(index, _cellClickHandler);
 
         CellState state = GetCellState(cell);
         cell.SetState(state);
@@ -101,33 +97,38 @@ public class CustomizationScreenCertainWeaponItemsHandler : MonoBehaviour
     {
         _cellClickHandler.Subscribe(x =>
         {
-            var cell = _cells.FirstOrDefault(g => g.Visual.ProductKey.Equals(x));
+            var cell = _cells[x];
 
             if (cell == null)
                 return;
 
-            if (!string.IsNullOrEmpty(_selectedItem.Value))
+            if (_currentSelected.Value >= 0)
             {
-                var oldCell = _cells.FirstOrDefault(g => g.Visual.ProductKey.Equals(_selectedItem.Value));
+                var oldCell = _cells[_currentSelected.Value];
                 oldCell.Swaper.SetSelected(false);
             }
 
             cell.Swaper.SetSelected(true);
-            _selectedItem.Value = x;
+            _currentSelected.Value = x;
         }).AddTo(_disposables);
 
         _chosenItem.SkipLatestValueOnSubscribe().Subscribe(x =>
         {
-            if (!string.IsNullOrEmpty(_currentChosen))
+            if (_currentChosen >= 0)
             {
-                if (_currentChosen.Equals(x))
+                if (_currentChosen == x)
                     return;
 
-                var oldCell = _cells.FirstOrDefault(g => g.Visual.ProductKey.Equals(_currentChosen));
-                oldCell.SetState(CellState.Purchased);
+                DeselectCurrentSelected();
             }
 
-            var newCell = _cells.FirstOrDefault(g => g.Visual.ProductKey.Equals(x));
+            if(x < 0)
+            {
+                _currentChosen = -1;
+                return;
+            }
+
+            var newCell = _cells[x];
             if (newCell == null)
                 return;
 
@@ -142,7 +143,7 @@ public class CustomizationScreenCertainWeaponItemsHandler : MonoBehaviour
 
         var purchasedProprerty = _purchaseService.GetIsPurchasedReactiveProperty(cell.Visual.Hash);
         bool isPurchased = purchasedProprerty.Value;
-        bool isChosen = _chosenItem.Value == cell.Visual.ProductKey;
+        bool isChosen = _currentChosen == _cells.IndexOf(cell);
 
         if (isChosen)
         {
@@ -156,13 +157,22 @@ public class CustomizationScreenCertainWeaponItemsHandler : MonoBehaviour
         return result;
     }
 
-    private void Clear()
+    private void DeselectCurrentSelected()
     {
+        if (_currentChosen >= 0 && _cells is { Count: > 0})
+        {
+            var oldCell = _cells[_currentChosen];
+            oldCell.SetState(CellState.Purchased);
+        }
+    }
+
+    public void ClearTab()
+    {
+        DeselectCurrentSelected();
+
         _cells.ForEach(g => Destroy(g.gameObject));
         _cells.Clear();
-
-        _attachmentManager.SetAttachmentIndex(_currentTabLocal, _customizationIndexes.GetIndex(_currentTabLocal));
-        //_selectedItem.Value = string.Empty;
+        _currentSelected.Value = _customizationIndexes.GetIndex(_currentTab.Value);
         _disposables?.Clear();
     }
 }

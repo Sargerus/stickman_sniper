@@ -7,6 +7,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "[GameWeaponConfig]/ShopProductVisuals", fileName = "new ShopProductVisualsItem")]
 public class ShopProductVisuals : ScriptableObject
 {
+    public List<AttachmentsTab> AvailableTabs;
+
     [TableList]
     public List<ShopProductVisual> Items;
 

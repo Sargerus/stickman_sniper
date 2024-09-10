@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08ae6abcd56c1da4c98b8eb6f01723d2, type: 3}
   m_Name: ShopPresentationConfigItem_Sniper01
   m_EditorClassIdentifier: 
+  AvailableTabs: 01000000020000000300000004000000
   Items:
   - ProductKey: Sniper 01
     ProductName: SR MX-01

@@ -1,7 +1,11 @@
+using Sirenix.OdinInspector;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 using YG;
 
 public class CustomizationScreenTab : MonoBehaviour
@@ -9,7 +13,16 @@ public class CustomizationScreenTab : MonoBehaviour
     [SerializeField] private TMP_Text tabName;
     [SerializeField] private UnityEngine.UI.Button button;
 
+    [SerializeField, BoxGroup("Sprite")] private Image image;
+    [SerializeField, BoxGroup("Sprite")] private List<TabToSprite> tabToSprites;
+
     private CompositeDisposable _disposables = new();
+
+    public CustomizationScreenTab SetTab(AttachmentsTab tab)
+    {
+        image.sprite = tabToSprites.FirstOrDefault(g => g.Tab == tab)?.Sprite;
+        return this;
+    }
 
     public CustomizationScreenTab SetTabName(TranslationData trData)
     {
@@ -21,9 +34,9 @@ public class CustomizationScreenTab : MonoBehaviour
         return this;
     }
 
-    public CustomizationScreenTab SetOnClickHandler(string key, IObserver<string> onClickHandler)
+    public CustomizationScreenTab SetOnClickHandler(AttachmentsTab tab, IObserver<AttachmentsTab> onClickHandler)
     {
-        button.OnClickAsObservable().SubscribeWithState2(key, onClickHandler, (_, key, onClickHandler) =>
+        button.OnClickAsObservable().SubscribeWithState2(tab, onClickHandler, (_, key, onClickHandler) =>
         {
             onClickHandler.OnNext(key);
         }).AddTo(_disposables);
@@ -35,4 +48,11 @@ public class CustomizationScreenTab : MonoBehaviour
     {
         _disposables.Dispose();
     }
+}
+
+[Serializable]
+public class TabToSprite
+{
+    public AttachmentsTab Tab;
+    public Sprite Sprite;
 }

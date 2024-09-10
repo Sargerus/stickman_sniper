@@ -53,6 +53,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tabName: {fileID: 0}
   button: {fileID: 3574883744212970823}
+  image: {fileID: 106507665938402119}
+  tabToSprites:
+  - Tab: 1
+    Sprite: {fileID: 21300000, guid: 913911fdda35b964f8d998940a9396eb, type: 3}
+  - Tab: 2
+    Sprite: {fileID: 21300000, guid: 78f1973ddc39da24ab361020271c79cc, type: 3}
+  - Tab: 3
+    Sprite: {fileID: 21300000, guid: 00ce577cbe03c114393da9dd548d553c, type: 3}
+  - Tab: 4
+    Sprite: {fileID: 21300000, guid: 172624ea68944544da15c1e64dd62d3b, type: 3}
+  - Tab: 5
+    Sprite: {fileID: 21300000, guid: e4c35bf29ad86c54189922aa87887013, type: 3}
 --- !u!114 &5181401921877029791
 MonoBehaviour:
   m_ObjectHideFlags: 0

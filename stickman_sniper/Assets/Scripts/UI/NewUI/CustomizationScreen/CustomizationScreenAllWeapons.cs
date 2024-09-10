@@ -14,7 +14,7 @@ using Zenject;
 public class CustomizationScreenAllWeapons : MonoBehaviour
 {
     [SerializeField, BoxGroup("Tabs")] private Transform tabsContainer;
-    [SerializeField, BoxGroup("Tabs")] private CustomizationScreenTab tabPrefab;
+    [SerializeField, BoxGroup("Tabs")] private CustomizationScreenAllWeaponsTab tabPrefab;
 
     [SerializeField, BoxGroup("Cells")] private Transform weaponsContainer;
 
@@ -25,12 +25,13 @@ public class CustomizationScreenAllWeapons : MonoBehaviour
     private IPurchaseService _purchaseService;
     private IGameStartWeaponInventoryService _gameStartWeaponInventoryService;
 
-    private List<CustomizationScreenTab> _tabs = new();
+    private List<CustomizationScreenAllWeaponsTab> _tabs = new();
     private List<IPooledItem<CustomizationScreenShopCell>> _shopCells = new();
-    private Dictionary<string, List<string>> _tagWeaponLink;
-    private Subject<string> _tabClickHandler = new();
+    private Dictionary<InventoryTab, List<string>> _tagWeaponLink;
+    private Subject<InventoryTab> _tabClickHandler = new();
     private IObserver<string> _cellClickHandler;
-    private string _currentSelectedTab;
+    private Subject<int> _cellClickHandlerInt = new();
+    private InventoryTab _currentSelectedTab;
     private CompositeDisposable _disposables = new();
 
     public void ResolveDependencies(
@@ -54,13 +55,13 @@ public class CustomizationScreenAllWeapons : MonoBehaviour
             //var shopVisualInfo = _shopPresentationConfig.ShopPresentationItems.FirstOrDefault(g => g.TagName.Equals(item.Tag));
             var availableWeapons = item.Weapons;
         
-            _tagWeaponLink.Add(item.TagName, availableWeapons.ToList());
+            _tagWeaponLink.Add(item.Tab, availableWeapons.ToList());
         
             var newTab = Instantiate(tabPrefab, tabsContainer);
             _tabs.Add(newTab);
         
             newTab.SetTabName(item.TabName)
-                .SetOnClickHandler(item.TagName, _tabClickHandler);
+                .SetOnClickHandler(item.Tab, _tabClickHandler);
         }
         
         _cellClickHandler = cellClickHandler;
@@ -77,6 +78,12 @@ public class CustomizationScreenAllWeapons : MonoBehaviour
             _shopCells.ForEach(g => g.ReturnToPool());
             await ShowTab(_currentSelectedTab);
         }).AddTo(_disposables);
+
+        _cellClickHandlerInt.Subscribe(x =>
+        {
+            _tagWeaponLink.TryGetValue(_currentSelectedTab, out var weapons);
+            _cellClickHandler.OnNext(weapons[x]);
+        }).AddTo(_disposables);
     }
 
     public async UniTask DeInit()
@@ -90,9 +97,9 @@ public class CustomizationScreenAllWeapons : MonoBehaviour
         _disposables.Clear();
     }
 
-    private async UniTask ShowTab(string tabTag)
+    private async UniTask ShowTab(InventoryTab tab)
     {
-        if (!_tagWeaponLink.TryGetValue(tabTag, out var weapons))
+        if (!_tagWeaponLink.TryGetValue(tab, out var weapons))
             return;
 
         for (int i =0; i< weapons.Count; i++)
@@ -112,7 +119,7 @@ public class CustomizationScreenAllWeapons : MonoBehaviour
             cell.Item.Init(weaponItem);
             cell.Item.SetState(GetCellState(cell.Item));
 
-            cell.Item.SetOnClickHandler(weaponItem.ProductKey, _cellClickHandler);
+            cell.Item.SetOnClickHandler(i, _cellClickHandlerInt);
             cell.Item.transform.SetParent(weaponsContainer, false);
             cell.Item.gameObject.SetActive(true);
         }

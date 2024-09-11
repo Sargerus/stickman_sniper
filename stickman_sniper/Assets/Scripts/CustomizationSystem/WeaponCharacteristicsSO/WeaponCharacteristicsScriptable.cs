@@ -150,6 +150,7 @@ public class WeaponCharacteristicsScriptable : ScriptableObject
         CustomizationIndexes.laserIndex = wcs.CustomizationIndexes.laserIndex;
         CustomizationIndexes.gripIndex = wcs.CustomizationIndexes.gripIndex;
         CustomizationIndexes.magazineIndex = wcs.CustomizationIndexes.magazineIndex;
+        CustomizationIndexes.skinIndex = wcs.CustomizationIndexes.skinIndex;
     }
 #endif
 }
@@ -170,6 +171,7 @@ public class CustomizationIndexes
         laserIndex = source.laserIndex;
         gripIndex = source.gripIndex;
         magazineIndex = source.magazineIndex;
+        skinIndex = source.skinIndex;
     }
 
     [Title(label: "Scope")]
@@ -200,6 +202,8 @@ public class CustomizationIndexes
     [Tooltip("Selected Magazine Index.")]
     public int magazineIndex = -1;
 
+    public int skinIndex = 0;
+
     public int GetIndex(AttachmentsTab tab) => tab switch
     {
         AttachmentsTab.Scope => scopeIndex,
@@ -207,6 +211,7 @@ public class CustomizationIndexes
         AttachmentsTab.Laser => laserIndex,
         AttachmentsTab.Grip => gripIndex,
         AttachmentsTab.Magazine => magazineIndex,
+        AttachmentsTab.Skin => skinIndex,
         _ => -1
     };
 
@@ -219,6 +224,7 @@ public class CustomizationIndexes
             case AttachmentsTab.Laser: laserIndex = value; break;
             case AttachmentsTab.Grip: gripIndex = value; break;
             case AttachmentsTab.Magazine: magazineIndex = value; break;
+            case AttachmentsTab.Skin: skinIndex = value; break;
         }
     }
 }

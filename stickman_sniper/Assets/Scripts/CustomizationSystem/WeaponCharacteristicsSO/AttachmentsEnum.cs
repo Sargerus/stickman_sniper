@@ -5,7 +5,8 @@ public enum AttachmentsTab
     Muzzle = 2,
     Laser = 3,
     Grip = 4,
-    Magazine = 5
+    Magazine = 5,
+    Skin = 6
 }
 
 public enum InventoryTab

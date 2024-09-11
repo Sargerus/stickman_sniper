@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08ae6abcd56c1da4c98b8eb6f01723d2, type: 3}
   m_Name: ShopPresentationConfigItem_Sniper01
   m_EditorClassIdentifier: 
-  AvailableTabs: 01000000020000000300000004000000
+  AvailableTabs: 0100000002000000030000000400000006000000
   Items:
   - ProductKey: Sniper 01
     ProductName: SR MX-01
@@ -408,6 +408,48 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     Product3DModel:
       m_AssetGUID: 3f094606aa34bc54e820a436ae2a363e
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 0
+    Cost: 0
+  - ProductKey: Sniper 01_skin_1
+    ProductName: 
+    Hash: 1267139434
+    IsBoughtByDefault: 1
+    ProductImage:
+      m_AssetGUID: 013e2e59724ef754ba942d6895587f07
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 7c2a34896249b6748b238d235daba328
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 0
+    Cost: 0
+  - ProductKey: Sniper 01_skin_2
+    ProductName: 
+    Hash: -498640398
+    IsBoughtByDefault: 1
+    ProductImage:
+      m_AssetGUID: 8957b8c07deb0ad48832f47826583942
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 7c2a34896249b6748b238d235daba328
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0

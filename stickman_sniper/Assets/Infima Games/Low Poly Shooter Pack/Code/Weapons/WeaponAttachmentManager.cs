@@ -16,6 +16,7 @@ namespace InfimaGames.LowPolyShooterPack
         void SetLaserIndex(int index);
         void SetGripIndex(int index);
         void SetMagazineIndex(int index);
+        void SetSkinIndex(int index);
 
         Dictionary<int, string> GetAttachments(AttachmentsTab tab);
         Dictionary<int, string> GetScopes();
@@ -23,6 +24,7 @@ namespace InfimaGames.LowPolyShooterPack
         Dictionary<int, string> GetLasers();
         Dictionary<int, string> GetGrips();
         Dictionary<int, string> GetMagazines();
+        Dictionary<int, string> GetSkins();
     }
 
     /// <summary>
@@ -114,6 +116,12 @@ namespace InfimaGames.LowPolyShooterPack
         [SerializeField]
         private Magazine[] magazineArray;
 
+        [SerializeField]
+        private SkinBehaviour[] skinArray;
+
+        [SerializeField]
+        private int skinIndex;
+
         #endregion
 
         #region FIELDS
@@ -138,6 +146,7 @@ namespace InfimaGames.LowPolyShooterPack
         /// Equipped Magazine.
         /// </summary>
         private MagazineBehaviour magazineBehaviour;
+        private SkinBehaviour skinBehaviour;
 
         #endregion
 
@@ -213,6 +222,7 @@ namespace InfimaGames.LowPolyShooterPack
             laserIndex = indexes.laserIndex;
             gripIndex = indexes.gripIndex;
             magazineIndex = indexes.magazineIndex;
+            skinIndex = indexes.skinIndex;
         }
 
         public override void Initialize()
@@ -241,6 +251,8 @@ namespace InfimaGames.LowPolyShooterPack
                 magazineIndex = Random.Range(0, magazineArray.Length);
             //Select Magazine!
             SetMagazineIndex(magazineIndex);
+
+            SetSkinIndex(skinIndex);
         }
 
         public void SetScopeIndex(int index)
@@ -274,11 +286,21 @@ namespace InfimaGames.LowPolyShooterPack
             magazineBehaviour = magazineArray.SelectAndSetActive(index);
         }
 
+        public void SetSkinIndex(int index)
+        {
+            if (index == -1)
+                index = 0;
+
+            skinBehaviour = skinArray[index];
+            skinBehaviour.SetSkins();
+        }
+
         public Dictionary<int, string> GetScopes() => ZipArray(scopeArray);
         public Dictionary<int, string> GetMuzzles() => ZipArray(muzzleArray);
         public Dictionary<int, string> GetLasers() => ZipArray(laserArray);
         public Dictionary<int, string> GetGrips() => ZipArray(gripArray);
         public Dictionary<int, string> GetMagazines() => ZipArray(magazineArray);
+        public Dictionary<int, string> GetSkins() => ZipArray(skinArray);
 
         private Dictionary<int, string> ZipArray(MonoBehaviour[] array)
         {
@@ -304,6 +326,7 @@ namespace InfimaGames.LowPolyShooterPack
                 case AttachmentsTab.Laser: SetLaserIndex(index); return;
                 case AttachmentsTab.Grip: SetGripIndex(index); return;
                 case AttachmentsTab.Magazine: SetMagazineIndex(index); return;
+                case AttachmentsTab.Skin: SetSkinIndex(index); return;
             }
         }
 
@@ -316,6 +339,7 @@ namespace InfimaGames.LowPolyShooterPack
                 AttachmentsTab.Laser => laserIndex,
                 AttachmentsTab.Grip => gripIndex,
                 AttachmentsTab.Magazine => magazineIndex,
+                AttachmentsTab.Skin => skinIndex,
                 _ => -1,
             };
         }
@@ -329,6 +353,7 @@ namespace InfimaGames.LowPolyShooterPack
                 AttachmentsTab.Laser => GetLasers(),
                 AttachmentsTab.Grip => GetGrips(),
                 AttachmentsTab.Magazine => GetMagazines(),
+                AttachmentsTab.Skin => GetSkins(),
                 _ => new(),
             };
         }

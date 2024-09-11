@@ -201,7 +201,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
 
             foreach (var reference in references)
             {
-                if (uniqueKeys.Add(reference.RuntimeKey))
+                if (reference.RuntimeKeyIsValid() && uniqueKeys.Add(reference.RuntimeKey))
                 {
                     uniqueReferences.Add(reference);
                 }

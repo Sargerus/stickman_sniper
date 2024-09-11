@@ -1,5 +1,5 @@
 {
-    "idSave": 58,
+    "idSave": 35,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
@@ -14,29 +14,25 @@
     "currencies": [
         {
             "Key": "gold",
-            "Value": 3200.0
+            "Value": 0.0
         }
     ],
     "purchases": [
         "-368270586",
-        "-753201110",
-        "1232666277",
-        "632185177",
-        "-1149852207",
-        "1295361385",
-        "903384978",
-        "370434964"
+        "1267139434",
+        "-498640398"
     ],
     "weaponSelectedIndexes": [
         {
             "WeaponKey": "Sniper 01",
             "Indexes": {
                 "scopeDefaultShow": true,
-                "scopeIndex": 5,
-                "muzzleIndex": 1,
+                "scopeIndex": -1,
+                "muzzleIndex": 0,
                 "laserIndex": -1,
-                "gripIndex": 1,
-                "magazineIndex": 0
+                "gripIndex": -1,
+                "magazineIndex": 0,
+                "skinIndex": 1
             }
         }
     ]

@@ -65,6 +65,8 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: 172624ea68944544da15c1e64dd62d3b, type: 3}
   - Tab: 5
     Sprite: {fileID: 21300000, guid: e4c35bf29ad86c54189922aa87887013, type: 3}
+  - Tab: 6
+    Sprite: {fileID: 21300000, guid: e4c35bf29ad86c54189922aa87887013, type: 3}
 --- !u!114 &5181401921877029791
 MonoBehaviour:
   m_ObjectHideFlags: 0

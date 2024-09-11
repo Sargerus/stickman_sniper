@@ -40,12 +40,13 @@ public class CustomizationScreen : BaseWindow
         ILoadingManagerHolder loadingManagerHolder,
         IPurchaseService purchaseService,
         ICurrencyService currencyService,
-        IGameStartWeaponInventoryService gameStartWeaponInventoryService)
+        IGameStartWeaponInventoryService gameStartWeaponInventoryService,
+        ISaveService saveService)
     {
         _loadingManagerHolder = loadingManagerHolder;
 
         weaponsGrid.ResolveDependencies(customiationDataContainerSO, shopPresentationConfig, gameStartWeaponInventoryService, purchaseService);
-        certainWeapon.ResolveDependencies(shopPresentationConfig, weaponCharacteristicsContainer, purchaseService, currencyService);
+        certainWeapon.ResolveDependencies(shopPresentationConfig, weaponCharacteristicsContainer, purchaseService, currencyService, saveService);
 
         SwitchTabAsync(null, Tabs.AllWeapons).Forget();
     }

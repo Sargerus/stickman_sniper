@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
-using YG;
+using Zenject;
 
 public interface IProgressObserver
 {
@@ -21,6 +21,8 @@ public interface ILevelProgressObserver : IProgressObserver
 
 public class LevelProgressObserver : ILevelProgressObserver, IDisposable
 {
+    [Inject] private ISaveService _saveService;
+
     private List<IReadOnlyReactiveProperty<bool>> _enemies = new();
     private CompositeDisposable _disposables = new();
 
@@ -61,8 +63,8 @@ public class LevelProgressObserver : ILevelProgressObserver, IDisposable
         {
             if (_killedEnemies.Value == TotalEnemies)
             {
-                YandexGame.savesData.levelsPassed++;
-                YandexGame.SaveProgress();
+                _saveService.SetLevelsPassed(_saveService.GetLevelsPassed() + 1);
+                _saveService.SaveProgress();
 
                 _win.Value = true;
             }

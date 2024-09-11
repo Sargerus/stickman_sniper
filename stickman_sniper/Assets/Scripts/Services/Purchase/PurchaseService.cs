@@ -20,6 +20,8 @@ namespace stickman_sniper.Purchases
 
     internal partial class PurchaseService : IPurchaseService, IDisposable
     {
+        private readonly ISaveService _saveService;
+
         private HashSet<string> _purchases = new();
         private Dictionary<string, ReactiveProperty<bool>> _cachedProperties = new();
         private HashToProductKeyMapper _hashToProductKeyMapper;
@@ -29,11 +31,12 @@ namespace stickman_sniper.Purchases
 
         private string _nextBuy;
 
-        public PurchaseService(HashToProductKeyMapper hashToProductKeyMapper)
+        public PurchaseService(ISaveService saveService, HashToProductKeyMapper hashToProductKeyMapper)
         {
+            _saveService = saveService;
             _hashToProductKeyMapper = hashToProductKeyMapper;
             _hashToProductKeyMapper.FilLCache();
-            _purchases = YandexGame.savesData.purchases.ToHashSet<string>();
+            _purchases = _saveService.GetPurchases().ToHashSet<string>();
             Subscribe();
         }
 
@@ -109,8 +112,8 @@ namespace stickman_sniper.Purchases
 
         private void Save()
         {
-            YandexGame.savesData.purchases = _purchases.ToList();
-            YandexGame.SaveProgress();
+            _saveService.SetPurchases(_purchases.ToList());
+            _saveService.SaveProgress();
         }
 
         public void SetNextBuyByRewardedAd(string hash)

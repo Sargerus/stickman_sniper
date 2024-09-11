@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UniRx;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -42,6 +41,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
     private IPurchaseService _purchaseService;
     private ICurrencyService _currencyService;
     private ShopPresentationConfig _shopProductConfig;
+    private ISaveService _saveService;
     private WeaponCharacteristicsContainer _weaponCharacteristicsContainer;
     private IObserver<string> _backClickHandler;
     private Dictionary<int, string> _currentTabAttachments = new();
@@ -58,12 +58,14 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
 
     public void ResolveDependencies(ShopPresentationConfig shopProductConfig,
         WeaponCharacteristicsContainer weaponCharacteristicsContainer,
-        IPurchaseService purchaseService, ICurrencyService currencyService)
+        IPurchaseService purchaseService, ICurrencyService currencyService,
+        ISaveService saveService)
     {
         _shopProductConfig = shopProductConfig;
         _weaponCharacteristicsContainer = weaponCharacteristicsContainer;
         _purchaseService = purchaseService;
         _currencyService = currencyService;
+        _saveService = saveService;
     }
 
     public async UniTask Init(string key, IObserver<string> backClickHandler)
@@ -73,7 +75,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
         _productVisualsContainer = _shopProductConfig.GetConfigByKey(key);
 
         var weaponItem = _productVisualsContainer.GetItemByProductKey(key);
-        _weaponIndexes = YandexGame.savesData.weaponSelectedIndexes.FirstOrDefault(g => g.WeaponKey.Equals(key));
+        _weaponIndexes = _saveService.GetWeaponIndexes().FirstOrDefault(g => g.WeaponKey.Equals(key));
         
         weaponText.SetText(weaponItem.ProductName);        
 
@@ -110,7 +112,7 @@ public class CustomizationScreenCertainWeapon : MonoBehaviour
 
             //this workaround was set for WebGL for saving, because WebGL doesnt suppor save through scriptables: they are cleared at start
             _weaponIndexes.Indexes.SetIndex(_currentTab.Value, newIndex);
-            YandexGame.SaveProgress();
+            _saveService.SaveProgress();
             _customizationIndexes.SetIndex(_currentTab.Value, newIndex);
             podiumController.SetPodiumAttachmentIndex(_currentTab.Value, newIndex);
             _currentChosen.Value = newIndex;

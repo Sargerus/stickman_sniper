@@ -2,9 +2,9 @@ using Cysharp.Threading.Tasks;
 using DW.StateMachine;
 using stickman_sniper.Currency;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using YG;
 using Zenject;
 
 public sealed class BootstrapSceneState : IState
@@ -37,7 +37,9 @@ public sealed class BootstrapSceneState : IState
         loadingManagerHolder.LoadingManager = _loadingManager;
 
         InitializeCurrency();
-        InitializeWeaponIndexes();
+        
+        var saveService = _sceneContext.Container.Resolve<ISaveService>();
+        InitializeWeaponIndexes(saveService);
 
         GlobalBlackboard.Blackboard.SetValue<bool>(BlackboardConstants.BootstrapReadyBool, true);
     }
@@ -49,21 +51,24 @@ public sealed class BootstrapSceneState : IState
         currencyService.CreateCurrency("gold");
     }
 
-    private void InitializeWeaponIndexes()
+    private void InitializeWeaponIndexes(ISaveService saveService)
     {
+        List<WeaponIndexes> weaponIndexes = saveService.GetWeaponIndexes();
+
         foreach (var weapon in _weaponCharacteristicsContainer.Config)
         {
-            if (YandexGame.savesData.weaponSelectedIndexes.Any(g => g.WeaponKey.Equals(weapon.WeaponKey)))
+            if (weaponIndexes.Any(g => g.WeaponKey.Equals(weapon.WeaponKey)))
             {
-                var indexes = YandexGame.savesData.weaponSelectedIndexes.FirstOrDefault(g => g.WeaponKey.Equals(weapon.WeaponKey));
+                var indexes = weaponIndexes.FirstOrDefault(g => g.WeaponKey.Equals(weapon.WeaponKey));
                 weapon.CurrentCustomizationData.CustomizationIndexes = new(indexes.Indexes);
                 continue;
             }
 
-            YandexGame.savesData.weaponSelectedIndexes.Add(new WeaponIndexes(weapon.WeaponKey, weapon.DefaultCustomizationData.CustomizationIndexes));
+            weaponIndexes.Add(new WeaponIndexes(weapon.WeaponKey, weapon.DefaultCustomizationData.CustomizationIndexes));
         }
 
-        YandexGame.SaveProgress();
+        saveService.SetWeaponIndexes(weaponIndexes);
+        saveService.SaveProgress();
     }
 
     public async UniTask OnExitState()

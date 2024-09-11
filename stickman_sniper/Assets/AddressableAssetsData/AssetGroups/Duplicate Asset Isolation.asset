@@ -853,6 +853,54 @@ MonoBehaviour:
     m_Address: Packages/com.unity.render-pipelines.universal/Shaders/Utils/FallbackError.shader
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: edb0a99e35dbca94ca5f19ae4cea2d20
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Weapons/Camo/T_WEP_Camo_007_R.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 567beb0e15733dd4789c7227df342604
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Weapons/Camo/T_WEP_Camo_007_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b9bd032f900394c48a61e2640c33361f
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Weapons/CarbonFibre/T_WEP_CarbonFibre_005_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 188ba623dadf19549893bd4f418f9000
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Weapons/Basic/T_WEP_Basic_003_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f4146d62db214694bb500f308f19c10f
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Weapons/Basic/T_WEP_Basic_016_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 32fc155aa166ec241ae05b01fec9c885
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Weapons/Basic/T_WEP_Basic_026_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b9c1a8970e4e2f64182095e2409f7004
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Weapons/Basic/T_WEP_Basic_036_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 357c497df2559d64da025683a17e08a8
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Weapons/Basic/T_WEP_Basic_046_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: aa61f37a12589b24594500cecf8c5917
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Weapons/Basic/T_WEP_Basic_056_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 96e0da3227b01d2429830f4b82f723a1
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Weapons/Basic/T_WEP_Basic_057_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 09bb8ebf41c953146987f66f3bbf9280
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Weapons/Camo/T_WEP_Camo_001_D.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 254e3e6f46fffed4188d13cd4dd6ab7d
+    m_Address: Assets/Infima Games/Low Poly Shooter Pack/Art/Textures/Weapons/Camo/T_WEP_Camo_001_R.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3ab1704d1ccd64346a4142c5eee15a6c, type: 2}
   m_SchemaSet:

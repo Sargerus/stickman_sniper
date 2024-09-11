@@ -154,6 +154,30 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Skins/Shop_icon_P_LPSP_WEP_Sniper_01_skin_3.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: a8417cfd6dc066e4fa5b9e92d530ca6d
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Skins/Shop_icon_P_LPSP_WEP_Sniper_01_skin_4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: afb9de83c7779744eac9d752264dc5cd
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Skins/Shop_icon_P_LPSP_WEP_Sniper_01_skin_5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0632e333f76fe6c4195742f6e6ecd9a3
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Skins/Shop_icon_P_LPSP_WEP_Sniper_01_skin_6.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 661be6d747318724eb83e6291dc7cbc7
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Skins/Shop_icon_P_LPSP_WEP_Sniper_01_skin_7.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e1ac2705c780d084885f602662397cdc
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Skins/Shop_icon_P_LPSP_WEP_Sniper_01_skin_8.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 88888ab6442327e48b5f9e39c8bc437c
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Skins/Shop_icon_P_LPSP_WEP_Sniper_01_skin_9.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3ab1704d1ccd64346a4142c5eee15a6c, type: 2}
   m_SchemaSet:

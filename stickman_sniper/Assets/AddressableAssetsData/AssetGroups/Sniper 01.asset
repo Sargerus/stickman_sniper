@@ -150,6 +150,10 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Skins/Shop_icon_P_LPSP_WEP_Sniper_01_skin_2.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 4ebd323adc560e54a98bf6d06c4f4723
+    m_Address: Assets/Prefabs/UI/P_LPSP_WEP_Sniper_01/Skins/Shop_icon_P_LPSP_WEP_Sniper_01_skin_3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3ab1704d1ccd64346a4142c5eee15a6c, type: 2}
   m_SchemaSet:

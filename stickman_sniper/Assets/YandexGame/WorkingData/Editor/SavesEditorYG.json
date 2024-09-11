@@ -1,5 +1,5 @@
 {
-    "idSave": 35,
+    "idSave": 10,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
@@ -19,8 +19,9 @@
     ],
     "purchases": [
         "-368270586",
-        "1267139434",
-        "-498640398"
+        "-1773096980",
+        "-1817815122",
+        "1639119051"
     ],
     "weaponSelectedIndexes": [
         {
@@ -32,7 +33,7 @@
                 "laserIndex": -1,
                 "gripIndex": -1,
                 "magazineIndex": 0,
-                "skinIndex": 1
+                "skinIndex": 4
             }
         }
     ]

@@ -415,7 +415,7 @@ MonoBehaviour:
     Cost: 0
   - ProductKey: Sniper 01_skin_1
     ProductName: 
-    Hash: 1267139434
+    Hash: -1773096980
     IsBoughtByDefault: 1
     ProductImage:
       m_AssetGUID: 013e2e59724ef754ba942d6895587f07
@@ -436,8 +436,8 @@ MonoBehaviour:
     Cost: 0
   - ProductKey: Sniper 01_skin_2
     ProductName: 
-    Hash: -498640398
-    IsBoughtByDefault: 1
+    Hash: -1613705786
+    IsBoughtByDefault: 0
     ProductImage:
       m_AssetGUID: 8957b8c07deb0ad48832f47826583942
       m_SubObjectName: 
@@ -453,5 +453,152 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-    ObtainBy: 0
-    Cost: 0
+    ObtainBy: 1
+    Cost: 50
+  - ProductKey: Sniper 01_skin_3
+    ProductName: 
+    Hash: 268725581
+    IsBoughtByDefault: 0
+    ProductImage:
+      m_AssetGUID: 4ebd323adc560e54a98bf6d06c4f4723
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 7c2a34896249b6748b238d235daba328
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 1
+    Cost: 50
+  - ProductKey: Sniper 01_skin_4
+    ProductName: 
+    Hash: -384483559
+    IsBoughtByDefault: 0
+    ProductImage:
+      m_AssetGUID: 4ebd323adc560e54a98bf6d06c4f4723
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 7c2a34896249b6748b238d235daba328
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 1
+    Cost: 50
+  - ProductKey: Sniper 01_skin_5
+    ProductName: 
+    Hash: -1817815122
+    IsBoughtByDefault: 0
+    ProductImage:
+      m_AssetGUID: 4ebd323adc560e54a98bf6d06c4f4723
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 7c2a34896249b6748b238d235daba328
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 3
+    Cost: 50
+  - ProductKey: Sniper 01_skin_6
+    ProductName: 
+    Hash: 37235134
+    IsBoughtByDefault: 0
+    ProductImage:
+      m_AssetGUID: 4ebd323adc560e54a98bf6d06c4f4723
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 7c2a34896249b6748b238d235daba328
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 1
+    Cost: 50
+  - ProductKey: Sniper 01_skin_7
+    ProductName: 
+    Hash: 1352659620
+    IsBoughtByDefault: 0
+    ProductImage:
+      m_AssetGUID: 4ebd323adc560e54a98bf6d06c4f4723
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 7c2a34896249b6748b238d235daba328
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 1
+    Cost: 50
+  - ProductKey: Sniper 01_skin_8
+    ProductName: 
+    Hash: -482902901
+    IsBoughtByDefault: 0
+    ProductImage:
+      m_AssetGUID: 4ebd323adc560e54a98bf6d06c4f4723
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 7c2a34896249b6748b238d235daba328
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 1
+    Cost: 50
+  - ProductKey: Sniper 01_skin_9
+    ProductName: 
+    Hash: 1639119051
+    IsBoughtByDefault: 0
+    ProductImage:
+      m_AssetGUID: 4ebd323adc560e54a98bf6d06c4f4723
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ProductBackground:
+      m_AssetGUID: 7c2a34896249b6748b238d235daba328
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Product3DModel:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    ObtainBy: 3
+    Cost: 50

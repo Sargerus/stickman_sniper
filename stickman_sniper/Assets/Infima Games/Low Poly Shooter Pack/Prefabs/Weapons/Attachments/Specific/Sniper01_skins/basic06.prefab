@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4145470189166352682}
   - component: {fileID: 6618637349579080701}
   m_Layer: 9
-  m_Name: 1
+  m_Name: basic06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   Skins:
   - Renderer: {fileID: 0}
     MaterialIndex: 0
-    NewMaterial: {fileID: 2100000, guid: f163886c552e95540a538a1986131edf, type: 2}
+    NewMaterial: {fileID: 2100000, guid: 89aec69d264f8854a9b5b74042a882ca, type: 2}
   - Renderer: {fileID: 0}
     MaterialIndex: 2
-    NewMaterial: {fileID: 2100000, guid: f163886c552e95540a538a1986131edf, type: 2}
+    NewMaterial: {fileID: 2100000, guid: 89aec69d264f8854a9b5b74042a882ca, type: 2}

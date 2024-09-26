@@ -12,5 +12,7 @@ destroying your opponents with spectacular explosions. The gameplay allows you t
 Fight, destroy enemies and enjoy dynamic and exciting action!
 
 Version:
-First iteration of this project is called "Special Agent: Sniper" and available to play by this link: https://yandex.ru/games/app/272194?lang=en
-Second iteration is called "Special Agent: Sniper 2" and it has more features and main is customization system. Available to play here: https://yandex.ru/games/app/358386?lang=en
+
+First iteration of this project is called "Special Agent: Sniper" and available to play by this [link](https://yandex.ru/games/app/272194?lang=en)
+
+Second iteration is called "Special Agent: Sniper 2" and it has more features and main is customization system. Available to play [here](https://yandex.ru/games/app/358386?lang=en)
